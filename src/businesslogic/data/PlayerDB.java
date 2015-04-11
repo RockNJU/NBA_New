@@ -12,7 +12,7 @@ import businesslogic.PO.PlayerInfoPO;
 public class PlayerDB {
 	
 	public static void main(String args[]){
-		System.out.println("è¿›å…¥mainå‡½æ•°å¯¼å…¥çƒå‘˜åŸºæœ¬ä¿¡æ¯ï¼  ");
+		System.out.println("½øÈëPlayerDB µÄmain£¨£©£º ");
 		PlayerData pd=new PlayerData();
 		ArrayList<PlayerInfoPO> list=pd.getAllPlayer();
 		//ArrayList<PlayerInfoPO> list=new ArrayList<>();
@@ -21,14 +21,14 @@ public class PlayerDB {
 	  list=db.getPlayerInfoFrom_DB();
 		
 		for(int i=0;i<list.size();i++){
-			System.out.println("çƒå‘˜ä¿¡æ¯ï¼  "+list.get(i).getName()+"-----"+(1+i));
+			System.out.println("ĞÕÃû£º "+list.get(i).getName()+"-----"+(1+i));
 		}
-		System.out.println("æ‰“å°çƒå‘˜ä¿¡æ¯ç»“æŸï¼  ");
+		System.out.println("½áÊøPalyerDBµÄmain¡£ ");
 	}
 	
 	public void writePlayerInfo_to_DB(ArrayList<PlayerInfoPO> list){
 		/**
-		 * å°†çƒå‘˜çš„åŸºæœ¬ä¿¡æ¯å†™å…¥æ•°æ®åº  
+		 *   
 		 * */
 		  Connection conn = null;  
 	       Statement stmt = null;  
@@ -46,7 +46,7 @@ public class PlayerDB {
 	        		+ "number varchar(3), position varchar(5) ,"
 	        		+ " height varchar(10),weight double(5,3) ,"
 	        		+ "birth varchar(60) , age int,exp int,school varchar(60))");  
-	        //System.out.println("å»ºè¡¨heheæˆåŠŸ!");  
+	        
 	        PlayerInfoPO po;
 	        char chr=39;
 	        for (int i=0; i<list.size(); i++) {  
@@ -81,9 +81,7 @@ public class PlayerDB {
 	
 	public ArrayList<PlayerInfoPO> getPlayerInfoFrom_DB(){
 		/*
-		 * è·å–æ‰  æœ‰çƒå‘˜çš„åŸºæœ¬ä¿¡æ¯
-		 * ä»¥ArrayListçš„å½¢å¼è¿”å›  
-		 * 
+		 
 		 * */
 		ArrayList<PlayerInfoPO> list=new ArrayList<>();
 		
@@ -115,7 +113,7 @@ public class PlayerDB {
 	       conn.commit();      
 	        } catch(ClassNotFoundException cnfe)  
 	        {  
-	            System.out.println("CanÂ´t find class for driver: " + cnfe.getMessage());  
+	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
 	            return list;  
 	        } catch (SQLException e){  
 	            System.out.println("SQLException :" + e.getMessage());  
@@ -162,7 +160,7 @@ public class PlayerDB {
 	       conn.commit();      
 	        } catch(ClassNotFoundException cnfe)  
 	        {  
-	            System.out.println("CanÂ´t find class for driver: " + cnfe.getMessage());  
+	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
 	     
 	        } catch (SQLException e){  
 	            System.out.println("SQLException :" + e.getMessage());  

@@ -38,11 +38,10 @@ public class PlayerData implements PlayerDataService {
 	
 	private void readObject() {
 		 /*
-		  * 鐢ㄤ簬浠庢枃鏈枃浠朵腑璇诲� 
-		  * 鍏ㄩ儴鐞冨憳鐨勫� 鏈俊鎭�  
+	 
 		  * 
 		  * */
-		        System.out.println("-----进入文件读写-----");
+		       
 		    	ArrayList<String> strList=new ArrayList<>();
 		    	String FILE_IN = "NBAdata/players/info";  
 		        File f = new File(FILE_IN);  
@@ -50,8 +49,7 @@ public class PlayerData implements PlayerDataService {
 		        list = FileList.getFileList(f);  
 		        String encoding="UTF-8";
 		        //System.out.println(list.size());  
-		        
-		        System.out.println("文件的个数："+list.size());
+		       
 		        int i=0;
 		        char chr=39;
 		        for (String l : list) {
@@ -94,7 +92,7 @@ public class PlayerData implements PlayerDataService {
 		        	}//end for
 		  
 		catch(Exception e){
-			System.out.println("读写文件错误原因� "+e.toString());
+			System.out.println("��д�ļ����� "+e.toString());
 			continue;
 		} 
 		     i++;   }

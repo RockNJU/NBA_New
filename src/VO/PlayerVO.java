@@ -11,12 +11,12 @@ public class PlayerVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	/*  
 	 * 
-	 * ֻ�ɶ��������޸�
+ 
 	 * 
 	 * */
 	
-	private PlayerInfoVO info;				//��Ա������Ϣ
-	private PlayerSeasonDataVO data;			//��Ա������Ϣ
+	private PlayerInfoVO info;				 
+	private PlayerSeasonDataVO data;			 
 	
 	public PlayerVO(PlayerInfoVO info,PlayerSeasonDataVO data){
 		this.info=info;

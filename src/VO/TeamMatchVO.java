@@ -10,46 +10,46 @@ public class TeamMatchVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	/*
-	 * һ��������һ֧��ӵ��������ݣ���ʾ�����ܺ����� ֻ�ɶ��������޸�
+ 
 	 */
 	
-	private String season;					//表示球队的赛季
-	private String teamName;				//表示的是球队的缩写名
-	private int	winNum;						//表示一场比赛中是否胜利，胜为1，负为0
-	private int   points; 					// 得分
-	private int  defenseNum; 				// 防守数
-	private int  offenseNum; 				// 进攻数
-	private int  reboundNum; 				// 篮板数
-	private int O_ReboundNum; 				// 进攻篮板呢数
-	private int D_ReboundNum; 				// 防守篮板数
-	private int assistNum; 					// 助攻数
-	private int turnoverNum;				//失误数
-	private int stealNum; 					// 抢断数
-	private int foulNum; 					// 犯规数
-	private int fieldGoal; 					// 进球数
-	private int shootNum; 					// 投篮数
-	private int T_fieldGoal; 				// 三分进球数
-	private int T_shootNum;					// 三分投篮数
-	private int freeThrowGoalNum; 			// 罚球命中数
-	private int freeThrowNum; 				// 总罚球数
-	private int blockNum; 					// 盖帽数
-	private double offenseRound; 			// 进攻回合
-	private double defenseRound; 			// 防守回合
+	private String season;					//����
+	private String teamName;				//�������
+	private int	winNum;						//ʤ����
+	private int   points; 					// �÷�
+	private int  defenseNum; 				//  
+	private int  offenseNum; 				//  
+	private int  reboundNum; 				// 
+	private int O_ReboundNum; 			 
+	private int D_ReboundNum; 			 
+	private int assistNum; 					 
+	private int turnoverNum;			 
+	private int stealNum; 			 
+	private int foulNum; 				 
+	private int fieldGoal; 			 
+	private int shootNum; 				 
+	private int T_fieldGoal; 			 
+	private int T_shootNum;				 
+	private int freeThrowGoalNum; 		 
+	private int freeThrowNum; 				 
+	private int blockNum; 				 
+	private double offenseRound; 		 
+	private double defenseRound; 			 
 	
 	
 
-	private double freeThrowPercentage = 0; // 罚篮命中率
-	private double threePointPercentage = 0; //三分命中率
-	private double shootPercentage = 0; 	// 投篮命中率
-	private double assistEfficiency = 0; 	// 助攻率
-	private double O_ReboundEfficiency = 0; // 进攻篮板率
-	private double D_ReboundEfficiency = 0; // 防守篮板率
-	private double stealEfficiency = 0; 	// 抢断率
-	private double defenseEfficiency = 0; 	// 防守效率
-	private double offenseEfficiency = 0; 	// 进攻效率
-	private double reboundEfficiency = 0; 	// 篮板效率
+	private double freeThrowPercentage = 0; 
+	private double threePointPercentage = 0; 
+	private double shootPercentage = 0;  
+	private double assistEfficiency = 0; 	 
+	private double O_ReboundEfficiency = 0; 
+	private double D_ReboundEfficiency = 0;  
+	private double stealEfficiency = 0; 	 
+	private double defenseEfficiency = 0;  
+	private double offenseEfficiency = 0; 	 
+	private double reboundEfficiency = 0; 
 
-	private ArrayList<SingleMatchPersonalDataVO> individualData; // 球队个人得分情况
+	private ArrayList<SingleMatchPersonalDataVO> individualData;  
 
 	public TeamMatchVO(String season,String teamName, int winNum,int pointNum, int defenseNum,
 			int offenseNum, int reboundNum, int O_ReboundNum, int D_ReboundNum,
@@ -88,15 +88,15 @@ public class TeamMatchVO implements Serializable{
 		this.defenseRound = defenseRound;
 		this.individualData = individualData;
 
-		this.freeThrowPercentage = freeThrowPercentage; // ����������
-		this.threePointPercentage = threePointPercentage; // ����������
-		this.shootPercentage = shootPercentage; // Ͷ��������
-		this.assistEfficiency = assistEfficiency; // ������
-		this.O_ReboundEfficiency = O_ReboundEfficiency; // ����������
-		this.D_ReboundEfficiency = D_ReboundEfficiency; // ����������
-		this.stealEfficiency = stealEfficiency; // ������
-		this.defenseEfficiency = defenseEfficiency; // ����Ч��
-		this.offenseEfficiency = offenseEfficiency; // ����Ч��
+		this.freeThrowPercentage = freeThrowPercentage;  
+		this.threePointPercentage = threePointPercentage;  
+		this.shootPercentage = shootPercentage;  
+		this.assistEfficiency = assistEfficiency;  
+		this.O_ReboundEfficiency = O_ReboundEfficiency; 
+		this.D_ReboundEfficiency = D_ReboundEfficiency;  
+		this.stealEfficiency = stealEfficiency;  
+		this.defenseEfficiency = defenseEfficiency;  
+		this.offenseEfficiency = offenseEfficiency;  
 
 	}
 	

@@ -14,7 +14,7 @@ public class TeamDB {
 	
 	public static void main(String args[]){
 		
-		System.out.println("è¿›å…¥mainå‡½æ•°å¯¼å…¥çƒé˜ŸåŸºæœ¬ä¿¡æ¯ï¼   ");
+		System.out.println("½øÈëTeamDBµÄmain£º ");
 		TeamData pd=new TeamData();
 		 ArrayList<TeamInfoPO> list=pd.getTeamInfoList();
 		//ArrayList<TeamInfoPO> list=new ArrayList<>();
@@ -24,16 +24,16 @@ public class TeamDB {
 	 // list=db.getTeamInfoFrom_DB();
 		
 		for(int i=0;i<list.size();i++){
-			System.out.println("çƒé˜Ÿä¿¡æ¯ï¼   "+list.get(i).getFullName()+"-----"+(1+i));
+			System.out.println("Çò¶ÓÃû£º  "+list.get(i).getFullName()+"-----"+(1+i));
 		}
-		System.out.println("æ‰“å°çƒé˜Ÿä¿   ***æ¯ç»“æŸï¼");
+		System.out.println("½áÊøTeamDBµÄmain¡·");
 	}
 	
 	
 	
 	public void writeTeamInfo_to_DB(ArrayList<TeamInfoPO> list){
 		/**
-		 * å°†çƒé˜Ÿçš„åŸºæœ¬ä¿¡æ¯å†™å…¥æ•°æ®åº   
+		 *  
 		 * */
 		 	Connection conn = null;  
 		 	Statement stmt = null;  
@@ -51,7 +51,7 @@ public class TeamDB {
 	        		+ "location varchar(32), teamAbb varchar(10) PRIMARY KEY,"
 	        		+ " division varchar(3),partition varchar(32) ,"
 	        		+ "homeGround varchar(60) , formedTime varchar(32))");  
-	        //System.out.println("å»ºè¡¨heheæˆåŠŸ!");  
+	        
 	        TeamInfoPO po;
 	         for (int i=0; i<list.size(); i++) {  
 	        	po=list.get(i);
@@ -64,7 +64,7 @@ public class TeamDB {
 	        conn.commit();  
 		
 	       } catch(ClassNotFoundException cnfe)  {  
-         System.out.println("CanÂ´t find class for driver: " + cnfe.getMessage());  
+         System.out.println("Can't find class for driver: " + cnfe.getMessage());  
          System.exit(-1);  
      } catch (SQLException e){  
          System.out.println("SQLException :" + e.toString());  
@@ -83,8 +83,7 @@ public class TeamDB {
 	
 	public ArrayList<TeamInfoPO> getTeamInfoFrom_DB(){
 		/*
-		 * è·å–æ‰   æœ‰çƒé˜Ÿçš„åŸºæœ¬ä¿¡æ¯
-		 * ä»¥ArrayListçš„å½¢å¼è¿”å›   
+		  
 		 * 
 		 * */
 		ArrayList<TeamInfoPO> list=new ArrayList<>();
@@ -117,7 +116,7 @@ public class TeamDB {
 	       conn.commit();      
 	        } catch(ClassNotFoundException cnfe)  
 	        {  
-	            System.out.println("CanÂ´t find class for driver: " + cnfe.getMessage());  
+	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
 	            return list;  
 	        } catch (SQLException e){  
 	            System.out.println("SQLException :" + e.getMessage());  

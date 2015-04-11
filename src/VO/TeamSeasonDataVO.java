@@ -6,38 +6,37 @@ public class TeamSeasonDataVO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*
-	 * 一支球队的
+	/* 
 	 */
-	String season;					//赛季
-	String teamName; 				// 队名，表示的是球队的球队缩写
-	int matchNum; 					// 赛季已比赛场数
-	int winNum;						//胜利场数
-	int fieldGoal; 					// 进球数
-	int shootNum; 					// 投篮总数
-	int T_fieldGoal; 				// 三分命中数
-	int T_shootNum; 				// 三分出手数
-	int freeThrowGoalNum; 			// 罚篮命中数
-	int freeThrowNum; 				// 罚球出手数
-	int O_ReboundNum; 				// 进攻篮板数
-	int D_ReboundNum; 				// 防守篮板数
-	int assistNum;					// 助攻数
-	int stealNum; 					// 抢断数
-	int reboundNum; 				// 篮板总数
-	int blockNum; 					// 盖帽数
-	int turnoverNum; 				// 失误数
-	int foulNum; 					// 犯规数
-	int points; 					// 得分
+	String season;					 
+	String teamName; 				 
+	int matchNum; 				 
+	int winNum;						 
+	int fieldGoal; 					 
+	int shootNum; 				 
+	int T_fieldGoal; 				 
+	int T_shootNum; 				 
+	int freeThrowGoalNum; 			 
+	int freeThrowNum; 				 
+	int O_ReboundNum; 				 
+	int D_ReboundNum; 				 
+	int assistNum;					 
+	int stealNum; 					 
+	int reboundNum; 				 
+	int blockNum; 					 
+	int turnoverNum; 			 
+	int foulNum; 					 
+	int points; 					 
 	
-	double shootPercentage; 		// 投篮命中率
-	double threePointPercentage; 	// 三分命中率
-	double freeThrowPercentage; 	// 罚篮命中率
-	double offenseRound; 			// 进攻回合
-	double offenseEfficiency = 0; 	// 进攻效率
-	double defenseEfficiency = 0; 	// 防守效率
-	double reboundEfficiency = 0; 	// 篮板效率
-	double stealEfficiency = 0; 	// 抢断效率
-	double assistEfficiency = 0; 	// 助攻效率
+	double shootPercentage; 		 
+	double threePointPercentage; 	 
+	double freeThrowPercentage; 	 
+	double offenseRound; 			 
+	double offenseEfficiency = 0; 	 
+	double defenseEfficiency = 0; 	 
+	double reboundEfficiency = 0; 	 
+	double stealEfficiency = 0; 	
+	double assistEfficiency = 0; 	 
 
 	public TeamSeasonDataVO(String season,String teamName,int matchNum,int winNum,
 	int fieldGoal,int shootNum,int T_fieldGoal,int T_shootNum,
@@ -49,37 +48,39 @@ public class TeamSeasonDataVO implements Serializable{
 	double defenseEfficiency,double reboundEfficiency,
 	double stealEfficiency ,double assistEfficiency){
 		this.season=season;
-		this.teamName = teamName; // �����������
-		this.matchNum = matchNum ; // ��������
+		this.teamName = teamName; 
+		this.matchNum = matchNum ; 
 		this.winNum = winNum;
-		this.fieldGoal = fieldGoal ; // Ͷ��������
-		this.shootNum = shootNum ; // Ͷ��������
-		this.T_fieldGoal = T_fieldGoal ; // ������������
-		this.T_shootNum = T_shootNum ; // �����������
-		this.freeThrowGoalNum =  freeThrowGoalNum; // ����������
-		this.freeThrowNum = freeThrowNum; // ���������
-		this.O_ReboundNum = O_ReboundNum ; // ������ǰ����������
-		this.D_ReboundNum =  D_ReboundNum; // ���أ��󳡣�������
-		this.assistNum =  assistNum; // ������
-		this.stealNum = stealNum ; // ������
-		this.reboundNum = reboundNum ; // ��������
-		this.blockNum = blockNum ; // ��ñ��
-		this.turnoverNum = turnoverNum ; // ʧ����
-		this.foulNum = foulNum ; // ������
-		this.points = points ; // �÷�
-		this.shootPercentage =  shootPercentage; // Ͷ��������
-		this.threePointPercentage = threePointPercentage ; // ��������������
-		this.freeThrowPercentage = freeThrowPercentage ; // ��������������
+		this.fieldGoal = fieldGoal ;  
+		this.shootNum = shootNum ;  
+		this.T_fieldGoal = T_fieldGoal ;  
+		this.T_shootNum = T_shootNum ; 
+		this.freeThrowGoalNum =  freeThrowGoalNum;  
+		this.freeThrowNum = freeThrowNum;  
+		this.O_ReboundNum = O_ReboundNum ;  
+		this.D_ReboundNum =  D_ReboundNum;  
+		this.assistNum =  assistNum;  
+		this.stealNum = stealNum ;  
+		this.reboundNum = reboundNum ; 
+		this.blockNum = blockNum ;  
+		this.turnoverNum = turnoverNum ;  
+		this.foulNum = foulNum ;  
+		this.points = points ;  
+		this.shootPercentage =  shootPercentage;  
+		this.threePointPercentage = threePointPercentage ; 
+		this.freeThrowPercentage = freeThrowPercentage ;  
 		 
-		this.offenseRound = offenseRound ; // �����غ�
-		this.offenseEfficiency = offenseEfficiency; // ����Ч��
-		this.defenseEfficiency = defenseEfficiency; // ����Ч��
-		this.reboundEfficiency = reboundEfficiency; // ����Ч��
-		this.stealEfficiency = stealEfficiency; // ������
-		this.assistEfficiency = assistEfficiency; // ������
-
+		this.offenseRound = offenseRound ;  
+		this.offenseEfficiency = offenseEfficiency;  
+		this.defenseEfficiency = defenseEfficiency;  
+		this.reboundEfficiency = reboundEfficiency;  
+		this.stealEfficiency = stealEfficiency;  
+		this.assistEfficiency = assistEfficiency;  
 	}
 	
+	public String getSreason(){
+		return season;
+	}
 	
 	public String getTeamName() {
 		return teamName;

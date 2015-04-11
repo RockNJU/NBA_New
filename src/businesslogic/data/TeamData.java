@@ -12,7 +12,7 @@ import businesslogic.dataservice.TeamDataService;
 public class TeamData implements TeamDataService{
 	/*
 	 * 
-	 * è¯»å–çƒé˜Ÿçš„èµ›å­£ä¿¡æ  
+	 * 
 	 * 
 	 * */
       private  ArrayList<TeamInfoPO> teamInfoList;
@@ -28,7 +28,7 @@ public class TeamData implements TeamDataService{
     	  TeamInfoPO po;
     	  for(int i=0;i<list.size();i++){
     		  po=list.get(i);
-    		  System.out.println("çƒé˜Ÿä¿¡æ¯ï¼  "+po.getDivision()+";"+po.getFormedTime()+";"+
+    		  System.out.println("·ÖÇø£º  "+po.getDivision()+";"+po.getFormedTime()+";"+
     		  po.getFullName()+";"+po.getHomeGround()+";"+po.getLocation()+";"+po.getPartition()+";"+
     		  po.getTeamAbb());
     	  }
@@ -67,7 +67,7 @@ public class TeamData implements TeamDataService{
                     read.close();
         
         } catch (Exception e) {
-            System.out.println("å‘ç”Ÿé”™è¯¯ï¼  "+e.toString());
+            System.out.println("ÎÄ¼ş¶ÁĞ´´íÎó£º "+e.toString());
             e.printStackTrace();
         }
 	}

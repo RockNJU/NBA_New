@@ -23,7 +23,7 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 	
 	private ArrayList<TeamSeasonDataVO> getAllTeamSeasonData(String season,String item){
 		 /*
-		  * 返回� 有球队的赛季信息
+		   
 		  * */
 		    dlist.clear();
 	    	Connection conn = null;  
@@ -65,7 +65,7 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 
 	        } catch(ClassNotFoundException cnfe)  
 	        {  
-	            System.out.println("Can´t find class for driver: " + cnfe.getMessage());  
+	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
 	            System.exit(-1);  
 	        } catch (SQLException e){  
 	            System.out.println("SQLException :" + e.getMessage());  
@@ -87,8 +87,7 @@ public class TeamController implements TeamBLService,TeamInfo_player{
    
 	private ArrayList<TeamInfoVO> getTeamInfoFrom_DB(){
 		/*
-		 * 获取� 有球队的基本信息
-		 * 以ArrayList的形式返� 
+	 
 		 * 
 		 * */
 		ArrayList<TeamInfoVO> list=new ArrayList<>();
@@ -119,7 +118,7 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 	       conn.commit();      
 	        } catch(ClassNotFoundException cnfe)  
 	        {  
-	            System.out.println("Can´t find class for driver: " + cnfe.getMessage());  
+	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
 	            return list;  
 	        } catch (SQLException e){  
 	            System.out.println("SQLException :" + e.getMessage());  
@@ -164,7 +163,7 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 	public double getTeamWinNum(String season, String teamAbb) {
 		// TODO Auto-generated method stub
 		for(int i=0;i<dlist.size();i++){
-			// if(dlist.get(i).getS)
+			//if(dlist.get(i).gets)
 		}
 		
 		return 0;

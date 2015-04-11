@@ -3,20 +3,18 @@ package businesslogic.PO;
 public class PlayerInfoPO {
 	/*
 	 * 
-	 * ��Ա�Ļ�����Ϣ���ļ���
-	 * ��ȡ��㲻���ܷ����ı�  
-	 * ֻ�ɶ������޸�
+	 *  
 	 * 
 	 * */
 	private String name;			
 	private String number;
-	private String position;				//��Ա�ڳ��ϵ�λ��
-	private String height;					//��Ա���  
-	private double weight;					//��Ա����
-	private String birth;					//����
+	private String position;				 
+	private String height;					 
+	private double weight;					 
+	private String birth;					 
 	private int age;						
-	private int exp;						//���䣬experience����˼
-	private String school;					//��ҵѧУ
+	private int exp;						 
+	private String school;					 
 	
 	public PlayerInfoPO(String name,String num,String p,String height,
 			double weight,String birth,int age ,int exp
@@ -59,5 +57,5 @@ public class PlayerInfoPO {
 	public String getSchool() {
 		return school;
 	}
-	/*������Ϣһ�����������㲻�����ı�*/
+	 
 }

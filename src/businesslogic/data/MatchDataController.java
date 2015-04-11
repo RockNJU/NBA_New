@@ -35,8 +35,8 @@ public class MatchDataController implements MatchDataService{
 		 MatchPO po=c.getMatch("01-01","CHA-LAC");
 		
 			System.out.println(i+"+++:"+po.getDate()+";"+po.getHostTeam().getTeamName()
-		+";球员姓名"+
-					po.getGuestTeam().getIndividualData().get(0).getPlayerName()+"分数�   "+
+		+"; "+
+					po.getGuestTeam().getIndividualData().get(0).getPlayerName()+"   "+
 		po.getGuestTeam().getIndividualData().get(0).getPoints());
 		
 	}
@@ -71,8 +71,8 @@ public class MatchDataController implements MatchDataService{
         	BufferedReader br = new BufferedReader(read); 	
         	String  line ;
 
-         					//锟斤拷锟斤拷
-         String matchScore="";				//锟斤拷确锟�
+         					 
+         String matchScore="";				 
          ArrayList<String> scores=new ArrayList<String>();	
         String H_team="";
         String G_team="";
@@ -157,7 +157,7 @@ public class MatchDataController implements MatchDataService{
 	
 	private void readObject(){
 		 /*
-		  * 锟斤拷取�   锟斤拷锟斤拷员锟斤拷 
+		  *  
 		  * 
 		  * */
 		       
@@ -175,15 +175,15 @@ public class MatchDataController implements MatchDataService{
 		        for (String l:list) {
 		        	try{ 
 		        	//BufferedReader br = new BufferedReader(new FileReader(new File(l))); 
-		        System.out.println("打印文件路径++�   "+l);
+		        
 		        String[]path=l.split("\\\\");
 		        String s[]=path[path.length-1].split("_");
 		        System.out.println("11111111111111");
-		        System.out.println("文件名："+path[2]);
+		         
 		        
 		        season=s[0];
 		        
-		        System.out.println("赛季�   "+season);
+		       
 		        	InputStreamReader read = new InputStreamReader(
 		                    new FileInputStream(new File(l)),encoding);
 		        	BufferedReader br = new BufferedReader(read);
@@ -192,14 +192,14 @@ public class MatchDataController implements MatchDataService{
 		        	String  line ;
 		         
 		       
-		         String date="";					//锟斤拷锟斤拷
-		         String matchScore="";				//锟斤拷确锟�
+		         String date="";				 
+		         String matchScore="";				 
 		         ArrayList<String> scores=new ArrayList<String>();	
 		        String H_team="";
 		        String G_team="";
 		        
 		        /*
-		         * 锟斤拷锟节憋拷锟斤拷锟斤拷锟酵队革拷锟剿碉拷锟斤拷锟斤拷锟斤�   
+		         *    
 		         * */
 		        ArrayList<SingleMatchPersonalDataPO> H_teamData=new ArrayList<SingleMatchPersonalDataPO> ();
 		        ArrayList<SingleMatchPersonalDataPO> G_teamData=new ArrayList<SingleMatchPersonalDataPO> ();
@@ -261,7 +261,7 @@ public class MatchDataController implements MatchDataService{
 		        			}
 		        			
 		        		}
-		        		//String str2[]=str1[1].split("锟斤�   ");
+		        		//String str2[]=str  
 		        		//strList.add(str2[1].trim());
 		           // System.out.println(line+"******"+str[1]);
 		        		//line=br.readLine();

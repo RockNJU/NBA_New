@@ -1,6 +1,5 @@
 package businesslogic.bl;
-
-import java.rmi.RemoteException;
+ 
 import java.util.ArrayList;
 
 import businesslogic.PO.MatchPO;
@@ -105,8 +104,8 @@ public class MatchController implements  businessService.blservice.MatchBLServic
 		double O_ReboundEfficiency = 0; //                 
 		double D_ReboundEfficiency = 0; //                     
 		double stealEfficiency = 0; //             
-		double defenseEfficiency = 0; //         完    
-		double offenseEfficiency = 0; //     完    
+		double defenseEfficiency = 0; //         
+		double offenseEfficiency = 0; //       
 
 		if (role.equals("host")) {
 			vo.setDefenseRound(tempGuest.getOffenseRound());
@@ -127,12 +126,12 @@ public class MatchController implements  businessService.blservice.MatchBLServic
 		shootPercentage =(double) vo.getFieldGoal() / vo.getShootNum(); //                   
 		assistEfficiency = (double)vo.getAssistNum() / vo.getOffenseRound() * 100; //         
 
-		offenseEfficiency = (double)vo.getPointNum() / vo.getOffenseRound() * 100; //     完    
+		offenseEfficiency = (double)vo.getPointNum() / vo.getOffenseRound() * 100; //         
 	//	System.out.println(offenseEfficiency+"   cal offenseRate");
 		//System.out.println(vo.getPointNum()+"   pointNum");
 		//System.out.println(vo.getOffenseRound()+"  offenseRound");
 		stealEfficiency = (double)vo.getStealNum() / vo.getDefenseRound() * 100; //             
-		defenseEfficiency = (double)vo.getPointNum() / vo.getDefenseRound() * 100; //         完    
+		defenseEfficiency = (double)vo.getPointNum() / vo.getDefenseRound() * 100; //             
 
 		TeamMatchVO matchvo = new TeamMatchVO(season,vo.getTeamName(),winNum,
 				vo.getPointNum(), vo.getDefenseNum(), vo.getOffenseNum(),

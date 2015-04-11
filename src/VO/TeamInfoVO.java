@@ -9,16 +9,16 @@ public class TeamInfoVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	/*
 	 * 
-	 * ����ֻ���Զ����������޸�
+ 
 	 * 
 	 * */
-	private String fullName;			//���ȫ��
-	private String teamAbb;             //abbreviation,�������д
-	private String location;			//���ڵ�
-	private String  division;			//����
-	private String partition;			//����
-	private String homeGround;			//����
-	private String formedTime;			//����ʱ��
+	private String fullName;			 
+	private String teamAbb;             
+	private String location;			 
+	private String  division;			 
+	private String partition;			 
+	private String homeGround;			 
+	private String formedTime;			 
 	
 	public TeamInfoVO(String fullName,String abb,String location,String d,
 			String partition,String home,String time){

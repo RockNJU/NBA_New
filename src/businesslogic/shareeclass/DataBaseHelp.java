@@ -21,12 +21,9 @@ public class DataBaseHelp {
 	
 	
 	public void updataSeasonData(MatchVO vo){
-		/*
-		 * 用于更新赛季中的球员和球队的
-		 * 比赛信息
-		 * */
+		 
 		updateTeamSeasonData(vo.getHostTeam());
-		updateTeamSeasonData(vo.getGuestTeam());//更新球队的比赛信�1
+		updateTeamSeasonData(vo.getGuestTeam()); 
 		
 		ArrayList<SingleMatchPersonalDataVO> g_smpd=vo.getGuestTeam().getIndividualData();
 		ArrayList<SingleMatchPersonalDataVO> h_smpd=vo.getHostTeam().getIndividualData();
@@ -46,7 +43,7 @@ public class DataBaseHelp {
 		  double Two_reboundNum=vo.getHostTeam().getReboundNum()+ vo.getGuestTeam().getReboundNum();//�1场比赛中两支球队的篮板�1�和
 		  
 		  for(int i=0;i<h_smpd.size();i++){
-			  /*处理主队球员数据*/
+		 
 			  svo=h_smpd.get(i);
 			  
 			  if(svo.getTime()!=null){
@@ -62,37 +59,30 @@ public class DataBaseHelp {
 			  
 			  
 			  if(time!=0){
-				  /*球员助攻数�1(球员上场时间÷(球队�1有球员上场时间�15)×球队总进
-							球数-球员进球�1)*/
+				  
 			  if((time/48*vo.getHostTeam().getShootNum()-svo.getShootNum())!=0){
 				  
 				   assistEfficiency=(double)svo.getAssistNum()/((time/48*
 						   vo.getHostTeam().getShootNum()-svo.getShootNum()));   
 			  }
 			      
-			  /*篮板率：球员篮板数�1(球队�1有球员上场时间�15)÷球员上场时间÷(球队总篮
-					�1+对手总篮�1)   前提是时间不能为0*/
+			  
 			   reboundEfficiency=(double)svo.getReboundNum()*48/time/Two_reboundNum; 
 			   
 			   offensiveReboundEff=(double)svo.getO_ReboundNum()*48/time/Two_reboundNum;;  
 					   
 			   defenseReboundEff=(double)svo.getD_ReboundNum()*48/time/Two_reboundNum;;   
 			   
-					   /* 球员抢断数�1(球队�1有球员上场时间�15)÷球员上场时间÷对手进攻�1
-							�1)*/
-					   /*此处留一个疑问，对手进攻次数是否是对手的进攻回合*/
+					    
 			   stealEfficiency=(double)svo.getStealNum()*48/time/vo.getGuestTeam().getOffenseRound();			 
-			   /* (球员出手次数+0.44×球员罚球次数+球员失误次数)×(球队�1有球�1
-				上场时间÷5)÷球员上场时间÷(球队�1有�1�球员出手次�1+0.44×球队�1有球员罚�1
-				次数+球队�1有球员失误次�1) */
+			    
 			      
 			   usingPercentage=(svo.getShootNum()+0.44*svo.getFreeThrowNum()+
 					   svo.getTurnoverNum())*48/time/(vo.getHostTeam().getShootNum()
 							   +0.44*vo.getHostTeam().getFreeThrowNum()+
 							   vo.getHostTeam().getTurnoverNum());   
 			   
-			  /**球员盖帽数�1(球队�1有球员上场时间�15)÷球员上场时间÷对手两分�1
-						出手次数*/	 
+			  
 			   blockEfficiency=(double)svo.getBlockNum()*48/time/(
 					   vo.getGuestTeam().getShootNum()-vo.getGuestTeam().getT_shootNum());
 			  }
@@ -125,7 +115,7 @@ public class DataBaseHelp {
 		  
 		 
 		  for(int i=0;i<g_smpd.size();i++){
-			  /*处理客队球员数据*/
+			 
 			  svo=g_smpd.get(i);
 			  
 			  if(svo.getTime()!=null){
@@ -137,8 +127,7 @@ public class DataBaseHelp {
 			  
 			  
 			  if(time!=0){
-				  /*球员助攻数�1(球员上场时间÷(球队�1有球员上场时间�15)×球队总进
-							球数-球员进球�1)*/
+				  
 			  if((time/48*vo.getGuestTeam().getShootNum()-svo.getShootNum())!=0){
 				   assistEfficiency=(double)svo.getAssistNum()/((time/48*
 						   vo.getGuestTeam().getShootNum()-svo.getShootNum()));   
@@ -150,28 +139,21 @@ public class DataBaseHelp {
 						   
 				   defenseReboundEff=(double)svo.getD_ReboundNum()*48/time/Two_reboundNum;;   
 				   
-						   /* 球员抢断数�1(球队�1有球员上场时间�15)÷球员上场时间÷对手进攻�1
-								�1)*/
-						   /*此处留一个疑问，对手进攻次数是否是对手的进攻回合*/
+						   
 				   stealEfficiency=(double)svo.getStealNum()*48/time/vo.getHostTeam().getOffenseRound();			 
-				   /* (球员出手次数+0.44×球员罚球次数+球员失误次数)×(球队�1有球�1
-					上场时间÷5)÷球员上场时间÷(球队�1有�1�球员出手次�1+0.44×球队�1有球员罚�1
-					次数+球队�1有球员失误次�1) */
+				   
 				      
 				   usingPercentage=(svo.getShootNum()+0.44*svo.getFreeThrowNum()+
 						   svo.getTurnoverNum())*48/time/(vo.getGuestTeam().getShootNum()
 								   +0.44*vo.getGuestTeam().getFreeThrowNum()+
 								   vo.getGuestTeam().getTurnoverNum());   
-				   
-				  /**球员盖帽数�1(球队�1有球员上场时间�15)÷球员上场时间÷对手两分�1
-							出手次数*/	 
+	  
 				   blockEfficiency=(double)svo.getBlockNum()*48/time/(
 						   vo.getGuestTeam().getShootNum()-vo.getGuestTeam().getT_shootNum());
 				  
 			  }
 			      
-			  /*篮板率：球员篮板数�1(球队�1有球员上场时间�15)÷球员上场时间÷(球队总篮
-					�1+对手总篮�1)   前提是时间不能为0*/
+		 
 			   
 			/*String season,String date,
 			 String team,String name,
@@ -204,7 +186,7 @@ public class DataBaseHelp {
 
 	public void updatePlayerData(A_player_match_data vo){
 		/*
-		 * 用于更新球员的赛季信�1
+		 *  
 		 * */
 			Connection conn = null;  
 	        Statement stmt = null;  
@@ -294,27 +276,27 @@ public class DataBaseHelp {
 	        
 	        double time=vo.getTime()+PlayerData.getTime();
 	        
-	        int matchNum=PlayerData.getMatchNum()+1; 											// 赛季已比赛场�1		
+	        int matchNum=PlayerData.getMatchNum()+1; 											 	
 	        int startingNum=PlayerData.getStartingNum()+stnum;
-	    	int fieldGoal=PlayerData.getFieldGoal()+vo.getFieldGoal(); 						// 进球�1
-	    	int shootNum=PlayerData.getShootNum()+vo.getShootNum(); 							// 投篮总数
-	    	int T_fieldGoal=PlayerData.getT_fieldGoal()+vo.getT_fieldGoal(); 					// 三分命中�1
-	    	int T_shootNum=PlayerData.getT_shootNum()+vo.getT_shootNum(); 					// 三分出手�1
-	    	int freeThrowGoalNum=PlayerData.getFreeThrowGoalNum()+vo.getFreeThrowGoalNum(); 	// 罚篮命中�1
-	    	int freeThrowNum=PlayerData.getFreeThrowNum()+vo.getFreeThrowNum(); 				// 罚球出手�1
-	    	int O_ReboundNum=PlayerData.getO_ReboundNum()+vo.getO_ReboundNum(); 				// 进攻篮板�1
-	    	int D_ReboundNum=PlayerData.getD_ReboundNum()+vo.getD_ReboundNum(); 				// 防守篮板�1
-	    	int assistNum=PlayerData.getAssistNum()+vo.getAssistNum();						// 助攻�1
-	    	int stealNum=PlayerData.getStealNum()+vo.getStealNum(); 							// 抢断�1
-	    	int reboundNum=PlayerData.getReboundNum()+vo.getReboundNum(); 					// 篮板总数
-	    	int blockNum=PlayerData.getBlockNum()+vo.getBlockNum(); 							// 盖帽�1
-	    	int turnoverNum=PlayerData.getTurnoverNum()+vo.getTurnoverNum(); 					// 失误�1
-	    	int foulNum=PlayerData.getFoulNum()+vo.getFoulNum(); 								// 犯规�1
-	    	int points=PlayerData.getPointNum()+vo.getPoints(); 												// 得分
+	    	int fieldGoal=PlayerData.getFieldGoal()+vo.getFieldGoal(); 						 
+	    	int shootNum=PlayerData.getShootNum()+vo.getShootNum(); 							 
+	    	int T_fieldGoal=PlayerData.getT_fieldGoal()+vo.getT_fieldGoal(); 				 
+	    	int T_shootNum=PlayerData.getT_shootNum()+vo.getT_shootNum(); 					 
+	    	int freeThrowGoalNum=PlayerData.getFreeThrowGoalNum()+vo.getFreeThrowGoalNum(); 	 
+	    	int freeThrowNum=PlayerData.getFreeThrowNum()+vo.getFreeThrowNum(); 				 
+	    	int O_ReboundNum=PlayerData.getO_ReboundNum()+vo.getO_ReboundNum(); 				 
+	    	int D_ReboundNum=PlayerData.getD_ReboundNum()+vo.getD_ReboundNum(); 				 
+	    	int assistNum=PlayerData.getAssistNum()+vo.getAssistNum();						 
+	    	int stealNum=PlayerData.getStealNum()+vo.getStealNum(); 						 
+	    	int reboundNum=PlayerData.getReboundNum()+vo.getReboundNum(); 					 
+	    	int blockNum=PlayerData.getBlockNum()+vo.getBlockNum(); 						 
+	    	int turnoverNum=PlayerData.getTurnoverNum()+vo.getTurnoverNum(); 					 
+	    	int foulNum=PlayerData.getFoulNum()+vo.getFoulNum(); 								 
+	    	int points=PlayerData.getPointNum()+vo.getPoints(); 											 
 	    	
-	    	double reboundEfficiency = PlayerData.getReboundEfficiency()+vo.getReboundEfficiency(); 			// 篮板效率
-	    	double stealEfficiency = PlayerData.getStealEfficiency()+vo.getStealEfficiency(); 				// 抢断效率
-	    	double assistEfficiency = PlayerData.getAssistEfficiency()+vo.getAssistEfficiency(); 				// 助攻效率
+	    	double reboundEfficiency = PlayerData.getReboundEfficiency()+vo.getReboundEfficiency(); 			 
+	    	double stealEfficiency = PlayerData.getStealEfficiency()+vo.getStealEfficiency(); 				 
+	    	double assistEfficiency = PlayerData.getAssistEfficiency()+vo.getAssistEfficiency(); 				 
 	    	double offensesiveReboundEff=PlayerData.getOffensiveReboundEff()+vo.getOffensiveReboundEff();
 	    	double defenseReboundEff=PlayerData.getDefenseReboundEff()+vo.getDefenseReboundEff();
 	    	double usingPercentage=PlayerData.getUsingPercentage()+vo.getUsingPercentage();
@@ -383,12 +365,12 @@ public class DataBaseHelp {
 	
 	public  void updateTeamSeasonData(TeamMatchVO vo){
 		/*
-		 * 用于更新球队的赛季信�1
+		 *   
 		 * */
 			Connection conn = null;  
 	       Statement stmt = null;  
 	        ResultSet rs  = null;  
-	       System.out.println(new java.util.Date());  
+	      // System.out.println(new java.util.Date());  
 	        try {  
 	        	
 	        Class.forName("org.sqlite.JDBC");  
@@ -423,7 +405,7 @@ public class DataBaseHelp {
 	        
 	       
 	        if(hasExist){
-	        	/*如果数据库中已有记录，先删除掉，再添�1*/
+	        	 
 	         stmt.executeUpdate("DElETE FROM teamSeasonData where"
 	 	       		+ " season='"+vo.getSeason()+"' and teamName="
 		            + " '"+vo.getTeamName()+"' ");
@@ -431,33 +413,33 @@ public class DataBaseHelp {
 	         
 	        String sqrStr="";
 	        
-	        int matchNum=teamData.getMatchNum()+1; 											// 赛季已比赛场�1
+	        int matchNum=teamData.getMatchNum()+1; 											 
 	    	int winNum=teamData.getWinNum()+vo.getWinNum();																		//胜利场数
-	    	int fieldGoal=teamData.getFieldGoal()+vo.getFieldGoal(); 						// 进球�1
-	    	int shootNum=teamData.getShootNum()+vo.getShootNum(); 							// 投篮总数
-	    	int T_fieldGoal=teamData.getT_fieldGoal()+vo.getT_fieldGoal(); 					// 三分命中�1
-	    	int T_shootNum=teamData.getT_shootNum()+vo.getT_shootNum(); 					// 三分出手�1
-	    	int freeThrowGoalNum=teamData.getFreeThrowGoalNum()+vo.getFreeThrowGoalNum(); 	// 罚篮命中�1
-	    	int freeThrowNum=teamData.getFreeThrowNum()+vo.getFreeThrowNum(); 				// 罚球出手�1
-	    	int O_ReboundNum=teamData.getO_ReboundNum()+vo.getO_ReboundNum(); 				// 进攻篮板�1
-	    	int D_ReboundNum=teamData.getD_ReboundNum()+vo.getD_ReboundNum(); 				// 防守篮板�1
-	    	int assistNum=teamData.getAssistNum()+vo.getAssistNum();						// 助攻�1
-	    	int stealNum=teamData.getStealNum()+vo.getStealNum(); 							// 抢断�1
-	    	int reboundNum=teamData.getReboundNum()+vo.getReboundNum(); 					// 篮板总数
-	    	int blockNum=teamData.getBlockNum()+vo.getBlockNum(); 							// 盖帽�1
-	    	int turnoverNum=teamData.getTurnoverNum()+vo.getTurnoverNum(); 					// 失误�1
-	    	int foulNum=teamData.getFoulNum()+vo.getFoulNum(); 								// 犯规�1
-	    	int points=teamData.getPointNum(); 												// 得分
+	    	int fieldGoal=teamData.getFieldGoal()+vo.getFieldGoal(); 					 
+	    	int shootNum=teamData.getShootNum()+vo.getShootNum(); 							 
+	    	int T_fieldGoal=teamData.getT_fieldGoal()+vo.getT_fieldGoal(); 					
+	    	int T_shootNum=teamData.getT_shootNum()+vo.getT_shootNum(); 					 
+	    	int freeThrowGoalNum=teamData.getFreeThrowGoalNum()+vo.getFreeThrowGoalNum(); 	 
+	    	int freeThrowNum=teamData.getFreeThrowNum()+vo.getFreeThrowNum(); 				 
+	    	int O_ReboundNum=teamData.getO_ReboundNum()+vo.getO_ReboundNum(); 				 
+	    	int D_ReboundNum=teamData.getD_ReboundNum()+vo.getD_ReboundNum(); 				 
+	    	int assistNum=teamData.getAssistNum()+vo.getAssistNum();						 
+	    	int stealNum=teamData.getStealNum()+vo.getStealNum(); 							 
+	    	int reboundNum=teamData.getReboundNum()+vo.getReboundNum(); 					 
+	    	int blockNum=teamData.getBlockNum()+vo.getBlockNum(); 							 
+	    	int turnoverNum=teamData.getTurnoverNum()+vo.getTurnoverNum(); 					 
+	    	int foulNum=teamData.getFoulNum()+vo.getFoulNum(); 								 
+	    	int points=teamData.getPointNum(); 												 
 	    	
-	    	double shootPercentage=teamData.getShootPercentage()+vo.getShootPercentage(); 					// 投篮命中�1
-	    	double threePointPercentage=teamData.getThreePointPercentage()+vo.getThreePointPercentage(); 	// 三分命中�1
-	    	double freeThrowPercentage=teamData.getFreeThrowPercentage()+vo.getFreeThrowPercentage(); 		// 罚篮命中�1
-	    	double offenseRound=teamData.getOffenseRound()+vo.getOffenseRound(); 							// 进攻回合
-	    	double offenseEfficiency = teamData.getOffenseEfficiency()+vo.getOffenseEfficiency(); 			// 进攻效率
-	    	double defenseEfficiency = teamData.getDefenseEfficiency()+vo.getDefenseEfficiency(); 			// 防守效率
-	    	double reboundEfficiency = teamData.getReboundEfficiency()+vo.getReboundEfficiency(); 			// 篮板效率
-	    	double stealEfficiency = teamData.getStealEfficiency()+vo.getStealEfficiency(); 				// 抢断效率
-	    	double assistEfficiency = teamData.getAssistEfficiency()+vo.getAssistEfficiency(); 				// 助攻效率
+	    	double shootPercentage=teamData.getShootPercentage()+vo.getShootPercentage(); 					 
+	    	double threePointPercentage=teamData.getThreePointPercentage()+vo.getThreePointPercentage();  
+	    	double freeThrowPercentage=teamData.getFreeThrowPercentage()+vo.getFreeThrowPercentage(); 		 
+	    	double offenseRound=teamData.getOffenseRound()+vo.getOffenseRound(); 							 
+	    	double offenseEfficiency = teamData.getOffenseEfficiency()+vo.getOffenseEfficiency(); 			 
+	    	double defenseEfficiency = teamData.getDefenseEfficiency()+vo.getDefenseEfficiency(); 			 
+	    	double reboundEfficiency = teamData.getReboundEfficiency()+vo.getReboundEfficiency(); 			 
+	    	double stealEfficiency = teamData.getStealEfficiency()+vo.getStealEfficiency(); 				 
+	    	double assistEfficiency = teamData.getAssistEfficiency()+vo.getAssistEfficiency(); 				 
 
 	        
 	        
@@ -515,7 +497,7 @@ public class DataBaseHelp {
 		 Connection conn = null;  
 	       Statement stmt = null;  
 	        ResultSet rset = null;  
-	       System.out.println(new java.util.Date());  
+	   //    System.out.println(new java.util.Date());  
 	        try {  
 	        	
 	        Class.forName("org.sqlite.JDBC");  
@@ -561,7 +543,7 @@ public class DataBaseHelp {
 	        }  
  
 	       conn.commit();  
-	       System.out.println(new java.util.Date());  
+	      // System.out.println(new java.util.Date());  
 	        } catch(ClassNotFoundException cnfe)  
 	        {  
 	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
@@ -592,7 +574,7 @@ public class DataBaseHelp {
 			 	Connection conn = null;  
 			 	Statement stmt = null;  
 		        ResultSet rset = null;  
-		       System.out.println(new java.util.Date());  
+		      // System.out.println(new java.util.Date());  
 		        try {  
 		        	
 		        Class.forName("org.sqlite.JDBC");  
@@ -653,7 +635,7 @@ public class DataBaseHelp {
 		 	Connection conn = null;  
 		 	Statement stmt = null;  
 	        ResultSet rset = null;  
-	       System.out.println(new java.util.Date());  
+	    //   System.out.println(new java.util.Date());  
 	        try {  
 	        	
 	        Class.forName("org.sqlite.JDBC");  
@@ -707,7 +689,7 @@ public class DataBaseHelp {
 		 	Connection conn = null;  
 		 	Statement stmt = null;  
 	        ResultSet rset = null;  
-	       System.out.println(new java.util.Date());  
+	     //  System.out.println(new java.util.Date());  
 	        try {  
 	        	
 	        Class.forName("org.sqlite.JDBC");  
@@ -776,7 +758,7 @@ public class DataBaseHelp {
 			 db.updataSeasonData(list.get(i));
 		 }
 		 
-		System.out.println("成功更新赛季球队数据�1");
+	 
 		
 	}
 }

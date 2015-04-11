@@ -9,45 +9,45 @@ public class PlayerSeasonDataVO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String season;							//赛季
-	String name;							//姓名
-	private String teamName;				//球队名
-	private String position;				//场上位置
-	private int matchNum;					//参赛场数
-	private int startingNum;				//首发场数
+	String season;						 
+	String name;						 
+	private String teamName;		 
+	private String position;	 
+	private int matchNum;		 
+	private int startingNum;	 
 	
-	  private double time;					//球员上场时间
-	 private int fieldGoal;					//进球数
-	 private int shootNum;					//投篮总数
-	 private int T_fieldGoal;				//三分进球数
-	 private int T_shootNum;				//三分投射数
-	 private int freeThrowGoalNum;			//罚篮进球数
-	 private int freeThrowNum;				//罚篮总数
-	 private int O_ReboundNum;				//进攻篮板数
-	 private int D_ReboundNum;				//防守篮板数
-	 private int reboundNum;				//篮板总数
-	 private int assistNum;				    //助攻数
-	 private int stealNum;					//抢断数
-	 private int blockNum;					//盖帽数
-	 private int turnoverNum;				//失误数
-	 private int foulNum;					//犯规数
-	 private int pointNum;					//得分
+	  private double time;		 
+	 private int fieldGoal;				 
+	 private int shootNum;			 
+	 private int T_fieldGoal;		 
+	 private int T_shootNum;			 
+	 private int freeThrowGoalNum;		 
+	 private int freeThrowNum;			 
+	 private int O_ReboundNum;			 
+	 private int D_ReboundNum;		 
+	 private int reboundNum;		 
+	 private int assistNum;				 
+	 private int stealNum;			 
+	 private int blockNum;			 
+	 private int turnoverNum;	 
+	 private int foulNum;			 
+	 private int pointNum;		 
 	 
-	private double efficiency; 				//效率
-	private double blockEfficiency;			//盖帽率
-	private double freeThrowPercentage;		//罚篮命中率
-	private double shootEfficiency;			//投篮效率
-	private double assistEfficiency;        //助攻率--
-	private double reboundEfficiency;       //篮板率--
-	private double offensiveReboundEff;     //进攻篮板率--
-	private double defenseReboundEff;		//防守篮板率--
-	private double stealEfficiency;			//抢断率--
-	private double turnoverPercentage;     //失误率
-	private double usingPercentage;        //使用率--
-	private double realShootPercentage=0;	//真实投篮命中率
-	private double GmSc;				   //GmSc效率值
-	private int seasonDoubleNum;		   //赛季两双数
-	private int seasonThreeNum;  		   //赛季三双数
+	private double efficiency; 		 
+	private double blockEfficiency;		 
+	private double freeThrowPercentage;		 
+	private double shootEfficiency;		 
+	private double assistEfficiency;       
+	private double reboundEfficiency;      
+	private double offensiveReboundEff;    
+	private double defenseReboundEff;	 
+	private double stealEfficiency;			 
+	private double turnoverPercentage;     
+	private double usingPercentage;        
+	private double realShootPercentage=0;	 
+	private double GmSc;				 
+	private int seasonDoubleNum;		    
+	private int seasonThreeNum;  		  
 	
 	
 	public PlayerSeasonDataVO(String season,String name,String teamName,String position,
@@ -91,7 +91,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				
 				
 				 if(shootNum!=0){
-					   /*(投篮命中数+0.5×三分命中数)÷投篮出手数*/
+					   
 					   shootEfficiency=(fieldGoal+0.5*T_fieldGoal)/shootNum;
 				 // 
 				  }
@@ -110,8 +110,7 @@ public class PlayerSeasonDataVO implements Serializable{
 					  GmSc=points+fieldGoal*0.4-0.7*shootNum-
 							  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*O_ReboundNum+0.3*D_ReboundNum
 							  +stealNum+0.7*assistNum+0.7*blockNum-0.4*foulNum-turnoverNum;
-					/* (得分+篮板+助攻+抢断+盖帽)-（出手次数-命中次数）-（罚球次数-罚球
-									命中次数）-失误次数*/
+					
 					  efficiency=pointNum+reboundNum+assistNum+stealNum+blockNum-
 							  (shootNum-fieldGoal)  -(freeThrowNum-freeThrowGoalNum)-turnoverNum;
 	}
@@ -165,7 +164,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		return efficiency;
 	}
 	public void setEfficiency(double efficiency) {
-		/*锟斤拷锟叫撅拷*/
+		 
 	}
 	public int getReboundNum() {
 		return reboundNum;
