@@ -6,5 +6,5 @@ import VO.PlayerInfoVO;
 
 public class PlayerDataFactory {
 	ArrayList<PlayerInfoVO> infoList;
-	ArrayList<>
+	ArrayList<PlayerSeasonData> dataList;
 }
