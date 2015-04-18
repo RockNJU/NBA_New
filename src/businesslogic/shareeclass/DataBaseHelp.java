@@ -153,19 +153,6 @@ public class DataBaseHelp {
 				  
 			  }
 			      
-		 
-			   
-			/*String season,String date,
-			 String team,String name,
-			 String p,double time,int fieldGoal,
-			 int shootNum,int T_fieldGoal,int T_shootNum,
-			 int freeThrowGoalNum,int freeThrowNum,
-			 int O_R_N,int D_R_N,int reboundNum,int assistNum,
-			 int steal,int blockNum,int turnoverNum,
-			 int foulNum,int points, double assistEfficiency,
-			 double reboundEfficiency,double offensiveReboundEff,
-			 double defenseReboundEff,double stealEfficiency,
-			 double usingPercentage,double blockEfficiency*/
 			  A_player_match_data pdata=new A_player_match_data(vo.getSeason(),vo.getDate(),
 					  vo.getHostTeam().getTeamName(),svo.getPlayerName(),svo.getPlayerPosition(),
 					  time,svo.getFieldGoal(),svo.getShootNum(),svo.getT_fieldGoal(),
@@ -203,15 +190,7 @@ public class DataBaseHelp {
 	       		+ " season='"+vo.getSeason()+"' and name="
 	            + "'"+vo.getPlayerName()+"' ");  
 	       boolean hasExist=false;
-	       
-	       /*String season,String name,String teamName,String position,
-	   int matchNum,  int startingNum,double time,int fieldGoal,
-		 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
-		 int O_R_N,int D_R_N,int reboundNum,int assistNum,int stealNum,int blockNum,int turnoverNum,
-		 int foulNum,int points, double assistEfficiency,
-		 double reboundEfficiency,double offensiveReboundEff,
-		 double defenseReboundEff,double stealEfficiency,
-		 double usingPercentage,double blockEfficiency,int doubleNum,int threeNum*/
+	      
 
 	       PlayerSeasonDataVO PlayerData=new PlayerSeasonDataVO(null, null, null, null, 0, 0, 0, 0, 0, 0, 0,
 	    		   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -303,21 +282,7 @@ public class DataBaseHelp {
 	    	double blockEfficiency=PlayerData.getBlockEfficiency()+vo.getBlockEfficiency();
 	    	doubleNum=doubleNum+PlayerData.getDoubleNum();
 	    	threeNum=threeNum+PlayerData.getThreeNum();
-	    	/*(season varchar(10) , name varchar(20),"
-	        		+ "teamName varchar(10), position varchar(3),matchNum int ,startingNum int,"
-	        		+ " time double(5,3),fieldGoal int ,shootNum int,"
-	        		+ "T_fieldGoal int,T_shootNum int,"
-	        		+ "freeThrowGoalNum int, freeThrowNum int ,O_ReboundNum int,"
-	        		+ "D_ReboundNum int,reboundNum int,assistNum int,stealNum int,"
-	        		+ "blockNum int,turnoverNum int,foulNum int,points int,"
-	        		
-	        		+ "assistEfficiency double(5,3),reboundEfficiency double(5,3),"
-	        		+ "offensesiveReboundEff double(5,3),defenseReboundEff double(5,3),"
-	        		+ "stealEfficiency double(5,3),usingPercentage double(5,3),"
-	        		+ "blockEfficiency double(5,3),doubleNum int,threeNum int)*/
-	        
-	        																							
-	        
+    
 	        sqrStr="INSERT INTO playerSeasonData  VALUES ('"+vo.getSeason() +"',"
 	        		+ "'"+vo.getPlayerName()+"', '"+vo.getTeamAbb()+"', "
 	        		+ "'"+vo.getPlayerPosition()+"','"+matchNum+"','"+startingNum+"','"+time+"',"
@@ -333,6 +298,8 @@ public class DataBaseHelp {
 	    	 		+ "'"+ stealEfficiency +"', '"+ usingPercentage+"', "
 	    	 		+ "'"+ blockEfficiency +"', '"+ doubleNum+"','"+threeNum+"')";
 	        
+	        
+	        sqrStr="UPDATE playerSeasonDate SET ";
 	     stmt.executeUpdate(sqrStr);
 	    
 	        if(rs !=null){  
@@ -346,7 +313,7 @@ public class DataBaseHelp {
 	            System.out.println("Can't find class for driver: " + cnfe.getMessage());  
 	            System.exit(-1);  
 	        } catch (SQLException e){  
-	            System.out.println("SQLException :" + e.getMessage());  
+	            System.out.println("更新球员信息。SQLException :" + e.getMessage());  
 	           System.exit(-1); 
 	           }  
 	        finally {  
@@ -507,22 +474,9 @@ public class DataBaseHelp {
 	   
 	       rset = stmt.executeQuery("SELECT*FROM player_match_record where"
 	       		+ " season='"+vo.getSeason()+"' and name='"+vo.getPlayerName()+"' and date='"+vo.getDate()+"' ");  
-	        while (rset.next()){  
+	       if (rset.next()){  
 	        	return ;
-	        }  
-	        /*playerSeasonData(season varchar(10) , date varchar(20),"
-        		+ "name varchar(32), position varchar(3),"
-        		+ " time double(5,3),fieldGoal int ,shootNum int,"
-        		+ "T_fieldGoal int,T_shootNum int,"
-        		+ "freeThrowGoalNum int, freeThrowNum int ,O_ReboundNum int,"
-        		+ "D_ReboundNum int,assistNum int,staalNum int,"
-        		+ "blockNum int,turnoverNum int,foulNum int,pointNum int,"
-        		
-        		+ "assistEfficiency double(5,3),reboundEfficiency double(5,3),"
-        		+ "offenseEfficiency double(5,3),defenseEfficiency double(5,3),"
-        		+ "stealEfficiency double(5,3),usingPercentage double(5,3),"
-        		+ "blockEfficiency double(5,3))"*/
-	        
+	        }  	        
 	        String sqStr="INSERT INTO player_match_record VALUES('"+vo.getSeason()+"','"+vo.getDate()+"'"
 	        		+ ",'"+ vo.getTeamAbb()+"','"+vo.getPlayerName()+"','"+vo.getPlayerPosition()+"',"
 	        		+ "'"+vo.getTime()+"','"+vo.getFieldGoal()+"','"+vo.getShootNum()+"',"
@@ -752,13 +706,14 @@ public class DataBaseHelp {
 		//db.updateTeamSeasonData(vo);
 		 db.create_player_match_record_form();
 		 
+		 System.out.println("写入开始时间："+new java.util.Date()); 
 		 MatchController m=new MatchController(); 
 		 ArrayList<MatchVO> list=m.getAllMatchVO();
 		 for(int i=0;i<list.size();i++){
 			 db.updataSeasonData(list.get(i));
 		 }
 		 
-	 
+		 System.out.println("写入结束时间："+new java.util.Date());
 		
 	}
 }

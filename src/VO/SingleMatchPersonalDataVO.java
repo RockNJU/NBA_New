@@ -12,7 +12,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	 private String date;					//比赛日期
 	 private String playerName;				//球员姓名
 	 private String playerPosition;			//球员位置
-	 private String time;					//球员上场时间
+	 private double time;					//球员上场时间
 	 private int fieldGoal;					//进球数
 	 private int shootNum;					//投篮总数
 	 private int T_fieldGoal;				//三分进球数
@@ -29,7 +29,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	 private int foulNum;					//犯规数
 	 private int pointNum;					//得分
 	 
-		private double shootEfficiency=0;		//投篮效率
+		private double shootEfficiency=0 ;		//投篮效率
 		private double assistEfficiency;        //助攻率__
 		private double reboundEfficiency;       //篮板率__
 		private double offensiveReboundEff;     //进攻篮板率__
@@ -37,17 +37,17 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		private double stealEfficiency;			//抢断率__
 		private double turnoverPercentage=0;    //失误率
 		private double usingPercentage=0;         //使用率__
-		private double realShootPercentage=0;			//真实投篮命中率
-		private double blockEfficiency;			//盖帽率
+		private double realShootPercentage =0;			//真实投篮命中率
+		private double blockEfficiency=0;			//盖帽率__
 		private double GmSc;
 	 
-	 public SingleMatchPersonalDataVO(String season,String date,String name,String p,String time,int fieldGoal,
+	 public SingleMatchPersonalDataVO(String season,String date,String name,String p,double time,int fieldGoal,
 			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
 			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int steal,int blockNum,int turnoverNum,
-			 int foulNum,int points/*, double assistEfficiency,
+			 int foulNum,int points, double assistEfficiency,
 			 double reboundEfficiency,double offensiveReboundEff,
 			 double defenseReboundEff,double stealEfficiency,
-			 double usingPercentage,double blockEfficiency*/){
+			 double usingPercentage,double blockEfficiency){
 		 this.season=season;
 		 this.date=date;
 		 this.playerName=name;
@@ -69,14 +69,14 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		 this.foulNum=foulNum;
 		 this.pointNum=points;
 		 
-		/* this.assistEfficiency=assistEfficiency;
+		 this.assistEfficiency=assistEfficiency;
 		 this.reboundEfficiency=reboundEfficiency;
 		 this.offensiveReboundEff=offensiveReboundEff;
 		 this.defenseReboundEff=defenseReboundEff;
 		 this.stealEfficiency=stealEfficiency;
 		 this.usingPercentage=usingPercentage;
 		 this.blockEfficiency=blockEfficiency;
-		 */
+		 
 		   if(shootNum!=0){
 			   /*(投篮命中数+0.5×三分命中数)÷投篮出手数*/
 			   shootEfficiency=(fieldGoal+0.5*T_fieldGoal)/shootNum;
@@ -84,13 +84,13 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		  }
 		   
 		   if((shootNum+0.44*freeThrowNum)!=0){
-			   realShootPercentage=points/(2*(shootNum+0.44*freeThrowNum));
+			   realShootPercentage=(double)points/(2*(shootNum+0.44*freeThrowNum));
 		   }
 		 // assistEfficiency;        
 			//  reboundEfficiency;       
 			 // offensiveReboundEff;   
 			  //stealEfficiency;			
-		   turnoverPercentage=turnoverNum/((shootNum-T_shootNum)+0.44*
+		   turnoverPercentage=(double)turnoverNum/((shootNum-T_shootNum)+0.44*
 				   freeThrowNum+turnoverNum); 
 		   
 			  //usingPercentage;    
@@ -109,7 +109,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		return playerPosition;
 	}
 
-	public String getTime() {
+	public double getTime() {
 		return time;
 	}
 

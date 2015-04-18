@@ -15,6 +15,9 @@ import VO.TeamMatchVO;
 
 public class MatchController implements  businessService.blservice.MatchBLService{
 
+	
+	 
+	
 	@Override
 	public ArrayList<String> getMatchByTeamTime(String time, String team) {
 		// TODO Auto-generated method stub
@@ -150,7 +153,6 @@ public class MatchController implements  businessService.blservice.MatchBLServic
 	}
 
 	private void calculateNum(TeamMatchPO po, String role,String date,int winNum) {
-
 		ArrayList<SingleMatchPersonalDataPO> individualData = po
 				.getIndividualData();
 		ArrayList<SingleMatchPersonalDataVO> singleData = new ArrayList<SingleMatchPersonalDataVO>(
@@ -158,19 +160,12 @@ public class MatchController implements  businessService.blservice.MatchBLServic
 		String season=po.getSeason();
 		//String date=po.getd
 		
-		
-	
-		 
 		for (int i = 0; i < individualData.size(); i++) {
 			/*String season,String date,String name,String p,String time,int fieldGoal,
 			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
 			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int steal,int blockNum,int turnoverNum,
 			 int foulNum,int points*/
-			
-		 
-			
-			
-			
+				
 			singleData.add(new SingleMatchPersonalDataVO(season,date,individualData.get(i)
 					.getPlayerName(),
 					individualData.get(i).getPlayerPosition(), individualData

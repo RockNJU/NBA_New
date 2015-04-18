@@ -8,6 +8,6 @@ public interface MatchDataService {
 	 * 
 	 * */
 	ArrayList<MatchPO> getAllMatch();
-	MatchPO getMatch(String date,String teams);  		//team 由两队组成，都是队名缩写，形如HOU
+	MatchPO getMatch(String filepath);  		//team 由两队组成，都是队名缩写，形如HOU
 	MatchPO getAMatch(String date,String teamName);		//由日期和一个队获取一场比赛数据
 }

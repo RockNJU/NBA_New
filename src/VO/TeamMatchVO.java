@@ -10,15 +10,14 @@ public class TeamMatchVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	/*
- 
 	 */
 	
 	private String season;					//赛季
 	private String teamName;				//球队名称
 	private int	winNum;						//胜利数
 	private int   points; 					// 得分
-	private int  defenseNum; 				//  
-	private int  offenseNum; 				//  
+	private int lost_points;                //一场比赛中的失分
+	 
 	private int  reboundNum; 				// 
 	private int O_ReboundNum; 			 
 	private int D_ReboundNum; 			 
@@ -32,44 +31,40 @@ public class TeamMatchVO implements Serializable{
 	private int T_shootNum;				 
 	private int freeThrowGoalNum; 		 
 	private int freeThrowNum; 				 
-	private int blockNum; 				 
+	private int blockNum; 
+	
 	private double offenseRound; 		 
 	private double defenseRound; 			 
 	
 	
 
-	private double freeThrowPercentage = 0; 
-	private double threePointPercentage = 0; 
-	private double shootPercentage = 0;  
-	private double assistEfficiency = 0; 	 
-	private double O_ReboundEfficiency = 0; 
-	private double D_ReboundEfficiency = 0;  
-	private double stealEfficiency = 0; 	 
-	private double defenseEfficiency = 0;  
-	private double offenseEfficiency = 0; 	 
-	private double reboundEfficiency = 0; 
+	private double freeThrowPercentage ; 
+	private double threePointPercentage ; 
+	private double shootPercentage ;  
+	private double assistEfficiency ; 	 
+	private double O_ReboundEfficiency ; 
+	private double D_ReboundEfficiency ;  
+	private double stealEfficiency ; 	 
+	private double defenseEfficiency;  
+	private double offenseEfficiency ; 	 
+	private double reboundEfficiency ; 
 
-	private ArrayList<SingleMatchPersonalDataVO> individualData;  
+	private ArrayList<SingleMatchPersonalDataVO> individualData;                        
 
-	public TeamMatchVO(String season,String teamName, int winNum,int pointNum, int defenseNum,
-			int offenseNum, int reboundNum, int O_ReboundNum, int D_ReboundNum,
+	public TeamMatchVO(String season,String teamName, 
+			int winNum,int pointNum,int lost_point,
+			int reboundNum, int O_ReboundNum, int D_ReboundNum,
 			int assistNum, int turnoverNum, int stealNum, int foulNum,
 			int fieldGoal, int shootNum, int T_fieldGoal, int T_shootNum,
 			int freeThrowGoalNum, int freeThrowNum, int blockNum,
 			double offenseRound, double defenseRound,
-			double freeThrowPercentage, double threePointPercentage,
-			double shootPercentage, double assistEfficiency,
 			double O_ReboundEfficiency,double D_ReboundEfficiency,
-			double stealEfficiency,double defenseEfficiency,
-			double offenseEfficiency,
 			ArrayList<SingleMatchPersonalDataVO> individualData) {
 		
 		this.season=season;
 		this.teamName = teamName;
 		this.winNum=winNum;
 		this.points = pointNum;
-		this.defenseNum = defenseNum;
-		this.offenseNum = offenseNum;
 		this.reboundNum = reboundNum;
 		this.O_ReboundNum = O_ReboundNum;
 		this.D_ReboundNum = D_ReboundNum;
@@ -86,17 +81,18 @@ public class TeamMatchVO implements Serializable{
 		this.blockNum = blockNum;
 		this.offenseRound = offenseRound;
 		this.defenseRound = defenseRound;
+		this.lost_points=lost_point;
 		this.individualData = individualData;
 
-		this.freeThrowPercentage = freeThrowPercentage;  
-		this.threePointPercentage = threePointPercentage;  
-		this.shootPercentage = shootPercentage;  
-		this.assistEfficiency = assistEfficiency;  
+		this.freeThrowPercentage = (double)freeThrowGoalNum/freeThrowNum;  
+		this.threePointPercentage = (double)T_fieldGoal/T_shootNum;  
+		this.shootPercentage = (double)fieldGoal/shootNum;  
+		this.assistEfficiency = (double)assistNum/(offenseRound/100);  //每一百个进攻回合，球队的助攻数
 		this.O_ReboundEfficiency = O_ReboundEfficiency; 
 		this.D_ReboundEfficiency = D_ReboundEfficiency;  
-		this.stealEfficiency = stealEfficiency;  
-		this.defenseEfficiency = defenseEfficiency;  
-		this.offenseEfficiency = offenseEfficiency;  
+		this.stealEfficiency = stealNum/(defenseRound/100);  
+		this.defenseEfficiency = (double)lost_points/(defenseRound/100);  
+		this.offenseEfficiency = (double)points/(offenseRound/100);  
 
 	}
 	
@@ -118,22 +114,6 @@ public class TeamMatchVO implements Serializable{
 
 	public void setPointNum(int i) {
 		this.points = i;
-	}
-
-	public int getDefenseNum() {
-		return defenseNum;
-	}
-
-	public void setDefenseNum(int i) {
-		this.defenseNum = i;
-	}
-
-	public int getOffenseNum() {
-		return offenseNum;
-	}
-
-	public void setOffenseNum(int i) {
-		this.offenseNum = i;
 	}
 
 	public int getReboundNum(){

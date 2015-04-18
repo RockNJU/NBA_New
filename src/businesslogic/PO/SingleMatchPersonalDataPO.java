@@ -9,7 +9,7 @@ public class SingleMatchPersonalDataPO {
 	 * */
 	 private String playerName;				//球员名字
 	 private String playerPosition;			//球员位置
-	 private String time;					//场均上场时间
+	 private double time;					//场均上场时间
 	 private int fieldGoal;					//投篮命中数
 	 private int shootNum;					//投篮出手数
 	 private int T_fieldGoal;				//三分球命中数
@@ -26,7 +26,7 @@ public class SingleMatchPersonalDataPO {
 	 private int foulNum;					//犯规数
 	 private int points;					//得分
 	 
-	 public SingleMatchPersonalDataPO(String name,String p,String time,int fieldGoal,
+	 public SingleMatchPersonalDataPO(String name,String p,double time,int fieldGoal,
 			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
 			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int stealNum,int blockNum,int turnoverNum,
 			 int foulNum,int points ){
@@ -58,7 +58,7 @@ public class SingleMatchPersonalDataPO {
 		return playerPosition;
 	}
 
-	public String getTime() {
+	public double getTime() {
 		return time;
 	}
 

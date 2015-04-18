@@ -28,16 +28,16 @@ public class MatchDataController implements MatchDataService{
 	
 	public static void main(String args[]){
 		MatchDataController c=new MatchDataController();
-		//ArrayList<MatchPO> m=c.getAllMatch();
+		ArrayList<MatchPO> m=c.getAllMatch();
 		 int i=0;
 		 
 		 
-		 MatchPO po=c.getMatch("01-01","CHA-LAC");
+	
 		
-			System.out.println(i+"+++:"+po.getDate()+";"+po.getHostTeam().getTeamName()
+			/*System.out.println(i+"+++:"+po.getDate()+";"+po.getHostTeam().getTeamName()
 		+"; "+
 					po.getGuestTeam().getIndividualData().get(0).getPlayerName()+"   "+
-		po.getGuestTeam().getIndividualData().get(0).getPoints());
+		po.getGuestTeam().getIndividualData().get(0).getPoints());*/
 		
 	}
 	
@@ -50,17 +50,22 @@ public class MatchDataController implements MatchDataService{
 	}
 
 	@Override
-	public MatchPO getMatch(String date, String teams) {
+	public MatchPO getMatch(String filepath) {
 		// TODO Auto-generated method stub
-		String file="NBAdata/matches/"+"13-14_"+date+"_"+teams;
+		//String file="NBAdata/matches/"+"13-14_"+date+"_"+teams;
 		
 		
 		/*
 		 * 
 		 * */
 		
-		System.out.println("---------"+file);
-        File f = new File(file);  
+		 String[]path=filepath.split("\\\\");
+	        String s[]=path[path.length-1].split("_");
+	         
+	        String date=s[1];
+	       String season=s[0];
+	//	System.out.println("---------"+file);
+        File f = new File(filepath);  
         String encoding="UTF-8";
 		
 		try{ 
@@ -80,6 +85,37 @@ public class MatchDataController implements MatchDataService{
         ArrayList<SingleMatchPersonalDataPO> H_teamData=new ArrayList<SingleMatchPersonalDataPO> ();
         ArrayList<SingleMatchPersonalDataPO> G_teamData=new ArrayList<SingleMatchPersonalDataPO> ();
         
+        int H_fieldGoal=0;					//投篮命中数
+	   	   int H_shootNum=0;					//投篮出手数
+	   	   int H_T_fieldGoal=0;				//三分球命中数
+	   	   int H_T_shootNum=0;				//三分球出手数
+	   	   int H_freeThrowGoalNum=0;			//罚球命中数
+	   	   int H_freeThrowNum=0;				//罚球出手数
+	   	   int H_O_ReboundNum=0;				//进攻（前场）篮板数
+	   	   int H_D_ReboundNum=0;				//防守（后场）篮板数
+	   	   int H_reboundNum=0;				//总篮板数
+	   	   int H_assistNum=0;				    //助攻数
+	   	   int H_stealNum=0;					//抢断数
+	   	   int H_blockNum=0;					//盖帽数
+	   	   int H_turnoverNum=0;				//失误数
+	   	   int H_foulNum=0;					//犯规数
+	   	   int H_points=0;					//得分
+	   	   
+	   	   int G_fieldGoal=0;					//投篮命中数
+	   	   int G_shootNum=0;					//投篮出手数
+	   	   int G_T_fieldGoal=0;				//三分球命中数
+	   	   int G_T_shootNum=0;				//三分球出手数
+	   	   int G_freeThrowGoalNum=0;			//罚球命中数
+	   	   int G_freeThrowNum=0;				//罚球出手数
+	   	   int G_O_ReboundNum=0;				//进攻（前场）篮板数
+	   	   int G_D_ReboundNum=0;				//防守（后场）篮板数
+	   	   int G_reboundNum=0;				//总篮板数
+	   	   int G_assistNum=0;				    //助攻数
+	   	   int G_stealNum=0;					//抢断数
+	   	   int G_blockNum=0;					//盖帽数
+	   	   int G_turnoverNum=0;				//失误数
+	   	   int G_foulNum=0;					//犯规数
+	   	   int G_points=0;					//得分
         int num=1;
         boolean isHostTeam=true;
         char chr=39;
@@ -112,7 +148,27 @@ public class MatchDataController implements MatchDataService{
         			if(isHostTeam){
         				String str[]=line.split(";");
         				changeStrToInt(str);
-        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),str[1].trim(),str[2].trim(),
+        				/*String name,String p,String time,int fieldGoal,
+			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
+			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int stealNum,int blockNum,int turnoverNum,
+			 int foulNum,int points*/
+        				 H_fieldGoal=H_fieldGoal+info[3];					//投篮命中数
+    			   	     H_shootNum=H_shootNum+info[4];					//投篮出手数
+    			   	     H_T_fieldGoal=H_T_fieldGoal+info[5];				//三分球命中数
+    			   	     H_T_shootNum=H_T_shootNum+info[6];				//三分球出手数
+    			   	     H_freeThrowGoalNum=H_freeThrowGoalNum+info[7];			//罚球命中数
+    			   	     H_freeThrowNum=H_freeThrowNum+info[8];				//罚球出手数
+    			   	     H_O_ReboundNum=H_O_ReboundNum+info[9];				//进攻（前场）篮板数
+    			   	     H_D_ReboundNum=H_D_ReboundNum+info[10];				//防守（后场）篮板数
+    			   	     H_reboundNum=H_reboundNum+info[11];				//总篮板数
+    			   	     H_assistNum=H_assistNum+info[12];				    //助攻数
+    			   	     H_stealNum=H_stealNum+info[13];					//抢断数
+    			   	     H_blockNum=H_blockNum+info[14];					//盖帽数
+    			   	     H_turnoverNum=H_turnoverNum+info[15];				//失误数
+    			   	     H_foulNum=H_foulNum+info[16];					//犯规数
+    			   	     H_points=H_points+info[17];					//得分
+        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
+        						str[1].trim(),calTime(str[2].trim()),
         						info[3],info[4],info[5],info[6],info[7],info[8],
         						info[9],info[10],info[11],info[12],info[13],info[14]
         						,info[15],info[16],info[17]));
@@ -120,7 +176,22 @@ public class MatchDataController implements MatchDataService{
         			}else{
         				String str[]=line.split(";");
         				changeStrToInt(str);
-        				G_teamData.add(new SingleMatchPersonalDataPO(str[0],str[1],str[2],
+        				G_fieldGoal=G_fieldGoal+info[3];					//投篮命中数
+   			   	     G_shootNum=G_shootNum+info[4];					//投篮出手数
+   			   	     G_T_fieldGoal=G_T_fieldGoal+info[5];				//三分球命中数
+   			   	     G_T_shootNum=G_shootNum+info[6];				//三分球出手数
+   			   	     G_freeThrowGoalNum=G_freeThrowGoalNum+info[7];			//罚球命中数
+   			   	     G_freeThrowNum=G_freeThrowNum+info[8];				//罚球出手数
+   			   	     G_O_ReboundNum=G_O_ReboundNum+info[9];				//进攻（前场）篮板数
+   			   	     G_D_ReboundNum=H_D_ReboundNum+info[10];				//防守（后场）篮板数
+   			   	     G_reboundNum=G_reboundNum+info[11];				//总篮板数
+   			   	     G_assistNum=G_assistNum+info[12];				    //助攻数
+   			   	     G_stealNum=G_stealNum+info[13];					//抢断数
+   			   	     G_blockNum=G_blockNum+info[14];					//盖帽数
+   			   	     G_turnoverNum=G_turnoverNum+info[15];				//失误数
+   			   	     G_foulNum=G_foulNum+info[16];					//犯规数
+   			   	     G_points=G_points+info[17];		
+        				G_teamData.add(new SingleMatchPersonalDataPO(str[0],str[1],calTime(str[2].trim()),
         						info[3],info[4],info[5],info[6],info[7],info[8],
         						info[9],info[10],info[11],info[12],info[13],info[14]
         						,info[15],info[16],info[17]));
@@ -130,9 +201,15 @@ public class MatchDataController implements MatchDataService{
         		num++;
         }
         	 
-			        	return new MatchPO("",date,matchScore,scores,
-			        			(new TeamMatchPO("",H_team,H_teamData)),
-			        			(new TeamMatchPO("",G_team,G_teamData)));
+			        	      return new MatchPO(season,date,matchScore,scores,
+			        			(new TeamMatchPO(season,H_team,H_fieldGoal,H_shootNum,H_T_fieldGoal,H_T_shootNum
+		        			   			  ,H_freeThrowGoalNum,H_freeThrowNum,H_O_ReboundNum,H_D_ReboundNum,
+		        			   			  H_reboundNum,H_assistNum,H_stealNum,H_blockNum,H_turnoverNum,
+		        			   			  G_foulNum,H_points,H_teamData)),
+			        			(new TeamMatchPO(season,G_team,G_fieldGoal,G_shootNum,G_T_fieldGoal,G_T_shootNum
+		        			   			  ,G_freeThrowGoalNum,G_freeThrowNum,G_O_ReboundNum,G_D_ReboundNum,
+		        			   			  G_reboundNum,G_assistNum,G_stealNum,G_blockNum,G_turnoverNum,
+		        			   			  G_foulNum,G_points,G_teamData)));
 	        }catch(Exception e){
 	        		System.out.println("error:"+e.toString());
 	        		} 
@@ -172,13 +249,51 @@ public class MatchDataController implements MatchDataService{
 		        //System.out.println(list.size());  
 		        
 		        String season;
+		        int g=0;
+		        
+		       int H_fieldGoal=0;					//投篮命中数
+		   	   int H_shootNum=0;					//投篮出手数
+		   	   int H_T_fieldGoal=0;				//三分球命中数
+		   	   int H_T_shootNum=0;				//三分球出手数
+		   	   int H_freeThrowGoalNum=0;			//罚球命中数
+		   	   int H_freeThrowNum=0;				//罚球出手数
+		   	   int H_O_ReboundNum=0;				//进攻（前场）篮板数
+		   	   int H_D_ReboundNum=0;				//防守（后场）篮板数
+		   	   int H_reboundNum=0;				//总篮板数
+		   	   int H_assistNum=0;				    //助攻数
+		   	   int H_stealNum=0;					//抢断数
+		   	   int H_blockNum=0;					//盖帽数
+		   	   int H_turnoverNum=0;				//失误数
+		   	   int H_foulNum=0;					//犯规数
+		   	   int H_points=0;					//得分
+		   	   
+		   	   int G_fieldGoal=0;					//投篮命中数
+		   	   int G_shootNum=0;					//投篮出手数
+		   	   int G_T_fieldGoal=0;				//三分球命中数
+		   	   int G_T_shootNum=0;				//三分球出手数
+		   	   int G_freeThrowGoalNum=0;			//罚球命中数
+		   	   int G_freeThrowNum=0;				//罚球出手数
+		   	   int G_O_ReboundNum=0;				//进攻（前场）篮板数
+		   	   int G_D_ReboundNum=0;				//防守（后场）篮板数
+		   	   int G_reboundNum=0;				//总篮板数
+		   	   int G_assistNum=0;				    //助攻数
+		   	   int G_stealNum=0;					//抢断数
+		   	   int G_blockNum=0;					//盖帽数
+		   	   int G_turnoverNum=0;				//失误数
+		   	   int G_foulNum=0;					//犯规数
+		   	   int G_points=0;					//得分
+		        
+		        
+		        
+		        
 		        for (String l:list) {
+		        	g++;
 		        	try{ 
 		        	//BufferedReader br = new BufferedReader(new FileReader(new File(l))); 
 		        
 		        String[]path=l.split("\\\\");
 		        String s[]=path[path.length-1].split("_");
-		        System.out.println("11111111111111");
+		       //System.out.println("第 " +g+"场比赛");
 		         
 		        
 		        season=s[0];
@@ -208,7 +323,7 @@ public class MatchDataController implements MatchDataService{
 		        boolean isHostTeam=true;
 		        //line=br.readLine();
 		        	while((line=br.readLine())!=null){
-		        	//	System.out.println("--"+line+"----");
+		        		//System.out.println("--"+line+"----");
 		        		line=line.trim();
 		        		if(num==1){
 		        		String  str1[]=line.split(";");
@@ -236,12 +351,29 @@ public class MatchDataController implements MatchDataService{
 		        			if(isHostTeam){
 		        				String str[]=line.split(";");
 		        				changeStrToInt(str);
-		        				/*String name0,String p1,String time2,int fieldGoal3,
+		        				/*int fieldGoal3,
 			 int shootNum4,int T_fieldGoal5,int T_shootNum6,int freeThrowGoalNum7,int freeThrowNum8,
 			 int O_R_N9,int D_R_N10,int reboundNum11,int assistNum12,int blockNum13,int turnoverNum14,
 			 int foulNum15,int points16 */
+		        				
+		        				     H_fieldGoal=H_fieldGoal+info[3];					//投篮命中数
+		        			   	     H_shootNum=H_shootNum+info[4];					//投篮出手数
+		        			   	     H_T_fieldGoal=H_T_fieldGoal+info[5];				//三分球命中数
+		        			   	     H_T_shootNum=H_T_shootNum+info[6];				//三分球出手数
+		        			   	     H_freeThrowGoalNum=H_freeThrowGoalNum+info[7];			//罚球命中数
+		        			   	     H_freeThrowNum=H_freeThrowNum+info[8];				//罚球出手数
+		        			   	     H_O_ReboundNum=H_O_ReboundNum+info[9];				//进攻（前场）篮板数
+		        			   	     H_D_ReboundNum=H_D_ReboundNum+info[10];				//防守（后场）篮板数
+		        			   	     H_reboundNum=H_reboundNum+info[11];				//总篮板数
+		        			   	     H_assistNum=H_assistNum+info[12];				    //助攻数
+		        			   	     H_stealNum=H_stealNum+info[13];					//抢断数
+		        			   	     H_blockNum=H_blockNum+info[14];					//盖帽数
+		        			   	     H_turnoverNum=H_turnoverNum+info[15];				//失误数
+		        			   	     H_foulNum=H_foulNum+info[16];					//犯规数
+		        			   	     H_points=H_points+info[17];					//得分
+		        				
 		        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
-		        						str[1].trim(),str[2].trim(),
+		        						str[1].trim(),calTime(str[2].trim()),
 		        						info[3],info[4],info[5],info[6],info[7],info[8],
 		        						info[9],info[10],info[11],info[12],info[13],info[14]
 		        						,info[15],info[16],info[17]));
@@ -253,13 +385,29 @@ public class MatchDataController implements MatchDataService{
 			 int shootNum4,int T_fieldGoal5,int T_shootNum6,int freeThrowGoalNum7,int freeThrowNum8,
 			 int O_R_N9,int D_R_N10,int reboundNum11,int assistNum12,int blockNum13,int turnoverNum14,
 			 int foulNum15,int points16 */
+		        				
+		        				G_fieldGoal=G_fieldGoal+info[3];					//投篮命中数
+	        			   	     G_shootNum=G_shootNum+info[4];					//投篮出手数
+	        			   	     G_T_fieldGoal=G_T_fieldGoal+info[5];				//三分球命中数
+	        			   	     G_T_shootNum=G_shootNum+info[6];				//三分球出手数
+	        			   	     G_freeThrowGoalNum=G_freeThrowGoalNum+info[7];			//罚球命中数
+	        			   	     G_freeThrowNum=G_freeThrowNum+info[8];				//罚球出手数
+	        			   	     G_O_ReboundNum=G_O_ReboundNum+info[9];				//进攻（前场）篮板数
+	        			   	     G_D_ReboundNum=H_D_ReboundNum+info[10];				//防守（后场）篮板数
+	        			   	     G_reboundNum=G_reboundNum+info[11];				//总篮板数
+	        			   	     G_assistNum=G_assistNum+info[12];				    //助攻数
+	        			   	     G_stealNum=G_stealNum+info[13];					//抢断数
+	        			   	     G_blockNum=G_blockNum+info[14];					//盖帽数
+	        			   	     G_turnoverNum=G_turnoverNum+info[15];				//失误数
+	        			   	     G_foulNum=G_foulNum+info[16];					//犯规数
+	        			   	     G_points=G_points+info[17];					//得分
+	        			   	
 		        				G_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
-		        						str[1],str[2],info[3],info[4],
+		        						str[1],calTime(str[2].trim()),info[3],info[4],
 		        						info[5],info[6],info[7],info[8],
 		        						info[9],info[10],info[11],info[12],info[13],info[14]
 		        						,info[15],info[16],info[17]));
-		        			}
-		        			
+		        			}	        			
 		        		}
 		        		//String str2[]=str  
 		        		//strList.add(str2[1].trim());
@@ -274,8 +422,15 @@ public class MatchDataController implements MatchDataService{
 		        		/*String date,String matchScore,
 						ArrayList<String>scores,TeamMatch ht,TeamMatch gt*/  
 					        	 matchList.add(new MatchPO(season,date,matchScore,scores,
-					        			(new TeamMatchPO(season,H_team,H_teamData)),
-					        			(new TeamMatchPO(season,G_team,G_teamData)))); 
+					        			(new TeamMatchPO(season,H_team,H_fieldGoal,H_shootNum,H_T_fieldGoal,H_T_shootNum
+				        			   			  ,H_freeThrowGoalNum,H_freeThrowNum,H_O_ReboundNum,H_D_ReboundNum,
+				        			   			  H_reboundNum,H_assistNum,H_stealNum,H_blockNum,H_turnoverNum,
+				        			   			  G_foulNum,H_points,H_teamData)),
+					        			(new TeamMatchPO(season,G_team,G_fieldGoal,G_shootNum,G_T_fieldGoal,G_T_shootNum
+				        			   			  ,G_freeThrowGoalNum,G_freeThrowNum,G_O_ReboundNum,G_D_ReboundNum,
+				        			   			  G_reboundNum,G_assistNum,G_stealNum,G_blockNum,G_turnoverNum,
+				        			   			  G_foulNum,G_points,G_teamData)))); 
+					        	 
 			        }catch(Exception e){
 			        		continue;
 			        		} 
@@ -291,6 +446,16 @@ public class MatchDataController implements MatchDataService{
 		        
 	}
 	
+	private double calTime(String time){
+		double result=0;
+		String s[]=time.split(":");
+		try{
+			result=Integer.parseInt(s[0])+(double)Integer.parseInt(s[1])/60;
+		}catch(Exception e){
+			System.out.println("时间转化错误："+e.toString());
+		}
+		return result;
+	}
 
     private void changeStrToInt(String list[]){
     	for(int i=3;i<list.length;i++){
