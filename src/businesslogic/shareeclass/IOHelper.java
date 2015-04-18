@@ -41,7 +41,7 @@ public class IOHelper {
 		public static void main(String args[]){
 			ArrayList<MatchVO>list=new ArrayList<MatchVO>();
 			MatchController mc=new MatchController();
-			list=mc.getAllMatchVO();
+			//list=mc.getAllMatchVO();
 			IOHelper io=new IOHelper();
 			ArrayList<MatchVO> dp=new ArrayList<MatchVO>();
 			io.writeFile("mvo.obj", list.get(0));

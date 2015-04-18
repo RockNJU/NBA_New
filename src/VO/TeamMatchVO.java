@@ -47,7 +47,6 @@ public class TeamMatchVO implements Serializable{
 	private double stealEfficiency ; 	 
 	private double defenseEfficiency;  
 	private double offenseEfficiency ; 	 
-	private double reboundEfficiency ; 
 
 	private ArrayList<SingleMatchPersonalDataVO> individualData;                        
 
@@ -87,6 +86,7 @@ public class TeamMatchVO implements Serializable{
 		this.freeThrowPercentage = (double)freeThrowGoalNum/freeThrowNum;  
 		this.threePointPercentage = (double)T_fieldGoal/T_shootNum;  
 		this.shootPercentage = (double)fieldGoal/shootNum;  
+		
 		this.assistEfficiency = (double)assistNum/(offenseRound/100);  //每一百个进攻回合，球队的助攻数
 		this.O_ReboundEfficiency = O_ReboundEfficiency; 
 		this.D_ReboundEfficiency = D_ReboundEfficiency;  
@@ -290,14 +290,6 @@ public class TeamMatchVO implements Serializable{
 
 	public void setD_ReboundEfficiency(double d) {
 		this.D_ReboundEfficiency = d;
-	}
-
-	public double getReboundEfficiency() {
-		return reboundEfficiency;
-	}
-
-	public void setReboundEfficiency(double d) {
-		this.reboundEfficiency = d;
 	}
 
 	public double getStealEfficiency() {

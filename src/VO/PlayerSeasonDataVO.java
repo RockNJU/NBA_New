@@ -237,7 +237,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	
 	public double getTime(){
 		if(matchNum!=0)
-			return time;
+			return (double)time/matchNum;
 		else
 			return 0;
 	}
@@ -263,31 +263,27 @@ public class PlayerSeasonDataVO implements Serializable{
 	 
 	public double getReboundNum() {
 		if(matchNum!=0)
-		 return reboundNum/matchNum;
+		 return (double)reboundNum/matchNum;
 		else
 			return 0;
 	}
-	public void addReboundNum(int num) {
-		reboundNum=reboundNum+num;
-	}
+	 
 	public double getAssistNum() {
 		if(matchNum!=0)
-		  return assistNum;
+		  return (double)assistNum/matchNum;
 		else
 		  return 0;
 	}
-	public void addAssistNum(int num){
-		matchNum=matchNum+num;
-	}
+	 
 	public double getTurnoverNum(){
 		if(matchNum!=0)
-		return turnoverNum/matchNum;
+		return (double)turnoverNum/matchNum;
 		return 0;
 	}
 	 
 	public double getStealNum(){
 		if(matchNum!=0)
-		return stealNum/matchNum;
+		return (double)stealNum/matchNum;
 		else 
 			return 0;
 	}
@@ -304,14 +300,18 @@ public class PlayerSeasonDataVO implements Serializable{
 			else
 				freeThrowPercentage=Num;
 	}*/
-	public int getFoulNum() {
-		return foulNum;
+	public double getFoulNum() {
+		if(matchNum!=0)
+			return (double)foulNum/matchNum;
+		else
+			return 0;
 	}
-	public void addFoulNum(int Num) {
-		foulNum=foulNum+Num;
-	}
-	public int getPointNum() {
-		return pointNum;
+	 
+	public double getPointNum(){
+		if(matchNum!=0)
+			return (double)pointNum/matchNum;
+		else
+			return 0;
 	}
 	public void addPointNum(int Num) {
 		pointNum=pointNum+Num;
@@ -345,30 +345,45 @@ public class PlayerSeasonDataVO implements Serializable{
 		this.shootEfficiency = shotEfficiency;
 	}
 	public double getAssistEfficiency() {
-		return assistEfficiency;
+		if(matchNum!=0)
+			return assistEfficiency;
+		else
+			return 0;
 	}
 	public void setAssistEfficiency(double assistEfficiency) {
 		this.assistEfficiency = assistEfficiency;
 	}
 	public double getReboundEfficiency() {
-		return reboundEfficiency;
+		if(matchNum!=0)
+			return reboundEfficiency;
+		else
+			return 0;
 	}
 
 	public double getOffensiveReboundEff() {
-		return offensiveReboundEff;
+		if(matchNum!=0)
+			return offensiveReboundEff;
+		else
+			return 0;
 	}
 
 	public double getStealEfficiency(){
 		return stealEfficiency;
 	}
 	public double getTurnoverPercenttage() {
-		return turnoverPercentage;
+		if(matchNum!=0)
+			return turnoverPercentage;
+		else
+			return 0;
 	}
 	public void setTurnoverPercenttage(double turnoverPercenttage) {
 		this.turnoverPercentage = turnoverPercenttage;
 	}
 	public double getUsingPercentage(){
-		return usingPercentage;
+		if(matchNum!=0)
+			return usingPercentage/matchNum;
+		else 
+			return 0;
 	}
 	public void setUsingPercentage(double usingPercentage) {
 		this.usingPercentage = usingPercentage;
@@ -403,7 +418,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getFieldGoal() {
 		if(matchNum!=0)
-		return fieldGoal;
+			return fieldGoal;
 		else
 			return 0;
 	}
@@ -411,7 +426,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getShootNum() {
 		if(matchNum!=0)
-		return shootNum;
+			return shootNum;
 		else
 			return 0;
 	}
@@ -419,7 +434,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getT_fieldGoal() {
 		if(matchNum!=0)
-		return T_fieldGoal;
+			return T_fieldGoal;
 		else 
 			return 0;
 	}
@@ -427,7 +442,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getT_shootNum() {
 		if(matchNum!=0)
-		return T_shootNum;
+			return T_shootNum;
 		else
 			return 0;
 	}
@@ -435,7 +450,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getFreeThrowGoalNum() {
 		if(matchNum!=0)
-		return freeThrowGoalNum;
+			return freeThrowGoalNum;
 		else 
 			return 0;
 	}
@@ -443,7 +458,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getFreeThrowNum() {
 		if(matchNum!=0)
-		return freeThrowNum;
+			return freeThrowNum;
 		else 
 			return 0;
 	}
@@ -451,7 +466,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getO_ReboundNum() {
 		if(matchNum!=0)
-		return O_ReboundNum;
+			return O_ReboundNum;
 		else
 			return 0;
 	}
@@ -459,7 +474,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getD_ReboundNum() {
 		if(matchNum!=0)
-		return (double)D_ReboundNum/matchNum;
+			return (double)D_ReboundNum/matchNum;
 		else
 			return 0;
 	}
@@ -467,7 +482,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getBlockNum() {
 		if(matchNum!=0)
-		return (double)blockNum/matchNum;
+			return (double)blockNum/matchNum;
 		else
 			return 0;
 	}
@@ -488,7 +503,7 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getRealShootPercentage() {
 		if(matchNum!=0)
-		return (double)realShootPercentage/matchNum;
+			return (double)realShootPercentage/matchNum;
 		else
 			return 0;
 	}

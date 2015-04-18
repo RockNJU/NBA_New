@@ -1,22 +1,139 @@
 package businesslogic.bl;
- 
+
 import java.util.ArrayList;
 
-import businesslogic.PO.MatchPO;
-import businesslogic.PO.SingleMatchPersonalDataPO;
-import businesslogic.PO.TeamMatchPO;
-import businesslogic.data.MatchDataController;
-import businesslogic.dataservice.MatchDataService;
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
 import VO.TeamMatchVO;
+import businessService.blservice.MatchBLService;
+import businesslogic.PO.MatchPO;
+import businesslogic.PO.SingleMatchPersonalDataPO;
+import businesslogic.PO.TeamMatchPO;
 
-
-
-public class MatchController implements  businessService.blservice.MatchBLService{
-
+public class MatchController implements MatchBLService{
 	
-	 
+	public MatchVO matchpo_TO_po(MatchPO po){
+       /*进攻回合：本队回合=投篮数+0.4*球队罚球数-1.07*（本队进攻篮板/（本队进攻篮
+					板+对手防守篮板）*投失球数）+1.07*失误数**/
+		TeamMatchPO H_po=po.getHostTeam();
+		TeamMatchPO G_po=po.getGuestTeam();
+		double H_offense_round=H_po.getShootNum()+0.4*H_po.getFreeThrowNum()-1.07*(
+				(double)H_po.getO_ReboundNum()/(H_po.getO_ReboundNum()+G_po.getD_ReboundNum())*
+				(H_po.getShootNum()-H_po.getFieldGoal()))+1.07*H_po.getTurnoverNum();
+		
+        double G_offense_round=G_po.getShootNum()+0.4*G_po.getFreeThrowNum()-1.07*(
+				(double)G_po.getO_ReboundNum()/(G_po.getO_ReboundNum()+H_po.getD_ReboundNum())*
+				(G_po.getShootNum()-G_po.getFieldGoal()))+1.07*G_po.getTurnoverNum();
+        /* 进攻篮板效率：前场篮板的数量/（前场篮板数量+对手后场篮板数量*/
+        double H_offenseReboundeEff=(double)H_po.getO_ReboundNum()/(H_po.getO_ReboundNum()+G_po.getD_ReboundNum());
+        double G_offenseReboundeEff=(double)G_po.getO_ReboundNum()/(G_po.getO_ReboundNum()+H_po.getD_ReboundNum());
+        
+        
+        ArrayList<SingleMatchPersonalDataVO> H_player_list=playerMatchPO_To_VO(po.getSeason(),po.getDate(),
+        		H_po.getIndividualData(),
+				H_po.getReboundNum(),G_po.getReboundNum(),H_po.getFieldGoal(),G_offense_round,
+				G_po.getShootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum());
+        
+        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(po.getSeason(),po.getDate(),
+        		G_po.getIndividualData(),
+				G_po.getReboundNum(),H_po.getReboundNum(),G_po.getFieldGoal(),H_offense_round,
+				H_po.getShootNum(),G_po.getShootNum(),G_po.getFreeThrowNum(),G_po.getTurnoverNum());
+        /*String season,String teamName, 
+			int winNum,int pointNum,int lost_point,
+			int reboundNum, int O_ReboundNum, int D_ReboundNum,
+			int assistNum, int turnoverNum, int stealNum, int foulNum,
+			int fieldGoal, int shootNum, int T_fieldGoal, int T_shootNum,
+			int freeThrowGoalNum, int freeThrowNum, int blockNum,
+			double offenseRound, double defenseRound,
+			double O_ReboundEfficiency,double D_ReboundEfficiency,
+			ArrayList<SingleMatchPersonalDataVO> individualData*/
+        TeamMatchVO H_team=new TeamMatchVO(po.getSeason(), H_po.getTeamName(), 0,
+        		H_po.getPoints(),G_po.getPoints(), H_po.getReboundNum(),
+        		H_po.getO_ReboundNum(), H_po.getD_ReboundNum(), 
+        		H_po.getAssistNum(), H_po.getTurnoverNum(),
+        		H_po.getStealNum(), H_po.getFoulNum(), H_po.getFieldGoal(),
+        		H_po.getShootNum(), H_po.getT_fieldGoal(), 
+        		H_po.getT_shootNum(), H_po.getFreeThrowGoalNum()
+        		, H_po.getFreeThrowNum(),H_po.getBlockNum(), 
+        		H_offense_round, G_offense_round, 
+        		H_offenseReboundeEff, H_offenseReboundeEff, H_player_list);
+        
+        TeamMatchVO G_team=new TeamMatchVO(po.getSeason(), G_po.getTeamName(), 0,
+        		G_po.getPoints(),H_po.getPoints(), G_po.getReboundNum(),
+        		G_po.getO_ReboundNum(), G_po.getD_ReboundNum(), 
+        		G_po.getAssistNum(), G_po.getTurnoverNum(),
+        		G_po.getStealNum(), G_po.getFoulNum(), G_po.getFieldGoal(),
+        		G_po.getShootNum(), G_po.getT_fieldGoal(), 
+        		G_po.getT_shootNum(), G_po.getFreeThrowGoalNum()
+        		, G_po.getFreeThrowNum(),G_po.getBlockNum(), 
+        		G_offense_round, H_offense_round, 
+        		G_offenseReboundeEff, G_offenseReboundeEff, G_player_list);
+        
+        
+        
+		return new MatchVO(po.getSeason(),po.getDate(),po.getMatchScore(),po.getScores(),
+				H_team,G_team);
+		}
+	
+	private ArrayList<SingleMatchPersonalDataVO> playerMatchPO_To_VO(String season,
+			String date,ArrayList<SingleMatchPersonalDataPO>list,
+			int T_reboundNum,int E_reboundNum,int T_fieldGoal,double E_offenseRound,
+			int E_two_shootNum,int T_shootNum,int T_freeThrowNum,int T_turnoverNum){
+		
+		  double assistEff =0;        //助攻率__
+		  double reboundEff =0;       //篮板率__
+		  double offensiveReboundEff=0;     //进攻篮板率__
+		  double defenseReboundEff=0;     	//防守篮板率__
+		  double stealEff =0;			//抢断率__
+		  double usingPer =0;         //使用率__
+		  double blockEff =0;			//盖帽率__
+		 ArrayList<SingleMatchPersonalDataVO> result=new ArrayList<>();
+		 SingleMatchPersonalDataPO po;
+		 for(int i=0;i<list.size();i++){
+			 po=list.get(i);
+			 /*助攻率：球员助攻数÷(球员上场时间÷(球队所有球员上场时间÷5)×球队总进 球数-球员进球数)*/
+			 if(po.getTime()!=0){
+			 assistEff=(double)po.getAssistNum()/(po.getTime()/48*T_fieldGoal-po.getFieldGoal());
+			/* 篮板率：球员篮板数×(球队所有球员上场时间÷5)÷球员上场时间÷(球队总篮板+对手总篮板)*/
+			 reboundEff=(double)po.getReboundNum()/48/po.getTime()/(T_reboundNum+E_reboundNum);
+			 offensiveReboundEff=(double)po.getO_ReboundNum()/48/po.getTime()/(T_reboundNum+E_reboundNum);
+			 defenseReboundEff=(double)po.getD_ReboundNum()/48/po.getTime()/(T_reboundNum+E_reboundNum);
+			 /*抢断率： 球员抢断数×(球队所有球员上场时间÷5)÷球员上场时间÷对手进攻次数)*/
+			 stealEff=(double)po.getStealNum()*48/po.getTime()/E_offenseRound;
+			 /*盖帽率：球员盖帽数×(球队所有球员上场时间÷5)÷球员上场时间÷对手两分球出手次数*/
+			 blockEff=po.getBlockNum()*48/po.getTime()/E_two_shootNum;
+			 /*使用率： (球员出手次数+0.44×球员罚球次数+球员失误次数)×(球队所有球员
+			上场时间÷5)÷球员上场时间÷(球队所有总球员出手次数+0.44×球队所有球员罚球
+			次数+球队所有球员失误次数) */
+			 usingPer=(po.getShootNum()+0.44*po.getFreeThrowNum()+po.getTurnoverNum())*
+			 48/po.getTime()/(T_shootNum+0.44*T_freeThrowNum+T_turnoverNum);
+			 }
+			 /*String season,String date,String name,String p,String time,int fieldGoal,
+			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
+			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int steal,int blockNum,int turnoverNum,
+			 int foulNum,int points, double assistEfficiency,
+			 double reboundEfficiency,double offensiveReboundEff,
+			 double defenseReboundEff,double stealEfficiency,
+			 double usingPercentage,double blockEfficiency*/
+			 
+			 SingleMatchPersonalDataVO vo=new SingleMatchPersonalDataVO(season, date,
+					 po.getPlayerName(),po.getPlayerPosition(), 
+					 po.getTime(),po.getFieldGoal(), po.getShootNum()
+					 , po.getT_fieldGoal(), po.getT_shootNum(), 
+					 po.getFreeThrowGoalNum(), po.getFreeThrowNum(),
+					 po.getO_ReboundNum(), po.getD_ReboundNum(),
+					 po.getReboundNum(), po.getAssistNum(), 
+					 po.getStealNum(), po.getBlockNum(),
+					 po.getTurnoverNum(), po.getFoulNum(), po.getPoints(),
+					 assistEff, reboundEff, offensiveReboundEff,
+					 defenseReboundEff, stealEff, usingPer, blockEff);
+			 result.add(vo);
+			 
+		 }
+		
+		return result;
+	}
+
 	
 	@Override
 	public ArrayList<String> getMatchByTeamTime(String time, String team) {
@@ -29,256 +146,5 @@ public class MatchController implements  businessService.blservice.MatchBLServic
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	/*
-	 * 
-	 * ***************************
-	 * 
-	 * */
-	
-	//--------------------------
-
-
-	public static TeamMatchVO hostTeam, tempHost = new TeamMatchVO(null,null, 0,0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, null);
-	public static TeamMatchVO guestTeam, tempGuest = new TeamMatchVO(null, null,0,0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, null); // tempHost      tempGuest                      м        
-	
-
-	
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		System.out.println("starts here!");
-
-	}
-
-
-	public ArrayList<MatchVO> getAllMatchVO() {
-		ArrayList<MatchVO> result=new ArrayList<MatchVO>();
-		MatchController c=new MatchController();
-		MatchDataService mds = new MatchDataController();
-		ArrayList<MatchPO> list= mds.getAllMatch();
-		for(int i=0;i<list.size();i++){
-		result.add(c.matchPOToVO(list.get(i)));
-		}
-		return result;
-	}
-
-	//     matchpo                              matchvo
-	public MatchVO matchPOToVO(MatchPO po) {	
-		String score[]=po.getMatchScore().split("-");
-		int H_winNum,G_winNum;
-		if(score[0].compareTo(score[1])>0){
-			H_winNum=1;
-			G_winNum=0;
-		}else{
-			H_winNum=0;
-			G_winNum=1;
-		}
-		calculateNum(po.getHostTeam(), "host",po.getDate(),H_winNum);
-		calculateNum(po.getGuestTeam(), "guest",po.getDate(),G_winNum);
-		calOffenseRound("host");
-		calOffenseRound("guest");
-	
-		
-		
-		this.hostTeam = TeamMatchPOtoVO(po.getSeason(),tempHost, "host",H_winNum);
-		this.guestTeam = TeamMatchPOtoVO(po.getSeason(),tempGuest, "guest",G_winNum);
-		MatchVO vo = new MatchVO(po.getSeason(),po.getDate(), po.getMatchScore(),
-				po.getScores(), hostTeam, guestTeam);
-		return vo;
-
-	}
-
-	//     teamMatchPO          TeamMatchVO
-	private TeamMatchVO TeamMatchPOtoVO(String season,TeamMatchVO vo, String role,int winNum) {
-
-		double offenseRound = vo.getOffenseRound(); //         
-		double defenseRound = 0; //             
-
-		double freeThrowPercentage = 0; //                     
-		double threePointPercentage = 0; //                   
-		double shootPercentage = 0; //                   
-		double assistEfficiency = 0; //         
-		double O_ReboundEfficiency = 0; //                 
-		double D_ReboundEfficiency = 0; //                     
-		double stealEfficiency = 0; //             
-		double defenseEfficiency = 0; //         
-		double offenseEfficiency = 0; //       
-
-		if (role.equals("host")) {
-			vo.setDefenseRound(tempGuest.getOffenseRound());
-			O_ReboundEfficiency = (double)vo.getO_ReboundNum()
-					/ (vo.getO_ReboundNum() + tempGuest.getD_ReboundNum()); //                 
-			D_ReboundEfficiency = (double)vo.getD_ReboundNum()
-					/ (vo.getD_ReboundNum() + tempGuest.getO_ReboundNum()); //                     
-		} else if (role.equals("guest")) {
-			vo.setDefenseRound(tempHost.getOffenseRound());
-			O_ReboundEfficiency = (double)vo.getO_ReboundNum()
-					/ (vo.getO_ReboundNum() + tempHost.getD_ReboundNum()); //                 
-			D_ReboundEfficiency = (double)vo.getD_ReboundNum()
-					/ (vo.getD_ReboundNum() + tempHost.getO_ReboundNum()); //                     
-		}
-
-		freeThrowPercentage = (double)vo.getFreeThrowGoalNum() / vo.getFreeThrowNum(); //                     
-		threePointPercentage = (double)vo.getT_fieldGoal() / vo.getT_shootNum(); //                   
-		shootPercentage =(double) vo.getFieldGoal() / vo.getShootNum(); //                   
-		assistEfficiency = (double)vo.getAssistNum() / vo.getOffenseRound() * 100; //         
-
-		offenseEfficiency = (double)vo.getPointNum() / vo.getOffenseRound() * 100; //         
-	//	System.out.println(offenseEfficiency+"   cal offenseRate");
-		//System.out.println(vo.getPointNum()+"   pointNum");
-		//System.out.println(vo.getOffenseRound()+"  offenseRound");
-		stealEfficiency = (double)vo.getStealNum() / vo.getDefenseRound() * 100; //             
-		defenseEfficiency = (double)vo.getPointNum() / vo.getDefenseRound() * 100; //             
-
-		TeamMatchVO matchvo = new TeamMatchVO(season,vo.getTeamName(),winNum,
-				vo.getPointNum(), vo.getDefenseNum(), vo.getOffenseNum(),
-				vo.getReboundNum(), vo.getO_ReboundNum(), vo.getD_ReboundNum(),
-				vo.getAssistNum(), vo.getTurnoverNum(), vo.getStealNum(),
-				vo.getFoulNum(), vo.getFieldGoal(), vo.getShootNum(),
-				vo.getT_fieldGoal(), vo.getT_shootNum(),
-				vo.getFreeThrowGoalNum(), vo.getFreeThrowNum(),
-				vo.getBlockNum(), offenseRound, defenseRound,
-				freeThrowPercentage, threePointPercentage, shootPercentage,
-				assistEfficiency, O_ReboundEfficiency, D_ReboundEfficiency,
-				stealEfficiency, defenseEfficiency, offenseEfficiency,
-				vo.getIndividualData());
-		return matchvo;
-
-	}
-
-	private void calculateNum(TeamMatchPO po, String role,String date,int winNum) {
-		ArrayList<SingleMatchPersonalDataPO> individualData = po
-				.getIndividualData();
-		ArrayList<SingleMatchPersonalDataVO> singleData = new ArrayList<SingleMatchPersonalDataVO>(
-				individualData.size());
-		String season=po.getSeason();
-		//String date=po.getd
-		
-		for (int i = 0; i < individualData.size(); i++) {
-			/*String season,String date,String name,String p,String time,int fieldGoal,
-			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
-			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int steal,int blockNum,int turnoverNum,
-			 int foulNum,int points*/
-				
-			singleData.add(new SingleMatchPersonalDataVO(season,date,individualData.get(i)
-					.getPlayerName(),
-					individualData.get(i).getPlayerPosition(), individualData
-							.get(i).getTime(), individualData.get(i)
-							.getFieldGoal(), individualData.get(i)
-							.getShootNum(), individualData.get(i)
-							.getT_fieldGoal(), individualData.get(i)
-							.getT_shootNum(), individualData.get(i)
-							.getFreeThrowGoalNum(), individualData.get(i)
-							.getFreeThrowNum(), individualData.get(i)
-							.getO_ReboundNum(), individualData.get(i)
-							.getD_ReboundNum(), individualData.get(i)
-							.getReboundNum(), individualData.get(i)
-							.getAssistNum(), individualData.get(i)
-							.getStealNum(),
-					individualData.get(i).getBlockNum(), individualData.get(i)
-							.getTurnoverNum(), individualData.get(i)
-							.getFoulNum(), individualData.get(i).getPoints()));
-		}// end for
-			//         
-
-		int points = 0; //   ÷  
-		int defenseNum = 0; //             
-		int offenseNum = 0; //         
-		int reboundNum = 0; //                 
-		int O_ReboundNum = 0; //                           
-		int D_ReboundNum = 0; //                      
-		int assistNum = 0; //         
-		int turnoverNum = 0; //          
-		int stealNum = 0; //             
-		int foulNum = 0; //             
-		int fieldGoal = 0; //                   
-		int shootNum = 0; //                   
-		int T_fieldGoal = 0; //                       
-		int T_shootNum = 0; //                     
-		int freeThrowGoalNum = 0; //                     
-		int freeThrowNum = 0; //                   
-		int blockNum = 0; //           
-
-		int playerNum = singleData.size(); // number of players in the team
-		for (int i = 0; i < playerNum; i++) {
-			//             
-			points = points + singleData.get(i).getPoints();
-			defenseNum = defenseNum + singleData.get(i).getD_ReboundNum();
-			offenseNum = offenseNum + singleData.get(i).getO_ReboundNum();
-			reboundNum = reboundNum + singleData.get(i).getReboundNum();
-			O_ReboundNum = O_ReboundNum + singleData.get(i).getO_ReboundNum();
-			D_ReboundNum = D_ReboundNum + singleData.get(i).getD_ReboundNum();
-			assistNum = assistNum + singleData.get(i).getAssistNum();
-			turnoverNum = turnoverNum + singleData.get(i).getTurnoverNum();
-			stealNum = stealNum + singleData.get(i).getStealNum();
-			foulNum = foulNum + singleData.get(i).getFoulNum();
-			fieldGoal = fieldGoal + singleData.get(i).getFieldGoal();
-			T_fieldGoal = T_fieldGoal + singleData.get(i).getT_fieldGoal();
-			T_shootNum = T_shootNum + singleData.get(i).getT_shootNum();
-			freeThrowGoalNum = freeThrowGoalNum
-					+ singleData.get(i).getFreeThrowGoalNum();
-			freeThrowNum = freeThrowNum + singleData.get(i).getFreeThrowNum();
-			blockNum = blockNum + singleData.get(i).getBlockNum();
-
-		}// end for
-
-		if (role.equals("host")) {
-			tempHost = new TeamMatchVO(season,po.getTeamName(),winNum, points, defenseNum,
-					offenseNum, reboundNum, O_ReboundNum, D_ReboundNum,
-					assistNum, turnoverNum, stealNum, foulNum, fieldGoal,
-					shootNum, T_fieldGoal, T_shootNum, freeThrowGoalNum,
-					freeThrowNum, blockNum, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					singleData);
-		} else if (role.equals("guest")) {
-			tempGuest = new TeamMatchVO(season,po.getTeamName(), winNum,points, defenseNum,
-					offenseNum, reboundNum, O_ReboundNum, D_ReboundNum,
-					assistNum, turnoverNum, stealNum, foulNum, fieldGoal,
-					shootNum, T_fieldGoal, T_shootNum, freeThrowGoalNum,
-					freeThrowNum, blockNum, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					singleData);
-		}
-	}
-
-	private void calOffenseRound(String role) {
-		if (role.equals("host")) {
-			
-			
-			double offenseRound = (double)(tempHost.getShootNum()
-					+ 0.4
-					* tempHost.getFreeThrowNum()
-					- 1.07
-					* (tempHost.getO_ReboundNum()
-							/ (tempHost.getO_ReboundNum() + tempGuest
-									.getD_ReboundNum()) * (tempHost
-							.getShootNum() - tempHost.getFieldGoal())) + 1.07
-					* tempHost.getTurnoverNum());
-			//System.out.println(offenseRound+"   host~~");
-			tempHost.setOffenseRound(offenseRound);
-			tempGuest.setDefenseRound(offenseRound);
-		} else if (role.equals("guest")) {
-		
-			double offenseRound = (double)(tempGuest.getShootNum()
-					+ 0.4
-					* tempGuest.getFreeThrowNum()
-					- 1.07
-					* (tempGuest.getO_ReboundNum()
-							/ (tempGuest.getO_ReboundNum() + tempHost
-									.getD_ReboundNum()) * (tempGuest
-							.getShootNum() - tempGuest.getFieldGoal())) + 1.07
-					* tempGuest.getTurnoverNum());
-			tempGuest.setOffenseRound(offenseRound);
-			tempHost.setDefenseRound(offenseRound);
-		
-			
-			//System.out.println(offenseRound+"   guest~~");
-		}
-	}
-	
 	
 }
