@@ -11,6 +11,8 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	 private String season;					//赛季
 	 private String date;					//比赛日期
 	 private String playerName;				//球员姓名
+	 private String division;		 //球员目前所效力球队所在的分区
+	 private String partition;		 //球员所效力球队所在的赛区
 	 private String playerPosition;			//球员位置
 	 private double time;					//球员上场时间
 	 private int fieldGoal;					//进球数
@@ -43,7 +45,8 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		
 		private String teamName;                  //本场比赛所效力的球队
 	 
-	 public SingleMatchPersonalDataVO(String season,String date,String name,String team,String p,double time,int fieldGoal,
+	 public SingleMatchPersonalDataVO(String season,String date,String name,String team,
+			 String division,String partition,String p,double time,int fieldGoal,
 			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
 			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int steal,int blockNum,int turnoverNum,
 			 int foulNum,int points, double assistEfficiency,
@@ -54,6 +57,9 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		 this.season=season;
 		 this.date=date;
 		 this.playerName=name;
+		 this.division=division;
+		 this.partition=partition;
+		 
 		 this.playerPosition=p;
 		 this.time=time;
 		 this.fieldGoal=fieldGoal;
@@ -254,5 +260,17 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	public double getBlockEfficiency() {
 		return blockEfficiency;
 	}
+
+
+	public String getDivision() {
+		return division;
+	}
+
+	public String getPartition() {
+		return partition;
+	}
+
+
+	 
 
 }

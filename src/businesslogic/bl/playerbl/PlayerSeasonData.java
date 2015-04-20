@@ -1,4 +1,4 @@
-package businesslogic.bl;
+package businesslogic.bl.playerbl;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,8 @@ public class PlayerSeasonData {
 			if(playerDataList.get(i).getName().equals(vo.getPlayerName())){
 				playerDataList.get(i).add_A_MatchData(vo);
 				playerDataList.get(i).setTeamName(vo.getTeamName());
+				playerDataList.get(i).setDivision(vo.getDivision());
+				playerDataList.get(i).setPartition(vo.getPartition());
 				return;
 				//当球员的数据仓库中已经存在其对应的赛季信息时，更新其信息。
 			}
@@ -57,8 +59,8 @@ public class PlayerSeasonData {
 		 if(vo.getPlayerPosition()!=null&vo.getPlayerPosition().length()!=0)
 		 startingNum++;
 		
-		PlayerSeasonDataVO newData=new PlayerSeasonDataVO(season,vo.getPlayerName(),vo.getTeamName(),
-				vo.getPlayerPosition(),1,startingNum,vo.getTime(),
+		PlayerSeasonDataVO newData=new PlayerSeasonDataVO(season,vo.getPlayerName(),vo.getTeamName(),vo.getDivision(),
+				vo.getPartition(),vo.getPlayerPosition(),1,startingNum,vo.getTime(),
 				vo.getFieldGoal(),vo.getShootNum(),vo.getT_fieldGoal(),vo.getT_shootNum(),
 				vo.getFreeThrowGoalNum(),vo.getFreeThrowNum(),vo.getO_ReboundNum(),
 				vo.getD_ReboundNum(),vo.getReboundNum(),

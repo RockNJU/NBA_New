@@ -8,7 +8,7 @@ import VO.*;
 public interface PlayerBLService{
 	
 	public PlayerSeasonDataVO getAPlayerSeasonMatch(String season,String name);//根据球员姓名获取球员的某个赛季的比赛数据
-	public ArrayList<PlayerInfoVO> getPlayerInfo(String name);   //根据球员的名字获取球员的基本信息
+	public PlayerInfoVO getPlayerInfo(String name);   //根据球员的名字获取球员的基本信息
 	public ArrayList<PlayerInfoVO> getAllPlayerInfo();           //获取所有球员的基本信息
 	public ArrayList<PlayerSeasonDataVO> sort(String season,String position,String paitition,String item);/*为筛选球员，较之前有赛季的要求*/
 	public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(String season,String sortItem);//获取赛季的热点球员,传入的参数是赛季和筛选项目

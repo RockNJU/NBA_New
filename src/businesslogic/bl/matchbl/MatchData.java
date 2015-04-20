@@ -1,4 +1,4 @@
-package businesslogic.bl;
+package businesslogic.bl.matchbl;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import VO.MatchVO;
 public class MatchData {
 	private String season;
 	ArrayList<MatchVO> matchList;
+	
 	public MatchData(String season){
 		this.season=season;
 		matchList=new ArrayList<>();

@@ -1,4 +1,4 @@
-package businesslogic.bl;
+package businesslogic.bl.teambl;
 
 import java.util.ArrayList;
 

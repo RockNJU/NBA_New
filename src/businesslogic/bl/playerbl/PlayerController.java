@@ -1,29 +1,43 @@
-package businesslogic.bl;
-import java.sql.*;
+package businesslogic.bl.playerbl;
 import java.util.ArrayList;
 
 import businessService.blservice.PlayerBLService;
 import VO.*;
 
 public class PlayerController implements PlayerBLService {
-	
+	   PlayerDataFactory playerFactory;    
+	    public PlayerController(){
+	    	playerFactory=new PlayerDataFactory();
+	    }
 		ArrayList<PlayerSeasonDataVO> dlist=new ArrayList<>();
 		ArrayList<PlayerInfoVO> infoList=new ArrayList<>();
+		
 		@Override
 		public PlayerSeasonDataVO getAPlayerSeasonMatch(String season,
 				String name) {
-			// TODO Auto-generated method stub
+			ArrayList<PlayerSeasonDataVO> list=getPlayerSeasonData(season);
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getName().equals(name)){
+					return list.get(i);
+				}
+			}
 			return null;
 		}
 		@Override
-		public ArrayList<PlayerInfoVO> getPlayerInfo(String name) {
+		public PlayerInfoVO getPlayerInfo(String name) {
 			// TODO Auto-generated method stub
+			ArrayList<PlayerInfoVO> list=playerFactory.getInfoList();
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getName().equals(name)){
+					return list.get(i);
+				}
+			}
 			return null;
 		}
 		@Override
 		public ArrayList<PlayerInfoVO> getAllPlayerInfo() {
 			// TODO Auto-generated method stub
-			return null;
+			return playerFactory.getInfoList();
 		}
 		@Override
 		public ArrayList<PlayerSeasonDataVO> sort(String season,
@@ -45,7 +59,7 @@ public class PlayerController implements PlayerBLService {
 		@Override
 		public ArrayList<PlayerSeasonDataVO> getPlayerSeasonData(String season) {
 			// TODO Auto-generated method stub
-			return null;
+			return playerFactory.getSeasonDataList(season);
 		}
 	
 	

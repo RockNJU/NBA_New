@@ -1,4 +1,4 @@
-package businesslogic.bl;
+package businesslogic.bl.matchbl;
 
 import static org.junit.Assert.*;
 

@@ -15,6 +15,8 @@ public class PlayerSeasonDataVO implements Serializable{
 	String season;					 //赛季
 	String name;					 //球员姓名
 	private String teamName;		 //所在球队名,为球队的缩写
+	private String division;		 //球员目前所效力球队所在的分区
+	private String partition;		 //球员所效力球队所在的赛区
 	private String position;	     //场上位置
 	private int matchNum;		 	 //出场次数
 	private int startingNum;	     //首发场数
@@ -64,10 +66,12 @@ public class PlayerSeasonDataVO implements Serializable{
 	private double l_f_assist_rate=0;
 	private double l_f_rebound_rate=0;
 	
-	public PlayerSeasonDataVO(String season,String name,String teamName,String position,
+	public PlayerSeasonDataVO(String season,String name,String teamName,
+			String division,String partition,String position,
 	   int matchNum,  int startingNum,double time,int fieldGoal,
-		 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
-		 int O_R_N,int D_R_N,int reboundNum,int assistNum,int stealNum,int blockNum,int turnoverNum,
+		 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,
+		 int freeThrowNum,int O_R_N,int D_R_N,int reboundNum,
+		 int assistNum,int stealNum,int blockNum,int turnoverNum,
 		 int foulNum,int points,
 		                           double assistEfficiency,
 		 double reboundEfficiency,double offensiveReboundEff,
@@ -77,6 +81,9 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.season=season;
 				this.name=name;
 				this.teamName=teamName;
+			
+				this.division=division;
+				 this.partition=partition;
 				this.position=position;
 				this.matchNum=matchNum;
 				this.startingNum=startingNum;
@@ -522,6 +529,30 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public int getSeasonThreeNum() {
 		return seasonThreeNum;
+	}
+
+
+
+	public String getDivision() {
+		return division;
+	}
+
+
+
+	public void setDivision(String division) {
+		this.division = division;
+	}
+
+
+
+	public String getPartition() {
+		return partition;
+	}
+
+
+
+	public void setPartition(String partition) {
+		this.partition = partition;
 	}
 	
 	

@@ -2,7 +2,7 @@ package businesslogic.shareeclass;
 import java.io.*;
 import java.util.ArrayList;
 
-import businesslogic.bl.MatchController;
+import businesslogic.bl.matchbl.MatchController;
 import VO.MatchVO;
 
 public class IOHelper {

@@ -22,15 +22,17 @@ public class TeamData implements TeamDataService{
       }
       
       public static void main(String args[]){
+    	  System.out.println("进入球队数据层main函数");
     	  TeamData t=new TeamData();
     	  
     	  ArrayList<TeamInfoPO> list=t.getTeamInfoList(); 
     	  TeamInfoPO po;
     	  for(int i=0;i<list.size();i++){
     		  po=list.get(i);
-    		  System.out.println("分区：  "+po.getDivision()+";"+po.getFormedTime()+";"+
-    		  po.getFullName()+";"+po.getHomeGround()+";"+po.getLocation()+";"+po.getPartition()+";"+
-    		  po.getTeamAbb());
+    		  if(po.getPartition().equals("Central")){
+    			  System.out.println("分区：  "+po.getPartition()+"；队名："+po.getTeamAbb());
+	  
+    		  }
     	  }
     	 
       }

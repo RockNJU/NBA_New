@@ -1,5 +1,6 @@
-package businesslogic.bl;
+package businesslogic.bl.teambl;
 import java.util.ArrayList;
+
 import VO.TeamInfoVO;
 import VO.TeamMatchVO;
 import VO.TeamSeasonDataVO;

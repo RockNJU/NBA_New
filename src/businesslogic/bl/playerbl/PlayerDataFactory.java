@@ -1,8 +1,10 @@
-package businesslogic.bl;
+package businesslogic.bl.playerbl;
 
 import java.util.ArrayList;
 
+import businesslogic.data.PlayerDataController;
 import VO.PlayerInfoVO;
+import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 
 public class PlayerDataFactory {
@@ -15,7 +17,9 @@ public class PlayerDataFactory {
 	
 	
 	public PlayerDataFactory(){
-		
+		PlayerDataController plc=new PlayerDataController();
+		infoList=plc.getAllPlayer();
+		dataList=new ArrayList<>();
 	}
 	
 	public void add_A_player_matchData(SingleMatchPersonalDataVO vo){
@@ -38,13 +42,15 @@ public class PlayerDataFactory {
 	public ArrayList<PlayerInfoVO> getInfoList() {
 		return infoList;
 	}
-	public void setInfoList(ArrayList<PlayerInfoVO> infoList) {
-		this.infoList = infoList;
-	}
-	public ArrayList<PlayerSeasonData> getDataList() {
-		return dataList;
-	}
-	public void setDataList(ArrayList<PlayerSeasonData> dataList) {
-		this.dataList = dataList;
+	
+	public ArrayList<PlayerSeasonDataVO> getSeasonDataList(String season) {
+		/*传入的数据为赛季，返回某个赛季的所有球员的比赛数据信息*/
+		for(int i=0;i<dataList.size();i++){
+			if(dataList.get(i).getSeason().equals(season)){
+				return dataList.get(i).getPlayerDataList();
+			}
+		}
+		
+		return null;
 	}
 }
