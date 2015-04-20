@@ -28,9 +28,9 @@ public class TeamSeasonDataVO implements Serializable{
 	int foulNum; 					 //犯规数
 	int points; 					 //得分
 	
-	double shootPercentage; 		 
-	double threePointPercentage; 	 
-	double freeThrowPercentage; 	
+	double shootPercentage; 		 //全队的投篮命中率
+	double T_shootPercentage; 	     //全队的三分球命中率
+	double freeThrowPercentage; 	 //全队的罚球命中率
 	
 	double offenseRound; 	
 	
@@ -73,7 +73,7 @@ public class TeamSeasonDataVO implements Serializable{
 		
 		
 		this.shootPercentage =  shootPercentage;  
-		this.threePointPercentage = threePointPercentage ; 
+		this.T_shootPercentage = threePointPercentage ; 
 		this.freeThrowPercentage = freeThrowPercentage ;  
 		 
 		this.offenseRound = offenseRound ;  
@@ -114,7 +114,7 @@ public class TeamSeasonDataVO implements Serializable{
 		 
 		 
 		  shootPercentage=(double)fieldGoal/shootNum; 		 
-		  threePointPercentage=(double)T_fieldGoal/T_shootNum; 	 
+		  T_shootPercentage=(double)T_fieldGoal/T_shootNum; 	 
 		  freeThrowPercentage=(double)freeThrowGoalNum/freeThrowNum; 	
 			  	
 			  
@@ -242,7 +242,7 @@ public class TeamSeasonDataVO implements Serializable{
 	 
 
 	public void setThreePointPercentage(double d) {
-		this.threePointPercentage = d;
+		this.T_shootPercentage = d;
 	}
 
 	 
