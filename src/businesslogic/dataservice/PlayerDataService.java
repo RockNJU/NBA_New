@@ -2,7 +2,7 @@ package businesslogic.dataservice;
 
 import java.util.ArrayList;
 
-import businesslogic.PO.PlayerInfoPO;
+import VO.PlayerInfoVO;
 public interface PlayerDataService {
-	ArrayList<PlayerInfoPO> getAllPlayer();  		//获取所有球员
+	ArrayList<PlayerInfoVO> getAllPlayer();  		//获取所有球员
 }

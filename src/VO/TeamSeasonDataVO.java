@@ -46,8 +46,7 @@ public class TeamSeasonDataVO implements Serializable{
 	int fieldGoal,int shootNum,int T_fieldGoal,int T_shootNum,
 	int freeThrowGoalNum,int freeThrowNum,int O_ReboundNum,
 	int D_ReboundNum,int assistNum,int stealNum,int reboundNum,int blockNum,
-	int turnoverNum,int foulNum,int points,double shootPercentage,
-	double threePointPercentage,double freeThrowPercentage,
+	int turnoverNum,int foulNum,int points,
 	double offenseRound,double offenseEfficiency,
 	double defenseEfficiency,double O_ReboundEfficiency,double D_ReboundEfficiency,
 	double stealEfficiency ,double assistEfficiency){
@@ -72,9 +71,9 @@ public class TeamSeasonDataVO implements Serializable{
 		this.points = points ;  
 		
 		
-		this.shootPercentage =  shootPercentage;  
-		this.T_shootPercentage = threePointPercentage ; 
-		this.freeThrowPercentage = freeThrowPercentage ;  
+		this.shootPercentage =  (double)fieldGoal/shootNum;  
+		this.T_shootPercentage =(double)T_fieldGoal/T_shootNum ; 
+		this.freeThrowPercentage = (double)freeThrowGoalNum/freeThrowNum ;  
 		 
 		this.offenseRound = offenseRound ;  
 		

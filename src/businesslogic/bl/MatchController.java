@@ -29,12 +29,12 @@ public class MatchController implements MatchBLService{
         double G_offenseReboundeEff=(double)G_po.getO_ReboundNum()/(G_po.getO_ReboundNum()+H_po.getD_ReboundNum());
         
         
-        ArrayList<SingleMatchPersonalDataVO> H_player_list=playerMatchPO_To_VO(po.getSeason(),po.getDate(),
+        ArrayList<SingleMatchPersonalDataVO> H_player_list=playerMatchPO_To_VO(H_po.getTeamName(),po.getSeason(),po.getDate(),
         		H_po.getIndividualData(),
 				H_po.getReboundNum(),G_po.getReboundNum(),H_po.getFieldGoal(),G_offense_round,
 				G_po.getShootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum());
         
-        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(po.getSeason(),po.getDate(),
+        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(G_po.getTeamName(),po.getSeason(),po.getDate(),
         		G_po.getIndividualData(),
 				G_po.getReboundNum(),H_po.getReboundNum(),G_po.getFieldGoal(),H_offense_round,
 				H_po.getShootNum(),G_po.getShootNum(),G_po.getFreeThrowNum(),G_po.getTurnoverNum());
@@ -47,7 +47,15 @@ public class MatchController implements MatchBLService{
 			double offenseRound, double defenseRound,
 			double O_ReboundEfficiency,double D_ReboundEfficiency,
 			ArrayList<SingleMatchPersonalDataVO> individualData*/
-        TeamMatchVO H_team=new TeamMatchVO(po.getSeason(), H_po.getTeamName(), 0,
+        String []sco=po.getSeason().split("-");
+        int H_win=0,G_win=0;
+        if(sco[0].compareTo(sco[1])>0){
+        	H_win=1;
+        }else{
+        	G_win=1;
+        }
+        
+        TeamMatchVO H_team=new TeamMatchVO(po.getSeason(), H_po.getTeamName(),H_win,
         		H_po.getPoints(),G_po.getPoints(), H_po.getReboundNum(),
         		H_po.getO_ReboundNum(), H_po.getD_ReboundNum(), 
         		H_po.getAssistNum(), H_po.getTurnoverNum(),
@@ -58,7 +66,7 @@ public class MatchController implements MatchBLService{
         		H_offense_round, G_offense_round, 
         		H_offenseReboundeEff, H_offenseReboundeEff, H_player_list);
         
-        TeamMatchVO G_team=new TeamMatchVO(po.getSeason(), G_po.getTeamName(), 0,
+        TeamMatchVO G_team=new TeamMatchVO(po.getSeason(), G_po.getTeamName(),G_win,
         		G_po.getPoints(),H_po.getPoints(), G_po.getReboundNum(),
         		G_po.getO_ReboundNum(), G_po.getD_ReboundNum(), 
         		G_po.getAssistNum(), G_po.getTurnoverNum(),
@@ -75,7 +83,7 @@ public class MatchController implements MatchBLService{
 				H_team,G_team);
 		}
 	
-	private ArrayList<SingleMatchPersonalDataVO> playerMatchPO_To_VO(String season,
+	private ArrayList<SingleMatchPersonalDataVO> playerMatchPO_To_VO(String team,String season,
 			String date,ArrayList<SingleMatchPersonalDataPO>list,
 			int T_reboundNum,int E_reboundNum,int T_fieldGoal,double E_offenseRound,
 			int E_two_shootNum,int T_shootNum,int T_freeThrowNum,int T_turnoverNum){
@@ -117,7 +125,7 @@ public class MatchController implements MatchBLService{
 			 double usingPercentage,double blockEfficiency*/
 			 
 			 SingleMatchPersonalDataVO vo=new SingleMatchPersonalDataVO(season, date,
-					 po.getPlayerName(),po.getPlayerPosition(), 
+					 po.getPlayerName(),team,po.getPlayerPosition(), 
 					 po.getTime(),po.getFieldGoal(), po.getShootNum()
 					 , po.getT_fieldGoal(), po.getT_shootNum(), 
 					 po.getFreeThrowGoalNum(), po.getFreeThrowNum(),

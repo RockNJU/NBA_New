@@ -8,21 +8,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import VO.PlayerInfoVO;
 import businesslogic.PO.PlayerInfoPO;
 import businesslogic.dataservice.PlayerDataService;
 import businesslogic.shareeclass.FileList;
 
-public class PlayerData implements PlayerDataService {
+public class PlayerDataController implements PlayerDataService {
 	
-	private ArrayList<PlayerInfoPO> playerList;
-	public PlayerData(){
-		playerList=new ArrayList<PlayerInfoPO>();
+	private ArrayList<PlayerInfoVO> playerList;
+	public PlayerDataController(){
+		playerList=new ArrayList<PlayerInfoVO>();
 		readObject();
 	}
 	
 	public static void main(String args[]) throws NumberFormatException, IOException{
-		PlayerData da=new PlayerData();
-		ArrayList<PlayerInfoPO> pl=da.getAllPlayer();
+		PlayerDataController da=new PlayerDataController();
+		ArrayList<PlayerInfoVO> pl=da.getAllPlayer();
 		System.out.println("è¿›å…¥mainå‡½æ•°è¿›è¡Œæµ‹è¯•ï¼ "+pl.size());
 		for(int i=0;i<pl.size();i++){
 			//System.out.println("---:"+pl.get(i).getName()+pl.get(i).getName().length()+";-----"+i);
@@ -30,7 +31,7 @@ public class PlayerData implements PlayerDataService {
 	}
 	
 	@Override
-	public ArrayList<PlayerInfoPO> getAllPlayer() {
+	public ArrayList<PlayerInfoVO> getAllPlayer() {
 		// TODO Auto-generated method stub
 		return playerList;
 	}
@@ -84,7 +85,7 @@ public class PlayerData implements PlayerDataService {
 		        		//System.out.println(i+"-------"+strList.get(0)+";"+strList.get(1)+";"+strList.get(4)+";"+strList.get(6));
 		        		char chr7=40;
 		        		char chr8=41;
-		        		playerList.add(new PlayerInfoPO(strList.get(0).replace(chr, '¡¯'),strList.get(1),
+		        		playerList.add(new PlayerInfoVO(strList.get(0).replace(chr, '¡¯'),strList.get(1),
 		        				strList.get(2),strList.get(3),Double.parseDouble(strList.get(4)),
 		        				strList.get(5),Integer.parseInt(strList.get(6)),
 		        				exp,strList.get(8).replace(chr, '¡¯').replace(chr7, '£¨').replace(chr8, '£©')));
