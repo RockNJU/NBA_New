@@ -2,14 +2,8 @@ package businesslogic.bl.matchbl;
 
 import java.util.ArrayList;
 
-import VO.MatchVO;
-import VO.SingleMatchPersonalDataVO;
-import VO.TeamMatchVO;
 import businessService.blservice.MatchBLService;
-import businesslogic.PO.MatchPO;
-import businesslogic.PO.SingleMatchPersonalDataPO;
-import businesslogic.PO.TeamMatchPO;
-import businesslogic.bl.teambl.TeamBase;
+import VO.MatchVO;
 
 public class MatchController implements MatchBLService{
 	MatchDataFactory matchFactory;
@@ -19,23 +13,21 @@ public class MatchController implements MatchBLService{
 	}
 	
 	public void add_A_match(MatchVO vo){
+		/*往比赛数据仓库中添加一条比赛记录*/
 		matchFactory.add_A_match(vo);
 	}
 	
-	public MatchVO get_A_match(String date){
-		return null;
-	}
 	
 	@Override
-	public MatchVO getMatchByTeam(String time, String teamA, String teamB) {
+	public MatchVO getMatchByTeam(String date, String teamA, String teamB) {
 		// TODO Auto-generated method stub
-		return null;
+		return matchFactory.get_A_match(date, teamA);
 	}
 
 	@Override
 	public ArrayList<MatchInfo> getMatchByTeamTime(String date) {
 		// TODO Auto-generated method stub
-		return null;
+		return matchFactory.getMatchInfo(date);
 	}
 	
 }

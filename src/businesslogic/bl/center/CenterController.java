@@ -1,6 +1,9 @@
 package businesslogic.bl.center;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
@@ -8,10 +11,55 @@ import VO.TeamMatchVO;
 import businesslogic.PO.MatchPO;
 import businesslogic.PO.SingleMatchPersonalDataPO;
 import businesslogic.PO.TeamMatchPO;
+import businesslogic.bl.matchbl.MatchController;
+import businesslogic.bl.playerbl.PlayerController;
 import businesslogic.bl.teambl.TeamBase;
+import businesslogic.bl.teambl.TeamController;
+import businesslogic.data.MatchDataController;
+import businesslogic.dataservice.MatchDataService;
 
 public class CenterController {
-	public MatchVO matchpo_TO_po(MatchPO po){
+	MatchController match;
+	PlayerController player;
+	TeamController team;
+	
+	public CenterController(){
+		 match=new MatchController();
+		 player=new PlayerController();
+		 team=new TeamController();
+		
+		init();
+	}
+	
+	public static String time()
+	 {
+	  Date date=new Date();
+	  DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	  String time=format.format(date);
+	  return time;
+	 }
+	
+	public static void main(String args[]){
+		System.out.println("进入center开始测试时间："+time());
+		CenterController c=new CenterController();
+		System.out.println("测试结束时间："+time());
+	}
+	
+	private void init(){
+		MatchDataService mc=new MatchDataController();
+		ArrayList<MatchPO> polist=mc.getAllMatch();
+		MatchVO vo;
+		for(int i=0;i<polist.size();i++){
+			vo=matchpo_TO_po(polist.get(i));
+			match.add_A_match(vo);
+			player.updatePlayerData(vo.getHostTeam().getIndividualData());
+			player.updatePlayerData(vo.getGuestTeam().getIndividualData());
+			team.updateTeamData(vo.getHostTeam());
+			team.updateTeamData(vo.getGuestTeam());
+		}
+	}
+	
+	private  MatchVO matchpo_TO_po(MatchPO po){
 	       /*进攻回合：本队回合=投篮数+0.4*球队罚球数-1.07*（本队进攻篮板/（本队进攻篮
 						板+对手防守篮板）*投失球数）+1.07*失误数**/
 			TeamMatchPO H_po=po.getHostTeam();

@@ -38,4 +38,16 @@ public class MatchData {
 		}
 		return null;
 	}
+	
+	public ArrayList<MatchInfo> getMatchInfo(String date){
+		/*根据时间获取当天有比赛的两支队伍，返回比赛的信息*/
+		ArrayList<MatchInfo> list=new ArrayList<>();
+		for(int i=0;i<matchList.size();i++){
+			if(matchList.get(i).getDate().equals(date)){
+				list.add(new MatchInfo(date,matchList.get(i).getHostTeam().getTeamName(),
+						matchList.get(i).getGuestTeam().getTeamName()));
+			}
+		}
+		return list;
+	}
 }

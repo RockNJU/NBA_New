@@ -22,6 +22,8 @@ public class PlayerDataFactory {
 		dataList=new ArrayList<>();
 	}
 	
+	
+	
 	public void add_A_player_matchData(SingleMatchPersonalDataVO vo){
 		for(int i=0;i<dataList.size();i++){
 			//当数据仓库中已经有数据的时候，往数据仓库中添加数据
