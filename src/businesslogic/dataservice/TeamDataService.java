@@ -1,7 +1,8 @@
 package businesslogic.dataservice;
 import java.util.ArrayList;
-import businesslogic.PO.TeamInfoPO;
+import VO.TeamInfoVO;
+
 
 public interface TeamDataService {
-	ArrayList<TeamInfoPO>  getTeamInfoList(); 		//返回所有球队的基本信息
+	ArrayList<TeamInfoVO>  getTeamInfoList(); 		//返回所有球队的基本信息
 }

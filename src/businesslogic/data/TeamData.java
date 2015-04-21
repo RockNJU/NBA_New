@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import VO.TeamInfoVO;
 import businesslogic.PO.TeamInfoPO;
 import businesslogic.dataservice.TeamDataService;
 
@@ -15,9 +16,9 @@ public class TeamData implements TeamDataService{
 	 * 
 	 * 
 	 * */
-      private  ArrayList<TeamInfoPO> teamInfoList;
+      private  ArrayList<TeamInfoVO> teamInfoList;
       public TeamData(){
-    	  teamInfoList=new ArrayList<TeamInfoPO>();
+    	  teamInfoList=new ArrayList<TeamInfoVO>();
     	  readObject("NBAdata/teams/teams");
       }
       
@@ -25,8 +26,8 @@ public class TeamData implements TeamDataService{
     	  System.out.println("进入球队数据层main函数");
     	  TeamData t=new TeamData();
     	  
-    	  ArrayList<TeamInfoPO> list=t.getTeamInfoList(); 
-    	  TeamInfoPO po;
+    	  ArrayList<TeamInfoVO> list=t.getTeamInfoList(); 
+    	  TeamInfoVO po;
     	  for(int i=0;i<list.size();i++){
     		  po=list.get(i);
     		  if(po.getPartition().equals("Central")){
@@ -37,7 +38,7 @@ public class TeamData implements TeamDataService{
     	 
       }
 	@Override
-	public ArrayList<TeamInfoPO> getTeamInfoList() {
+	public ArrayList<TeamInfoVO> getTeamInfoList() {
 		// TODO Auto-generated method stub
 		return teamInfoList;
 	}
@@ -61,7 +62,7 @@ public class TeamData implements TeamDataService{
                    
                     	String str[]=line.split("║");
                     	String info[]=str[1].split("│");
-                    	teamInfoList.add(new TeamInfoPO(info[0].trim(),info[1].trim(),info[2].trim(),info[3].trim(),
+                    	teamInfoList.add(new TeamInfoVO(info[0].trim(),info[1].trim(),info[2].trim(),info[3].trim(),
                     			info[4].trim(),info[5].trim(),info[6].trim()));
                        // System.out.println(line);
                         num++;

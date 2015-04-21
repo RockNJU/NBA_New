@@ -7,41 +7,42 @@ public class TeamSeasonDataVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	/* 
+	 * 注：基础数据中，带后缀_avg,是平均值，不带的是赛季进行到当下的总数，都可以通过get方法获得
 	 */
 	String season;					 //赛季
 	String teamName; 				 //球队缩写
 	int matchNum; 				     //已比赛场数
 	int winNum;						 //胜利场数
 	int fieldGoal; 					 //投篮命中数
-	int fieldGoal_avg;
+	double fieldGoal_avg;
 	int shootNum; 				     //投篮出手数
-	int shootNum_avg;
+	double shootNum_avg;
 	int T_fieldGoal; 				 //三分命中数
-	int T_fieldGoal_avg;
+	double T_fieldGoal_avg;
 	int T_shootNum; 				 //三分出手数
-	int T_shootNum_avg;
+	double T_shootNum_avg;
 	int freeThrowGoalNum; 			 //罚球命中数
-	int freeThrowGoalNum_avg;
+	double freeThrowGoalNum_avg;
 	int freeThrowNum; 				 //罚球总数
-	int freeThrowNum_avg;
+	double freeThrowNum_avg;
 	int O_ReboundNum; 				 //进攻篮板数
-	int O_ReboundNum_avg;
+	double O_ReboundNum_avg;
 	int D_ReboundNum; 				 //防守篮板数
-	int D_ReboundNum_avg;
+	double D_ReboundNum_avg;
 	int assistNum;					 //助攻数
-	int assistNum_avg;
+	double assistNum_avg;
 	int stealNum; 					 //抢断数
-	int stealNum_avg;
+	double stealNum_avg;
 	int reboundNum; 				 //篮板数
-	int reboundNum_avg;
+	double reboundNum_avg;
 	int blockNum; 					 //盖帽数
-	int blockNum_avg;
+	double blockNum_avg;
 	int turnoverNum; 			     //失误数
-	int turnoverNum_avg;
+	double turnoverNum_avg;
 	int foulNum; 					 //犯规数
-	int foulNum_avg;
+	double foulNum_avg;
 	int pointNum; 					 //得分
-	int pointNum_avg;
+	double pointNum_avg;
 	
 	double shootPercentage; 		 //全队的投篮命中率
 	double T_shootPercentage; 	     //全队的三分球命中率
@@ -51,7 +52,7 @@ public class TeamSeasonDataVO implements Serializable{
 	double offenseRound_avg;
 	
 	private double defenseRound;   			//防守回合总数
-	private double defenseRound_avg;
+	private double defenseRound_avg=0;
 	double offenseEfficiency = 0; 	
 	double offenseEfficiency_avg;
 	double defenseEfficiency = 0;
@@ -109,6 +110,34 @@ public class TeamSeasonDataVO implements Serializable{
 		
 		this.O_ReboundEfficiency = O_ReboundEfficiency; 
 		this.D_ReboundEfficiency = D_ReboundEfficiency;
+		
+		
+		 /////////////////////
+	     fieldGoal_avg=(double)fieldGoal;				    
+		 shootNum_avg=(double)shootNum;
+		  T_fieldGoal_avg=(double)T_fieldGoal;
+		  T_shootNum_avg=(double)T_shootNum;
+		  freeThrowGoalNum_avg=(double)freeThrowGoalNum;
+		  freeThrowNum_avg=(double)freeThrowNum;		 
+		  O_ReboundNum_avg=(double)O_ReboundNum;	 
+		  D_ReboundNum_avg=(double)D_ReboundNum;		 
+		  assistNum_avg=(double)assistNum;		 
+		  stealNum_avg=(double)stealNum;	 
+		  reboundNum_avg=(double)reboundNum;	 
+		  blockNum_avg=(double)blockNum;		 
+		  turnoverNum_avg=(double)turnoverNum;		 
+		  foulNum_avg=(double)foulNum;
+		  pointNum_avg=(double)pointNum;
+		  
+		  //////
+		   defenseRound_avg=0;
+		   offenseEfficiency_avg=offenseEfficiency;
+         defenseEfficiency_avg=defenseEfficiency;
+        stealEfficiency_avg=stealEfficiency;
+         assistEfficiency_avg=assistEfficiency;
+		  O_ReboundEfficiency_avg=O_ReboundEfficiency;
+		 D_ReboundEfficiency_avg=D_ReboundEfficiency;
+		
 	}
 	
 
@@ -151,6 +180,34 @@ public class TeamSeasonDataVO implements Serializable{
 		 O_ReboundEfficiency = O_ReboundEfficiency+vo.getO_ReboundEfficiency(); 
 		 D_ReboundEfficiency = D_ReboundEfficiency+vo.getD_ReboundEfficiency();
 		 
+		 
+		 
+		 /////////////////////
+		     fieldGoal_avg=(double)fieldGoal/matchNum;				    
+			 shootNum_avg=(double)shootNum/matchNum;
+			  T_fieldGoal_avg=(double)T_fieldGoal/matchNum;
+			  T_shootNum_avg=(double)T_shootNum/matchNum;
+			  freeThrowGoalNum_avg=(double)freeThrowGoalNum/matchNum;
+			  freeThrowNum_avg=(double)freeThrowNum/matchNum;		 
+			  O_ReboundNum_avg=(double)O_ReboundNum/matchNum;	 
+			  D_ReboundNum_avg=(double)D_ReboundNum/matchNum;		 
+			  assistNum_avg=(double)assistNum/matchNum;		 
+			  stealNum_avg=(double)stealNum/matchNum;	 
+			  reboundNum_avg=(double)reboundNum/matchNum;	 
+			  blockNum_avg=(double)blockNum/matchNum;		 
+			  turnoverNum_avg=(double)turnoverNum/matchNum;		 
+			  foulNum_avg=(double)foulNum/matchNum;
+			  pointNum_avg=(double)pointNum/matchNum;
+			  
+			  //////
+			   defenseRound_avg=0;
+			   offenseEfficiency_avg=offenseEfficiency/matchNum;
+              defenseEfficiency_avg=defenseEfficiency/matchNum;
+             stealEfficiency_avg=stealEfficiency/matchNum;
+             assistEfficiency_avg=assistEfficiency/matchNum;
+			  O_ReboundEfficiency_avg=O_ReboundEfficiency/matchNum;
+			 D_ReboundEfficiency_avg=D_ReboundEfficiency/matchNum;
+		 
 	 }
 	
 	public String getSreason(){
@@ -171,154 +228,8 @@ public class TeamSeasonDataVO implements Serializable{
 	public int getWinNum(){
 		return winNum;
 	}
+
 	
-	public void setWinNum(int i){
-		this.winNum = i;
-	}
-
-
-
-	public double getFieldGoal() {
-		if(matchNum!=0)
-		return fieldGoal;
-		else
-			return 0;
-	}
-
-
-	public double getShootNum() {
-		if(matchNum!=0)
-		return shootNum;
-		else
-			return 0;
-	}
-
-
-	public double getT_fieldGoal() {
-		if(matchNum!=0)
-		return T_fieldGoal;
-		else 
-			return 0;
-	}
-
-
-	public double getT_shootNum() {
-		if(matchNum!=0)
-		return T_shootNum;
-		else
-			return 0;
-	}
-
-
-	public double getFreeThrowGoalNum() {
-		if(matchNum!=0)
-		return freeThrowGoalNum;
-		else 
-			return 0;
-	}
-
-
-	public double getFreeThrowNum() {
-		if(matchNum!=0)
-		return freeThrowNum;
-		else 
-			return 0;
-	}
-
-
-	public double getO_ReboundNum() {
-		if(matchNum!=0)
-		return O_ReboundNum;
-		else
-			return 0;
-	}
-
-
-	public double getD_ReboundNum() {
-		if(matchNum!=0)
-		return (double)D_ReboundNum/matchNum;
-		else
-			return 0;
-	}
-
-
-	public double getBlockNum() {
-		if(matchNum!=0)
-		return (double)blockNum/matchNum;
-		else
-			return 0;
-	}
-	public double getOffenseRound() {
-		return offenseRound;
-	}
-
-	public void setOffenseRound(double d) {
-		this.offenseRound = d;
-	}
-
- 
-
-	public void setFreeThrowPercentage(double d) {
-		this.freeThrowPercentage = d;
-	}
-
-	 
-
-	public void setThreePointPercentage(double d) {
-		this.T_shootPercentage = d;
-	}
-
-	 
-
-	public void setShootPercentage(double d) {
-		this.shootPercentage = d;
-	}
-
-	public double getAssistEfficiency() {
-		 
-		if(matchNum!=0)
-			return assistEfficiency/matchNum;
-		return 0;
-	}
-
-	public void setAssistEfficiency(double d) {
-		this.assistEfficiency = d;
-	}
-
-	public double getStealEfficiency() {
-	 
-		if(matchNum!=0)
-			return stealEfficiency/matchNum;
-		else
-			return 0;
-	}
-
-	public void setStealEfficiency(double d) {
-		this.stealEfficiency = d;
-	}
-
-	public double getDefenseEfficiency() {
-		if(matchNum!=0)
-			return defenseEfficiency/matchNum;
-		else
-			return 0;
-	}
-
-	public void setDefenseEfficiency(double d) {
-		this.defenseEfficiency = d;
-	}
-
-	public double getOffenseEfficiency() {
-		/*进攻效率：每 100 个进攻回合，球队的得分*/
-		if(matchNum!=0)
-			return offenseEfficiency/matchNum;
-		else
-			return 0;
-	}
-
-	public void setOffenseEfficiency(double d) {
-		this.offenseEfficiency = d;
-	}
 
 	public double getWinRate(){
 		if(matchNum!=0)
@@ -329,36 +240,7 @@ public class TeamSeasonDataVO implements Serializable{
 	
 	
 	 
-		public double getReboundNum() {
-			if(matchNum!=0)
-			 return (double)reboundNum/matchNum;
-			else
-				return 0;
-		}
-		public void addReboundNum(int num) {
-			reboundNum=reboundNum+num;
-		}
-		public double getAssistNum() {
-			if(matchNum!=0)
-			  return (double)assistNum/matchNum;
-			else
-			  return 0;
-		}
-		public void addAssistNum(int num){
-			matchNum=matchNum+num;
-		}
-		public double getTurnoverNum(){
-			if(matchNum!=0)
-				return (double)turnoverNum/matchNum;
-			return 0;
-		}
-		 
-		public double getStealNum(){
-			if(matchNum!=0)
-			return (double)stealNum/matchNum;
-			else 
-				return 0;
-		}
+		
 		 
 		public double getFreeThrowPercentage() {
 			if(matchNum!=0)
@@ -373,12 +255,7 @@ public class TeamSeasonDataVO implements Serializable{
 			else
 				return 0;
 		}
-		public void addFoulNum(int Num) {
-			foulNum=foulNum+Num;
-		}
-		public double getPointNum() {
-			return (double)pointNum/matchNum;
-		}
+		
 		 
 		
 		public double getThreePointPercentage(){
@@ -393,5 +270,222 @@ public class TeamSeasonDataVO implements Serializable{
 			else{
 				return (double)fieldGoal/shootNum ;
 			}
+		}
+
+
+		public String getSeason() {
+			return season;
+		}
+
+
+		public int getFieldGoal() {
+			return fieldGoal;
+		}
+
+
+		public double getFieldGoal_avg() {
+			return fieldGoal_avg;
+		}
+
+
+		public int getShootNum() {
+			return shootNum;
+		}
+
+
+		public double getShootNum_avg() {
+			return shootNum_avg;
+		}
+
+
+		public int getT_fieldGoal() {
+			return T_fieldGoal;
+		}
+
+
+		public double getT_fieldGoal_avg() {
+			return T_fieldGoal_avg;
+		}
+
+
+		public int getT_shootNum() {
+			return T_shootNum;
+		}
+
+
+		public double getT_shootNum_avg() {
+			return T_shootNum_avg;
+		}
+
+
+		public int getFreeThrowGoalNum() {
+			return freeThrowGoalNum;
+		}
+
+
+		public double getFreeThrowGoalNum_avg() {
+			return freeThrowGoalNum_avg;
+		}
+
+
+		public int getFreeThrowNum() {
+			return freeThrowNum;
+		}
+
+
+		public double getFreeThrowNum_avg() {
+			return freeThrowNum_avg;
+		}
+
+
+		public int getO_ReboundNum() {
+			return O_ReboundNum;
+		}
+
+
+		public double getO_ReboundNum_avg() {
+			return O_ReboundNum_avg;
+		}
+
+
+		public int getD_ReboundNum() {
+			return D_ReboundNum;
+		}
+
+
+		public double getD_ReboundNum_avg() {
+			return D_ReboundNum_avg;
+		}
+
+
+		public int getAssistNum() {
+			return assistNum;
+		}
+
+
+		public double getAssistNum_avg() {
+			return assistNum_avg;
+		}
+
+
+		public int getStealNum() {
+			return stealNum;
+		}
+
+
+		public double getStealNum_avg() {
+			return stealNum_avg;
+		}
+
+
+		public int getReboundNum() {
+			return reboundNum;
+		}
+
+
+		public double getReboundNum_avg() {
+			return reboundNum_avg;
+		}
+
+
+		public int getBlockNum() {
+			return blockNum;
+		}
+
+
+		public double getBlockNum_avg() {
+			return blockNum_avg;
+		}
+
+
+		public int getTurnoverNum() {
+			return turnoverNum;
+		}
+
+
+		public double getTurnoverNum_avg() {
+			return turnoverNum_avg;
+		}
+
+
+		public double getFoulNum_avg() {
+			return foulNum_avg;
+		}
+
+
+		public int getPointNum() {
+			return pointNum;
+		}
+
+
+		public double getPointNum_avg() {
+			return pointNum_avg;
+		}
+
+
+		public double getT_shootPercentage() {
+			return T_shootPercentage;
+		}
+
+
+		public double getOffenseRound() {
+			return offenseRound;
+		}
+
+
+		public double getOffenseRound_avg() {
+			return offenseRound_avg;
+		}
+
+
+		public double getDefenseRound() {
+			return defenseRound_avg;
+		}
+
+
+		public double getOffenseEfficiency() {
+			return offenseEfficiency_avg;
+		}
+
+
+		 
+
+
+		public double getDefenseEfficiency() {
+			return defenseEfficiency_avg;
+		}
+
+
+		public double getStealEfficiency() {
+			return stealEfficiency_avg;
+		}
+
+
+	 
+
+
+		public double getAssistEfficiency() {
+			return assistEfficiency_avg;
+		}
+
+
+	 
+
+
+		public double getO_ReboundEfficiency() {
+			return O_ReboundEfficiency_avg;
+		}
+
+
+		 
+
+
+		public double getD_ReboundEfficiency() {
+			return D_ReboundEfficiency_avg;
+		}
+
+
+		public void setTeamName(String teamName) {
+			this.teamName = teamName;
 		}
 }

@@ -2,9 +2,6 @@ package VO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import businesslogic.PO.SingleMatchPersonalDataPO;
-
 public class PlayerSeasonDataVO implements Serializable{
 	
 

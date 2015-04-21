@@ -3,11 +3,17 @@ package businesslogic.bl.matchbl;
 import java.util.ArrayList;
 
 import businesslogic.bl.center.SeasonInfo;
+import businesslogic.data.TeamData;
+import businesslogic.dataservice.TeamDataService;
 import VO.MatchVO;
+import VO.TeamInfoVO;
 
 public class MatchDataFactory {
 	ArrayList<MatchData> matchList;
+	ArrayList<TeamInfoVO> infoList;
 	public MatchDataFactory(){
+		TeamDataService teamdata=new TeamData();
+		infoList=teamdata.getTeamInfoList();
 		matchList=new ArrayList<>();
 	}
 	
@@ -45,5 +51,9 @@ public class MatchDataFactory {
 			}
 		}
 		return null;  					//当对应的日期没有比赛信息时，返回null
+	}
+
+	public ArrayList<TeamInfoVO> getInfoList() {
+		return infoList;
 	}
 }

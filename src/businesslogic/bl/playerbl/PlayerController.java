@@ -1,6 +1,6 @@
 package businesslogic.bl.playerbl;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import businessService.blservice.PlayerBLService;
 import VO.*;
 
@@ -64,6 +64,42 @@ public class PlayerController implements PlayerBLService {
 			// TODO Auto-generated method stub
 			return playerFactory.getSeasonDataList(season);
 		}
-	
+	///////////////////////////////////////一下部分是排序所需
+		private  ArrayList<PlayerSeasonDataVO> sort_division(ArrayList<PlayerSeasonDataVO>list,
+				String division) throws RemoteException{
+			 
+			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getDivision().equals(division)){
+				vo.add(list.get(i));
+				}
+			}
+			return vo;
+			}
+			
+		 
+		private ArrayList<PlayerSeasonDataVO> sort_partition(ArrayList<PlayerSeasonDataVO>list,
+				String partition)throws RemoteException{
+			 
+			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getPartition().equals(partition)){
+				vo.add(list.get(i));
+				}
+			}
+			return vo;
+		}
+		
+		private ArrayList<PlayerSeasonDataVO> sort_position(ArrayList<PlayerSeasonDataVO>list,String position){
+			/*这个地方有待思考*/
+			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getPosition().equals(position)){
+				vo.add(list.get(i));
+				}
+			}
+			return vo;
+			 
+		}
 	
 }
