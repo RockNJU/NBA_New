@@ -19,24 +19,34 @@ public class PlayerDataFactory {
 	public PlayerDataFactory(){
 		PlayerDataController plc=new PlayerDataController();
 		infoList=plc.getAllPlayer();
+		
 		dataList=new ArrayList<>();
 	}
 	
 	
 	
-	public void add_A_player_matchData(SingleMatchPersonalDataVO vo){
+	public void addPlayer_matchData(ArrayList<SingleMatchPersonalDataVO> list){
 		for(int i=0;i<dataList.size();i++){
 			//当数据仓库中已经有数据的时候，往数据仓库中添加数据
-			if(dataList.get(i).getSeason().equals(vo.getSeason())){
-				dataList.get(i).updatePlayerSeasonData(vo);
+			if(dataList.get(i).getSeason().equals(list.get(0).getSeason())){
+			
+				for(int k=0;k<list.size();k++)
+				dataList.get(i).updatePlayerSeasonData(list.get(k));
+				
+				return;
 			}
 		}
 		
 		/*
 		 * 当数据仓库中没有对应赛季数据的时候，新建仓库下的一个支分支
 		 * */
-		PlayerSeasonData newData=new PlayerSeasonData(vo.getSeason());
-		newData.updatePlayerSeasonData(vo);
+		
+		System.out.println("添加的第  " +dataList.size()+"  赛季:"+list.get(0).getSeason());
+		PlayerSeasonData newData=new PlayerSeasonData(list.get(0).getSeason());
+		
+		for(int k=0;k<list.size();k++){
+			newData.updatePlayerSeasonData(list.get(k));
+		}
 		dataList.add(newData);
 		
 	}

@@ -21,7 +21,7 @@ public class PlayerSeasonData {
 	public void updatePlayerSeasonData(SingleMatchPersonalDataVO vo){
 		int i;
 		for( i=0;i<playerDataList.size();i++){
-			System.out.println("已有名字："+playerDataList.get(i).getName()+"新加名字："+vo.getPlayerName());
+			
 			if(playerDataList.get(i).getName().equals(vo.getPlayerName())){
 				playerDataList.get(i).add_A_MatchData(vo);
 				playerDataList.get(i).setTeamName(vo.getTeamName());
@@ -32,7 +32,7 @@ public class PlayerSeasonData {
 			}
 		}
 		
-		System.out.println("添加第  "  +playerDataList.size()+ "  个球员 。");
+		//System.out.println("添加第  "  +playerDataList.size()+ "  个球员 。");
 		//当球员的赛季信息没有存在数据仓库中的时候，往其中添加数据
 		int startingNum=0;
 		int seasonDoubleNum=0;

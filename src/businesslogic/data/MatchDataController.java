@@ -168,7 +168,7 @@ public class MatchDataController implements MatchDataService{
     			   	     H_foulNum=H_foulNum+info[16];					//犯规数
     			   	     H_points=H_points+info[17];					//得分
     			   	     
-    			   	     System.out.println("文件：");
+    			   	    // System.out.println("文件：");
         				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
         						str[1].trim(),calTime(str[2].trim()),
         						info[3],info[4],info[5],info[6],info[7],info[8],
@@ -319,7 +319,7 @@ public class MatchDataController implements MatchDataService{
 		        String H_team="";
 		        String G_team="";
 		        
-  			  System.out.println("文件："+l+";"+count);
+  			//  System.out.println("文件："+l+";"+count);
   			   count++;
 		        /*
 		         *    

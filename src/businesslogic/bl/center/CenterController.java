@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import VO.MatchVO;
+import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 import VO.TeamMatchVO;
 import businesslogic.PO.MatchPO;
 import businesslogic.PO.SingleMatchPersonalDataPO;
 import businesslogic.PO.TeamMatchPO;
 import businesslogic.bl.matchbl.MatchController;
+import businesslogic.bl.matchbl.MatchInfo;
 import businesslogic.bl.playerbl.PlayerController;
 import businesslogic.bl.teambl.TeamBase;
 import businesslogic.bl.teambl.TeamController;
@@ -27,7 +29,7 @@ public class CenterController {
 		 match=new MatchController();
 		 player=new PlayerController();
 		 team=new TeamController();
-		
+
 		init();
 	}
 	
@@ -42,6 +44,21 @@ public class CenterController {
 	public static void main(String args[]){
 		System.out.println("进入center开始测试时间："+time());
 		CenterController c=new CenterController();
+		ArrayList<MatchInfo> list=c.match.getMatchByTeamTime("2014-01-01");
+		for(int i=0;i<list.size();i++){
+			System.out.println("时间："+list.get(i).getDate()+
+				" 球队："+list.get(i).getTeam_H()+"-"+list.get(i).getTeam_G());
+		}
+		MatchVO vo=c.match.getMatchByTeam("2014-01-01", "CHA", "");
+		
+		for(int i=0;i<vo.getGuestTeam().getIndividualData().size();i++){
+			System.out.println("---"+vo.getGuestTeam().getIndividualData().get(i).getPoints());
+		}
+		
+		ArrayList<PlayerSeasonDataVO> listvo=c.player.getPlayerSeasonData("13-14");
+		for(int i=0;i<listvo.size();i++){
+			System.out.println("姓名;"+listvo.get(i).getName()+"   ；得分"+listvo.get(i).getPointNum()+"   "+i);
+		}
 		
 		System.out.println("测试结束时间："+time());
 	}
@@ -53,12 +70,12 @@ public class CenterController {
 		for(int i=0;i<polist.size();i++){
 			vo=matchpo_TO_po(polist.get(i));
 			match.add_A_match(vo);
-			player.updatePlayerData(vo.getHostTeam().getIndividualData());
-			player.updatePlayerData(vo.getGuestTeam().getIndividualData());
+			 player.updatePlayerData(vo.getHostTeam().getIndividualData());
+			 player.updatePlayerData(vo.getGuestTeam().getIndividualData());
 			team.updateTeamData(vo.getHostTeam());
 			team.updateTeamData(vo.getGuestTeam());
 			
-			System.out.println("po->vo的转化："+i);
+			//System.out.println("po->vo的转化："+i);
 		}
 		
 		System.out.println("初始化结束！");
@@ -196,6 +213,18 @@ public class CenterController {
 			 }
 			
 			return result;
+		}
+
+		public MatchController getMatch() {
+			return match;
+		}
+
+		public PlayerController getPlayer() {
+			return player;
+		}
+
+		public TeamController getTeam() {
+			return team;
 		}
 	 
 }

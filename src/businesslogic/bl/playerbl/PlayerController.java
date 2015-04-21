@@ -6,14 +6,13 @@ import VO.*;
 
 public class PlayerController implements PlayerBLService {
 	   PlayerDataFactory playerFactory;    
+	   
 	    public PlayerController(){
 	    	playerFactory=new PlayerDataFactory();
 	    }
 		public void updatePlayerData(ArrayList<SingleMatchPersonalDataVO> list){
 			/*一场比赛后更新一支球队球员的基本信息*/
-			for(int i=0;i<list.size();i++){
-				playerFactory.add_A_player_matchData(list.get(i));
-			}
+				playerFactory.addPlayer_matchData(list); 
 		}
 		
 		@Override
