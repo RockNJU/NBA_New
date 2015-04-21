@@ -44,12 +44,12 @@ public class HotSort {
 	}
 	
 	public static void main(String[] args){
-		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", "Eagle", "front", 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 150);
-		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", "EDG", "front", 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 160);
-		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", "OMG", "front", 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 83);
-		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", "Tiger", "front", 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 99);
-		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", "Rabbit", "front", 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 75);
-		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", "Rabbit", "front", 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 135);
+		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", "Eagle", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 150);
+		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", "EDG", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 160);
+		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", "OMG", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 83);
+		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", "Tiger", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 99);
+		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", "Rabbit", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 75);
+		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", "Rabbit", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 135);
 		ArrayList<PlayerSeasonDataVO> list = new ArrayList<PlayerSeasonDataVO>();
 		list.add(pvo1);
 		list.add(pvo2);

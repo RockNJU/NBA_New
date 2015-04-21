@@ -17,9 +17,7 @@ public class MatchDataFactory {
 				matchList.get(i).add_A_match(vo);
 			}
 		}
-		
-		
-		
+				
 		MatchData newSeason=new MatchData(vo.getSeason());
 		newSeason.add_A_match(vo);
 		matchList.add(newSeason);
