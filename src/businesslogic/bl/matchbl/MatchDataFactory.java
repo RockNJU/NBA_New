@@ -2,6 +2,7 @@ package businesslogic.bl.matchbl;
 
 import java.util.ArrayList;
 
+import businesslogic.bl.center.SeasonInfo;
 import VO.MatchVO;
 
 public class MatchDataFactory {
@@ -25,8 +26,13 @@ public class MatchDataFactory {
 	}
 	
 	public MatchVO get_A_match(String date,String teamb){
-		String time[]=date.split("-");  //xxxx-xx-xx,此处需要根据日期来判断赛季
-		
+		String season=SeasonInfo.getSeason(date);
+		String d=SeasonInfo.getDate(date);
+		for(int i=0;i<matchList.size();i++){
+			if(matchList.get(i).getSeason().equals(season)){
+				return matchList.get(i).get_A_match(d, teamb);
+			}
+		}
 		return null;
 	}
 }

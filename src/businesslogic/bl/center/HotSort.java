@@ -44,12 +44,13 @@ public class HotSort {
 	}
 	
 	public static void main(String[] args){
-		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", "Eagle", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 150);
-		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", "EDG", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 160);
-		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", "OMG", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 83);
-		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", "Tiger", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 99);
-		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", "Rabbit", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 75);
-		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", "Rabbit", "front", null, null, 30, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 135);
+		System.out.println("进入main函数：");
+		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", "Eagle", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 190, 100, 10, 10, 10, 10, 10, 10, 10, 150);
+		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", "EDG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 160, 102, 10, 10, 10, 10, 10, 10, 160);
+		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", "OMG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 120, 107, 10, 10, 10, 10, 10, 10, 10, 83);
+		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", "Tiger", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 10, 10, 10, 10, 10, 10, 10, 10, 99);
+		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", "Rabbit", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 105, 10, 10, 10, 10, 10, 10, 10, 75);
+		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", "Rabbit", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 104, 109, 10, 10, 10, 10, 10, 10, 10, 135);
 		ArrayList<PlayerSeasonDataVO> list = new ArrayList<PlayerSeasonDataVO>();
 		list.add(pvo1);
 		list.add(pvo2);
@@ -65,8 +66,8 @@ public class HotSort {
 	            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum()+"]");
 	        }
 	        System.out.println("-----------------points的单个属性排序，排序后-------------------");
+	        list = h.hotPlayer_Sort(list, "getPointNum");
 	        
-	        list = h.hotPlayer_Sort(list, "points");
 	        for(PlayerSeasonDataVO pvo:list){
 	            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum()+"]");
 	        }
