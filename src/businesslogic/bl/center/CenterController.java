@@ -42,6 +42,7 @@ public class CenterController {
 	public static void main(String args[]){
 		System.out.println("进入center开始测试时间："+time());
 		CenterController c=new CenterController();
+		
 		System.out.println("测试结束时间："+time());
 	}
 	
@@ -56,7 +57,11 @@ public class CenterController {
 			player.updatePlayerData(vo.getGuestTeam().getIndividualData());
 			team.updateTeamData(vo.getHostTeam());
 			team.updateTeamData(vo.getGuestTeam());
+			
+			System.out.println("po->vo的转化："+i);
 		}
+		
+		System.out.println("初始化结束！");
 	}
 	
 	private  MatchVO matchpo_TO_po(MatchPO po){

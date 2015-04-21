@@ -32,13 +32,13 @@ public class MatchDataController implements MatchDataService{
 		 int i=0;
 		 
 		 
-	
-		
-			/*System.out.println(i+"+++:"+po.getDate()+";"+po.getHostTeam().getTeamName()
-		+"; "+
-					po.getGuestTeam().getIndividualData().get(0).getPlayerName()+"   "+
-		po.getGuestTeam().getIndividualData().get(0).getPoints());*/
-		
+	MatchPO po;
+		for(i=0;i<m.size();i++){
+			po=m.get(i);
+			if(po.getScores().size()>4){
+				System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+";"+po.getGuestTeam().getTeamName());
+			}
+		}
 	}
 	
 	
@@ -167,6 +167,8 @@ public class MatchDataController implements MatchDataService{
     			   	     H_turnoverNum=H_turnoverNum+info[15];				//失误数
     			   	     H_foulNum=H_foulNum+info[16];					//犯规数
     			   	     H_points=H_points+info[17];					//得分
+    			   	     
+    			   	     System.out.println("文件：");
         				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
         						str[1].trim(),calTime(str[2].trim()),
         						info[3],info[4],info[5],info[6],info[7],info[8],
@@ -237,6 +239,7 @@ public class MatchDataController implements MatchDataService{
 		  *  
 		  * 
 		  * */
+		int count=0;
 		       
 		        //readTxtFile(filePath);
 		    
@@ -295,6 +298,9 @@ public class MatchDataController implements MatchDataService{
 		        String s[]=path[path.length-1].split("_");
 		       //System.out.println("第 " +g+"场比赛");
 		         
+		        if(count==450)
+		        	break;
+		        	
 		        
 		        season=s[0];
 		        
@@ -313,6 +319,8 @@ public class MatchDataController implements MatchDataService{
 		        String H_team="";
 		        String G_team="";
 		        
+  			  System.out.println("文件："+l+";"+count);
+  			   count++;
 		        /*
 		         *    
 		         * */
@@ -372,8 +380,8 @@ public class MatchDataController implements MatchDataService{
 		        			   	     H_foulNum=H_foulNum+info[16];					//犯规数
 		        			   	     H_points=H_points+info[17];					//得分
 		        				
-		        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
-		        						str[1].trim(),calTime(str[2].trim()),
+		        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim(),
+		        						str[1].trim(),calTime(str[2]),
 		        						info[3],info[4],info[5],info[6],info[7],info[8],
 		        						info[9],info[10],info[11],info[12],info[13],info[14]
 		        						,info[15],info[16],info[17]));
@@ -402,12 +410,15 @@ public class MatchDataController implements MatchDataService{
 	        			   	     G_foulNum=G_foulNum+info[16];					//犯规数
 	        			   	     G_points=G_points+info[17];					//得分
 	        			   	
-		        				G_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
-		        						str[1],calTime(str[2].trim()),info[3],info[4],
+	        			   	   
+	        			   	     
+		        				G_teamData.add(new SingleMatchPersonalDataPO(str[0].trim(),
+		        						str[1],calTime(str[2]),info[3],info[4],
 		        						info[5],info[6],info[7],info[8],
 		        						info[9],info[10],info[11],info[12],info[13],info[14]
 		        						,info[15],info[16],info[17]));
-		        			}	        			
+		        			}	
+
 		        		}
 		        		//String str2[]=str  
 		        		//strList.add(str2[1].trim());
@@ -448,6 +459,11 @@ public class MatchDataController implements MatchDataService{
 	
 	private double calTime(String time){
 		double result=0;
+		
+		if(time==null)
+			return 0;
+		
+		time=time.trim();
 		String s[]=time.split(":");
 		try{
 			result=Integer.parseInt(s[0])+(double)Integer.parseInt(s[1])/60;
