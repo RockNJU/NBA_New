@@ -13,34 +13,57 @@ public class TeamSeasonDataVO implements Serializable{
 	int matchNum; 				     //已比赛场数
 	int winNum;						 //胜利场数
 	int fieldGoal; 					 //投篮命中数
+	int fieldGoal_avg;
 	int shootNum; 				     //投篮出手数
+	int shootNum_avg;
 	int T_fieldGoal; 				 //三分命中数
+	int T_fieldGoal_avg;
 	int T_shootNum; 				 //三分出手数
+	int T_shootNum_avg;
 	int freeThrowGoalNum; 			 //罚球命中数
+	int freeThrowGoalNum_avg;
 	int freeThrowNum; 				 //罚球总数
+	int freeThrowNum_avg;
 	int O_ReboundNum; 				 //进攻篮板数
+	int O_ReboundNum_avg;
 	int D_ReboundNum; 				 //防守篮板数
+	int D_ReboundNum_avg;
 	int assistNum;					 //助攻数
+	int assistNum_avg;
 	int stealNum; 					 //抢断数
+	int stealNum_avg;
 	int reboundNum; 				 //篮板数
+	int reboundNum_avg;
 	int blockNum; 					 //盖帽数
+	int blockNum_avg;
 	int turnoverNum; 			     //失误数
+	int turnoverNum_avg;
 	int foulNum; 					 //犯规数
-	int points; 					 //得分
+	int foulNum_avg;
+	int pointNum; 					 //得分
+	int pointNum_avg;
 	
 	double shootPercentage; 		 //全队的投篮命中率
 	double T_shootPercentage; 	     //全队的三分球命中率
 	double freeThrowPercentage; 	 //全队的罚球命中率
 	
-	double offenseRound; 	
+	double offenseRound;
+	double offenseRound_avg;
 	
 	private double defenseRound;   			//防守回合总数
-	double offenseEfficiency = 0; 	 
-	double defenseEfficiency = 0; 		 
-	double stealEfficiency = 0; 	
-	double assistEfficiency = 0; 	 
+	private double defenseRound_avg;
+	double offenseEfficiency = 0; 	
+	double offenseEfficiency_avg;
+	double defenseEfficiency = 0;
+	double defenseEfficiency_avg;
+	double stealEfficiency = 0; 
+	double stealEfficiency_avg;
+	double assistEfficiency = 0;
+	double assistEfficiency_avg;
 	private double O_ReboundEfficiency =0; 
-	private double D_ReboundEfficiency =0; 
+	double O_ReboundEfficiency_avg;
+	private double D_ReboundEfficiency =0;
+	double D_ReboundEfficiency_avg;
 
 	public TeamSeasonDataVO(String season,String teamName,int matchNum,int winNum,
 	int fieldGoal,int shootNum,int T_fieldGoal,int T_shootNum,
@@ -55,6 +78,7 @@ public class TeamSeasonDataVO implements Serializable{
 		this.matchNum = matchNum ; 
 		this.winNum = winNum;
 		this.fieldGoal = fieldGoal ;  
+		this.fieldGoal = 
 		this.shootNum = shootNum ;  
 		this.T_fieldGoal = T_fieldGoal ;  
 		this.T_shootNum = T_shootNum ; 
@@ -68,7 +92,7 @@ public class TeamSeasonDataVO implements Serializable{
 		this.blockNum = blockNum ;  
 		this.turnoverNum = turnoverNum ;  
 		this.foulNum = foulNum ;  
-		this.points = points ;  
+		this.pointNum = points ;  
 		
 		
 		this.shootPercentage =  (double)fieldGoal/shootNum;  
@@ -108,7 +132,7 @@ public class TeamSeasonDataVO implements Serializable{
 		 turnoverNum=turnoverNum+vo.getTurnoverNum();
 		 
 		 foulNum=foulNum+vo.getFoulNum();
-		 points=points+vo.getPointNum();
+		 pointNum=pointNum+vo.getPointNum();
 		 
 		 
 		 
@@ -353,7 +377,7 @@ public class TeamSeasonDataVO implements Serializable{
 			foulNum=foulNum+Num;
 		}
 		public double getPointNum() {
-			return (double)points/matchNum;
+			return (double)pointNum/matchNum;
 		}
 		 
 		

@@ -6,8 +6,6 @@ import java.util.Comparator;
 
 import org.apache.commons.beanutils.BeanComparator;
 import org.apache.commons.collections.comparators.ReverseComparator;
-import org.apache.commons.beanutils.BeanUtils;
-
 import VO.PlayerSeasonDataVO;
 import VO.TeamSeasonDataVO;
 
@@ -19,7 +17,7 @@ public class HotSort {
 			ArrayList<PlayerSeasonDataVO> playerSeasondata, String condition) {
 
 		// 创建针对某个属性的升序比较
-		Comparator player_compare = new BeanComparator("points");
+		Comparator player_compare = new BeanComparator(condition);
 		// 默认的是升序，这里用一个降序
 		player_compare = new ReverseComparator(player_compare);
 		// 开始排序
@@ -43,37 +41,5 @@ public class HotSort {
 
 	}
 	
-	public static void main(String[] args){
-		System.out.println("进入main函数：");
-		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", "Eagle", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 190, 100, 10, 10, 10, 10, 10, 10, 10, 150);
-		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", "EDG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 160, 102, 10, 10, 10, 10, 10, 10, 160);
-		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", "OMG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 120, 107, 10, 10, 10, 10, 10, 10, 10, 83);
-		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", "Tiger", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 10, 10, 10, 10, 10, 10, 10, 10, 99);
-		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", "Rabbit", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 105, 10, 10, 10, 10, 10, 10, 10, 75);
-		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", "Rabbit", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 104, 109, 10, 10, 10, 10, 10, 10, 10, 135);
-		ArrayList<PlayerSeasonDataVO> list = new ArrayList<PlayerSeasonDataVO>();
-		list.add(pvo1);
-		list.add(pvo2);
-		list.add(pvo3);
-		list.add(pvo4);
-		list.add(pvo5);
-		list.add(pvo6);
-		
-		HotSort h= new HotSort();
-	
-	       System.out.println("----------------排序前-------------------------");
-	        for(PlayerSeasonDataVO pvo:list){
-	            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum()+"]");
-	        }
-	        System.out.println("-----------------points的单个属性排序，排序后-------------------");
-	        list = h.hotPlayer_Sort(list, "getPointNum");
-	        
-	        for(PlayerSeasonDataVO pvo:list){
-	            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum()+"]");
-	        }
-	        
-		
-		
-		
-	}
+
 }

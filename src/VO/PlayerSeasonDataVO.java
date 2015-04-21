@@ -36,7 +36,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	 private int blockNum;			 //盖帽数
 	 private int turnoverNum;	     //失误数
 	 private int foulNum;			 //犯规数
-	 private int points;		 	 //得分
+	 public  int pointNum;		 	 //得分
 	 
 	private double efficiency; 		 //效率
 	private double blockEfficiency;	 //篮板效率	 
@@ -100,7 +100,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.turnoverNum=turnoverNum;
 				this.stealNum=stealNum;
 				this.foulNum=foulNum;
-				this.points=points;
+				this.pointNum=points;
 				this.assistEfficiency=assistEfficiency;
 				this.reboundEfficiency=reboundEfficiency;
 				this.offensiveReboundEff=offensiveReboundEff;
@@ -180,7 +180,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		 turnoverNum=turnoverNum+vo.getTurnoverNum();
 		 
 		 foulNum=foulNum+vo.getFoulNum();
-		 points=points+vo.getPoints();
+		 pointNum=pointNum+vo.getPoints();
 		 
 		 
 		 int count=0;
@@ -232,7 +232,7 @@ public class PlayerSeasonDataVO implements Serializable{
 			 last_f_point.add(vo.getPoints());
 			 last_f_assist.add(vo.getAssistNum());
 			 last_f_rebound.add(vo.getReboundNum());
-			 double p_ave=(points-get_last_five_Sum(last_f_point))/matchNum;
+			 double p_ave=(pointNum-get_last_five_Sum(last_f_point))/matchNum;
 			 double a_ave=(assistNum-get_last_five_Sum(last_f_assist))/matchNum;
 			 double r_ave=(reboundNum-get_last_five_Sum(last_f_rebound))/matchNum;
 			 
@@ -273,7 +273,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	}
 	public double getEfficiency() {
 		if(matchNum!=0)
-		 efficiency= (double)(points+reboundNum+assistNum+stealNum+blockNum-
+		 efficiency= (double)(pointNum+reboundNum+assistNum+stealNum+blockNum-
 		   (shootNum-fieldGoal)  -(freeThrowNum-freeThrowGoalNum)-turnoverNum)/matchNum;
 		else 
 			efficiency=0;
@@ -328,12 +328,12 @@ public class PlayerSeasonDataVO implements Serializable{
 	 
 	public double getPointNum(){
 		if(matchNum!=0)
-			return (double)points/matchNum;
+			return (double)pointNum/matchNum;
 		else
 			return 0;
 	}
 	public void addPointNum(int Num) {
-		points=points+Num;
+		pointNum=pointNum+Num;
 	}
 	
 	public double getT_shootPercentage(){
@@ -404,7 +404,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		return blockNum;
 	}
 	public double getGmSc() {
-		 GmSc=points+fieldGoal*0.4-0.7*shootNum-
+		 GmSc=pointNum+fieldGoal*0.4-0.7*shootNum-
 				  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*O_ReboundNum+0.3*D_ReboundNum
 				  +stealNum+0.7*assistNum+0.7*blockNum-0.4*foulNum-turnoverNum;
 		 return GmSc;
