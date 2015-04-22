@@ -42,7 +42,7 @@ public class PlayerDataFactory {
 		 * */
 		
 		System.out.println("添加的第  " +dataList.size()+"  赛季:"+list.get(0).getSeason());
-		PlayerSeasonData newData=new PlayerSeasonData(list.get(0).getSeason());
+		PlayerSeasonData newData=new PlayerSeasonData(list.get(0).getSeason(),infoList);
 		
 		for(int k=0;k<list.size();k++){
 			newData.updatePlayerSeasonData(list.get(k));

@@ -1,23 +1,36 @@
 package businesslogic.bl.playerbl;
 
 import java.util.ArrayList;
-
+ 
+import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 
 public class PlayerSeasonData {
 	String season;
+	private ArrayList<PlayerInfoVO> infoList;
 	ArrayList<PlayerSeasonDataVO> playerDataList;  //西部球员的比赛数据
 	
-	public PlayerSeasonData(String season){
+	public PlayerSeasonData(String season,ArrayList<PlayerInfoVO> info){
 		this.season=season;
 		playerDataList=new ArrayList<>();
+		this.infoList=info;
 	}
 
 	public String getSeason() {
 		return season;
 	}
     
+	
+	private String getPlayerPOsition(String name){
+		for(int i=0;i<infoList.size();i++){
+			if(infoList.get(i).getName().equals(name))
+				return infoList.get(i).getPosition();
+						
+		}
+		return "--";
+	}
+	
 	public void updatePlayerSeasonData(SingleMatchPersonalDataVO vo){
 		int i;
 		for( i=0;i<playerDataList.size();i++){
@@ -63,7 +76,7 @@ public class PlayerSeasonData {
 		 startingNum++;
 		
 		PlayerSeasonDataVO newData=new PlayerSeasonDataVO(season,vo.getPlayerName(),vo.getTeamName(),vo.getDivision(),
-				vo.getPartition(),vo.getPlayerPosition(),1,startingNum,vo.getTime(),
+				vo.getPartition(),getPlayerPOsition(vo.getPlayerName()),1,startingNum,vo.getTime(),
 				vo.getFieldGoal(),vo.getShootNum(),vo.getT_fieldGoal(),vo.getT_shootNum(),
 				vo.getFreeThrowGoalNum(),vo.getFreeThrowNum(),vo.getO_ReboundNum(),
 				vo.getD_ReboundNum(),vo.getReboundNum(),
