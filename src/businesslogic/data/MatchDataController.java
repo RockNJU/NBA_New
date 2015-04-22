@@ -254,42 +254,80 @@ public class MatchDataController implements MatchDataService{
 		        String season;
 		        int g=0;
 		        
-		       int H_fieldGoal=0;					//投篮命中数
-		   	   int H_shootNum=0;					//投篮出手数
-		   	   int H_T_fieldGoal=0;				//三分球命中数
-		   	   int H_T_shootNum=0;				//三分球出手数
-		   	   int H_freeThrowGoalNum=0;			//罚球命中数
-		   	   int H_freeThrowNum=0;				//罚球出手数
-		   	   int H_O_ReboundNum=0;				//进攻（前场）篮板数
-		   	   int H_D_ReboundNum=0;				//防守（后场）篮板数
-		   	   int H_reboundNum=0;				//总篮板数
-		   	   int H_assistNum=0;				    //助攻数
-		   	   int H_stealNum=0;					//抢断数
-		   	   int H_blockNum=0;					//盖帽数
-		   	   int H_turnoverNum=0;				//失误数
-		   	   int H_foulNum=0;					//犯规数
-		   	   int H_points=0;					//得分
+		       int H_fieldGoal ;					//投篮命中数
+		   	   int H_shootNum;					//投篮出手数
+		   	   int H_T_fieldGoal ;				//三分球命中数
+		   	   int H_T_shootNum ;				//三分球出手数
+		   	   int H_freeThrowGoalNum ;			//罚球命中数
+		   	   int H_freeThrowNum ;				//罚球出手数
+		   	   int H_O_ReboundNum ;				//进攻（前场）篮板数
+		   	   int H_D_ReboundNum ;				//防守（后场）篮板数
+		   	   int H_reboundNum ;				//总篮板数
+		   	   int H_assistNum ;				    //助攻数
+		   	   int H_stealNum ;					//抢断数
+		   	   int H_blockNum ;					//盖帽数
+		   	   int H_turnoverNum ;				//失误数
+		   	   int H_foulNum ;					//犯规数
+		   	   int H_points ;					//得分
 		   	   
-		   	   int G_fieldGoal=0;					//投篮命中数
-		   	   int G_shootNum=0;					//投篮出手数
-		   	   int G_T_fieldGoal=0;				//三分球命中数
-		   	   int G_T_shootNum=0;				//三分球出手数
-		   	   int G_freeThrowGoalNum=0;			//罚球命中数
-		   	   int G_freeThrowNum=0;				//罚球出手数
-		   	   int G_O_ReboundNum=0;				//进攻（前场）篮板数
-		   	   int G_D_ReboundNum=0;				//防守（后场）篮板数
-		   	   int G_reboundNum=0;				//总篮板数
-		   	   int G_assistNum=0;				    //助攻数
-		   	   int G_stealNum=0;					//抢断数
-		   	   int G_blockNum=0;					//盖帽数
-		   	   int G_turnoverNum=0;				//失误数
-		   	   int G_foulNum=0;					//犯规数
-		   	   int G_points=0;					//得分
+		   	   int G_fieldGoal ;					//投篮命中数
+		   	   int G_shootNum ;					//投篮出手数
+		   	   int G_T_fieldGoal ;				//三分球命中数
+		   	   int G_T_shootNum ;				//三分球出手数
+		   	   int G_freeThrowGoalNum ;			//罚球命中数
+		   	   int G_freeThrowNum ;				//罚球出手数
+		   	   int G_O_ReboundNum ;				//进攻（前场）篮板数
+		   	   int G_D_ReboundNum ;				//防守（后场）篮板数
+		   	   int G_reboundNum ;				//总篮板数
+		   	   int G_assistNum ;				    //助攻数
+		   	   int G_stealNum ;					//抢断数
+		   	   int G_blockNum ;					//盖帽数
+		   	   int G_turnoverNum ;				//失误数
+		   	   int G_foulNum ;					//犯规数
+		   	   int G_points ;					//得分
 		        
 		        
 		        
 		        
 		        for (String l:list) {
+		        	
+		        	/////
+		        	  H_fieldGoal=0;					//投篮命中数
+				   	     H_shootNum=0;					//投篮出手数
+				   	     H_T_fieldGoal=0;				//三分球命中数
+				   	    H_T_shootNum=0;				//三分球出手数
+				   	    H_freeThrowGoalNum=0;			//罚球命中数
+				   	     H_freeThrowNum=0;				//罚球出手数
+				   	     H_O_ReboundNum=0;				//进攻（前场）篮板数
+				   	    H_D_ReboundNum=0;				//防守（后场）篮板数
+				   	   H_reboundNum=0;				//总篮板数
+				   	    H_assistNum=0;				    //助攻数
+				   	    H_stealNum=0;					//抢断数
+				   	     H_blockNum=0;					//盖帽数
+				   	    H_turnoverNum=0;				//失误数
+				   	     H_foulNum=0;					//犯规数
+				   	     H_points=0;					//得分
+				   	   
+				   	     G_fieldGoal=0;					//投篮命中数
+				   	     G_shootNum=0;					//投篮出手数
+				   	     G_T_fieldGoal=0;				//三分球命中数
+				   	    G_T_shootNum=0;				//三分球出手数
+				   	    G_freeThrowGoalNum=0;			//罚球命中数
+				   	     G_freeThrowNum=0;				//罚球出手数
+				   	     G_O_ReboundNum=0;				//进攻（前场）篮板数
+				   	    G_D_ReboundNum=0;				//防守（后场）篮板数
+				   	     G_reboundNum=0;				//总篮板数
+				   	     G_assistNum=0;				    //助攻数
+				   	    G_stealNum=0;					//抢断数
+				   	     G_blockNum=0;					//盖帽数
+				   	     G_turnoverNum=0;				//失误数
+				   	     G_foulNum=0;					//犯规数
+				   	    G_points=0;					//得分
+		        	
+		        	
+		        	
+		        	
+		        	//////////
 		        	g++;
 		        	try{ 
 		        	//BufferedReader br = new BufferedReader(new FileReader(new File(l))); 
