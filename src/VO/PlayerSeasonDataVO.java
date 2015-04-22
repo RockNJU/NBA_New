@@ -18,8 +18,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	private int matchNum;		 	 //出场次数
 	private int startingNum;	     //首发场数
 	 
-	 private double time;		    //出场时间
-	 
+	   private double time;		    //出场时间
 	  private double time_avg;       //出场平均时间
 	 
 	    int fieldGoal; 					 //投篮命中数
@@ -86,9 +85,9 @@ public class PlayerSeasonDataVO implements Serializable{
 	private ArrayList<Integer> last_f_assist=new ArrayList<>();
 	private ArrayList<Integer> last_f_rebound=new ArrayList<>();
 	
-	private double l_f_point_rate=0;
-	private double l_f_assist_rate=0;
-	private double l_f_rebound_rate=0;
+	private double l_f_point_rate=0;         //最近五场得分的提升率
+	private double l_f_assist_rate=0; 		//最近五场助攻的提升率
+	private double l_f_rebound_rate=0;		//最近五场篮板的提升率
 	
 	public PlayerSeasonDataVO(String season,String name,String teamName,
 			String division,String partition,String position,

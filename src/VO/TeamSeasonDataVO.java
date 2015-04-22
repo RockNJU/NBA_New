@@ -1,5 +1,6 @@
 package VO;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public class TeamSeasonDataVO implements Serializable{
 	/**
@@ -9,11 +10,13 @@ public class TeamSeasonDataVO implements Serializable{
 	/* 
 	 * 注：基础数据中，带后缀_avg,是平均值，不带的是赛季进行到当下的总数，都可以通过get方法获得
 	 */
+	
+	DecimalFormat df = new DecimalFormat( "00.00");
 	String season;					 //赛季
 	String teamName; 				 //球队缩写
 	int matchNum; 				     //已比赛场数
 	int winNum;						 //胜利场数
-	
+	double winRate;					//赛季胜率
 	int fieldGoal; 					 //投篮命中数
 	double fieldGoal_avg;
 	int shootNum; 				     //投篮出手数
@@ -75,6 +78,8 @@ public class TeamSeasonDataVO implements Serializable{
 	double offenseRound,double offenseEfficiency,
 	double defenseEfficiency,double O_ReboundEfficiency,double D_ReboundEfficiency,
 	double stealEfficiency ,double assistEfficiency){
+		
+		
 		this.season=season;
 		this.teamName = teamName; 
 		this.matchNum = matchNum ; 
@@ -95,7 +100,7 @@ public class TeamSeasonDataVO implements Serializable{
 		this.turnoverNum = turnoverNum ;  
 		this.foulNum = foulNum ;  
 		this.pointNum = points ;  
-		
+		winRate=1;
 		
 		this.shootPercentage =  (double)fieldGoal/shootNum;  
 		this.T_shootPercentage =(double)T_fieldGoal/T_shootNum ; 
@@ -164,6 +169,7 @@ public class TeamSeasonDataVO implements Serializable{
 		 foulNum=foulNum+vo.getFoulNum();
 		 pointNum=pointNum+vo.getPointNum();
 		 
+		 winRate=(double)winNum/matchNum;
 		 
 		 
 		  shootPercentage=(double)fieldGoal/shootNum; 		 
@@ -233,16 +239,9 @@ public class TeamSeasonDataVO implements Serializable{
 	
 
 	public double getWinRate(){
-		if(matchNum!=0)
-		return (double)winNum/matchNum;
-		else 
-			return 0;
+		return winRate;
 	}
-	
-	
 	 
-		
-		 
 		public double getFreeThrowPercentage() {
 			if(matchNum!=0)
 				return freeThrowPercentage/matchNum;

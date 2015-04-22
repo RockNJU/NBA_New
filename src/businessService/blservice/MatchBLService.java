@@ -14,7 +14,7 @@ public interface MatchBLService {
 	        //根据球队的缩写和比赛日期获取某一场比赛的数据，返回一个MatchVO
 	
 	//TODO 获得赛季以供选择，形式最好是"13-14赛季",这个是公用的、
-	String[] getAllSeason();
+	public ArrayList<String> getAllSeason();
 	//TODO 传入一个日期，获得这天的比赛情况
 	ArrayList<MatchInfo> getAllMatchInfo(String date);
 }

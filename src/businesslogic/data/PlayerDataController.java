@@ -52,7 +52,7 @@ public class PlayerDataController implements PlayerDataService {
 		        //System.out.println(list.size());  
 		       
 		        int i=0;
-		        char chr=39;
+		       
 		        for (String l : list) {
 		        	try{ 
 		        	//BufferedReader br = new BufferedReader(new FileReader(new File(l))); 
@@ -83,12 +83,10 @@ public class PlayerDataController implements PlayerDataService {
 			double weight,String birth,int age ,int exp
 			,String school*/
 		        		//System.out.println(i+"-------"+strList.get(0)+";"+strList.get(1)+";"+strList.get(4)+";"+strList.get(6));
-		        		char chr7=40;
-		        		char chr8=41;
-		        		playerList.add(new PlayerInfoVO(strList.get(0).replace(chr, '¡¯'),strList.get(1),
+		        		playerList.add(new PlayerInfoVO(strList.get(0) ,strList.get(1),
 		        				strList.get(2),strList.get(3),Double.parseDouble(strList.get(4)),
 		        				strList.get(5),Integer.parseInt(strList.get(6)),
-		        				exp,strList.get(8).replace(chr, '¡¯').replace(chr7, '£¨').replace(chr8, '£©')));
+		        				exp,strList.get(8)));
 		        		strList.clear();
 		        	}//end for
 		  

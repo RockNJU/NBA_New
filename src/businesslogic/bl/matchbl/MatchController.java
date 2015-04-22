@@ -29,5 +29,17 @@ public class MatchController implements MatchBLService{
 		// TODO Auto-generated method stub
 		return matchFactory.getMatchInfo(date);
 	}
+
+	@Override
+	public ArrayList<String>getAllSeason() {
+		// TODO Auto-generated method stub
+		return matchFactory.getAllSeason();
+	}
+
+	@Override
+	public ArrayList<MatchInfo> getAllMatchInfo(String date) {
+		// TODO Auto-generated method stub
+		return matchFactory.getMatchInfo(date);
+	}
 	
 }

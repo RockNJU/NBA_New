@@ -72,6 +72,13 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 		}
 		return result;
 	}
+
+
+	@Override
+	public ArrayList<TeamSeasonDataVO> find(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
        
 	
 		

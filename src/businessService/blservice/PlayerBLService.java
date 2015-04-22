@@ -18,6 +18,4 @@ public interface PlayerBLService{
 	//     姓名查找-含有此关键词的球员的比赛信息，个人认为姓名可以只记住单姓或者字母
 	public ArrayList<PlayerSeasonDataVO> keyfind( String text);
 	
-	
-
 }

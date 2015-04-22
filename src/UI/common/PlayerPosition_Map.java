@@ -3,11 +3,11 @@ package UI.common;
 import java.util.HashMap;
 import java.util.Map;
 
-public class locationMap{
+public class PlayerPosition_Map{
 	  Map<String, String> map=new HashMap<String, String>();
 	  
 		
-	   public locationMap(){
+	   public PlayerPosition_Map(){
 		   map.put("«∞∑Ê", "F");
 		   map.put("∫ÛŒ¿", "G");
 		   map.put("÷–∑Ê", "C");
