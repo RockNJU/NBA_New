@@ -2,7 +2,6 @@ package businessService.blservice;
 
 import java.util.ArrayList;
 
-import VO.A_player_match_data;
 import VO.*;
 
 public interface PlayerBLService{
@@ -15,4 +14,10 @@ public interface PlayerBLService{
 	public ArrayList<A_player_match_data> getTodayHotPlayer(String item);//获取当天的热点球员，传入的是热点项目
 	public ArrayList<PlayerSeasonDataVO> getPlayerSeasonData(String season);  //按照传入的赛季获取整个赛季中的所有球员的赛季数据
 	
+	//TODO 关键词查找，不是很理解上面的方法，所以自己写了个
+	//     姓名查找-含有此关键词的球员的比赛信息，个人认为姓名可以只记住单姓或者字母
+	public ArrayList<PlayerSeasonDataVO> keyfind( String text);
+	
+	
+
 }

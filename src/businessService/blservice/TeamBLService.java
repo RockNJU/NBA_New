@@ -22,5 +22,8 @@ public interface TeamBLService {
 	
 	public ArrayList<TeamSeasonDataVO> getHotTeam(String season,String item);
 	//根据赛季和筛选的条件 获取赛季热点球队，即排名前五的球队
+
+	//TODO 不知道你们的根据关键词查找到底理解的什么意思，我觉得是输入关键词，返回符合要求的队伍arraylist，另外觉得不用考虑赛季
+	public ArrayList<TeamSeasonDataVO> find(String text);
 	
 }
