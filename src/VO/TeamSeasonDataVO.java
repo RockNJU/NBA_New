@@ -13,6 +13,7 @@ public class TeamSeasonDataVO implements Serializable{
 	String teamName; 				 //球队缩写
 	int matchNum; 				     //已比赛场数
 	int winNum;						 //胜利场数
+	
 	int fieldGoal; 					 //投篮命中数
 	double fieldGoal_avg;
 	int shootNum; 				     //投篮出手数
@@ -113,24 +114,24 @@ public class TeamSeasonDataVO implements Serializable{
 		
 		
 		 /////////////////////
-	     fieldGoal_avg=(double)fieldGoal;				    
-		 shootNum_avg=(double)shootNum;
-		  T_fieldGoal_avg=(double)T_fieldGoal;
-		  T_shootNum_avg=(double)T_shootNum;
-		  freeThrowGoalNum_avg=(double)freeThrowGoalNum;
-		  freeThrowNum_avg=(double)freeThrowNum;		 
-		  O_ReboundNum_avg=(double)O_ReboundNum;	 
-		  D_ReboundNum_avg=(double)D_ReboundNum;		 
-		  assistNum_avg=(double)assistNum;		 
-		  stealNum_avg=(double)stealNum;	 
-		  reboundNum_avg=(double)reboundNum;	 
-		  blockNum_avg=(double)blockNum;		 
-		  turnoverNum_avg=(double)turnoverNum;		 
-		  foulNum_avg=(double)foulNum;
-		  pointNum_avg=(double)pointNum;
+	     fieldGoal_avg= fieldGoal;				    
+		 shootNum_avg= shootNum;
+		  T_fieldGoal_avg= T_fieldGoal;
+		  T_shootNum_avg= T_shootNum;
+		  freeThrowGoalNum_avg= freeThrowGoalNum;
+		  freeThrowNum_avg= freeThrowNum;		 
+		  O_ReboundNum_avg= O_ReboundNum;	 
+		  D_ReboundNum_avg= D_ReboundNum;		 
+		  assistNum_avg= assistNum;		 
+		  stealNum_avg= stealNum;	 
+		  reboundNum_avg= reboundNum;	 
+		  blockNum_avg= blockNum;		 
+		  turnoverNum_avg= turnoverNum;		 
+		  foulNum_avg= foulNum;
+		  pointNum_avg= pointNum;
 		  
 		  //////
-		   defenseRound_avg=0;
+		   defenseRound_avg=defenseRound;
 		   offenseEfficiency_avg=offenseEfficiency;
          defenseEfficiency_avg=defenseEfficiency;
         stealEfficiency_avg=stealEfficiency;
