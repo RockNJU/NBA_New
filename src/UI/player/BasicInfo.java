@@ -42,7 +42,6 @@ public class BasicInfo extends JPanel {
 	PlayerInfoVO pivo;
 	PlayerVO pvo;
 	PlayerSeasonDataVO pdvo;
-	String playername;
 	RMIObject rmi=new RMIObject();
 	PlayerBLService pbl;
 	
@@ -51,16 +50,16 @@ public class BasicInfo extends JPanel {
 		this.setSize(582, 474);
 		setLayout(null);
 		
-		this.playername=name;
 		
-		System.out.println(pivo==null);
-		System.out.println(pdvo==null);
 		
 		
 		
 		pbl=rmi.getPlayerObject();
-		pivo=pbl.getPlayerInfo(playername);
+		pivo=pbl.getPlayerInfo(name);
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
+		
+		System.out.println(pivo==null);
+		System.out.println(pdvo==null);
 		
 		
 		if(pivo==null){
@@ -68,7 +67,7 @@ public class BasicInfo extends JPanel {
 		}
 		else if(pdvo==null){
 			pdvo=new PlayerSeasonDataVO(season, pivo.getName(), "??", "??",pivo.getPosition(), "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
-		}else{
+		}else if(pivo==null&&pdvo==null){
 			pivo=new PlayerInfoVO(name, "??", "??", "??", 0, "??", 0, 0, "??");
 			pdvo=new PlayerSeasonDataVO(season, name, "??", "??","??", "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
 			
@@ -92,8 +91,8 @@ public class BasicInfo extends JPanel {
 		JLabel num_1 = new JLabel(String.valueOf(pvo.getInfo().getNumber()));
 		num_1.setForeground(new Color(102, 0, 0));
 		num_1.setHorizontalAlignment(SwingConstants.CENTER);
-		num_1.setFont(new Font("华文行楷", Font.BOLD, 35));
-		num_1.setBounds(185, 18, 73, 54);
+		num_1.setFont(new Font("华康雅宋体W9", Font.BOLD, 35));
+		num_1.setBounds(185, 18, 88, 54);
 		add(num_1);
 		//TODO 姓名
 		JLabel num_2 = new JLabel(pvo.getInfo().getName());
@@ -106,7 +105,7 @@ public class BasicInfo extends JPanel {
 		
 		JLabel num_3 = new JLabel(getlocation(pvo.getInfo().getPosition())+"/"+pvo.getData().getTeamName());
 		num_3.setForeground(new Color(102, 0, 51));
-		num_3.setFont(new Font("黑体", Font.BOLD, 15));
+		num_3.setFont(new Font("幼圆", Font.BOLD, 15));
 		num_3.setBounds(283, 50, 220, 20);
 		add(num_3);
 		/**
@@ -204,7 +203,7 @@ public class BasicInfo extends JPanel {
 		JLabel point = new JLabel("\u5F97\u5206\uFF1A");
 		point.setForeground(Color.DARK_GRAY);
 		point.setFont(new Font("黑体", Font.PLAIN, 16));
-		point.setBounds(208, 136, 70, 20);
+		point.setBounds(208, 136, 80, 20);
 		add(point);
 		//TODO
 		JLabel pointinfo = new JLabel(String.valueOf(pvo.getData().getPointNum()));
@@ -234,7 +233,7 @@ public class BasicInfo extends JPanel {
 		JLabel GMSCinfo = new JLabel(String.valueOf(pvo.getData().getGmSc()));
 		GMSCinfo.setForeground(Color.DARK_GRAY);
 		GMSCinfo.setFont(new Font("黑体", Font.PLAIN, 16));
-		GMSCinfo.setBounds(512, 136, 50, 20);
+		GMSCinfo.setBounds(512, 136, 58, 20);
 		add(GMSCinfo);
 		
 		//ImageIcon image3 = new ImageIcon("pic/labelbg.png"); 
@@ -303,7 +302,7 @@ public class BasicInfo extends JPanel {
 		JLabel count1info = new JLabel(String.valueOf(pvo.getData().getReboundNum_avg()));
 		count1info.setForeground(Color.DARK_GRAY);
 		count1info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count1info.setBounds(138, 207, 54, 22);
+		count1info.setBounds(138, 207, 72, 22);
 		add(count1info);
 		
 		JLabel count2 = new JLabel("\u52A9\u653B\u6570\uFF1A");
@@ -315,7 +314,7 @@ public class BasicInfo extends JPanel {
 		JLabel count2info = new JLabel(String.valueOf(pvo.getData().getAssistNum_avg()));
 		count2info.setForeground(Color.DARK_GRAY);
 		count2info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count2info.setBounds(138, 234, 54, 22);
+		count2info.setBounds(138, 234, 72, 22);
 		add(count2info);
 		
 		JLabel count3 = new JLabel("\u8FDB\u653B\u6570\uFF1A");
@@ -327,7 +326,7 @@ public class BasicInfo extends JPanel {
 		JLabel count3info = new JLabel(String.valueOf(pvo.getData().getO_ReboundNum_avg()));
 		count3info.setForeground(Color.DARK_GRAY);
 		count3info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count3info.setBounds(138, 259, 54, 22);
+		count3info.setBounds(138, 259, 72, 22);
 		add(count3info);
 		
 		JLabel count4 = new JLabel("\u9632\u5B88\u6570\uFF1A");
@@ -339,7 +338,7 @@ public class BasicInfo extends JPanel {
 		JLabel count4info = new JLabel(String.valueOf(pvo.getData().getD_ReboundNum_avg()));
 		count4info.setForeground(Color.DARK_GRAY);
 		count4info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count4info.setBounds(304, 207, 54, 22);
+		count4info.setBounds(304, 207, 74, 22);
 		add(count4info);
 		
 		JLabel count5 = new JLabel("\u62A2\u65AD\u6570\uFF1A");
@@ -351,7 +350,7 @@ public class BasicInfo extends JPanel {
 		JLabel count5info = new JLabel(String.valueOf(pvo.getData().getStealNum_avg()));
 		count5info.setForeground(Color.DARK_GRAY);
 		count5info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count5info.setBounds(304, 234, 54, 22);
+		count5info.setBounds(304, 234, 74, 22);
 		add(count5info);
 		
 		JLabel count6 = new JLabel("\u76D6\u5E3D\u6570\uFF1A");
@@ -363,7 +362,7 @@ public class BasicInfo extends JPanel {
 		JLabel count6info = new JLabel(String.valueOf(pvo.getData().getBlockNum_avg()));
 		count6info.setForeground(Color.DARK_GRAY);
 		count6info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count6info.setBounds(304, 259, 54, 22);
+		count6info.setBounds(304, 259, 74, 22);
 		add(count6info);
 		
 		JLabel count7 = new JLabel("\u5931\u8BEF\u6570\uFF1A");
@@ -375,7 +374,7 @@ public class BasicInfo extends JPanel {
 		JLabel count7info = new JLabel(String.valueOf(pvo.getData().getTurnoverNum_avg()));
 		count7info.setForeground(Color.DARK_GRAY);
 		count7info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count7info.setBounds(455, 207, 54, 22);
+		count7info.setBounds(455, 207, 78, 22);
 		add(count7info);
 		
 		JLabel count8 = new JLabel("\u72AF\u89C4\u6570\uFF1A");
@@ -387,7 +386,7 @@ public class BasicInfo extends JPanel {
 		JLabel count8info = new JLabel(String.valueOf(pvo.getData().getFoulNum_avg()));
 		count8info.setForeground(Color.DARK_GRAY);
 		count8info.setFont(new Font("黑体", Font.PLAIN, 18));
-		count8info.setBounds(455, 234, 54, 22);
+		count8info.setBounds(455, 234, 78, 22);
 		add(count8info);
 		
 		//投篮命中率
