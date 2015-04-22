@@ -67,11 +67,13 @@ public class PlayerController implements PlayerBLService {
 				String position, String partition, String item) {
 			// TODO Auto-generated method stub
 			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(season) ;
+			System.out.println("listµÄ´óÐ¡");
 			if(partition.equals("E")|partition.equals("W")){
+				
 				list=sort_division(list,partition);
 			}
 			if(partition.length()>1){
-				list=sort_division(list,partition);
+				list=sort_partition(list,partition);
 			}
 			if(position.length()>=1){
 				list=sort_position(list,position);

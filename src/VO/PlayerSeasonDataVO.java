@@ -54,7 +54,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		double pointNum_avg;
 	 
 	private double efficiency; 		 //效率
-	private double blockEfficiency;	 //篮板效率	 
+	private double blockEfficiency;	 //盖帽效率	 
 	
 	private double freeThrowPercentage;		//罚球命中率
 	private double shootPercentage;			//投篮命中率
@@ -655,7 +655,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		return usingPercentage_avg;
 	}
 
-	public double getBlockEfficiency_avg() {
+	public double getBlockEfficiency() {
 		return blockEfficiency_avg;
 	}
 
