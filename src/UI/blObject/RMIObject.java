@@ -2,6 +2,7 @@ package UI.blObject;
 
 import java.util.ArrayList;
 
+import VO.PlayerSeasonDataVO;
 import VO.TeamSeasonDataVO;
 import businessService.blservice.*;
 import businesslogic.bl.center.CenterController;
@@ -32,6 +33,14 @@ public class RMIObject {
 	public static void main(String args[]){
 		RMIObject m=new RMIObject();
 		TeamBLService team=m.getTeamObject();
+		PlayerBLService player=m.getPlayerObject();
+		
+		
+		ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "pointNum");
+		
+		for(int i=0;i<pl.size();i++){
+			System.out.println("ÐÕÃû£º"+pl.get(i).getName()+"µÃ·Ö£º"+pl.get(i).getPointNum_avg());
+		}
 		
 		ArrayList<TeamSeasonDataVO> list=team.getAllTeamSeasonData("13-14");
 		for(int i=0;i<list.size();i++){
