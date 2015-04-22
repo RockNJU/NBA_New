@@ -2,6 +2,7 @@ package businesslogic.bl.teambl;
 import java.util.ArrayList;
 
 import businessService.blservice.TeamBLService;
+import businesslogic.bl.center.HotSort;
 import VO.TeamInfoVO;
 import VO.TeamMatchVO;
 import VO.TeamSeasonDataVO;
@@ -50,15 +51,26 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 	}
 
 	@Override
-	public ArrayList<TeamVO> sort(String season, String sortItem) {
+	public ArrayList<TeamSeasonDataVO> sort(String season, String sortItem) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<TeamSeasonDataVO> list=teamFactory.getALLTeamSeasonData(season);
+		HotSort sort=new HotSort();
+		
+		return sort.hotTeam_Sort(list,sortItem);
 	}
 
 	@Override
 	public ArrayList<TeamSeasonDataVO> getHotTeam(String season, String item) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<TeamSeasonDataVO> list=teamFactory.getALLTeamSeasonData(season);
+		HotSort sort=new HotSort();
+		
+		list= sort.hotTeam_Sort(list,item);
+		ArrayList<TeamSeasonDataVO> result=new ArrayList<>();
+		for(int i=0;i<5;i++){
+			result.add(list.get(i));
+		}
+		return result;
 	}
        
 	

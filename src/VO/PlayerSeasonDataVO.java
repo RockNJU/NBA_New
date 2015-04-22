@@ -588,7 +588,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		return reboundNum_avg;
 	}
 
-	public int getBlockNum() {
+	public int getBlockNum(){
 		return blockNum;
 	}
 

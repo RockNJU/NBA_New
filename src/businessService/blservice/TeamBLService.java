@@ -18,7 +18,7 @@ public interface TeamBLService {
 	public ArrayList<String> getTeamAllPlayer(String teamAbb);    
 	//根据球队的缩写获取球队所有的球员姓名，其实你可以考虑返回所有的基本信息，这容易做到
 	
-	public ArrayList<TeamVO> sort(String season,String sortItem);  //根据赛季和排序的 属性对球队进行排序后返回
+	public ArrayList<TeamSeasonDataVO> sort(String season,String sortItem);  //根据赛季和排序的 属性对球队进行排序后返回
 	
 	public ArrayList<TeamSeasonDataVO> getHotTeam(String season,String item);
 	//根据赛季和筛选的条件 获取赛季热点球队，即排名前五的球队

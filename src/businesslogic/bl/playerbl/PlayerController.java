@@ -1,7 +1,9 @@
 package businesslogic.bl.playerbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import businessService.blservice.PlayerBLService;
+import businesslogic.bl.center.HotSort;
 import VO.*;
 
 public class PlayerController implements PlayerBLService {
@@ -43,12 +45,6 @@ public class PlayerController implements PlayerBLService {
 			return playerFactory.getInfoList();
 		}
 		@Override
-		public ArrayList<PlayerSeasonDataVO> sort(String season,
-				String position, String paitition, String item) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
 		public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(String season,
 				String sortItem) {
 			// TODO Auto-generated method stub
@@ -65,8 +61,26 @@ public class PlayerController implements PlayerBLService {
 			return playerFactory.getSeasonDataList(season);
 		}
 	///////////////////////////////////////一下部分是排序所需
+		
+		@Override
+		public ArrayList<PlayerSeasonDataVO> sort(String season,
+				String position, String partition, String item) {
+			// TODO Auto-generated method stub
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(season) ;
+			if(partition.equals("E")|partition.equals("W")){
+				list=sort_division(list,partition);
+			}
+			if(partition.length()>1){
+				list=sort_division(list,partition);
+			}
+			if(position.length()>=1){
+				list=sort_position(list,position);
+			}
+			HotSort sort=new HotSort();
+			return sort.hotPlayer_Sort(list,item);
+		}
 		private  ArrayList<PlayerSeasonDataVO> sort_division(ArrayList<PlayerSeasonDataVO>list,
-				String division) throws RemoteException{
+				String division) {
 			 
 			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
 			for(int i=0;i<list.size();i++){
@@ -79,7 +93,7 @@ public class PlayerController implements PlayerBLService {
 			
 		 
 		private ArrayList<PlayerSeasonDataVO> sort_partition(ArrayList<PlayerSeasonDataVO>list,
-				String partition)throws RemoteException{
+				String partition) {
 			 
 			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
 			for(int i=0;i<list.size();i++){
