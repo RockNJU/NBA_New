@@ -153,7 +153,7 @@ public class Player extends JPanel {
 		Object Data[][]=getinfodata(pivo);
 		this.title=Title;
 		this.data=Data;
-		playerlist=new CreateTable(title,data,25,144,720,460,25,new Font("Dialog", 0, 18),new Font("Dialog", 0, 15));
+		playerlist=new CreateTable(title,data,25,144,720,460,25,new Font("Dialog", 0, 18),new Font("Dialog", 0, 10));
 		add(playerlist);
 		
 		//双击进入球员界面

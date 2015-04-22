@@ -221,7 +221,7 @@ public class Match extends JPanel {
 		Object Data[][]={{"q"},{"e"},{"w"},{"r"},{"b"}};
 		this.title=Title;
 		this.data=Data;
-		matchlist=new CreateTable(title,data,25,144,720,425,20,new Font("Dialog", 0, 30),new Font("Dialog", 0, 15));
+		matchlist=new CreateTable(title,data,25,144,720,460,20,new Font("Dialog", 0, 18),new Font("Dialog", 0, 10));
 		add(matchlist);
 	}
 	

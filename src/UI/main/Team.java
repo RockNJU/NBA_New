@@ -261,7 +261,7 @@ public class Team extends JPanel {
 		Object Data[][]={{"q"},{"e"},{"w"},{"r"},{"b"}};
 		this.title=Title;
 		this.data=Data;
-		teamlist=new CreateTable(title,data,25,144,720,460,25,new Font("Dialog", 0, 18),new Font("Dialog", 0, 15));
+		teamlist=new CreateTable(title,data,25,144,720,460,25,new Font("Dialog", 0, 18),new Font("Dialog", 0, 10));
 		add(teamlist);
 		teamlist.setVisible(false);
 		//双击进入球员界面
