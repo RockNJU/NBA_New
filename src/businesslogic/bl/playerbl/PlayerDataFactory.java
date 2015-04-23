@@ -2,6 +2,7 @@ package businesslogic.bl.playerbl;
 
 import java.util.ArrayList;
 
+import businesslogic.bl.center.LastMatchDay;
 import businesslogic.data.PlayerDataController;
 import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
@@ -13,19 +14,21 @@ public class PlayerDataFactory {
 	 **/
 	ArrayList<PlayerInfoVO> infoList;
 	ArrayList<PlayerSeasonData> dataList;
-	
+	private LastMatchDay lastDay;
 	
 	
 	public PlayerDataFactory(){
 		PlayerDataController plc=new PlayerDataController();
 		infoList=plc.getAllPlayer();
-		
+		lastDay=new LastMatchDay("--","--");
 		dataList=new ArrayList<>();
 	}
 	
 	
 	
 	public void addPlayer_matchData(ArrayList<SingleMatchPersonalDataVO> list){
+		lastDay.setSeason(list.get(0).getSeason());
+		lastDay.setDate(list.get(0).getDate());
 		for(int i=0;i<dataList.size();i++){
 			//当数据仓库中已经有数据的时候，往数据仓库中添加数据
 			if(dataList.get(i).getSeason().equals(list.get(0).getSeason())){
@@ -73,5 +76,21 @@ public class PlayerDataFactory {
 			}
 		}
 		return null;
+	}
+	
+	
+	public ArrayList<PlayerSeasonDataVO> get_Related_Player(String item){
+		for(int i=0;i<dataList.size();i++){
+			if(dataList.get(i).season.equals(lastDay.getSeason())){
+				return dataList.get(i).get_Related_Player(lastDay.getSeason());
+			}
+		}
+		return new ArrayList<PlayerSeasonDataVO>();
+	}
+
+
+
+	public LastMatchDay getLastDay() {
+		return lastDay;
 	}
 }

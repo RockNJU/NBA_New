@@ -148,7 +148,7 @@ public class PlayerController implements PlayerBLService {
 		@Override
 		public ArrayList<PlayerSeasonDataVO> keyfind(String text) {
 			// TODO Auto-generated method stub
-			return null;
+			return playerFactory.get_Related_Player(text);
 		}
 		@Override
 		public ArrayList<PlayerInfoVO> getTeamAllPlayer(String season,String teamAbb) {

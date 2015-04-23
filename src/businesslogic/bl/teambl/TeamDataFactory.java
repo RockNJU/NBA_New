@@ -1,6 +1,9 @@
 package businesslogic.bl.teambl;
 import java.util.ArrayList;
 
+import businesslogic.bl.center.LastMatchDay;
+import businesslogic.data.TeamData;
+import businesslogic.dataservice.TeamDataService;
 import VO.TeamInfoVO;
 import VO.TeamMatchVO;
 import VO.TeamSeasonDataVO;
@@ -8,10 +11,13 @@ import VO.TeamSeasonDataVO;
 public class TeamDataFactory {
 	  ArrayList<TeamInfoVO> infoList;
 	  ArrayList<TeamSeasonData> dataList;
-	  
+	  private LastMatchDay lastDay;
 	  
 	  public TeamDataFactory(){
+		  TeamDataService td=new TeamData();
+		  infoList=td.getTeamInfoList();
 		  dataList=new ArrayList<>();
+		  lastDay=new LastMatchDay("--","--");
 	  }
 	  
 	 public TeamInfoVO get_A_teamInfo(String teamAbb){
@@ -26,6 +32,7 @@ public class TeamDataFactory {
 	  
 	public void update_A_matchData(TeamMatchVO vo){
 		/*添加一场比赛过后，球队的赛季信息发生变化*/
+		lastDay.setSeason(vo.getSeason());
 		for(int i=0;i<dataList.size();i++){
 			if(dataList.get(i).getSeason().equals(vo.getSeason())){
 				dataList.get(i).updateTeamSeasonData(vo);
@@ -70,5 +77,14 @@ public class TeamDataFactory {
 	}
 	public ArrayList<TeamSeasonData> getDataList(){
 		return dataList;
+	}
+	
+	public ArrayList<TeamSeasonDataVO> get_team_related_Info(String item){
+		for(int i=0;i<dataList.size();i++){
+			if(dataList.get(i).getSeason().equals(lastDay.getSeason())){
+				
+			}
+		}
+		return null;
 	}
 }

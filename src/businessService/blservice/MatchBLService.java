@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import VO.A_player_match_data;
 import VO.MatchInfo;
 import VO.MatchVO;
+import VO.SingleMatchPersonalDataVO;
 public interface MatchBLService {
 	
 	ArrayList<MatchVO> getMatchByTeamTime(String date); 
@@ -14,7 +15,7 @@ public interface MatchBLService {
 	MatchVO getMatchByTeam(String data,String teamA);
 	        //根据球队的缩写和比赛日期获取某一场比赛的数据，返回一个MatchVO
 	
-	public ArrayList<A_player_match_data> getTodayHotPlayer(String item);//获取当天的热点球员，传入的是热点项目
+	public ArrayList<SingleMatchPersonalDataVO> getTodayHotPlayer(String item);//获取当天的热点球员，传入的是热点项目
 	
 	//TODO 获得赛季以供选择，形式最好是"13-14赛季",这个是公用的、
 	public ArrayList<String> getAllSeason();

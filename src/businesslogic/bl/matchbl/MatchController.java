@@ -6,6 +6,7 @@ import businessService.blservice.MatchBLService;
 import VO.A_player_match_data;
 import VO.MatchInfo;
 import VO.MatchVO;
+import VO.SingleMatchPersonalDataVO;
 
 public class MatchController implements MatchBLService{
 	MatchDataFactory matchFactory;
@@ -40,7 +41,7 @@ public class MatchController implements MatchBLService{
 	}
 
 	@Override
-	public ArrayList<A_player_match_data> getTodayHotPlayer(String item) {
+	public ArrayList<SingleMatchPersonalDataVO> getTodayHotPlayer(String item) {
 		// TODO Auto-generated method stub
 		return null;
 	}

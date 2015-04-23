@@ -1,4 +1,4 @@
-package businesslogic.bl.matchbl;
+package businesslogic.bl.center;
 
 public class LastMatchDay {
 	private String season;
