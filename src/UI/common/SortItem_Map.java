@@ -40,7 +40,7 @@ public class SortItem_Map {
 	   map.put("罚球命中数", "freeThrowPercentage");
 	   
 	   
-	   map.put("参赛数", "matchNum");
+	   map.put("参赛场数", "matchNum");
 	   map.put("先发场数", "startingNum");
 	   map.put("上场时间", "time_avg");
 	   map.put("进球数", "fieldGoal_avg");
