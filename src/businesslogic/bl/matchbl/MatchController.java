@@ -3,6 +3,7 @@ package businesslogic.bl.matchbl;
 import java.util.ArrayList;
 
 import businessService.blservice.MatchBLService;
+import VO.A_player_match_data;
 import VO.MatchInfo;
 import VO.MatchVO;
 
@@ -36,6 +37,12 @@ public class MatchController implements MatchBLService{
 	public MatchVO getMatchByTeam(String date, String team) {
 		// TODO Auto-generated method stub
 		return matchFactory.get_A_match(date, team);
+	}
+
+	@Override
+	public ArrayList<A_player_match_data> getTodayHotPlayer(String item) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

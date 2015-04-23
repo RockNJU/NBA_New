@@ -58,11 +58,7 @@ public class PlayerController implements PlayerBLService {
 			}
 			return result;
 		}
-		@Override
-		public ArrayList<A_player_match_data> getTodayHotPlayer(String item) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 		@Override
 		public ArrayList<PlayerSeasonDataVO> getPlayerSeasonData(String season) {
 			// TODO Auto-generated method stub

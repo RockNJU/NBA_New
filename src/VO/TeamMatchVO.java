@@ -316,6 +316,7 @@ public class TeamMatchVO implements Serializable{
 		this.offenseEfficiency = d;
 	}
 
+
 	public ArrayList<SingleMatchPersonalDataVO> getIndividualData() {
 		return individualData;
 	}

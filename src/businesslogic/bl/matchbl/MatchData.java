@@ -3,8 +3,10 @@ package businesslogic.bl.matchbl;
 import java.util.ArrayList;
 
 import businesslogic.bl.center.SeasonInfo;
+import VO.A_player_match_data;
 import VO.MatchInfo;
 import VO.MatchVO;
+import VO.SingleMatchPersonalDataVO;
 
 public class MatchData {
 	private String season;
@@ -46,6 +48,17 @@ public class MatchData {
 		for(int i=0;i<matchList.size();i++){
 			if(matchList.get(i).getDate().equals(date)){
 				list.add(matchList.get(i));
+			}
+		}
+		return list;
+	}
+	
+	ArrayList<SingleMatchPersonalDataVO> get_last_day_playerData(String date){
+		ArrayList<SingleMatchPersonalDataVO> list=new ArrayList<>();
+		for(int i=0;i<matchList.size();i++){
+			if(matchList.get(i).getDate().equals(date)){
+				list.addAll(matchList.get(i).getHostTeam().getIndividualData());
+				list.addAll(matchList.get(i).getGuestTeam().getIndividualData());
 			}
 		}
 		return list;

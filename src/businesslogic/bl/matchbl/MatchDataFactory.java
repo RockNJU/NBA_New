@@ -5,16 +5,21 @@ import java.util.ArrayList;
 import businesslogic.bl.center.SeasonInfo;
 import businesslogic.data.TeamData;
 import businesslogic.dataservice.TeamDataService;
+import VO.A_player_match_data;
 import VO.MatchInfo;
 import VO.MatchVO;
+import VO.SingleMatchPersonalDataVO;
 import VO.TeamInfoVO;
 
 public class MatchDataFactory {
 	ArrayList<MatchData> matchList;
 	ArrayList<TeamInfoVO> infoList;
+	
+	private LastMatchDay lastDay;
 	public MatchDataFactory(){
 		TeamDataService teamdata=new TeamData();
 		infoList=teamdata.getTeamInfoList();
+		lastDay=new LastMatchDay("","");
 		matchList=new ArrayList<>();
 	}
 	
@@ -28,6 +33,8 @@ public class MatchDataFactory {
 	}
 	
 	public void add_A_match(MatchVO vo){
+		lastDay.setSeason(vo.getSeason());
+		lastDay.setDate(vo.getDate());
 		for(int i=0;i<matchList.size();i++){
 			/*当赛季子仓库已经存在，则直接添加*/
 			if(matchList.get(i).getSeason().equals(vo.getSeason())){
@@ -67,4 +74,16 @@ public class MatchDataFactory {
 	public ArrayList<TeamInfoVO> getInfoList() {
 		return infoList;
 	}
+	
+	public ArrayList<SingleMatchPersonalDataVO> get_A_Aay_playMatchData(){
+		for(int i=0;i<matchList.size();i++){
+			if(matchList.get(i).getSeason().equals(lastDay.getSeason())){
+				return matchList.get(i).get_last_day_playerData(lastDay.getDate());
+			}
+		}
+		
+	
+		return new ArrayList<SingleMatchPersonalDataVO>();
+	}
+	
 }
