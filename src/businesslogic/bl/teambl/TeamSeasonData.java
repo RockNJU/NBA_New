@@ -2,16 +2,29 @@ package businesslogic.bl.teambl;
 
 import java.util.ArrayList;
 
+import VO.TeamInfoVO;
 import VO.TeamMatchVO;
 import VO.TeamSeasonDataVO;
 
 public class TeamSeasonData {
 	private String season;
 	private ArrayList<TeamSeasonDataVO> teamSeasonList;
+	private ArrayList<TeamInfoVO> infoList;
 	
-	public TeamSeasonData(String season){
+	public TeamSeasonData(String season,ArrayList<TeamInfoVO> list){
 		this.season=season;	
 		teamSeasonList=new ArrayList<TeamSeasonDataVO>();
+		infoList=list;
+	}
+	
+	
+	public TeamInfoVO getTeamInfo(String teamAbb){
+		for(int i=0;i<infoList.size();i++){
+			if(infoList.get(i).getTeamAbb().equals(teamAbb)){
+				return infoList.get(i);
+			}
+		}
+		return new TeamInfoVO(teamAbb, teamAbb,"--", "--", "--", "--", "--");
 	}
 	
 	public void updateTeamSeasonData(TeamMatchVO vo){
@@ -32,7 +45,7 @@ public class TeamSeasonData {
 	double defenseEfficiency,double O_ReboundEfficiency,double D_ReboundEfficiency,
 	double stealEfficiency ,double assistEfficiency
 		 * */
-		teamSeasonList.add(new TeamSeasonDataVO(vo.getSeason(),vo.getTeamName(),1,vo.getWinNum(),
+		teamSeasonList.add(new TeamSeasonDataVO(vo.getSeason(),vo.getTeamName(),getTeamInfo(vo.getTeamName()), 1,vo.getWinNum(),
 				vo.getFieldGoal(),vo.getShootNum(),vo.getT_fieldGoal(),vo.getT_shootNum(),
 				vo.getFreeThrowGoalNum(),vo.getFreeThrowNum(),vo.getO_ReboundNum(),vo.getD_ReboundNum(),
 				vo.getAssistNum(),vo.getStealNum(),vo.getReboundNum(),vo.getBlockNum(),vo.getTurnoverNum(),
@@ -41,21 +54,29 @@ public class TeamSeasonData {
 				vo.getStealEfficiency(),vo.getAssistEfficiency()));            //当赛季列表中没有某支球队的时候，添加这支球队的信息
 	}
 	
-	public TeamSeasonData(String season,ArrayList<TeamSeasonDataVO> list){
-		this.season=season;
-		this.teamSeasonList=list;
-	}
+	
 	
 	public String getSeason() {
 		return season;
 	}
-	public void setSeason(String season) {
-		this.season = season;
-	}
+	
 	public ArrayList<TeamSeasonDataVO> getTeamSeasnList() {
 		return teamSeasonList;
 	}
-	public void setTeamSeasnList(ArrayList<TeamSeasonDataVO> teamSeasnList) {
-		this.teamSeasonList = teamSeasnList;
+	
+	public ArrayList<TeamSeasonDataVO> get_Related_team(String item){
+		ArrayList<TeamSeasonDataVO> list=new ArrayList<>();
+		for(int i=0;i<teamSeasonList.size();i++){
+			if(teamSeasonList.get(i).getTeamName().contains(item)||
+					teamSeasonList.get(i).getInfo().getFullName().equals(item)||
+					teamSeasonList.get(i).getInfo().getDivision().equals(item)||
+					teamSeasonList.get(i).getInfo().getPartition().contains(item)||
+					teamSeasonList.get(i).getInfo().getLocation().equals(item)
+					||teamSeasonList.get(i).getInfo().getHomeGround().contains(item)){
+				list.add(teamSeasonList.get(i));
+			}
+		}
+		return list;
+		
 	}
 }

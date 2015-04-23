@@ -70,14 +70,14 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 	@Override
 	public ArrayList<TeamSeasonDataVO> find(String text) {
 		// TODO Auto-generated method stub
-		return null;
+		return teamFactory.get_team_related_Info(text);
 	}
 
 
 	@Override
-	public TeamInfoVO get_A_TeamInfo(String season, String teamAbb) {
+	public TeamInfoVO get_A_TeamInfo(String s,String teamAbb) {
 		// TODO Auto-generated method stub
-		return null;
+		return teamFactory.get_A_teamInfo(teamAbb);
 	}
 
 }

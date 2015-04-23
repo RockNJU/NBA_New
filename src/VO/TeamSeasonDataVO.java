@@ -10,10 +10,11 @@ public class TeamSeasonDataVO implements Serializable{
 	/* 
 	 * 注：基础数据中，带后缀_avg,是平均值，不带的是赛季进行到当下的总数，都可以通过get方法获得
 	 */
-	
-	DecimalFormat df = new DecimalFormat( "00.00");
+ 
 	String season;					 //赛季
 	String teamName; 				 //球队缩写
+	private TeamInfoVO info;
+	
 	int matchNum; 				     //已比赛场数
 	int winNum;						 //胜利场数
 	double winRate;					//赛季胜率
@@ -70,7 +71,7 @@ public class TeamSeasonDataVO implements Serializable{
 	private double D_ReboundEfficiency =0;
 	double D_ReboundEfficiency_avg;
 
-	public TeamSeasonDataVO(String season,String teamName,int matchNum,int winNum,
+	public TeamSeasonDataVO(String season,String teamName,TeamInfoVO info,int matchNum,int winNum,
 	int fieldGoal,int shootNum,int T_fieldGoal,int T_shootNum,
 	int freeThrowGoalNum,int freeThrowNum,int O_ReboundNum,
 	int D_ReboundNum,int assistNum,int stealNum,int reboundNum,int blockNum,
@@ -82,6 +83,7 @@ public class TeamSeasonDataVO implements Serializable{
 		
 		this.season=season;
 		this.teamName = teamName; 
+		this.info=info;
 		this.matchNum = matchNum ; 
 		this.winNum = winNum;
 		this.fieldGoal = fieldGoal ;  
@@ -487,5 +489,10 @@ public class TeamSeasonDataVO implements Serializable{
 
 		public void setTeamName(String teamName) {
 			this.teamName = teamName;
+		}
+
+
+		public TeamInfoVO getInfo() {
+			return info;
 		}
 }

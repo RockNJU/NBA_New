@@ -17,7 +17,7 @@ public class PlayerSeasonData {
 		this.infoList=info;
 	}
 
-	public String getSeason() {
+	public String getSeason(){
 		return season;
 	}
     

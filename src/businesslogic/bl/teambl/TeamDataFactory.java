@@ -43,7 +43,7 @@ public class TeamDataFactory {
 		
 		
 		//当球队数据仓库中没有对应赛季的数据时，添加一个赛季的ArrayList数据
-		TeamSeasonData data=new TeamSeasonData(vo.getSeason());
+		TeamSeasonData data=new TeamSeasonData(vo.getSeason(), infoList);
 		data.updateTeamSeasonData(vo);
 		dataList.add(data);
 	}
@@ -82,7 +82,7 @@ public class TeamDataFactory {
 	public ArrayList<TeamSeasonDataVO> get_team_related_Info(String item){
 		for(int i=0;i<dataList.size();i++){
 			if(dataList.get(i).getSeason().equals(lastDay.getSeason())){
-				
+				return dataList.get(i).get_Related_team(item);
 			}
 		}
 		return null;
