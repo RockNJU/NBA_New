@@ -195,13 +195,7 @@ import javax.swing.table.TableRowSorter;
 						ListSelectionModel.SINGLE_SELECTION); // 只允许单选
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				table.getTableHeader().setReorderingAllowed(false);
-				
-				 //获得表头
-					JTableHeader tableH = table.getTableHeader();
-				    //设置表头的背景色
-				    tableH.setBackground(new Color(252, 213, 146));
-				    //设置表头的文字颜色
-				    tableH.setForeground(new Color(255, 255, 255));
+
 			}
 
 			// 让第二行和第三行的字体不同,不同行颜色不同

@@ -58,8 +58,24 @@ public class CreateTable extends JPanel{
 			this.fbig=Fbig;
 			this.fsmall=Fsmall;
 			
-			table=new JTable(data,headTitle) ;
+			//table=new JTable(data,headTitle) ;
+			table = new JTable();
+			table.setModel(new DefaultTableModel(
+					data,headTitle) {
+				boolean[] columnEditables = new boolean[] {
+					false, true
+				};
+				public boolean isCellEditable(int row, int column) {
+					return false;
+				}
+			});
+			
+			
+			
 			table.setRowHeight(rowHeight);
+			table.setBackground(new Color(252, 213, 146));
+			table.setSelectionBackground(new Color(67, 54, 49));
+			table.setSelectionForeground(Color.WHITE);
 			table.setFont(fsmall);
 			table.getTableHeader().setFont(fbig);
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -72,7 +88,9 @@ public class CreateTable extends JPanel{
 			table.setShowGrid(false);
 			table.getSelectionModel().setSelectionMode(
 					ListSelectionModel.SINGLE_SELECTION); // 只允许单选
+
 			table.setDragEnabled(false); // 不许乱拖动
+			table.getTableHeader().setReorderingAllowed(false);
 			 //获得表头
 				JTableHeader tableH = table.getTableHeader();
 			    //设置表头的背景色
@@ -80,8 +98,7 @@ public class CreateTable extends JPanel{
 			    //设置表头的文字颜色
 			    tableH.setForeground(new Color(255, 255, 255));
 			    
-			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			table.getTableHeader().setReorderingAllowed(false);
+
 			
 			
 			FitTableColumns(table);		
@@ -90,7 +107,7 @@ public class CreateTable extends JPanel{
 			roll.setPreferredSize(new Dimension(width,height-10)); 
 			roll.setLocation(0, 0);
 			roll.setVisible(true);
-			
+			this.setBackground(new Color(252, 213, 146));
 	    	roll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    	roll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 	    	this.add(roll);
@@ -102,19 +119,17 @@ public class CreateTable extends JPanel{
 		
 		public void updateTable(String[] newheadTitle,Object info[][]){
 			/*用于刷新表格，info[][]为改动过后的数组，存储表格数据*/
-			
-			
 			data=info;
-			headTitle=newheadTitle;
-			DefaultTableModel model=new DefaultTableModel(data,headTitle);		
-			table.setModel(model);
-			table.setRowHeight(rowHeight);
-			table.setFont(fbig);
-			table.getTableHeader().setFont(fsmall);
-			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			table.setFillsViewportHeight(true);
-			table.setAutoCreateRowSorter(true);
-			table.setVisible(true);
+			headTitle=newheadTitle;	
+			table.setModel(new DefaultTableModel(
+					data,headTitle) {
+				boolean[] columnEditables = new boolean[] {
+					false, true
+				};
+				public boolean isCellEditable(int row, int column) {
+					return false;
+				}
+			});
 			table.repaint();
 			FitTableColumns(table);
 			this.repaint();
@@ -132,7 +147,11 @@ public class CreateTable extends JPanel{
 		public int getSelectedColumn() {
 			return table.getSelectedColumn();
 		}
-
+		
+		public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		
 		public int getSelectedRow() {
 			
 			return table.getSelectedRow();
