@@ -43,13 +43,6 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 		// TODO Auto-generated method stub
 		return teamFactory.get_A_TeamSeasonData(season, teamAbb).getWinRate();
 	}
-
-	@Override
-	public ArrayList<String> getTeamAllPlayer(String teamAbb) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public ArrayList<TeamSeasonDataVO> sort(String season, String sortItem) {
 		// TODO Auto-generated method stub
@@ -79,8 +72,12 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 		// TODO Auto-generated method stub
 		return null;
 	}
-       
-	
-		
-	
+
+
+	@Override
+	public TeamInfoVO get_A_TeamInfo(String season, String teamAbb) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

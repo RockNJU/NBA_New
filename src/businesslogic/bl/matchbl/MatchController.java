@@ -3,6 +3,7 @@ package businesslogic.bl.matchbl;
 import java.util.ArrayList;
 
 import businessService.blservice.MatchBLService;
+import VO.MatchInfo;
 import VO.MatchVO;
 
 public class MatchController implements MatchBLService{

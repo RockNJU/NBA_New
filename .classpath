@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-io-1.3.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/sqlite-jdbc-3.8.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/xml-apis-ext.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,6 +3,7 @@ package businesslogic.bl.matchbl;
 import java.util.ArrayList;
 
 import businesslogic.bl.center.SeasonInfo;
+import VO.MatchInfo;
 import VO.MatchVO;
 
 public class MatchData {

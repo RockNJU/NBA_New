@@ -31,6 +31,15 @@ public class PlayerSeasonData {
 		return "--";
 	}
 	
+	public PlayerInfoVO get_PlayerInfo(String name){
+		for(int i=0;i<infoList.size();i++){
+			if(infoList.get(i).getName().equals(name))
+				return infoList.get(i);
+						
+		}
+		return new PlayerInfoVO(name, "--", "--", "--", 0, "--", 0, 0, "--");
+	}
+	
 	public void updatePlayerSeasonData(SingleMatchPersonalDataVO vo){
 		int i;
 		for( i=0;i<playerDataList.size();i++){
@@ -75,7 +84,8 @@ public class PlayerSeasonData {
 		 if(vo.getPlayerPosition()!=null&vo.getPlayerPosition().length()!=0)
 		 startingNum++;
 		
-		PlayerSeasonDataVO newData=new PlayerSeasonDataVO(season,vo.getPlayerName(),vo.getTeamName(),vo.getDivision(),
+		PlayerSeasonDataVO newData=new PlayerSeasonDataVO(season,vo.getPlayerName(),
+				get_PlayerInfo(vo.getPlayerName()), vo.getTeamName(),vo.getDivision(),
 				vo.getPartition(),getPlayerPOsition(vo.getPlayerName()),1,startingNum,vo.getTime(),
 				vo.getFieldGoal(),vo.getShootNum(),vo.getT_fieldGoal(),vo.getT_shootNum(),
 				vo.getFreeThrowGoalNum(),vo.getFreeThrowNum(),vo.getO_ReboundNum(),
@@ -99,5 +109,14 @@ public class PlayerSeasonData {
 
 	public void setPlayerDataList(ArrayList<PlayerSeasonDataVO> playerDataList) {
 		this.playerDataList = playerDataList;
+	}
+	
+	public ArrayList<PlayerInfoVO> get_A_Team_Player(String teamAbb){
+		ArrayList<PlayerInfoVO> list=new ArrayList<>();
+		for(int i=0;i<playerDataList.size();i++){
+			if(playerDataList.get(i).getTeamName().equals(teamAbb));
+				list.add(playerDataList.get(i).getInfo());
+		}
+		return list;
 	}
 }

@@ -1,4 +1,4 @@
-package businesslogic.bl.matchbl;
+package VO;
 
 public class MatchInfo {
 	/*比赛信息，包含的信息有比赛日期，比赛的两支队伍的缩写*/

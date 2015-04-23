@@ -1,7 +1,7 @@
 package businessService.blservice;
 import java.util.ArrayList;
 
-import businesslogic.bl.matchbl.MatchInfo;
+import VO.MatchInfo;
 import VO.MatchVO;
 public interface MatchBLService {
 	

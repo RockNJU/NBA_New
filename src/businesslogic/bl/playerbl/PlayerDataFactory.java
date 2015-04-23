@@ -62,7 +62,16 @@ public class PlayerDataFactory {
 				return dataList.get(i).getPlayerDataList();
 			}
 		}
+		return null;
+	}
+	
+	public ArrayList<PlayerInfoVO> get_A_Team_Player(String season,String teamAbb){
 		
+		for(int i=0;i<dataList.size();i++){
+			if(dataList.get(i).getSeason().equals(season)){
+				return dataList.get(i).get_A_Team_Player(teamAbb);
+			}
+		}
 		return null;
 	}
 }

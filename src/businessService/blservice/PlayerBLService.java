@@ -18,4 +18,8 @@ public interface PlayerBLService{
 	//     姓名查找-含有此关键词的球员的比赛信息，个人认为姓名可以只记住单姓或者字母
 	public ArrayList<PlayerSeasonDataVO> keyfind( String text);
 	
+	//TODO 还是改成获取基本信息-
+		public ArrayList<PlayerInfoVO> getTeamAllPlayer(String season,String teamAbb);    
+		//根据球队的缩写获取球队所有的球员姓名，其实你可以考虑返回所有的基本信息，这容易做到
+	
 }

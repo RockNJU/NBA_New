@@ -11,6 +11,9 @@ public class PlayerSeasonDataVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	String season;					 //赛季
 	String name;					 //球员姓名
+	
+	PlayerInfoVO info;
+	
 	private String teamName;		 //所在球队名,为球队的缩写
 	private String division;		 //球员目前所效力球队所在的分区
 	private String partition;		 //球员所效力球队所在的赛区
@@ -89,7 +92,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	private double l_f_assist_rate=0; 		//最近五场助攻的提升率
 	private double l_f_rebound_rate=0;		//最近五场篮板的提升率
 	
-	public PlayerSeasonDataVO(String season,String name,String teamName,
+	public PlayerSeasonDataVO(String season,String name,PlayerInfoVO info,String teamName,
 			String division,String partition,String position,
 	   int matchNum,  int startingNum,double time,int fieldGoal,
 		 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,
@@ -103,6 +106,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				
 				this.season=season;
 				this.name=name;
+				this.info=info;
 				this.teamName=teamName;
 			
 				this.division=division;
@@ -688,6 +692,12 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+
+
+	public PlayerInfoVO getInfo() {
+		return info;
 	}
 	
 	

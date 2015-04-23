@@ -19,9 +19,7 @@ public interface TeamBLService {
 	public double getTeamWinNum(String season,String teamAbb);
 	//根据赛季和球队获取一支球队的胜率，注：这一条是先前留下的，胜率在TeamSeasonDataVO里已经有了，我不知道需不需要
 	
-	//TODO 还是改成获取基本信息-
-	public ArrayList<PlayerInfoVO> getTeamAllPlayer(String teamAbb);    
-	//根据球队的缩写获取球队所有的球员姓名，其实你可以考虑返回所有的基本信息，这容易做到
+	
 	
 	public ArrayList<TeamSeasonDataVO> sort(String season,String sortItem);  //根据赛季和排序的 属性对球队进行排序后返回
 	

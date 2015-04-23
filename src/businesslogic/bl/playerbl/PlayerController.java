@@ -154,5 +154,10 @@ public class PlayerController implements PlayerBLService {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		@Override
+		public ArrayList<PlayerInfoVO> getTeamAllPlayer(String season,String teamAbb) {
+			// TODO Auto-generated method stub
+			return playerFactory.get_A_Team_Player(season, teamAbb);
+		}
 	
 }
