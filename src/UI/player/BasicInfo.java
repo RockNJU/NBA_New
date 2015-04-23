@@ -233,7 +233,7 @@ public class BasicInfo extends JPanel {
 		JLabel GMSCinfo = new JLabel(String.valueOf(pvo.getData().getGmSc()));
 		GMSCinfo.setForeground(Color.DARK_GRAY);
 		GMSCinfo.setFont(new Font("黑体", Font.PLAIN, 16));
-		GMSCinfo.setBounds(512, 136, 58, 20);
+		GMSCinfo.setBounds(512, 136, 70, 20);
 		add(GMSCinfo);
 		
 		//ImageIcon image3 = new ImageIcon("pic/labelbg.png"); 
@@ -299,7 +299,7 @@ public class BasicInfo extends JPanel {
 		count1.setBounds(70, 207, 80, 22);
 		add(count1);
 		//TODO 篮板数
-		JLabel count1info = new JLabel(String.valueOf(pvo.getData().getReboundNum_avg()));
+		JLabel count1info = new JLabel(changedouble(pvo.getData().getReboundNum_avg()));
 		count1info.setForeground(Color.DARK_GRAY);
 		count1info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count1info.setBounds(138, 207, 72, 22);
@@ -311,7 +311,7 @@ public class BasicInfo extends JPanel {
 		count2.setBounds(70, 234, 80, 22);
 		add(count2);
 		//TODO 助攻数
-		JLabel count2info = new JLabel(String.valueOf(pvo.getData().getAssistNum_avg()));
+		JLabel count2info = new JLabel(changedouble(pvo.getData().getAssistNum_avg()));
 		count2info.setForeground(Color.DARK_GRAY);
 		count2info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count2info.setBounds(138, 234, 72, 22);
@@ -323,7 +323,7 @@ public class BasicInfo extends JPanel {
 		count3.setBounds(70, 259, 80, 22);
 		add(count3);
 		//TODO 进攻数
-		JLabel count3info = new JLabel(String.valueOf(pvo.getData().getO_ReboundNum_avg()));
+		JLabel count3info = new JLabel(changedouble(pvo.getData().getO_ReboundNum_avg()));
 		count3info.setForeground(Color.DARK_GRAY);
 		count3info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count3info.setBounds(138, 259, 72, 22);
@@ -335,7 +335,7 @@ public class BasicInfo extends JPanel {
 		count4.setBounds(235, 207, 80, 22);
 		add(count4);
 		//TODO 防守数
-		JLabel count4info = new JLabel(String.valueOf(pvo.getData().getD_ReboundNum_avg()));
+		JLabel count4info = new JLabel(changedouble(pvo.getData().getD_ReboundNum_avg()));
 		count4info.setForeground(Color.DARK_GRAY);
 		count4info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count4info.setBounds(304, 207, 74, 22);
@@ -347,7 +347,7 @@ public class BasicInfo extends JPanel {
 		count5.setBounds(235, 234, 80, 22);
 		add(count5);
 		//TODO 抢断数
-		JLabel count5info = new JLabel(String.valueOf(pvo.getData().getStealNum_avg()));
+		JLabel count5info = new JLabel(changedouble(pvo.getData().getStealNum_avg()));
 		count5info.setForeground(Color.DARK_GRAY);
 		count5info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count5info.setBounds(304, 234, 74, 22);
@@ -359,7 +359,7 @@ public class BasicInfo extends JPanel {
 		count6.setBounds(235, 259, 80, 22);
 		add(count6);
 		//TODO 盖帽数
-		JLabel count6info = new JLabel(String.valueOf(pvo.getData().getBlockNum_avg()));
+		JLabel count6info = new JLabel(changedouble(pvo.getData().getBlockNum_avg()));
 		count6info.setForeground(Color.DARK_GRAY);
 		count6info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count6info.setBounds(304, 259, 74, 22);
@@ -371,7 +371,7 @@ public class BasicInfo extends JPanel {
 		count7.setBounds(387, 207, 80, 22);
 		add(count7);
 		//TODO 失误数
-		JLabel count7info = new JLabel(String.valueOf(pvo.getData().getTurnoverNum_avg()));
+		JLabel count7info = new JLabel(changedouble(pvo.getData().getTurnoverNum_avg()));
 		count7info.setForeground(Color.DARK_GRAY);
 		count7info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count7info.setBounds(455, 207, 78, 22);
@@ -383,7 +383,7 @@ public class BasicInfo extends JPanel {
 		count8.setBounds(387, 234, 80, 22);
 		add(count8);
 		//TODO 犯规数
-		JLabel count8info = new JLabel(String.valueOf(pvo.getData().getFoulNum_avg()));
+		JLabel count8info = new JLabel(changedouble(pvo.getData().getFoulNum_avg()));
 		count8info.setForeground(Color.DARK_GRAY);
 		count8info.setFont(new Font("黑体", Font.PLAIN, 18));
 		count8info.setBounds(455, 234, 78, 22);
@@ -486,7 +486,15 @@ public class BasicInfo extends JPanel {
 		return temp;
 		
 	}
-	
+	private String changedouble(double rate){
+		//System.out.println(rate);
+		//rate=rate*100;		
+		DecimalFormat df = new DecimalFormat("00.00");    
+		String temp=String.valueOf(df.format(rate));
+		System.out.println(temp);
+		return temp;
+		
+	}
 	
 	private String getlocation(String lo){
 	    if(lo.equals("G")){
