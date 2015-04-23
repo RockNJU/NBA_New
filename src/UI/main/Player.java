@@ -34,13 +34,13 @@ public class Player extends JPanel {
 	JButton sort;
 	JButton find;
 	CreateTable playerlist;
-	String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛数",
+	String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
 			"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 			"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
 			"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 			"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
 			"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
-	String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛数",
+	String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
 				"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 				"罚球命中s率", "进攻", "防守", "抢断", "盖帽", "失误",
 				"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
@@ -120,7 +120,7 @@ public class Player extends JPanel {
 		according.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		according.setToolTipText("\u6392\u5E8F\u4F9D\u636E");
 		according.setModel(new DefaultComboBoxModel(new String[] { 
-				 "参赛数",
+				 "参赛场数",
 				"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 				"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
 				"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
