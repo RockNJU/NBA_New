@@ -38,27 +38,31 @@ public class Hot extends JPanel {
 	JButton pseason;
 	JButton pfast;
 	JButton tseason;
-	JButton changjundefen=new JButton(new ImageIcon("pic/hotbut/场均得分.jpg"));
-	JButton changjungaimao=new JButton(new ImageIcon("pic/hotbut/场均盖帽.jpg"));
-	JButton changjunlanban=new JButton(new ImageIcon("pic/hotbut/场均篮板.jpg"));
-	JButton changjunqiangduan=new JButton(new ImageIcon("pic/hotbut/场均抢断.jpg"));
-	JButton changjunzhugong=new JButton(new ImageIcon("pic/hotbut/场均助攻.jpg"));
-	
+	//队员
 	JButton defen=new JButton(new ImageIcon("pic/hotbut/得分.jpg"));
-	JButton faqiumingzhonglv=new JButton(new ImageIcon("pic/hotbut/罚球命中率.jpg"));
-	JButton gaimao=new JButton(new ImageIcon("pic/hotbut/盖帽.jpg"));
-	
 	JButton lanban=new JButton(new ImageIcon("pic/hotbut/篮板.jpg"));
+	JButton zhugong=new JButton(new ImageIcon("pic/hotbut/助攻.jpg"));
+	JButton gaimao=new JButton(new ImageIcon("pic/hotbut/盖帽.jpg"));
 	JButton qiangduan=new JButton(new ImageIcon("pic/hotbut/抢断.jpg"));
+	
+	JButton changjundefen=new JButton(new ImageIcon("pic/hotbut/场均得分.jpg"));
+	JButton changjunlanban=new JButton(new ImageIcon("pic/hotbut/场均篮板.jpg"));
+	JButton changjunzhugong=new JButton(new ImageIcon("pic/hotbut/场均助攻.jpg"));
+	JButton changjungaimao=new JButton(new ImageIcon("pic/hotbut/场均盖帽.jpg"));
+	JButton changjunqiangduan=new JButton(new ImageIcon("pic/hotbut/场均抢断.jpg"));
 	JButton sanfenmingzhonglv=new JButton(new ImageIcon("pic/hotbut/三分命中率.jpg"));
 	JButton toulanmingzhonglv=new JButton(new ImageIcon("pic/hotbut/投篮命中率.jpg"));
-	JButton zhugong=new JButton(new ImageIcon("pic/hotbut/助攻.jpg"));
+	JButton faqiumingzhonglv=new JButton(new ImageIcon("pic/hotbut/罚球命中率.jpg"));
 	
+	JButton changjundefena=new JButton(new ImageIcon("pic/hotbut/场均得分.jpg"));
+	JButton changjunlanbana=new JButton(new ImageIcon("pic/hotbut/场均篮板.jpg"));
+	JButton changjunzhugonga=new JButton(new ImageIcon("pic/hotbut/场均助攻.jpg"));
+	//队伍
 	JButton changjundefen1=new JButton(new ImageIcon("pic/hotbut/场均得分.jpg"));
-	JButton changjungaimao1=new JButton(new ImageIcon("pic/hotbut/场均盖帽.jpg"));
 	JButton changjunlanban1=new JButton(new ImageIcon("pic/hotbut/场均篮板.jpg"));
-	JButton changjunqiangduan1=new JButton(new ImageIcon("pic/hotbut/场均抢断.jpg"));
 	JButton changjunzhugong1=new JButton(new ImageIcon("pic/hotbut/场均助攻.jpg"));
+	JButton changjungaimao1=new JButton(new ImageIcon("pic/hotbut/场均盖帽.jpg"));
+	JButton changjunqiangduan1=new JButton(new ImageIcon("pic/hotbut/场均抢断.jpg"));
 	JButton faqiumingzhonglv1=new JButton(new ImageIcon("pic/hotbut/罚球命中率.jpg"));
 	JButton sanfenmingzhonglv1=new JButton(new ImageIcon("pic/hotbut/三分命中率.jpg"));
 	JButton toulanmingzhonglv1=new JButton(new ImageIcon("pic/hotbut/投篮命中率.jpg"));
@@ -349,9 +353,9 @@ public class Hot extends JPanel {
 		}
 		else {
 			toolBar.removeAll();
-			toolBar.add(changjundefen);
-			toolBar.add(changjunlanban);
-			toolBar.add(changjunzhugong);
+			toolBar.add(changjundefena);
+			toolBar.add(changjunlanbana);
+			toolBar.add(changjunzhugonga);
 			toolBar.validate();
 			toolBar.repaint();
 		}
