@@ -170,13 +170,15 @@ public class Player extends JPanel {
 				//System.out.println(playerlist.getSelectedRow()!=-1);
 				//System.out.println(e.getClickCount() == 2);
 	            // TODO Auto-generated method stub	
+				 if (e.getClickCount() == 2&&playerlist.getSelectedRow()!=-1)
+				 { 
 				     String season=playerseason.getSelectedItem().toString().substring(0, 5);
 					 String name = playerlist.getValueAt(playerlist.getSelectedRow(),1);				 
 					// System.out.println(name);		        
 					 SinglePlayer spi=new SinglePlayer(name,season);
 					 spi.setVisible(true);
 					 spi.setLocation(375, 58);
-				 
+				 }
 			}
 		});
 		

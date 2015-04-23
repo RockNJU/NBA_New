@@ -102,7 +102,6 @@ public class Team extends JPanel {
 		according.setBounds(135, 35, 127, 30);		
 		add(according);
 		according.setVisible(true);
-		
 		season = new JComboBox();
 		season.setToolTipText("Èü¼¾");
 		
@@ -206,7 +205,6 @@ public class Team extends JPanel {
 	                         
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
-	            	
 	            	tdvo =tbl.find(findkey.getText());
 	            	data=getTotaldata(tdvo);
 	            	teamlist.updateTable(teamtitle, data);
@@ -214,6 +212,7 @@ public class Team extends JPanel {
 	            	dd.setVisible(false);
 	            	east.setVisible(false);
 	            	west.setVisible(false);
+					 
 	            }	
 	       
 		});
