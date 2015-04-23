@@ -1,32 +1,28 @@
-package UI.team;
+package UI.match;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 
 import javax.swing.*;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-
-import org.apache.batik.apps.rasterizer.SVGConverterException;
 
 import UI.common.LimpidButton;
 
-public class SingleTeam extends JDialog {
+
+public class SingleMatch extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	JButton basicbutton;
 	JButton jinjiebutton;
 	JButton matchbutton;
-	JButton otherbutton;
-	JButton  back;
+	//JButton otherbutton;
+	LimpidButton  back;
 	JPanel rightpanel;
-	String t;
-	String s;
+	String playername;
+	String season;
 	/**
 	 * Launch the application.
 	 */
-	/*
+	
 	public static void main(String[] args) {
 		 try {
 	            UIManager
@@ -35,26 +31,22 @@ public class SingleTeam extends JDialog {
 	            e.printStackTrace();
 	        }
 		try {
-			SingleTeam dialog = new SingleTeam();
+			SingleMatch dialog = new SingleMatch();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-*/
+
 	/**
 	 * Create the dialog.
-	 * @throws SVGConverterException 
-	 * @throws IOException 
-	 * @throws TransformerException 
-	 * @throws TransformerFactoryConfigurationError 
 	 */
-	public SingleTeam(String tpp,String season) throws TransformerFactoryConfigurationError, TransformerException, IOException, SVGConverterException {
+	public SingleMatch() {
+		//this.playername=pname;
+		//this.season=s;
 		setSize(764,635);
 		setLocation(200,50);
-		this.t=tpp;
-		this.s=season;
 		setUndecorated(true);// 取消窗体修饰效果************
 		getContentPane().setLayout(null);
 		/**
@@ -67,7 +59,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.setOpaque(false);
 		rightpanel.setLayout(null);
 		add(rightpanel);
-		BasicT newp=new BasicT(tpp,season);
+		BasicM newp=new BasicM(playername,season);
 		newp.setLocation(0, 0);
 		rightpanel.add(newp);
 		
@@ -135,27 +127,10 @@ public class SingleTeam extends JDialog {
             public void mouseClicked(MouseEvent e) {
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息后.png"));
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
-            	otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
+            	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
-            	
-				try {
-					BasicT b;
-					b = new BasicT(t, s);
-					change(b);
-				} catch (TransformerFactoryConfigurationError e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (TransformerException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SVGConverterException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            	
+            	BasicM b=new BasicM(playername,season);
+            	change(b);
             }
         });
 		
@@ -187,10 +162,10 @@ public class SingleTeam extends JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息后.png"));
-            	otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
+            	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
-            	JinT j=new JinT();
+            	JinM j=new JinM();
             	change(j);
             }
         });
@@ -225,13 +200,13 @@ public class SingleTeam extends JDialog {
             public void mouseClicked(MouseEvent e) {
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛后.png"));
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
-            	otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
+            	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
-            	MatT m=new MatT();
+            	MatM m=new MatM();
             	change(m);
             }
         });
-
+/*
 		otherbutton = new JButton(new ImageIcon("pic/but/其他信息前.png"));
 		otherbutton.setBounds(568, 33, 191, 90);
 		getContentPane().add(otherbutton);
@@ -263,17 +238,17 @@ public class SingleTeam extends JDialog {
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
-            	OtherT o=new OtherT();
+            	OtherM o=new OtherM();
             	change(o);
             }
         });
-	
+	*/
 		jinjiebutton.setContentAreaFilled(false);
-		otherbutton.setContentAreaFilled(false);
+		//otherbutton.setContentAreaFilled(false);
 		basicbutton.setContentAreaFilled(false);
 		matchbutton.setContentAreaFilled(false);
 		jinjiebutton.setBorderPainted(true);
-		otherbutton.setBorderPainted(false);
+		//otherbutton.setBorderPainted(false);
 		basicbutton.setBorderPainted(false);
 		matchbutton.setBorderPainted(false);
 		
@@ -319,7 +294,7 @@ public class SingleTeam extends JDialog {
 			});
 	}
 
-	void change(BasicT ppanel){
+	void change(BasicM ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -327,7 +302,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(JinT ppanel){
+	void change(JinM ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -335,7 +310,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(MatT ppanel){
+	void change(MatM ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -343,7 +318,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(OtherT ppanel){
+	void change(OtherM ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);

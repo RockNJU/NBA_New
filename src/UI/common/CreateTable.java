@@ -69,6 +69,7 @@ public class CreateTable extends JPanel{
 			table.setDefaultRenderer(Object.class, new FenseRenderer());
 			table.setOpaque(false);// 初始化表格为透明
 			//table.setEnabled(false);
+			table.setShowGrid(false);
 			table.getSelectionModel().setSelectionMode(
 					ListSelectionModel.SINGLE_SELECTION); // 只允许单选
 			FitTableColumns(table);		

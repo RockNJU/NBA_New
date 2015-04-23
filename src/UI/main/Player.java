@@ -11,6 +11,10 @@ import businessService.blservice.PlayerBLService;
 import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
+import UI.common.PartitionMap;
+import UI.common.PlayerPosition_Map;
+import UI.common.SortItem_Map;
+import UI.common.TeamMap;
 import UI.player.SinglePlayer;
 import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
@@ -57,7 +61,7 @@ public class Player extends JPanel {
 	@SuppressWarnings("unchecked")
 	public Player() {
 		pbl=rmi.getPlayerObject();
-		
+		mbl=rmi.getMatchObject();
 		setLayout(null);
 		setSize(764,635);
 		setOpaque(false);
@@ -120,12 +124,15 @@ public class Player extends JPanel {
 		
 		
 		
-		String[] seasons={"13-14赛季"};		
-		//String[] seasons=mbl.getAllSeason();
-		//if(seasons.length==0||seasons==null){
-		//	seasons[0]="13-14赛季";
-		//}
-		playerseason.setModel(new DefaultComboBoxModel(seasons));
+		ArrayList<String> seasons=mbl.getAllSeason();
+		if(seasons.size()==0||seasons==null){
+			seasons.add("13-14赛季");
+		}		
+		for(int o=0;o<seasons.size();o++){
+			playerseason.addItem(seasons.get(o));
+			
+		}
+		
 		playerseason.setEditable(true);
 		playerseason.setBounds(422, 35, 117, 30);
 		add(playerseason);
@@ -153,7 +160,7 @@ public class Player extends JPanel {
 		Object Data[][]=getinfodata(pivo);
 		this.title=Title;
 		this.data=Data;
-		playerlist=new CreateTable(title,data,25,144,720,460,25,new Font("Dialog", 0, 18),new Font("Dialog", 0, 10));
+		playerlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(playerlist);
 		
 		//双击进入球员界面
@@ -215,19 +222,12 @@ public class Player extends JPanel {
 					String Partition = partition.getSelectedItem().toString();
 					String According = according.getSelectedItem().toString();
 					String Season=playerseason.getSelectedItem().toString().substring(0, 5);
-					//判断东西区
-					String division = "" ; // W是西区 ， E是东区
-					if(partition.equals("大西洋")||partition.equals("中部")||partition.equals("东南")||partition.equals("东区")){
-						division = "E";
-					}
-					else if(partition.equals("无")){
-						division = "";
-					}
-					else{
-						division = "W";
-					}
-					//
-					
+					PlayerPosition_Map map1=new PlayerPosition_Map();
+					PartitionMap map2=new PartitionMap();
+					SortItem_Map map3=new SortItem_Map();
+					Position=map1.getItem(Position);
+					Partition=map2.getItem(Partition);
+					According=map3.getItem(According);
 	            	psvo=pbl.sort( Season,Position, Partition, According);
 	            	System.out.println(Season+Position+ Partition+ According);
 	            	data=getTotaldata(psvo);
@@ -362,10 +362,11 @@ public class Player extends JPanel {
 			"进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",
 			"GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率",
 			"助攻率","抢断率","盖帽率","失误率","使用率"};*/
+			//TeamMap temp=new TeamMap();
 			for(int i=0;i<da.size();i++){						
 				re[i][0]=i+1;
 				re[i][1]=da.get(i).getName();
-				re[i][2]=da.get(i).getTime();
+				re[i][2]=da.get(i).getTeamName();
 				re[i][3]=da.get(i).getMatchNum();
 				re[i][4]=da.get(i).getStartingNum();
 				re[i][5]=da.get(i).getReboundNum();

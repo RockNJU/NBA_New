@@ -62,10 +62,10 @@ public class BasicInfo extends JPanel {
 		System.out.println(pdvo==null);
 		
 		
-		if(pivo==null){
+		if(pivo==null&&pdvo!=null){
 			pivo=new PlayerInfoVO(pdvo.getName(), "??", pdvo.getPosition(), "??", 0, "??", 0, 0, "??");
 		}
-		else if(pdvo==null){
+		else if(pdvo==null&&pivo!=null){
 			pdvo=new PlayerSeasonDataVO(season, pivo.getName(), "??", "??",pivo.getPosition(), "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
 		}else if(pivo==null&&pdvo==null){
 			pivo=new PlayerInfoVO(name, "??", "??", "??", 0, "??", 0, 0, "??");

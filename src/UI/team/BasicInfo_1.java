@@ -18,6 +18,10 @@ import org.w3c.dom.Document;
 import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
 import UI.common.DOMRasterizer;
+import UI.common.PlayerPosition_Map;
+import VO.PlayerInfoVO;
+import VO.TeamInfoVO;
+import VO.TeamSeasonDataVO;
 import VO.TeamVO;
 
 import javax.swing.plaf.*;
@@ -30,7 +34,8 @@ public class BasicInfo_1 extends JPanel {
 	private JTable table;
 	ImageIcon  image;
 	TeamVO tvo;
-	
+	TeamInfoVO tivo;
+	TeamSeasonDataVO tdvo;
 	String teamnameAbb;
 	String season;
 	RMIObject rmi=new RMIObject();
@@ -50,7 +55,19 @@ public class BasicInfo_1 extends JPanel {
 		this.season=s;
 		this.teamnameAbb=name;
 		tbl=rmi.getTeamObject();
-		tvo=tbl.getTeamInfo(teamnameAbb);
+		tivo=tbl.get_A_TeamInfo(s,name);
+		tdvo=tbl.get_A_TeamSeasonData(s, teamnameAbb);
+		if(tivo==null&&tdvo!=null){
+			tivo=new TeamInfoVO(tdvo.getTeamName(), "??", "??", "??", "??", "??", "??");
+		}
+		else if(tdvo==null&&tivo!=null){
+			tdvo=new TeamSeasonDataVO(season, tivo.getFullName(), 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		}else if(tivo==null&&tdvo==null){
+			tivo=new TeamInfoVO(name, "??", "??", "??", "??", "??", "??");
+			tdvo=new TeamSeasonDataVO(season, name, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			
+		}
+		tvo=new TeamVO(tivo,tdvo);
 		
 		DOMRasterizer rasterizer = new DOMRasterizer();
 		File svgpic=new File("pic\\teams\\"+teamnameAbb+".svg");
@@ -221,15 +238,15 @@ public class BasicInfo_1 extends JPanel {
 		table.getTableHeader().setOpaque(false);
 		
 		 
-		table.setRowHeight(30);
+		table.setRowHeight(20);
 		table.setForeground(Color.DARK_GRAY);
-		table.setFont(new Font("Century", Font.PLAIN, 28));
+		table.setFont(new Font("Century", Font.PLAIN, 15));
 		table.setBounds(12, 270, 558, 198);
 		table.setOpaque(false);
 		table.setEnabled(false);
 		//TODO
 		Object[][] data=getTeamPlayers(tbl.getTeamAllPlayer(teamnameAbb));
-		table.setModel(new DefaultTableModel(data,new String[] {""}));
+		table.setModel(new DefaultTableModel(data,new String[] {"姓名","位置","球龄"}));
 		
 		DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();// 设置table内容居中
 		  tcr.setHorizontalAlignment(JLabel.CENTER);
@@ -266,10 +283,13 @@ public class BasicInfo_1 extends JPanel {
 	}
 	
 	
-	private Object[][] getTeamPlayers(ArrayList<String> players){
-		String[][] temp=new String[players.size()][1];
+	private Object[][] getTeamPlayers(ArrayList<PlayerInfoVO> players){
+		Object[][] temp=new String[players.size()][3];
+		PlayerPosition_Map mm=new PlayerPosition_Map();
 		for(int i=0;i<players.size();i++){
-			temp[i][0]=players.get(i);
+			temp[i][0]=players.get(i).getName();
+			temp[i][1]=mm.getItem(players.get(i).getPosition());
+			temp[i][2]=players.get(i).getExp();
 		}	
 		return temp;
 	}

@@ -89,11 +89,14 @@ public class Match extends JPanel {
 		season = new JComboBox();
 		season.setToolTipText("赛季");
 		
-		String[] seasons=mbl.getAllSeason();
-		if(seasons.length==0||seasons==null){
-			seasons[0]="13-14赛季";
+		ArrayList<String> seasons=mbl.getAllSeason();
+		if(seasons.size()==0||seasons==null){
+			seasons.add("13-14赛季");
 		}		
-		season.setModel(new DefaultComboBoxModel(seasons));
+		for(int o=0;o<seasons.size();o++){
+			season.addItem(seasons.get(o));
+			
+		}
 		season.setBounds(131, 77, 120, 30);		
 		add(season);
 		season.setVisible(true);
@@ -221,7 +224,7 @@ public class Match extends JPanel {
 		Object Data[][]={{"q"},{"e"},{"w"},{"r"},{"b"}};
 		this.title=Title;
 		this.data=Data;
-		matchlist=new CreateTable(title,data,25,144,720,460,20,new Font("Dialog", 0, 18),new Font("Dialog", 0, 10));
+		matchlist=new CreateTable(title,data,25,144,720,460,20,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(matchlist);
 	}
 	

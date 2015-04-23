@@ -110,8 +110,14 @@ public class Team extends JPanel {
 		//if(seasons==null){
 		//	seasons[0]="13-14赛季";
 		//}
-		String[] seasons={"13-14赛季"};
-		season.setModel(new DefaultComboBoxModel(seasons));
+		ArrayList<String> seasons=mbl.getAllSeason();
+		if(seasons.size()==0||seasons==null){
+			seasons.add("13-14赛季");
+		}		
+		for(int o=0;o<seasons.size();o++){
+			season.addItem(seasons.get(o));
+			
+		}
 		season.setBounds(291, 35, 130, 30);		
 		add(season);
 		season.setVisible(true);
@@ -155,8 +161,8 @@ public class Team extends JPanel {
 	            	
 	            	TeamMap m=new TeamMap();
 	            	String sortItem=m.getItem(according.getSelectedItem().toString());
-	            	System.out.println(according.getSelectedItem().toString());
-	            	System.out.println(sortItem);
+	            	//System.out.println(according.getSelectedItem().toString());
+	            	//System.out.println(sortItem);
 	            	tdvo=tbl.sort(Season, sortItem);
 	            	data=getTotaldata(tdvo);
 	            	teamlist.updateTable(teamtitle, data);
@@ -261,7 +267,7 @@ public class Team extends JPanel {
 		Object Data[][]={{"q"},{"e"},{"w"},{"r"},{"b"}};
 		this.title=Title;
 		this.data=Data;
-		teamlist=new CreateTable(title,data,25,144,720,460,25,new Font("Dialog", 0, 18),new Font("Dialog", 0, 10));
+		teamlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(teamlist);
 		teamlist.setVisible(false);
 		//双击进入球员界面
@@ -278,7 +284,8 @@ public class Team extends JPanel {
 								String s=season.getSelectedItem().toString().substring(0, 5);
 							 String name = teamlist.getValueAt(teamlist.getSelectedRow(),1);
 							 SingleTeam spi;
-								spi = new SingleTeam(name,s);
+							 System.out.println("aha"+s+name);
+							spi = new SingleTeam(name,s);
 							
 							 spi.setVisible(true);
 							 spi.setLocation(375, 58);
@@ -475,7 +482,7 @@ public class Team extends JPanel {
 	
 	
 	private Object[][] getTotaldata(ArrayList<TeamSeasonDataVO> da){
-		System.out.println(da==null);
+		//System.out.println(da==null);
 		if(da==null){
 			Object[][] re=new Object[1][28];
 			re[0][0]="";
