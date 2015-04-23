@@ -15,6 +15,7 @@ import businessService.blservice.MatchBLService;
 import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
+import UI.common.OftenUseMethod;
 import UI.common.TeamMap;
 import UI.team.SingleTeam;
 import VO.TeamSeasonDataVO;
@@ -324,72 +325,58 @@ public class Team extends JPanel {
 			image.setImage(image.getImage().getScaledInstance(90,90,Image.SCALE_DEFAULT)); 		
 			photo = new JLabel(image);
 			photo.setToolTipText(teamswest[i]);
-			west.add(photo);
-			
-			photo.addMouseListener(new MouseListener() {
-			 @Override
-	            public void mouseReleased(MouseEvent e) {
-	                // TODO Auto-generated method stub                
-	            }           
-	            @Override
-	            public void mousePressed(MouseEvent e) {
-	                // TODO Auto-generated method stub                
-	            }          
-	            @Override
-	            public void mouseExited(MouseEvent e) {
-	                // TODO Auto-generated method stub
-	            	
-	            }           
-	            @Override
-	            public void mouseEntered(MouseEvent e) {
-	            	
-	                // TODO Auto-generated method stub	            
-	            	
-	            }            
-	                         
-	            @Override
-	            public void mouseClicked(MouseEvent e) {
-	            	System.out.println("a");
-	            }	
-	       
-		});
+			final String tempa = teamswest[i];
+			JButton btnNewButton = new JButton(image);
+			btnNewButton.setContentAreaFilled(false);
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					SingleTeam sti;
+					try {
+						sti = new SingleTeam(tempa, "13-14");
+						sti.setVisible(true);
+						sti.setLocation(375, 58);	
+					} catch (TransformerFactoryConfigurationError e1) {
+						e1.printStackTrace();
+					} catch (TransformerException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (SVGConverterException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			west.add(btnNewButton);
 		}
 		
 		for(int i=0;i<teamseast.length;i++){
 			ImageIcon image = new ImageIcon("pic/TEAMPNG/"+teamseast[i]+".png");
-			image.setImage(image.getImage().getScaledInstance(90,90,Image.SCALE_DEFAULT)); 		
+			image.setImage(image.getImage().getScaledInstance(90,90,Image.SCALE_DEFAULT)); 	
 			photo = new JLabel(image);
 			photo.setToolTipText(teamseast[i]);
-			east.add(photo);
-			photo.addMouseListener(new MouseListener() {
-				
-			 @Override
-	            public void mouseReleased(MouseEvent e) {
-	                // TODO Auto-generated method stub                
-	            }           
-	            @Override
-	            public void mousePressed(MouseEvent e) {
-	                // TODO Auto-generated method stub                
-	            }          
-	            @Override
-	            public void mouseExited(MouseEvent e) {
-	                // TODO Auto-generated method stub
-	            	
-	            }           
-	            @Override
-	            public void mouseEntered(MouseEvent e) {
-	            	
-	                // TODO Auto-generated method stub	            
-	            	
-	            }            
-	                         
-	            @Override
-	            public void mouseClicked(MouseEvent e) {
-	            	System.out.println("a");
-	            	
-	            }	
-	       
-		});
+			final String tempa = teamseast[i];
+			JButton btnNewButton = new JButton(image);
+			btnNewButton.setContentAreaFilled(false);
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					SingleTeam sti;
+					try {
+						sti = new SingleTeam(tempa, "13-14");
+						sti.setVisible(true);
+						sti.setLocation(375, 58);	
+					} catch (TransformerFactoryConfigurationError e1) {
+						e1.printStackTrace();
+					} catch (TransformerException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (SVGConverterException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			
+			east.add(btnNewButton);
 		}
 	
 		
@@ -539,17 +526,17 @@ public class Team extends JPanel {
 				re[i][15]=da.get(i).getTurnoverNum();
 				re[i][16]=da.get(i).getFoulNum();				
 				re[i][17]=da.get(i).getPointNum();				
-				re[i][18]=da.get(i).getShootPercentage();
-				re[i][19]=da.get(i).getT_shootPercentage();
-				re[i][20]=da.get(i).getFreeThrowPercentage();				
-				re[i][21]=da.get(i).getWinRate();				
+				re[i][18]=OftenUseMethod.changedouble(da.get(i).getShootPercentage());
+				re[i][19]=OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
+				re[i][20]=OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());				
+				re[i][21]=OftenUseMethod.changedouble(da.get(i).getWinRate());				
 				re[i][22]=da.get(i).getOffenseRound();
 				re[i][23]=da.get(i).getDefenseRound();				
-				re[i][24]=da.get(i).getOffenseEfficiency();
-				re[i][25]=da.get(i).getO_ReboundEfficiency();
-				re[i][26]=da.get(i).getD_ReboundEfficiency();
-				re[i][27]=da.get(i).getStealEfficiency();
-				re[i][28]=da.get(i).getAssistEfficiency();
+				re[i][24]=OftenUseMethod.changedouble(da.get(i).getOffenseEfficiency());
+				re[i][25]=OftenUseMethod.changedouble(da.get(i).getO_ReboundEfficiency());
+				re[i][26]=OftenUseMethod.changedouble(da.get(i).getD_ReboundEfficiency());
+				re[i][27]=OftenUseMethod.changedouble(da.get(i).getStealEfficiency());
+				re[i][28]=OftenUseMethod.changedouble(da.get(i).getAssistEfficiency());
 			}		
 			return re;
 		
