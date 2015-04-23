@@ -24,22 +24,24 @@ public class SortItem_Map {
 	   map.put("篮板率", "reboundEfficiency_avg");
 	   map.put("助攻率", "assistEfficiency_avg");
 	   
-	   map.put("真实投篮命中率", "realShootPercentage");
+	   map.put("真实命中率", "realShootPercentage");
+	   map.put("投篮效率", "shootEfficiency");
 	   map.put("盖帽率", "blockEfficiency_avg");
 	   map.put("使用率", "usingPercentage_avg");
+	   map.put("失误率", "turnoverPercentage");
 	   map.put("抢断率", "stealEfficiency_avg");
 	   map.put("防守效率", "defenseReboundEff_avg");
 	   /////////////
 	   
 	   map.put("两双数", "seasonDoubleNum");
-	   map.put("两双数", "seasonThreeNum");
+	   map.put("三双数", "seasonThreeNum");
 	   map.put("投篮命中率", "shootPercentage");
 	   map.put("三分命中率", "T_shootPercentage");
 	   map.put("罚球命中数", "freeThrowPercentage");
 	   
 	   
 	   map.put("参赛数", "matchNum");
-	   map.put("首发数", "startingNum");
+	   map.put("先发场数", "startingNum");
 	   map.put("上场时间", "time_avg");
 	   map.put("进球数", "fieldGoal_avg");
 	   map.put("出手数", "shootNum_avg");
@@ -47,6 +49,7 @@ public class SortItem_Map {
 	   map.put("三分出手数", "T_shootNum_avg");
 	   //////
 	   map.put("得分", "pointNum_avg");
+	   map.put("效率", "efficiency");
 	   map.put("犯规", "foulNum_avg");
 	   map.put("失误", "turnoverNum_avg");
 	   map.put("盖帽", "blockNum_avg");
