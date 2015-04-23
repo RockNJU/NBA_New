@@ -58,8 +58,12 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		 this.season=season;
 		 this.date=date;
 		 this.playerName=name;
-		 String str[] = name.split(" ");
-		 this.playerReverseName= str[1]+" "+str[0];
+		 if(name.trim().contains(" ")){
+				String str[]=name.split(" ");
+				this.playerReverseName=str[1]+" "+str[0];
+				}else{
+					this.playerReverseName=name;
+				}
 		 this.division=division;
 		 this.partition=partition;
 		 

@@ -1,5 +1,6 @@
 package businesslogic.bl.center;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class CenterController {
 	MatchController match;
 	PlayerController player;
 	TeamController team;
+	PackageListener listener;
 	
 	public CenterController(){
 		 match=new MatchController();
@@ -31,6 +33,7 @@ public class CenterController {
 		 team=new TeamController();
 
 		init();
+		listener=new PackageListener("D:\\jdk");
 	}
 	
 	public static String time()
@@ -79,6 +82,16 @@ public class CenterController {
 		}
 		
 		System.out.println("初始化结束！");
+	}
+	
+	public void addMAtch(){
+		MatchPO po=new MatchPO(null, null, null, null, null, null);
+		MatchVO vo=matchpo_TO_po(po);
+		 player.updatePlayerData(vo.getHostTeam().getIndividualData());
+		 player.updatePlayerData(vo.getGuestTeam().getIndividualData());
+		team.updateTeamData(vo.getHostTeam());
+		team.updateTeamData(vo.getGuestTeam());
+		
 	}
 	
 	private  MatchVO matchpo_TO_po(MatchPO po){
@@ -225,6 +238,80 @@ public class CenterController {
 
 		public TeamController getTeam() {
 			return team;
+		}
+		
+		
+		///////////////////////
+		 class PackageListener {
+			 
+			FileListenerThread f ;
+			
+		    public PackageListener(String filePath) {
+		        String path = filePath;
+		        f = new FileListenerThread(path);
+		        Thread listener = new Thread(f);
+		        listener.start();
+		    }
+
+		}
+		 
+		class FileListenerThread implements Runnable{
+		 
+		    private String path;
+		    ArrayList<String> addedFile = new ArrayList<String>();
+		    @Override
+		    public void run() {
+		        //需要监听的文件夹
+		        File file = new File(path);
+		        //原始文件中的文件数量
+		        String[] fileList = file.list();
+		        int orginalSize = file.list().length;
+		        while(true){
+		            int size = file.list().length;
+		            if(size > orginalSize){
+		               // System.out.println("文件新增，数量为： "+(size-orginalSize));
+		            	String[] newFileList = file.list();
+		            	for(int i=0;i<newFileList.length;i++){
+		            		boolean isOld = true;
+		            		for(int j=0;j<fileList.length;j++){
+		            			if(!newFileList[i].equals(fileList[j])){
+		            				isOld = false;
+		            				System.out.println("打印新增的文件:"+newFileList[i]);
+		            			}
+		            			if(!isOld){
+		            				addNewFile(newFileList[i]);
+		            			}
+		            		}
+		            	}
+		            	
+		            	//System.out.println("?????");
+		            	fileList = newFileList;
+		                orginalSize = size;
+		            }
+		         
+		            try {
+		                //睡1秒
+		                Thread.sleep(300);
+		            } catch (InterruptedException e) {
+		            }
+		        }
+		    }
+		     
+		    private void addNewFile(String newFileName) {
+				// TODO Auto-generated method stub
+		    	addedFile.add(newFileName);
+				
+			}
+		    
+		    public ArrayList<String> getAddedFileList(){
+		    	ArrayList<String> temp = addedFile;
+		    	addedFile.clear();
+		    	return temp;
+		    }
+
+			public FileListenerThread(String path){
+		        this.path= path;
+		    }
 		}
 	 
 }

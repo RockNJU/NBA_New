@@ -109,8 +109,16 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.season=season;
 				this.name=name;
 				
-				String str[]=name.split(" ");
-				this.reverseName=str[1]+" "+str[0];
+				
+					
+				String str[]=name.trim().split(" ");
+				if(str.length>1){
+					System.out.println("-----");
+					this.reverseName=str[1]+" "+str[0];
+				}else{
+					this.reverseName=name;
+				}
+				
 				this.info=info;
 				this.teamName=teamName;
 			
