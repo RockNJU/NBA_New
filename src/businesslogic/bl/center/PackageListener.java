@@ -33,16 +33,19 @@ class FileListenerThread implements Runnable{
                // System.out.println("文件新增，数量为： "+(size-orginalSize));
             	String[] newFileList = file.list();
             	for(int i=0;i<newFileList.length;i++){
-            		boolean isOld = true;
+            		boolean isOld = false;
             		for(int j=0;j<fileList.length;j++){
-            			if(!newFileList[i].equals(fileList[j])){
-            				isOld = false;
-            				System.out.println(newFileList[i]);
+            			if(newFileList[i].equals(fileList[j])){
+            				isOld = true;
+            				break;
             			}
-            			if(!isOld){
-            				addNewFile(newFileList[i]);
-            			}
+
             		}
+            		
+        			if(!isOld){
+        				addNewFile(newFileList[i]);
+        				System.out.println(newFileList[i]);
+        			}
             	}
             	
             	//System.out.println("?????");

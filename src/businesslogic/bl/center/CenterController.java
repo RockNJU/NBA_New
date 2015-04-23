@@ -33,7 +33,7 @@ public class CenterController {
 		 team=new TeamController();
 
 		init();
-		listener=new PackageListener("D:\\jdk");
+		listener=new PackageListener("E:\\temp");
 	}
 	
 	public static String time()
@@ -265,6 +265,7 @@ public class CenterController {
 		        File file = new File(path);
 		        //原始文件中的文件数量
 		        String[] fileList = file.list();
+		        System.out.println("compiling file path");
 		        int orginalSize = file.list().length;
 		        while(true){
 		            int size = file.list().length;
@@ -272,18 +273,20 @@ public class CenterController {
 		               // System.out.println("文件新增，数量为： "+(size-orginalSize));
 		            	String[] newFileList = file.list();
 		            	for(int i=0;i<newFileList.length;i++){
-		            		boolean isOld = true;
+		            		boolean isOld = false;
 		            		for(int j=0;j<fileList.length;j++){
-		            			if(!newFileList[i].equals(fileList[j])){
-		            				isOld = false;
-		            				System.out.println("打印新增的文件:"+newFileList[i]);
+		            			if(newFileList[i].equals(fileList[j])){
+		            				isOld = true;
+		            				break;
 		            			}
-		            			if(!isOld){
-		            				addNewFile(newFileList[i]);
-		            			}
+
 		            		}
+		            		
+		        			if(!isOld){
+		        				addNewFile(newFileList[i]);
+		        				System.out.println(newFileList[i]);
+		        			}
 		            	}
-		            	
 		            	//System.out.println("?????");
 		            	fileList = newFileList;
 		                orginalSize = size;
