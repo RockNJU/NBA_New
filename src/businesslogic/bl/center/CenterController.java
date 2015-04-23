@@ -44,12 +44,12 @@ public class CenterController {
 	public static void main(String args[]){
 		System.out.println("进入center开始测试时间："+time());
 		CenterController c=new CenterController();
-		ArrayList<MatchInfo> list=c.match.getMatchByTeamTime("2014-01-01");
-		for(int i=0;i<list.size();i++){
+		//ArrayList<MatchInfo> list=c.match.getMatchByTeamTime("2014-01-01");
+		/*for(int i=0;i<list.size();i++){
 			System.out.println("时间："+list.get(i).getDate()+
 				" 球队："+list.get(i).getTeam_H()+"-"+list.get(i).getTeam_G());
 		}
-		MatchVO vo=c.match.getMatchByTeam("2014-01-01", "CHA", "");
+	//	MatchVO vo=c.match.getMatchByTeam("2014-01-01", "CHA", "");
 		
 		for(int i=0;i<vo.getGuestTeam().getIndividualData().size();i++){
 			System.out.println("---"+vo.getGuestTeam().getIndividualData().get(i).getPoints());
@@ -59,7 +59,7 @@ public class CenterController {
 		for(int i=0;i<listvo.size();i++){
 			System.out.println("姓名;"+listvo.get(i).getName()+"   ；得分"+listvo.get(i).getPointNum()+"   "+i);
 		}
-		
+		*/
 		System.out.println("测试结束时间："+time());
 	}
 	

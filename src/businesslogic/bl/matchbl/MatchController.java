@@ -19,17 +19,6 @@ public class MatchController implements MatchBLService{
 	}
 	
 	
-	@Override
-	public MatchVO getMatchByTeam(String date, String teamA, String teamB) {
-		// TODO Auto-generated method stub
-		return matchFactory.get_A_match(date, teamA);
-	}
-
-	@Override
-	public ArrayList<MatchInfo> getMatchByTeamTime(String date) {
-		// TODO Auto-generated method stub
-		return matchFactory.getMatchInfo(date);
-	}
 
 	@Override
 	public ArrayList<String>getAllSeason() {
@@ -38,9 +27,17 @@ public class MatchController implements MatchBLService{
 	}
 
 	@Override
-	public ArrayList<MatchInfo> getAllMatchInfo(String date) {
+	public ArrayList<MatchVO> getMatchByTeamTime(String date) {
 		// TODO Auto-generated method stub
-		return matchFactory.getMatchInfo(date);
+		return matchFactory.get_A_Day_match(date);
 	}
+
+	@Override
+	public MatchVO getMatchByTeam(String date, String team) {
+		// TODO Auto-generated method stub
+		return matchFactory.get_A_match(date, team);
+	}
+
+	
 	
 }

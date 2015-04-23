@@ -52,12 +52,13 @@ public class MatchDataFactory {
 		return null;
 	}
 	
-	public ArrayList<MatchInfo> getMatchInfo(String date){
+	public ArrayList<MatchVO> get_A_Day_match(String date){
 		String season=SeasonInfo.getSeason(date);
 		String d=SeasonInfo.getDate(date);
+		
 		for(int i=0;i<matchList.size();i++){
 			if(matchList.get(i).getSeason().equals(season)){
-				return matchList.get(i).getMatchInfo(d);
+				return matchList.get(i).get_A_Day_Match(d);
 			}
 		}
 		return null;  					//当对应的日期没有比赛信息时，返回null
