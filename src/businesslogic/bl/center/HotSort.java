@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.BeanComparator;
 import org.apache.commons.collections.comparators.ReverseComparator;
 
 import VO.PlayerSeasonDataVO;
+import VO.SingleMatchPersonalDataVO;
 import VO.TeamSeasonDataVO;
 
 public class HotSort {
@@ -24,8 +25,8 @@ public class HotSort {
 				// TODO Auto-generated method stub
 				PlayerSeasonDataVO p1 = (PlayerSeasonDataVO)o1;
 				PlayerSeasonDataVO p2 = (PlayerSeasonDataVO)o2;
-				String name1 = p1.getName();
-				String name2 = p2.getName();
+				String name1 = p1.getReverseName();
+				String name2 = p2.getReverseName();
 				return name1.compareTo(name2);
 			}
 		});
@@ -70,5 +71,36 @@ public class HotSort {
 		return teamSeasondata;
 
 	}
+	
+	
+	// 热点球员的排序方法
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<SingleMatchPersonalDataVO> hotSinglePlayer_Sort(
+			ArrayList<SingleMatchPersonalDataVO> playerSeasondata, String condition) {
+		
+		//先按名称排序 
+		Collections.sort(playerSeasondata,new Comparator(){
+			@Override
+			public int compare(Object o1, Object o2) {
+				// TODO Auto-generated method stub
+				SingleMatchPersonalDataVO p1 = (SingleMatchPersonalDataVO)o1;
+				SingleMatchPersonalDataVO p2 = (SingleMatchPersonalDataVO)o2;
+				String name1 = p1.getPlayerReverseName();
+				String name2 = p2.getPlayerReverseName();
+				return name1.compareTo(name2);
+			}
+		});
+
+		// 创建针对某个属性的升序比较
+		Comparator player_compare = new BeanComparator(condition);
+		// 默认的是升序，这里用一个降序
+		player_compare = new ReverseComparator(player_compare);
+		// 开始排序
+		Collections.sort(playerSeasondata, player_compare);
+
+		return playerSeasondata;
+	}
+	
+	
 
 }

@@ -11,6 +11,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	 private String season;					//赛季
 	 private String date;					//比赛日期
 	 private String playerName;				//球员姓名
+	 private String playerReverseName;       //球员姓名的反置
 	 private String division;		 //球员目前所效力球队所在的分区
 	 private String partition;		 //球员所效力球队所在的赛区
 	 private String playerPosition;			//球员位置
@@ -57,6 +58,8 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		 this.season=season;
 		 this.date=date;
 		 this.playerName=name;
+		 String str[] = name.split(" ");
+		 this.playerReverseName= str[1]+" "+str[0];
 		 this.division=division;
 		 this.partition=partition;
 		 
@@ -270,6 +273,9 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		return partition;
 	}
 
+	public String getPlayerReverseName(){
+		return playerReverseName;
+	}
 
 	 
 

@@ -11,8 +11,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	String season;					 //赛季
 	private String name;					 //球员姓名
-	private String lastName;            //球员的姓
-	private String firstName;           //球员的名
+	private String reverseName;            //球员姓名反置
 	
 	
 	PlayerInfoVO info;
@@ -111,8 +110,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.name=name;
 				
 				String str[]=name.split(" ");
-				this.firstName=str[0];
-				this.lastName=str[1];
+				this.reverseName=str[1]+" "+str[0];
 				this.info=info;
 				this.teamName=teamName;
 			
@@ -709,15 +707,9 @@ public class PlayerSeasonDataVO implements Serializable{
 
 
 
-	public String getLastName() {
-		return lastName;
+	public String getReverseName() {
+		return reverseName;
 	}
 
-
-
-	public String getFirstName() {
-		return firstName;
-	}
-	
 	
 }
