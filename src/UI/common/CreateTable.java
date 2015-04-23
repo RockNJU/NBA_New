@@ -59,7 +59,6 @@ public class CreateTable extends JPanel{
 			this.fsmall=Fsmall;
 			
 			table=new JTable(data,headTitle) ;
-
 			table.setRowHeight(rowHeight);
 			table.setFont(fsmall);
 			table.getTableHeader().setFont(fbig);
@@ -69,9 +68,22 @@ public class CreateTable extends JPanel{
 			table.setDefaultRenderer(Object.class, new FenseRenderer());
 			table.setOpaque(false);// 初始化表格为透明
 			//table.setEnabled(false);
+			// 其他一些属性
 			table.setShowGrid(false);
 			table.getSelectionModel().setSelectionMode(
 					ListSelectionModel.SINGLE_SELECTION); // 只允许单选
+			table.setDragEnabled(false); // 不许乱拖动
+			 //获得表头
+				JTableHeader tableH = table.getTableHeader();
+			    //设置表头的背景色
+			    tableH.setBackground(new Color(252, 213, 146));
+			    //设置表头的文字颜色
+			    tableH.setForeground(new Color(255, 255, 255));
+			    
+			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			table.getTableHeader().setReorderingAllowed(false);
+			
+			
 			FitTableColumns(table);		
 			roll=new JScrollPane(table);
 			
