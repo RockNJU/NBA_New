@@ -15,6 +15,7 @@ import org.apache.batik.apps.rasterizer.SVGConverter;
 import org.apache.batik.apps.rasterizer.SVGConverterException;
 import org.w3c.dom.Document;
 
+import businessService.blservice.PlayerBLService;
 import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
 import UI.common.DOMRasterizer;
@@ -40,6 +41,7 @@ public class BasicInfo_1 extends JPanel {
 	String season;
 	RMIObject rmi=new RMIObject();
 	TeamBLService tbl;
+	PlayerBLService pbl;
 	/**
 	 * Create the panel.
 	 * @throws TransformerFactoryConfigurationError 
@@ -55,6 +57,7 @@ public class BasicInfo_1 extends JPanel {
 		this.season=s;
 		this.teamnameAbb=name;
 		tbl=rmi.getTeamObject();
+		pbl=rmi.getPlayerObject();
 		tivo=tbl.get_A_TeamInfo(s,name);
 		tdvo=tbl.get_A_TeamSeasonData(s, teamnameAbb);
 		if(tivo==null&&tdvo!=null){
@@ -245,7 +248,7 @@ public class BasicInfo_1 extends JPanel {
 		table.setOpaque(false);
 		table.setEnabled(false);
 		//TODO
-		Object[][] data=getTeamPlayers(tbl.getTeamAllPlayer(teamnameAbb));
+		Object[][] data=getTeamPlayers(pbl.getTeamAllPlayer(season,teamnameAbb));
 		table.setModel(new DefaultTableModel(data,new String[] {"姓名","位置","球龄"}));
 		
 		DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();// 设置table内容居中

@@ -9,11 +9,11 @@ import java.util.Map;
 import javax.swing.*;
 
 import businessService.blservice.MatchBLService;
-import businesslogic.bl.matchbl.MatchInfo;
 import UI.blObject.RMIObject;
 import UI.common.ComboBoxRenderer;
 import UI.common.CreateTable;
 import UI.common.DateChooser;
+import VO.MatchInfo;
 import VO.MatchVO;
 
 
@@ -26,7 +26,7 @@ public class Match extends JPanel {
 	JButton findteam;
 	JButton columns;
 	CreateTable matchlist;
-	String[] matchrtitle={" 序号  "," 球员名称  "," 所属球队  "," 参赛场数  "," 先发场数  ",
+	String[] matchtitle={" 序号  "," 主场队伍  "," 总比分  "," 客场队伍  "," 先发场数  ",
 			" 篮板数  "," 助攻数  "," 在场时间  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
 			" 进攻数  "," 防守数  "," 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 得分  "," 效率  ",
 			" GmSc效率值  "," 真实命中率  "," 投篮效率  "," 篮板率  "," 进攻篮板率  "," 防守篮板率  ",
@@ -129,7 +129,7 @@ public class Match extends JPanel {
 	                         
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
-	               info=mbl.getAllMatchInfo(dc.showDate.getText());
+	               //info=mbl.getAllMatchInfo(dc.showDate.getText());
 	               
 	            }	
 	       

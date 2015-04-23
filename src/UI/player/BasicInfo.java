@@ -66,10 +66,10 @@ public class BasicInfo extends JPanel {
 			pivo=new PlayerInfoVO(pdvo.getName(), "??", pdvo.getPosition(), "??", 0, "??", 0, 0, "??");
 		}
 		else if(pdvo==null&&pivo!=null){
-			pdvo=new PlayerSeasonDataVO(season, pivo.getName(), "??", "??",pivo.getPosition(), "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
+			pdvo=new PlayerSeasonDataVO(season, pivo.getName(), pivo, "??", "??",pivo.getPosition(), "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
 		}else if(pivo==null&&pdvo==null){
 			pivo=new PlayerInfoVO(name, "??", "??", "??", 0, "??", 0, 0, "??");
-			pdvo=new PlayerSeasonDataVO(season, name, "??", "??","??", "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
+			pdvo=new PlayerSeasonDataVO(season, name, null, "??", "??","??", "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
 			
 		}
 		pvo=new PlayerVO(pivo, pdvo);
