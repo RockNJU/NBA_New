@@ -23,7 +23,7 @@ public class MatchDataController implements MatchDataService{
 	int info[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	public MatchDataController(){
 		matchList=new ArrayList<>();
-		readObject();
+		//readObject();
 	}
 	
 	public static void main(String args[]){
@@ -58,7 +58,7 @@ public class MatchDataController implements MatchDataService{
 		/*
 		 * 
 		 * */
-		
+		System.out.println("新添加的文件路劲："+filepath);
 		 String[]path=filepath.split("\\\\");
 	        String s[]=path[path.length-1].split("_");
 	         
@@ -243,7 +243,7 @@ public class MatchDataController implements MatchDataService{
 		       
 		        //readTxtFile(filePath);
 		    
-		    	String FILE_IN = "NBAdata/matches";  
+		    	String FILE_IN = "NBAdata\\matches";  
 		        File f = new File(FILE_IN);  
 		        String encoding="UTF-8";
 		        List<String> list = new ArrayList<String>();  
@@ -291,6 +291,7 @@ public class MatchDataController implements MatchDataService{
 		        
 		        for (String l:list) {
 		        	
+		        	System.out.println("最初的文件路劲："+l);
 		        	/////
 		        	  H_fieldGoal=0;					//投篮命中数
 				   	     H_shootNum=0;					//投篮出手数

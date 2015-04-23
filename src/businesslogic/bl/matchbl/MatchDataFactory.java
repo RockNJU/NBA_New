@@ -28,18 +28,23 @@ public class MatchDataFactory {
 	public ArrayList<String> getAllSeason(){
 		ArrayList<String> list=new ArrayList<>();
 		for(int i=0;i<matchList.size();i++){
-			list.add(matchList.get(i).getSeason());
+			list.add(matchList.get(i).getSeason()+"赛季");
 		}
 		return list;
 	}
 	
 	public void add_A_match(MatchVO vo){
+		
 		lastDay.setSeason(vo.getSeason());
 		lastDay.setDate(vo.getDate());
 		for(int i=0;i<matchList.size();i++){
 			/*当赛季子仓库已经存在，则直接添加*/
 			if(matchList.get(i).getSeason().equals(vo.getSeason())){
 				matchList.get(i).add_A_match(vo);
+				System.out.println("添加比赛信息：" +vo.getDate()+"  ;"+
+	vo.getHostTeam().getTeamName()+"-"+vo.getGuestTeam().getTeamName()+"比赛场数："+
+				matchList.get(0).getMatchList().size());
+				return;
 			}
 		}
 				

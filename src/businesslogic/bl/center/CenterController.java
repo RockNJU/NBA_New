@@ -30,7 +30,7 @@ public class CenterController {
 		 team=new TeamController();
 
 		init();
-		listener=new PackageListener("D:\\jdk");
+		listener=new PackageListener("D:\\TestFile");
 	}
 	
 	public static String time()
@@ -81,8 +81,8 @@ public class CenterController {
 		System.out.println("≥ı ºªØΩ· ¯£°");
 	}
 	
-	public void addMAtch(){
-		MatchPO po=new MatchPO(null, null, null, null, null, null);
+	public void addMAtch(MatchPO po){
+		
 		MatchVO vo=matchpo_TO_po(po);
 		 player.updatePlayerData(vo.getHostTeam().getIndividualData());
 		 player.updatePlayerData(vo.getGuestTeam().getIndividualData());
@@ -281,6 +281,10 @@ public class CenterController {
 		            		
 		        			if(!isOld){
 		        				addNewFile(newFileList[i]);
+		        				char c=92;
+		        				MatchDataService mc=new MatchDataController();
+		        				MatchPO po=mc.getMatch(path+"\\\\"+newFileList[i]);
+		        				addMAtch(po);
 		        				System.out.println(newFileList[i]);
 		        			}
 		            	}

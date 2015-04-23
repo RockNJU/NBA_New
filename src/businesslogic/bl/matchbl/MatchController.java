@@ -3,6 +3,7 @@ package businesslogic.bl.matchbl;
 import java.util.ArrayList;
 
 import businessService.blservice.MatchBLService;
+import businesslogic.bl.center.HotSort;
 import VO.A_player_match_data;
 import VO.MatchInfo;
 import VO.MatchVO;
@@ -43,7 +44,14 @@ public class MatchController implements MatchBLService{
 	@Override
 	public ArrayList<SingleMatchPersonalDataVO> getTodayHotPlayer(String item) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<SingleMatchPersonalDataVO> list= matchFactory.get_A_Aay_playMatchData();
+		HotSort sort=new HotSort();
+		list= sort.hotSinglePlayer_Sort(list, item);
+		ArrayList<SingleMatchPersonalDataVO> result=new ArrayList<>();
+		for(int i=0;i<5;i++){
+			result.add(list.get(i));
+		}
+		return result;
 	}
 
 	

@@ -27,6 +27,7 @@ public class PlayerDataFactory {
 	
 	
 	public void addPlayer_matchData(ArrayList<SingleMatchPersonalDataVO> list){
+		
 		lastDay.setSeason(list.get(0).getSeason());
 		lastDay.setDate(list.get(0).getDate());
 		for(int i=0;i<dataList.size();i++){
