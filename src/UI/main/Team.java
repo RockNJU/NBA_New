@@ -270,7 +270,6 @@ public class Team extends JPanel {
 		teamlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(teamlist);
 		teamlist.setVisible(false);
-		//双击进入球员界面
 				teamlist.getTable().addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
