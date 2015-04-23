@@ -34,7 +34,7 @@ public class Team extends JPanel {
 	String[] teamtitle={" 序号  "," 球队名称  "," 比赛场数  "," 投篮命中数  "," 投篮出手次数  "," 三分命中数  ",
 			" 三分出手数  "," 罚球命中数  "," 罚球出手数  "," 进攻篮板数  "," 防守篮板数  "," 篮板数  "," 助攻数  ",
 			" 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 比赛得分  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
-			" 胜率  "," 进攻回合  "," 进攻效率  "," 防守效率  "," 篮板效率  "," 抢断效率  "," 助攻率  "};
+			" 胜率  "," 进攻回合  "," 进攻效率  "," 防守效率  "," 进攻篮板率  "," 防守篮板率  "," 抢断效率  "," 助攻率  "};
 	
     String [] teamswest	={"ATL","CHI","BOS","CHA","CLE","BKN","MIA","DET",				
 			"NYK","ORL","IND","PHI","WAS","MIL","TOR"};		
@@ -97,7 +97,7 @@ public class Team extends JPanel {
 				"\u6BD4\u8D5B\u5F97\u5206", "\u6295\u7BEE\u547D\u4E2D\u7387", 
 				"\u4E09\u5206\u547D\u4E2D\u7387", "\u7F5A\u7403\u547D\u4E2D\u7387", 
 				"\u80DC\u7387", "\u8FDB\u653B\u56DE\u5408", "\u8FDB\u653B\u6548\u7387",
-				"\u9632\u5B88\u6548\u7387", "\u7BEE\u677F\u6548\u7387", 
+				"\u9632\u5B88\u6548\u7387", "进攻篮板率","防守篮板率", 
 				"\u62A2\u65AD\u6548\u7387", "\u52A9\u653B\u7387"}));
 		according.setBounds(135, 35, 127, 30);		
 		add(according);
@@ -482,7 +482,7 @@ public class Team extends JPanel {
 	private Object[][] getTotaldata(ArrayList<TeamSeasonDataVO> da){
 		//System.out.println(da==null);
 		if(da==null){
-			Object[][] re=new Object[1][28];
+			Object[][] re=new Object[1][29];
 			re[0][0]="";
 			re[0][1]="";
 			re[0][2]="";
@@ -511,10 +511,11 @@ public class Team extends JPanel {
 			re[0][25]="";
 			re[0][26]="";
 			re[0][27]="";
+			re[0][28]="";
 			return re;
 		}
 		else{
-			Object[][] re=new Object[da.size()][28];
+			Object[][] re=new Object[da.size()][29];
 			/*	String[] teamtitle={" xuahao球队名称","比赛场数","投篮命中数","投篮出手次数","三分命中数",
 			" 三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数",
 			"抢断数","盖帽数","失误数","犯规数","比赛得分"," 投篮命中率","三分命中率"," 罚球命中率",
@@ -545,9 +546,10 @@ public class Team extends JPanel {
 				re[i][22]=da.get(i).getOffenseRound();
 				re[i][23]=da.get(i).getDefenseRound();				
 				re[i][24]=da.get(i).getOffenseEfficiency();
-				re[i][25]="??";
-				re[i][26]=da.get(i).getStealEfficiency();
-				re[i][27]=da.get(i).getAssistEfficiency();
+				re[i][25]=da.get(i).getO_ReboundEfficiency();
+				re[i][26]=da.get(i).getD_ReboundEfficiency();
+				re[i][27]=da.get(i).getStealEfficiency();
+				re[i][28]=da.get(i).getAssistEfficiency();
 			}		
 			return re;
 		

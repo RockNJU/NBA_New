@@ -39,7 +39,7 @@ public class Player extends JPanel {
 			"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
 			"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 			"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
-			"失误率", "使用率" };
+			"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛数",
 				"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 				"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
@@ -125,7 +125,7 @@ public class Player extends JPanel {
 				"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
 				"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 				"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
-				"失误率", "使用率"
+				"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"
 		}));
 		according.setEditable(true);
 		according.setBounds(315, 35, 86, 30);
@@ -343,7 +343,7 @@ public class Player extends JPanel {
 	private Object[][] getTotaldata(ArrayList<PlayerSeasonDataVO> da) {
 		System.out.println(da == null);
 		if (da == null) {
-			Object[][] re = new Object[1][30];
+			Object[][] re = new Object[1][33];
 			re[0][0] = "";
 			re[0][1] = "";
 			re[0][2] = "";
@@ -374,9 +374,12 @@ public class Player extends JPanel {
 			re[0][27] = "";
 			re[0][28] = "";
 			re[0][29] = "";
+			re[0][30] = "";
+			re[0][31] = "";
+			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][30];
+			Object[][] re = new Object[da.size()][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -416,6 +419,9 @@ public class Player extends JPanel {
 				re[i][27] = da.get(i).getBlockEfficiency();
 				re[i][28] = da.get(i).getTurnoverPercentage();
 				re[i][29] = da.get(i).getUsingPercentage();
+				re[0][30] = da.get(i).getL_f_point_rate();
+				re[0][31] = da.get(i).getL_f_assist_rate();
+				re[0][32] = da.get(i).getL_f_rebound_rate();
 			}
 			return re;
 
