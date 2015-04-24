@@ -30,7 +30,7 @@ public class CenterController {
 		 team=new TeamController();
 
 		init();
-		listener=new PackageListener("NABdata\\matches");
+		listener=new PackageListener("NBAdata\\matches");
 	}
 	
 	public static String time()
