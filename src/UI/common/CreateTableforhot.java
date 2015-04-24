@@ -78,18 +78,16 @@ import javax.swing.table.TableRowSorter;
 				
 				//更新表格数据
 				public Object[][] updatedata(Object[][] info,int columnnum){
-					Object Data[][] = new Object[info.length][columnnum];
+					Object Data[][]  = new Object[info.length][columnnum];
 					for(int i = 0; i<info.length;i++){
-						Object[] temp = new Object[columnnum+1];
-						temp[0] = getImageIcon((String)info[i][0],
+						System.out.println(info[i][0]);
+						Data[i][0] = getImageIcon((String)info[i][0],
 								picwidth, piclength);
 						int tempadd = 1;
-						while(columnnum!=0){
-							temp[tempadd] = info[i][tempadd];
-							columnnum--;
+						while(tempadd!=columnnum){
+							Data[i][tempadd] = info[i][tempadd];
 							tempadd++;
 						}
-						Data[i]= temp;
 					}
 					data = Data;
 					return Data;
@@ -103,17 +101,6 @@ import javax.swing.table.TableRowSorter;
 
 				private static final long serialVersionUID = 1L;
 
-				@Override
-				public Class<?> getColumnClass(int arg0) {
-					// TODO Auto-generated method stub
-					return cellType[arg0];
-				}
-
-				@Override
-				public String getColumnName(int arg0) {
-					// TODO Auto-generated method stub
-					return title[arg0];
-				}
 
 				@Override
 				public int getColumnCount() {
@@ -130,11 +117,7 @@ import javax.swing.table.TableRowSorter;
 				@Override
 				public Object getValueAt(int r, int c) {
 					// TODO Auto-generated method stub
-					if(data.length>=r)
 						return data[r][c];
-					else
-						return null;
-			
 				}
 
 				// 重写isCellEditable方法
@@ -150,7 +133,7 @@ import javax.swing.table.TableRowSorter;
 			}
 
 			//建立表格
-			public CreateTableforhot(String title[], Icon a, Icon b, Icon c, final Object data[][],
+			public CreateTableforhot(String title[],final Object data[][],
 					int x, int y, int width, int height, int rowHeight, int rowwidth1,int columnnum,
 					Font fbig, Font fsmall,final int picwidth, final int piclength) {
 				/* 这本身是一个Panel,panel 是可以直接用的，传进信息便可以了直接使用 */
@@ -163,7 +146,6 @@ import javax.swing.table.TableRowSorter;
 				this.picwidth = picwidth;
 				this.fbig = fbig;
 				this.fsmall = fsmall;
-
 				
 				MyTableModel model = new MyTableModel();
 				table = new JTable(model);
@@ -196,6 +178,7 @@ import javax.swing.table.TableRowSorter;
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				table.getTableHeader().setReorderingAllowed(false);
 
+				this.add(table);
 			}
 
 			// 让第二行和第三行的字体不同,不同行颜色不同
