@@ -1,6 +1,8 @@
 package UI.main;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class Hot extends JPanel {
 	JButton pseason;
 	JButton pfast;
 	JButton tseason;
+	
 	//队员
 	JButton defen=new JButton(new ImageIcon("pic/hotbut/得分.jpg"));
 	JButton lanban=new JButton(new ImageIcon("pic/hotbut/篮板.jpg"));
@@ -66,6 +69,9 @@ public class Hot extends JPanel {
 	JButton faqiumingzhonglv1=new JButton(new ImageIcon("pic/hotbut/罚球命中率.jpg"));
 	JButton sanfenmingzhonglv1=new JButton(new ImageIcon("pic/hotbut/三分命中率.jpg"));
 	JButton toulanmingzhonglv1=new JButton(new ImageIcon("pic/hotbut/投篮命中率.jpg"));
+	
+	//监听
+	
 	
 	/**
 	 * Create the panel.
