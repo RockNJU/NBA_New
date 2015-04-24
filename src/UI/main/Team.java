@@ -400,7 +400,13 @@ public class Team extends JPanel {
 	public void datachoose(boolean isaverage,int hide[]){
 		//更新信息
 		if(isaverage == true){
-        	tdvo =tbl.find(findkey.getText());
+			String Season=season.getSelectedItem().toString().substring(0, 5);
+        	
+        	TeamMap m=new TeamMap();
+        	String sortItem=m.getItem(according.getSelectedItem().toString());
+        	//System.out.println(according.getSelectedItem().toString());
+        	//System.out.println(sortItem);
+        	tdvo=tbl.sort(Season, sortItem);
         	data=getAveragedata(tdvo);
         	teamlist.updateTable(teamtitleaverage, data);
         	teamlist.setVisible(true);
@@ -409,7 +415,13 @@ public class Team extends JPanel {
         	west.setVisible(false);
 		}
 		else{
-	       	tdvo =tbl.find(findkey.getText());
+			String Season=season.getSelectedItem().toString().substring(0, 5);
+        	
+        	TeamMap m=new TeamMap();
+        	String sortItem=m.getItem(according.getSelectedItem().toString());
+        	//System.out.println(according.getSelectedItem().toString());
+        	//System.out.println(sortItem);
+        	tdvo=tbl.sort(Season, sortItem);
         	data=getTotaldata(tdvo);
         	teamlist.updateTable(teamtitle, data);
         	teamlist.setVisible(true);
