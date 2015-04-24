@@ -361,6 +361,23 @@ public class Player extends JPanel {
 			data = getAveragedata(psvo);
 			playerlist.updateTable(playerAvgtitle, data);
 		}
+		else{
+			String Position = position.getSelectedItem().toString();
+			String Partition = partition.getSelectedItem().toString();
+			String According = according.getSelectedItem().toString();
+			String Season = playerseason.getSelectedItem().toString()
+					.substring(0, 5);
+			PlayerPosition_Map map1 = new PlayerPosition_Map();
+			PartitionMap map2 = new PartitionMap();
+			SortItem_Map map3 = new SortItem_Map();
+			Position = map1.getItem(Position);
+			Partition = map2.getItem(Partition);
+			According = map3.getItem(According);
+			psvo = pbl.sort(Season, Position, Partition, According);
+			System.out.println(Season + Position + Partition + According);
+			data = getTotaldata(psvo);
+			playerlist.updateTable(playerTotaltitle, data);
+		}
 		//Òþ²Ø±í¸ñ
 		if(hide.length!=0){
 			for(int temp :hide){
