@@ -30,7 +30,7 @@ public class CenterController {
 		 team=new TeamController();
 
 		init();
-		listener=new PackageListener("D:\\TestFile");
+		listener=new PackageListener("NABdata\\matches");
 	}
 	
 	public static String time()
@@ -81,9 +81,10 @@ public class CenterController {
 		System.out.println("初始化结束！");
 	}
 	
-	public void addMAtch(MatchPO po){
+	public void addMatch(MatchPO po){
 		
 		MatchVO vo=matchpo_TO_po(po);
+		match.add_A_match(vo);
 		 player.updatePlayerData(vo.getHostTeam().getIndividualData());
 		 player.updatePlayerData(vo.getGuestTeam().getIndividualData());
 		team.updateTeamData(vo.getHostTeam());
@@ -247,6 +248,7 @@ public class CenterController {
 		        String path = filePath;
 		        f = new FileListenerThread(path);
 		        Thread listener = new Thread(f);
+		        System.out.println("-----------------华丽丽的分割线--------------");
 		        listener.start();
 		    }
 
@@ -284,8 +286,8 @@ public class CenterController {
 		        				char c=92;
 		        				MatchDataService mc=new MatchDataController();
 		        				MatchPO po=mc.getMatch(path+"\\\\"+newFileList[i]);
-		        				addMAtch(po);
-		        				System.out.println(newFileList[i]);
+		        				addMatch(po);
+		        				System.out.println("---------检测到的文件："+newFileList[i]+"-------------：");
 		        			}
 		            	}
 		            	//System.out.println("?????");
