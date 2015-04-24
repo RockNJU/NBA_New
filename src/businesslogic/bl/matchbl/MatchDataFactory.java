@@ -77,6 +77,16 @@ public class MatchDataFactory {
 		return null;  					//当对应的日期没有比赛信息时，返回null
 	}
 
+	public ArrayList<MatchVO> get_A_Season_team_match(String season,String teamAbb){
+		
+		for(int i=0;i<matchList.size();i++){
+			if(matchList.get(i).getSeason().equals(season)){
+				return matchList.get(i).get_A_Season_Team_Match(teamAbb);
+			}
+		}
+		return null;  					//当对应的日期没有比赛信息时，返回null
+	}
+	
 	public ArrayList<TeamInfoVO> getInfoList() {
 		return infoList;
 	}

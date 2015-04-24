@@ -63,4 +63,18 @@ public class MatchData {
 		}
 		return list;
 	}
+	
+	public ArrayList<MatchVO> get_A_Season_Team_Match(String teamAbb){
+		/*根据时间获取当天有比赛的两支队伍，返回比赛的信息*/
+		ArrayList<MatchVO> list=new ArrayList<>();
+		for(int i=0;i<matchList.size();i++){
+			if(matchList.get(i).getHostTeam().getTeamName().equals(teamAbb)|
+					matchList.get(i).getGuestTeam().getTeamName().equals(teamAbb))
+			{
+				list.add(matchList.get(i));
+			}
+		}
+		return list;
+	}
+	
 }

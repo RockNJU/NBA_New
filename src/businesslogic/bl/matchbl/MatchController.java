@@ -54,6 +54,12 @@ public class MatchController implements MatchBLService{
 		return result;
 	}
 
+	@Override
+	public ArrayList<MatchVO> getMatchBySeason(String season, String teamAbb) {
+		// TODO Auto-generated method stub
+		return matchFactory.get_A_Season_team_match(season, teamAbb);
+	}
+
 	
 	
 }
