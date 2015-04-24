@@ -87,16 +87,11 @@ public class init extends JFrame {
 		rightpanel.setLayout(null);
 		add(rightpanel);
 		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		playerbutton = new JButton(new ImageIcon("pic/but/球员信息-na.png"));
+    	playerbutton.setToolTipText("球员信息");
 		playerbutton.setBounds(10, 215, 166, 57);
 		contentPane.add(playerbutton);
 		playerbutton.addMouseListener(new MouseListener() {
@@ -112,10 +107,15 @@ public class init extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 // TODO Auto-generated method stub
+            	if(!playerbutton.getToolTipText().equals("球员信息 "))
+            	playerbutton.setIcon(new ImageIcon("pic/but/球员信息-na.png"));
+            	else
+            		playerbutton.setIcon(new ImageIcon("pic/but/球员信息-active.png"));
             	//playerbutton.setIcon(new ImageIcon("pic/but/球员信息-na.png"));
             }           
             @Override
             public void mouseEntered(MouseEvent e) {
+            	playerbutton.setIcon(new ImageIcon("pic/but/球员信息-stop.png"));
                 // TODO Auto-generated method stub
             	//playerbutton.setIcon(new ImageIcon("pic/but/球员信息-ao.png"));
               	//teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
@@ -124,11 +124,15 @@ public class init extends JFrame {
             }            
             @Override
             public void mouseClicked(MouseEvent e) {
-            	
+            	playerbutton.setToolTipText("球员信息 ");
             	playerbutton.setIcon(new ImageIcon("pic/but/球员信息-active.png"));
             	teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
             	hotbutton.setIcon(new ImageIcon("pic/but/热门信息-na.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-na.png"));
+
+            	hotbutton.setToolTipText("热门信息");
+            	teambutton.setToolTipText("队伍信息");
+            	matchbutton.setToolTipText("比赛信息");
             	Player p;				
 				p = new Player();
 				change(p);
@@ -136,6 +140,7 @@ public class init extends JFrame {
         });
 		
 		teambutton = new JButton(new ImageIcon("pic/but/队伍信息-na.png"));
+    	teambutton.setToolTipText("队伍信息");
 		teambutton.setBounds(10, 300, 167, 60);
 		contentPane.add(teambutton);
 		teambutton.addMouseListener(new MouseListener() {
@@ -151,11 +156,14 @@ public class init extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 // TODO Auto-generated method stub
-            	//teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
+            	if(!teambutton.getToolTipText().equals("队伍信息 "))
+            		teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
+            	else
+            		teambutton.setIcon(new ImageIcon("pic/but/队伍信息-active.png"));
             }           
             @Override
             public void mouseEntered(MouseEvent e) {
-            	
+            	teambutton.setIcon(new ImageIcon("pic/but/队伍信息-stop.png"));
                 // TODO Auto-generated method stub
             	//teambutton.setIcon(new ImageIcon("pic/but/队伍信息-ao.png"));
             	//hotbutton.setIcon(new ImageIcon("pic/but/热门信息-na.png"));
@@ -168,6 +176,11 @@ public class init extends JFrame {
             	hotbutton.setIcon(new ImageIcon("pic/but/热门信息-na.png"));
             	playerbutton.setIcon(new ImageIcon("pic/but/球员信息-na.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-na.png"));
+            	
+            	playerbutton.setToolTipText("球员信息");
+            	hotbutton.setToolTipText("热门信息");
+            	teambutton.setToolTipText("队伍信息 ");
+            	matchbutton.setToolTipText("比赛信息");
             	Team p;				
 				p = new Team();
 				change(p);
@@ -175,6 +188,7 @@ public class init extends JFrame {
         });
 
 		matchbutton = new JButton(new ImageIcon("pic/but/比赛信息-na.png"));
+    	matchbutton.setToolTipText("比赛信息");
 		matchbutton.setBounds(10, 385, 166, 56);
 		contentPane.add(matchbutton);
 		matchbutton.addMouseListener(new MouseListener() {
@@ -190,12 +204,16 @@ public class init extends JFrame {
             }          
             @Override
             public void mouseExited(MouseEvent e) {
+            	if(!matchbutton.getToolTipText().equals("比赛信息 "))
+            		matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-na.png"));
+            	else
+            		matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-active.png"));
                 // TODO Auto-generated method stub
             	//matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-na.png"));
             }           
             @Override
             public void mouseEntered(MouseEvent e) {
-            	
+            	matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-stop.png"));
                 // TODO Auto-generated method stub
             	//matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-ao.png"));
             	//teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
@@ -208,6 +226,11 @@ public class init extends JFrame {
             	teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
             	hotbutton.setIcon(new ImageIcon("pic/but/热门信息-na.png"));
             	playerbutton.setIcon(new ImageIcon("pic/but/球员信息-na.png"));
+            	
+            	playerbutton.setToolTipText("球员信息");
+            	hotbutton.setToolTipText("热门信息");
+            	teambutton.setToolTipText("队伍信息");
+            	matchbutton.setToolTipText("比赛信息 ");
             	Match p;				
 				p = new Match();
 				change(p);
@@ -215,6 +238,7 @@ public class init extends JFrame {
         });
 
 		hotbutton = new JButton(new ImageIcon("pic/but/热门信息-na.png"));
+    	hotbutton.setToolTipText("热门信息");
 		hotbutton.setBounds(10, 130, 165, 56);
 		contentPane.add(hotbutton);
 		hotbutton.addMouseListener(new MouseListener() {
@@ -230,11 +254,15 @@ public class init extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 // TODO Auto-generated method stub
+            	if(!hotbutton.getToolTipText().equals("热门信息 "))
+            		hotbutton.setIcon(new ImageIcon("pic/but/热门信息-na.png"));
+            	else
+            		hotbutton.setIcon(new ImageIcon("pic/but/热门信息-active.png"));
             	//hotbutton.setIcon(new ImageIcon("pic/but/热门信息-na.png"));
             }           
             @Override
             public void mouseEntered(MouseEvent e) {
-            	
+            	hotbutton.setIcon(new ImageIcon("pic/but/热门信息-stop.png"));
                 // TODO Auto-generated method stub
             	//hotbutton.setIcon(new ImageIcon("pic/but/热门信息-ao.png"));
             	//teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
@@ -248,6 +276,11 @@ public class init extends JFrame {
             	teambutton.setIcon(new ImageIcon("pic/but/队伍信息-na.png"));
             	playerbutton.setIcon(new ImageIcon("pic/but/球员信息-na.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/比赛信息-na.png"));
+            	
+            	playerbutton.setToolTipText("球员信息");
+            	hotbutton.setToolTipText("热门信息 ");
+            	teambutton.setToolTipText("队伍信息");
+            	matchbutton.setToolTipText("比赛信息");
             	Hot p;				
 				p = new Hot();
 				change(p);
