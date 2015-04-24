@@ -3,11 +3,19 @@ package UI.main;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.apache.batik.apps.rasterizer.SVGConverterException;
+
+import UI.team.SingleTeam;
 
 
 
@@ -70,8 +78,8 @@ public class Hot extends JPanel {
 	JButton sanfenmingzhonglv1=new JButton(new ImageIcon("pic/hotbut/三分命中率.jpg"));
 	JButton toulanmingzhonglv1=new JButton(new ImageIcon("pic/hotbut/投篮命中率.jpg"));
 	
+
 	//监听
-	
 	
 	/**
 	 * Create the panel.
@@ -329,6 +337,10 @@ public class Hot extends JPanel {
 		photo.setBounds(7, 125, 753, 510);		
 		photo.setOpaque(false);
 		add(photo);
+		
+		
+		//一坨监听 
+		defen.addActionListener(l);
 	}
 	
 	
