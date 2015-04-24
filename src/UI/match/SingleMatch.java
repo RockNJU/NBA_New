@@ -17,8 +17,8 @@ public class SingleMatch extends JDialog {
 	//JButton otherbutton;
 	LimpidButton  back;
 	JPanel rightpanel;
-	String playername;
-	String season;
+	String t;
+	String d;
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +31,7 @@ public class SingleMatch extends JDialog {
 	            e.printStackTrace();
 	        }
 		try {
-			SingleMatch dialog = new SingleMatch();
+			SingleMatch dialog = new SingleMatch("ATL","2014-01-03");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,13 +42,13 @@ public class SingleMatch extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public SingleMatch() {
-		//this.playername=pname;
-		//this.season=s;
+	public SingleMatch(String team,String date) {
 		setSize(764,635);
 		setLocation(200,50);
 		setUndecorated(true);// 取消窗体修饰效果************
 		getContentPane().setLayout(null);
+		this.t=team;
+		this.d=date;
 		/**
 		 * TODO 
 		 * 
@@ -59,7 +59,7 @@ public class SingleMatch extends JDialog {
 		rightpanel.setOpaque(false);
 		rightpanel.setLayout(null);
 		add(rightpanel);
-		BasicM newp=new BasicM(playername,season);
+		BasicM newp=new BasicM(t,d);
 		newp.setLocation(0, 0);
 		rightpanel.add(newp);
 		
@@ -99,7 +99,7 @@ public class SingleMatch extends JDialog {
 		
 		
 		
-		basicbutton = new JButton(new ImageIcon("pic/but/基础信息前.png"));
+		basicbutton = new JButton(new ImageIcon("pic/but/基础信息后.png"));
 		basicbutton.setBounds(10, 33, 191, 90);
 		getContentPane().add(basicbutton);
 		basicbutton.addMouseListener(new MouseListener() {
@@ -128,8 +128,8 @@ public class SingleMatch extends JDialog {
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息后.png"));
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
-            	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
-            	BasicM b=new BasicM(playername,season);
+            	matchbutton.setIcon(new ImageIcon("pic/but/队员数据前.png"));
+            	BasicM b=new BasicM(t,d);
             	change(b);
             }
         });
@@ -164,13 +164,13 @@ public class SingleMatch extends JDialog {
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息后.png"));
             	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
-            	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
+            	matchbutton.setIcon(new ImageIcon("pic/but/队员数据前.png"));
             	JinM j=new JinM();
             	change(j);
             }
         });
 
-		matchbutton = new JButton(new ImageIcon("pic/but/近期比赛前.png"));
+		matchbutton = new JButton(new ImageIcon("pic/but/队员数据前.png"));
 		matchbutton.setBounds(382, 33, 191, 90);
 		getContentPane().add(matchbutton);
 		matchbutton.addMouseListener(new MouseListener() {
@@ -193,12 +193,12 @@ public class SingleMatch extends JDialog {
             public void mouseEntered(MouseEvent e) {
             	
                 // TODO Auto-generated method stub
-            	//matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
+            	//matchbutton.setIcon(new ImageIcon("pic/but/队员数据前.png"));
             	
             }            
             @Override
             public void mouseClicked(MouseEvent e) {
-            	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛后.png"));
+            	matchbutton.setIcon(new ImageIcon("pic/but/队员数据后.png"));
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
@@ -237,7 +237,7 @@ public class SingleMatch extends JDialog {
             	otherbutton.setIcon(new ImageIcon("pic/but/其他信息后.png"));
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
-            	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
+            	matchbutton.setIcon(new ImageIcon("pic/but/队员数据前.png"));
             	OtherM o=new OtherM();
             	change(o);
             }

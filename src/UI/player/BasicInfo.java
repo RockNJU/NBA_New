@@ -489,7 +489,7 @@ public class BasicInfo extends JPanel {
 	private String changedouble(double rate){
 		//System.out.println(rate);
 		//rate=rate*100;		
-		DecimalFormat df = new DecimalFormat("00.00");    
+		DecimalFormat df = new DecimalFormat("0.00");    
 		String temp=String.valueOf(df.format(rate));
 		System.out.println(temp);
 		return temp;

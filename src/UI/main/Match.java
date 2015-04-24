@@ -129,7 +129,10 @@ public class Match extends JPanel {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
 	               //info=mbl.getAllMatchInfo(dc.showDate.getText());
+	               matchlist.setVisible(true);
+	               
 	               mvo=mbl.getMatchByTeamTime(dc.showDate.getText());
+	               System.out.println(mvo==null);
 	               if(mvo==null){
 	            	   JOptionPane.showMessageDialog(Match.this, "您搜索的日期没有比赛！");
 	               }else{
@@ -182,10 +185,11 @@ public class Match extends JPanel {
 	            public void mouseClicked(MouseEvent e) {
 	            	String Season = season.getSelectedItem().toString().substring(0, 5);
 	            	String Team=teams.getSelectedItem().toString();
-	            	System.out.println(Team);
+	            	//System.out.println(Team);
+	            	matchlist.setVisible(true);
 	            	mvo=mbl.getMatchBySeason(Season, Team);
 	            	if(mvo==null){
-		            	   JOptionPane.showMessageDialog(Match.this, "您搜索的球队当天没有比赛！");
+		            	   JOptionPane.showMessageDialog(Match.this, "没有比赛！");
 		             }
 	            	else{
 		               
@@ -240,15 +244,16 @@ public class Match extends JPanel {
 		Object Data[][]={{"q"},{"e"},{"w"},{"r"},{"b"}};
 		this.title=Title;
 		this.data=Data;
-		matchlist=new CreateTable(title,data,25,144,720,460,20,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
+		matchlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(matchlist);
+		matchlist.setVisible(false);
 	}
 	
 
 	private Object[][] getdata(ArrayList<MatchVO> mdata){
 		//System.out.println(mdata.size());
 		if(mdata==null){
-			Object[][] re=new Object[11][1];
+			Object[][] re=new Object[1][11];
 			re[0][0] = "";
 			re[0][1] = "";
 			re[0][2] = "";
@@ -263,37 +268,31 @@ public class Match extends JPanel {
 			return re;
 		}
 		else{
-			Object[][] re=new Object[11][mdata.size()];
+			Object[][] re=new Object[mdata.size()][11];
 			//String[] matchtitle={" 日期  "," 赛季  "," 主队  "," 比分  "," 客队  ",
 			//	" 第一节比分  "," 第二节比分  "," 第三节比分  "," 第四节比分  "," 加时赛比分  "};
 			for(int i=0;i<mdata.size();i++){		
 				int k=mdata.get(i).getScores().size();
-				System.out.println("k:"+k);
-				System.out.println("1:"+mdata.get(i).getScores().get(0));
-				System.out.println("2:"+mdata.get(i).getScores().get(1));
-				System.out.println("3:"+mdata.get(i).getScores().get(2));
-				System.out.println("4:"+mdata.get(i).getScores().get(3));
-				re[i][0]="i+1";
+				re[i][0]=i+1;
 				re[i][1]=mdata.get(i).getDate();
 				re[i][2]=mdata.get(i).getSeason()+"赛季";
-				re[i][3]=mdata.get(i).getHostTeam();
+				re[i][3]=mdata.get(i).getHostTeam().getTeamName();
 				re[i][4]=mdata.get(i).getMatchScore();
-				re[i][5]=mdata.get(i).getGuestTeam();
-				re[i][6]=mdata.get(i).getScores().get(0);
-				re[i][7]=mdata.get(i).getScores().get(1);
-				re[i][8]=mdata.get(i).getScores().get(2);
-				re[i][9]="";//mdata.get(i).getScores().get(3);
-				
+				re[i][5]=mdata.get(i).getGuestTeam().getTeamName();
+				re[i][6]=re[i][3]+" "+mdata.get(i).getScores().get(0)+" "+re[i][5];
+				re[i][7]=re[i][3]+" "+mdata.get(i).getScores().get(1)+" "+re[i][5];
+				re[i][8]=re[i][3]+" "+mdata.get(i).getScores().get(2)+" "+re[i][5];
+				re[i][9]=re[i][3]+" "+mdata.get(i).getScores().get(3)+" "+re[i][5];				
 				re[i][10]="";
-				if(k==3){
-					re[10][i]="无加时赛";
-				}
-				else{
+				if(k==4){
+					re[i][10]="无加时赛";
+				}else{
 					for(int m=4;m<k;m++){
-						re[i][10]=re[i][10]+"/"+mdata.get(i).getScores().get(m);
+						re[i][10]=(re[i][10]+"/"+mdata.get(i).getScores().get(m)).substring(1);
 					}
 					
 				}
+				System.out.println(re[i][10]);
 			}		
 			return re;
 		

@@ -291,14 +291,18 @@ public class init extends JFrame {
 		hotbutton.setFocusPainted(false);
 		playerbutton.setFocusPainted(false);
 		matchbutton.setFocusPainted(false);
-	
-		
+		//btnNewButton.setContentAreaFilled(false);
+		teambutton.setContentAreaFilled(false);
+		hotbutton.setContentAreaFilled(false);
+		playerbutton.setContentAreaFilled(false);
+		matchbutton.setContentAreaFilled(false);
 		//最小化but
 		min = new JButton(new ImageIcon("pic/but/rnormal.png"));
-		min.setBounds(870, 6, 20, 20);
+		min.setBounds(870, 6, 22, 22);
 		contentPane.add(min);
 		min.setBorderPainted(false);
 		min.setFocusPainted(false);
+		min.setContentAreaFilled(false);
 		min.addMouseListener(new MouseListener() {
             
             @Override
@@ -334,10 +338,11 @@ public class init extends JFrame {
 		
 				//最da化but
 				max = new JButton(new ImageIcon("pic/but/anormal.png"));
-				max.setBounds(897, 6, 20, 20);
+				max.setBounds(897, 6, 22, 22);
 				contentPane.add(max);
 				max.setBorderPainted(false);
 				max.setFocusPainted(false);
+				max.setContentAreaFilled(false);
 				max.addMouseListener(new MouseListener() {
 		            int i=0;
 		            @Override
@@ -379,9 +384,10 @@ public class init extends JFrame {
 		
 				//tuichubut
 				exit = new JButton(new ImageIcon("pic/but/cnormal.png"));
-				exit.setBounds(921, 6, 20, 20);
+				exit.setBounds(921, 6, 22, 22);
 			    exit.setBorderPainted(false);
 				exit.setFocusPainted(false);
+				exit.setContentAreaFilled(false);
 				contentPane.add(exit);
 				exit.addMouseListener(new MouseListener() {
 		            
@@ -417,7 +423,7 @@ public class init extends JFrame {
 				/**
 				 * 背景图片
 				 */
-        ImageIcon image = new ImageIcon("pic/整体界面.png");
+        ImageIcon image = new ImageIcon("pic/整体界面3.png");
 		image.setImage(image.getImage().getScaledInstance(948,679,Image.SCALE_DEFAULT)); 		
 		JLabel photo = new JLabel(image);		
 		photo.setBounds(0, 0, 948, 679);		
