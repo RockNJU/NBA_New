@@ -19,5 +19,7 @@ public interface MatchBLService {
 	
 	//TODO 获得赛季以供选择，形式最好是"13-14赛季",这个是公用的、
 	public ArrayList<String> getAllSeason();
+	//TODO 
+	ArrayList<MatchVO> getMatchBySeason(String season,String teamA);
 
 }

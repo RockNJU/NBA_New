@@ -23,7 +23,7 @@ public class BasicT extends JPanel {
 		setOpaque(false);
 		
 		BasicInfo_1 panel = new BasicInfo_1(name,season);
-		panel.setLocation(0, 0);
+		panel.setLocation(80, 10);
 		panel.setSize(582,474);
 		add(panel);
 	}

@@ -215,13 +215,13 @@ public class BasicInfo extends JPanel {
 		JLabel prate = new JLabel("\u6548\u7387\uFF1A");
 		prate.setForeground(Color.DARK_GRAY);
 		prate.setFont(new Font("黑体", Font.PLAIN, 16));
-		prate.setBounds(321, 136, 70, 20);
+		prate.setBounds(321, 136, 50, 20);
 		add(prate);
 		//TODO
-		JLabel prateinfo = new JLabel(String.valueOf(pvo.getData().getEfficiency()));
+		JLabel prateinfo = new JLabel(changedouble(pvo.getData().getEfficiency()));
 		prateinfo.setForeground(Color.DARK_GRAY);
 		prateinfo.setFont(new Font("黑体", Font.PLAIN, 16));
-		prateinfo.setBounds(373, 136, 100, 20);
+		prateinfo.setBounds(373, 136, 106, 20);
 		add(prateinfo);
 		
 		JLabel GMSC = new JLabel("GMSC\u6548\u7387\uFF1A");
@@ -230,7 +230,7 @@ public class BasicInfo extends JPanel {
 		GMSC.setBounds(430, 136, 100, 20);
 		add(GMSC);
 		//TODO
-		JLabel GMSCinfo = new JLabel(String.valueOf(pvo.getData().getGmSc()));
+		JLabel GMSCinfo = new JLabel(changedouble(pvo.getData().getGmSc()));
 		GMSCinfo.setForeground(Color.DARK_GRAY);
 		GMSCinfo.setFont(new Font("黑体", Font.PLAIN, 16));
 		GMSCinfo.setBounds(512, 136, 70, 20);
@@ -275,10 +275,10 @@ public class BasicInfo extends JPanel {
 		ontime.setBounds(411, 168, 90, 25);
 		add(ontime);
 		
-		JLabel ontimeinfo = new JLabel(String.valueOf(pvo.getData().getTime()));
+		JLabel ontimeinfo = new JLabel(changedouble(pvo.getData().getTime()));
 		ontimeinfo.setForeground(Color.DARK_GRAY);
 		ontimeinfo.setFont(new Font("黑体", Font.PLAIN, 17));
-		ontimeinfo.setBounds(491, 168, 80, 25);
+		ontimeinfo.setBounds(491, 168, 91, 25);
 		add(ontimeinfo);
 	/**	
 		ImageIcon image4 = new ImageIcon("pic/labelbg.png"); 

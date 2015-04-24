@@ -64,10 +64,10 @@ public class BasicInfo_1 extends JPanel {
 			tivo=new TeamInfoVO(tdvo.getTeamName(), "??", "??", "??", "??", "??", "??");
 		}
 		else if(tdvo==null&&tivo!=null){
-			tdvo=new TeamSeasonDataVO(season, tivo.getFullName(), 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			tdvo=new TeamSeasonDataVO(season, tivo.getFullName(), tivo, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		}else if(tivo==null&&tdvo==null){
 			tivo=new TeamInfoVO(name, "??", "??", "??", "??", "??", "??");
-			tdvo=new TeamSeasonDataVO(season, name, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			tdvo=new TeamSeasonDataVO(season, name, null, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			
 		}
 		tvo=new TeamVO(tivo,tdvo);
@@ -142,8 +142,7 @@ public class BasicInfo_1 extends JPanel {
 		int countnum=tvo.getData().getMatchNum();
 		
 		
-		ImageIcon imagebg = new ImageIcon("pic\\Çò¶Ó±³¾°.png"); 
-		imagebg.setImage(imagebg.getImage().getScaledInstance(582,474,Image.SCALE_DEFAULT)); 
+	
 		//TODO
 		JLabel toulanchushou = new JLabel("\u6295\u7BEE\u51FA\u624B\uFF1A"+getCalc(tvo.getData().getShootNum(),countnum));
 		toulanchushou.setForeground(new Color(51, 0, 51));
@@ -278,7 +277,9 @@ public class BasicInfo_1 extends JPanel {
         roll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     	roll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     	add(roll);
-		
+    	
+    	ImageIcon imagebg = new ImageIcon("pic\\Çò¶Ó±³¾°.png"); 
+		imagebg.setImage(imagebg.getImage().getScaledInstance(582,474,Image.SCALE_DEFAULT)); 
 		JLabel bg = new JLabel(imagebg);
 		//photo.setIcon(new ImageIcon("D:\\\u5927\u4E8C\u4E0B\\java\\DSSforNBA_Client\\pic\\portrait\\Aaron Brooks.png"));
 		bg.setBounds(0,0,582,474);	
@@ -291,8 +292,8 @@ public class BasicInfo_1 extends JPanel {
 		PlayerPosition_Map mm=new PlayerPosition_Map();
 		for(int i=0;i<players.size();i++){
 			temp[i][0]=players.get(i).getName();
-			temp[i][1]=mm.getItem(players.get(i).getPosition());
-			temp[i][2]=players.get(i).getExp();
+			temp[i][1]=players.get(i).getPosition();
+			temp[i][2]=String.valueOf(players.get(i).getExp());
 		}	
 		return temp;
 	}

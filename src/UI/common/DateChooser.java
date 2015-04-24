@@ -269,7 +269,7 @@ public class DateChooser extends JPanel{
         }
         private void updateDate(){
             center.setText(select.get(Calendar.YEAR)+"-"+(select.get(Calendar.MONTH)+1)+"-"+select.get(Calendar.DATE));
-            System.out.println("获取的时间："+center.getText());
+         //   System.out.println("获取的时间："+center.getText());
              
         }
     }

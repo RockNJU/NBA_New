@@ -99,7 +99,7 @@ public class SinglePlayer extends JDialog {
 		
 		
 		
-		basicbutton = new JButton(new ImageIcon("pic/but/基础信息前.png"));
+		basicbutton = new JButton(new ImageIcon("pic/but/基础信息后.png"));
 		basicbutton.setBounds(10, 33, 191, 90);
 		getContentPane().add(basicbutton);
 		basicbutton.addMouseListener(new MouseListener() {
