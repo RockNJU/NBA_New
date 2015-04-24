@@ -19,8 +19,7 @@ public class HotPlayers extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HotPlayers(ArrayList<String> tmps,String tmpsaccording,String tmptype) {
-		this.players=tmps;
+	public HotPlayers(String tmpsaccording,String tmptype) {
 		this.according=tmpsaccording;
 		this.type=tmptype;
 		String[] title = {"Ð¤Ïñ","Ãû³Æ","Çò¶Ó","ÇòºÅ","Î»ÖÃ",according};

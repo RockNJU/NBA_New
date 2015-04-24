@@ -15,7 +15,9 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.batik.apps.rasterizer.SVGConverterException;
 
+import businessService.blservice.MatchBLService;
 import UI.team.SingleTeam;
+import VO.PlayerSeasonDataVO;
 
 
 
@@ -29,6 +31,8 @@ public class Hot extends JPanel {
 	HotPlayers hp;
 	HotTeams ht;
 	String cmdplayer="day";
+	
+	MatchBLService mbl;
 	/*
 	JButton changjundefen;
 	JButton changjungaimao;
@@ -304,7 +308,7 @@ public class Hot extends JPanel {
 		tmps.add("Al Harrington");
 		tmps.add("Al Horford");
 		
-		hp=new HotPlayers(tmps,"","");
+		hp=new HotPlayers("","");
 		p1=new JPanel();
 		p1.setLayout(null);
 		p1.setBounds(10, 200, 746,170);
@@ -340,7 +344,156 @@ public class Hot extends JPanel {
 		
 		
 		//一坨监听 
-		defen.addActionListener(l);
+		defen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("每日","得分");
+			}
+		});
+		lanban.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("每日","篮板");
+			}
+		});
+		zhugong.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("每日","助攻");
+			}
+		});
+		qiangduan.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("每日","抢断");
+			}
+		});
+		gaimao.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("每日","盖帽");
+			}
+		});
+
+		//赛季
+		changjundefen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","场均得分");
+			}
+		});
+		changjunlanban.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","场均篮板");
+			}
+		});
+		changjunzhugong.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","场均助攻");
+			}
+		});
+		changjungaimao.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","场均盖帽");
+			}
+		});
+		changjunqiangduan.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","场均抢断");
+			}
+		});
+		sanfenmingzhonglv.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","三分命中率");
+			}
+		});
+		toulanmingzhonglv.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","投篮命中率");
+			}
+		});
+		faqiumingzhonglv.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("赛季","罚球命中率");
+			}
+		});
+		
+		//进步最快
+		changjundefena.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("进步最快","场均得分");
+			}
+		});
+		changjunlanbana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("进步最快","场均篮板");
+			}
+		});
+		changjunzhugonga.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HotPlayers hp = new HotPlayers("进步最快","场均助攻");
+			}
+		});
+		
+		//队伍
+				changjundefen1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","场均得分");
+					}
+				});
+				changjunlanban1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","场均篮板");
+					}
+				});
+				changjunzhugong1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","场均助攻");
+					}
+				});
+				changjungaimao1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","场均盖帽");
+					}
+				});
+				changjunqiangduan1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","场均抢断");
+					}
+				});
+				sanfenmingzhonglv1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","三分命中率");
+					}
+				});
+				toulanmingzhonglv1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","投篮命中率");
+					}
+				});
+				faqiumingzhonglv1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						HotPlayers hp = new HotPlayers("球队赛季","罚球命中率");
+					}
+				});
 	}
 	
 	
