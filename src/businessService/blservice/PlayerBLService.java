@@ -14,12 +14,14 @@ public interface PlayerBLService{
 	
 	public ArrayList<PlayerSeasonDataVO> getPlayerSeasonData(String season);  //按照传入的赛季获取整个赛季中的所有球员的赛季数据
 	
-	//TODO 关键词查找，不是很理解上面的方法，所以自己写了个
+	 
 	//     姓名查找-含有此关键词的球员的比赛信息，个人认为姓名可以只记住单姓或者字母
 	public ArrayList<PlayerSeasonDataVO> keyfind( String text);
 	
-	//TODO 还是改成获取基本信息-
+	 
 		public ArrayList<PlayerInfoVO> getTeamAllPlayer(String season,String teamAbb);    
 		//根据球队的缩写获取球队所有的球员姓名，其实你可以考虑返回所有的基本信息，这容易做到
+		
+		public  PlayerSeasonDataVO getMost_Progress_Player(String item);
 	
 }

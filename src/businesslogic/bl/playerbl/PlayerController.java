@@ -1,9 +1,10 @@
 package businesslogic.bl.playerbl;
-import java.rmi.RemoteException;
+ 
 import java.util.ArrayList;
 
 import businessService.blservice.PlayerBLService;
 import businesslogic.bl.center.HotSort;
+import businesslogic.bl.center.SeasonInfo;
 import VO.*;
 
 public class PlayerController implements PlayerBLService {
@@ -154,6 +155,15 @@ public class PlayerController implements PlayerBLService {
 		public ArrayList<PlayerInfoVO> getTeamAllPlayer(String season,String teamAbb) {
 			// TODO Auto-generated method stub
 			return playerFactory.get_A_Team_Player(season, teamAbb);
+		}
+		@Override
+		public  PlayerSeasonDataVO  getMost_Progress_Player(String item) {
+			// TODO Auto-generated method stub
+			
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.get_MostImprove() ;
+			HotSort sort=new HotSort();
+			return sort.hotPlayer_Sort(list,item).get(0);
+			 
 		}
 	
 }

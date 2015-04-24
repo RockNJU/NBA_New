@@ -59,6 +59,15 @@ public class PlayerDataFactory {
 		return infoList;
 	}
 	
+	public ArrayList<PlayerSeasonDataVO> get_MostImprove(){
+		for(int i=0;i<dataList.size();i++){
+			if(dataList.get(i).getSeason().equals(lastDay.getSeason())){
+				return dataList.get(i).getPlayerDataList();
+			}
+		}
+		return null;
+	}
+	
 	public ArrayList<PlayerSeasonDataVO> getSeasonDataList(String season) {
 		/*传入的数据为赛季，返回某个赛季的所有球员的比赛数据信息*/
 		for(int i=0;i<dataList.size();i++){
