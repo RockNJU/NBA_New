@@ -331,7 +331,8 @@ public class Player extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				ChoosePlayerColumn cpc=new ChoosePlayerColumn();
+				cpc.setVisible(true);
 			}
 
 		});
