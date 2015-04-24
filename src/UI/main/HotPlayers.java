@@ -5,6 +5,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import UI.common.CreateTableforhot;
+
 
 
 
@@ -13,6 +15,7 @@ public class HotPlayers extends JPanel {
 	ArrayList<String> players;
 	String according;
 	String type;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -20,6 +23,10 @@ public class HotPlayers extends JPanel {
 		this.players=tmps;
 		this.according=tmpsaccording;
 		this.type=tmptype;
+		String[] title = {"肖像","名称","球队","球号","位置",according};
+		Object[][] data = {{"pic/portrait/Aaron Brooks.png","a","b","c","d",tmptype},
+				{"pic/portrait/Aaron Gray.png","e","f","a","s",tmptype}
+		};
 		setLayout(null);
 		setOpaque(false);
 		setSize(746,170);
@@ -52,8 +59,10 @@ public class HotPlayers extends JPanel {
 		No1_info.setBounds(217, 110, 85, 50);
 		add(No1_info);
 		
-		
-		
+		CreateTableforhot ctfh = new CreateTableforhot(title,data,
+				351, 12,390, 150, 37,37, 6,
+				new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),37, 37);
+		add(ctfh);
 		/**
 		JScrollPane scrollPane = new JScrollPane();
         add(scrollPane);
