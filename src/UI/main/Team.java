@@ -20,6 +20,7 @@ import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
 import UI.common.SortItem_Map;
 import UI.common.TeamMap;
+import UI.common.TeamName_Map;
 import UI.team.SingleTeam;
 import VO.TeamSeasonDataVO;
 
@@ -261,6 +262,8 @@ public class Team extends JPanel {
 	            	dd.setVisible(false);
 	            	east.setVisible(false);
 	            	west.setVisible(false);
+	            	ChooseTeamColumn cpc=new ChooseTeamColumn();
+					cpc.setVisible(true);
 	            }	
 	       
 		});
@@ -280,18 +283,13 @@ public class Team extends JPanel {
 		teamlist.setVisible(false);
 				teamlist.getTable().addMouseListener(new MouseAdapter() {
 					@Override
-					public void mouseClicked(MouseEvent e) {
-						//System.out.println(playerlist.getSelectedRow()!=-1);
-						//System.out.println(e.getClickCount() == 2);
-			            // TODO Auto-generated method stub	
-						  				 
-							// System.out.println(name);		        
+					public void mouseClicked(MouseEvent e) {	        
 							
 							try {  
 								String s=season.getSelectedItem().toString().substring(0, 5);
 							 String name = teamlist.getValueAt(teamlist.getSelectedRow(),1);
 							 SingleTeam spi;
-							 System.out.println("aha"+s+name);
+							System.out.println("aha"+s+name);
 							spi = new SingleTeam(name,s);
 							
 							 spi.setVisible(true);
@@ -303,43 +301,37 @@ public class Team extends JPanel {
 								e1.printStackTrace();
 							}
 					}
-				});
-
-		
-		
+				});		
 		west=new JPanel();
 		west.setLayout(new GridLayout(5,3,0,0));
 		west.setBounds(25, 135, 300, 480);
 		west.setOpaque(false);
-		//add(westpane);
 		east=new JPanel();
-		//eastpane = new JScrollPane(east);
 		east.setBounds(445, 135, 300, 480);	
 		east.setLayout(new GridLayout(5,3,0,0));
 		east.setOpaque(false);
-		//add(eastpane);
-		
-		//east.setBackground(new Color(253,207,135));
-		//west.setBackground(new Color(253,207,135));
 		add(east);
 		add(west);
-		//eastpane.setBackground(new Color(253,207,135));
-		//westpane.setBackground(new Color(253,207,135));
+
 
 		
 		
 		for(int i=0;i<teamswest.length;i++){
 			ImageIcon image = new ImageIcon("pic/TEAMPNG/"+teamswest[i]+".png");
 			image.setImage(image.getImage().getScaledInstance(90,90,Image.SCALE_DEFAULT)); 		
-			photo = new JLabel(image);
-			photo.setToolTipText(teamswest[i]);
+			//photo = new JLabel(image);
+			//photo.setToolTipText(teamswest[i]);
 			final String tempa = teamswest[i];
 			JButton btnNewButton = new JButton(image);
 			btnNewButton.setContentAreaFilled(false);
+			//TeamName_Map mm=new TeamName_Map();
+			//btnNewButton.setToolTipText(mm.getFullName(tempa));
+			btnNewButton.setToolTipText(tempa);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					SingleTeam sti;
 					try {
+						System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);
 						sti.setLocation(375, 58);	
@@ -360,15 +352,19 @@ public class Team extends JPanel {
 		for(int i=0;i<teamseast.length;i++){
 			ImageIcon image = new ImageIcon("pic/TEAMPNG/"+teamseast[i]+".png");
 			image.setImage(image.getImage().getScaledInstance(90,90,Image.SCALE_DEFAULT)); 	
-			photo = new JLabel(image);
-			photo.setToolTipText(teamseast[i]);
+			//photo = new JLabel(image);
+			
 			final String tempa = teamseast[i];
 			JButton btnNewButton = new JButton(image);
+			//TeamName_Map mm=new TeamName_Map();
+			//btnNewButton.setToolTipText(mm.getFullName(tempa));
+			btnNewButton.setToolTipText(tempa);
 			btnNewButton.setContentAreaFilled(false);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					SingleTeam sti;
 					try {
+						System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);
 						sti.setLocation(375, 58);	
@@ -398,78 +394,6 @@ public class Team extends JPanel {
 		dd.setBounds(2, 155, 756,451);		
 		dd.setOpaque(false);
 		add(dd);
-/*
-		logos=new JPanel();
-		logos.setSize(720, 480);
-		logos.setOpaque(false);
-		logos.setLocation(25, 135);
-		logos.setLayout(new GridLayout(5,6,5,0));
-		String teamsarray[]={"ATL","BKN","BOS","CHA","CHI",
-				"CLE","DAL","DEN","DET","GSW",
-				"HOU","IND","LAC","LAL","MEM",
-				"MIA","MIL","MIN","NOP","NYK",
-				"OKC","ORL","PHI","PHX","POR",
-				"SAC","SAS","TOR","UTA","WAS"};
-		for(int i=0;i<teamsarray.length;i++){
-			ImageIcon image = new ImageIcon("pic/TEAMPNG/"+teamsarray[i]+".png");
-			image.setImage(image.getImage().getScaledInstance(90,90,Image.SCALE_DEFAULT)); 		
-			JLabel photo = new JLabel(image);
-			photo.setToolTipText(teamsarray[i]);
-			logos.add(photo);
-			photo.addMouseListener(new MouseListener() {
-			 @Override
-	            public void mouseReleased(MouseEvent e) {
-	                // TODO Auto-generated method stub                
-	            }           
-	            @Override
-	            public void mousePressed(MouseEvent e) {
-	                // TODO Auto-generated method stub                
-	            }          
-	            @Override
-	            public void mouseExited(MouseEvent e) {
-	                // TODO Auto-generated method stub
-	            	
-	            }           
-	            @Override
-	            public void mouseEntered(MouseEvent e) {
-	            	
-	                // TODO Auto-generated method stub	            
-	            	
-	            }            
-	                         
-	            @Override
-	            public void mouseClicked(MouseEvent e) {
-	               try {
-						SingleTeam di;
-						System.out.println(photo.getToolTipText());
-						di = new SingleTeam(choose,"13-14");
-						//di.setLocation(375, 58);
-	                   // di.setVisible(true);
-	                } catch (TransformerFactoryConfigurationError
-							| TransformerException | IOException
-							| SVGConverterException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					 System.out.println("a");
-					try {
-						SingleTeam di;
-						di = new SingleTeam(choose,"13-14");
-						//di.setLocation(375, 58);
-	                   // di.setVisible(true);
-	                } catch (TransformerFactoryConfigurationError
-							| TransformerException | IOException
-							| SVGConverterException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	            }	
-	       
-		});
-		}
-		add(logos);
-		*/
-	
 		
 	}
 	
@@ -538,7 +462,7 @@ public class Team extends JPanel {
 			return re;
 		}
 		else{
-			Object[][] re=new Object[da.size()][29];
+			Object[][] re=new Object[da.size()][30];
 			/*	String[] teamtitle={" xuahao球队名称","比赛场数","投篮命中数","投篮出手次数","三分命中数",
 			" 三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数",
 			"抢断数","盖帽数","失误数","犯规数","比赛得分"," 投篮命中率","三分命中率"," 罚球命中率",
@@ -646,7 +570,7 @@ public class Team extends JPanel {
 				re[i][20]=OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());				
 				re[i][21]=OftenUseMethod.changedouble(da.get(i).getWinRate());				
 				re[i][22]=OftenUseMethod.changedouble(da.get(i).getOffenseRound_avg());
-				re[i][23]=OftenUseMethod.changedouble(da.get(i).getDefenseRound()_avg());		
+				re[i][23]=OftenUseMethod.changedouble(da.get(i).getDefenseRound());		
 				re[i][24]=OftenUseMethod.changedouble(da.get(i).getDefenseEfficiency());
 				re[i][25]=OftenUseMethod.changedouble(da.get(i).getOffenseEfficiency());
 				re[i][26]=OftenUseMethod.changedouble(da.get(i).getO_ReboundEfficiency());

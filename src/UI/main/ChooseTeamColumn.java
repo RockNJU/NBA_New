@@ -438,10 +438,11 @@ public class ChooseTeamColumn extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("a");
 				// TODO Auto-generated method stub
+				boolean ischangjun=false;
 				if(info.isSelected()){
-					title=teamAvgtitle;
+					ischangjun=true;
 				}else{
-					title=teamTotaltitle;
+					ischangjun=false;
 				}
 				int hide=0;
 				System.out.println("hide"+hide);
@@ -459,7 +460,8 @@ public class ChooseTeamColumn extends JFrame {
 				}
 				//System.out.println();
 				//TODO 方法调用
-				
+				init.t.datachoose(ischangjun, hidecolumns);
+				dispose();// 销毁窗体
 				
 			}
 			@Override

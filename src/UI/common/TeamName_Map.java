@@ -13,7 +13,7 @@ public class TeamName_Map {
 		   map.put("Celtics", "BOS");
 		   map.put("Hornets", "CHA");
 		   map.put("Bulls", "CHI");
-		   map.put("Cavaliers", "CLe");
+		   map.put("Cavaliers", "CLE");
 		   map.put("Mavericks", "DAL");
 		   map.put("Nuggets", "DEN");
 		   map.put("Pistons", "DET");
@@ -40,7 +40,7 @@ public class TeamName_Map {
 		   
 		   map.put("76ers", "PHI");	   
 		   
-		   map.put("Suns", "PKX");
+		   map.put("Suns", "PHX");
 		   //
 		   map.put("Trail Blazers", "POR");
 		   map.put("Kings", "SAC");

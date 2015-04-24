@@ -60,6 +60,9 @@ public class BasicInfo_1 extends JPanel {
 		pbl=rmi.getPlayerObject();
 		tivo=tbl.get_A_TeamInfo(s,name);
 		tdvo=tbl.get_A_TeamSeasonData(s, teamnameAbb);
+		
+		System.out.println(s+teamnameAbb);
+		
 		if(tivo==null&&tdvo!=null){
 			tivo=new TeamInfoVO(tdvo.getTeamName(), "??", "??", "??", "??", "??", "??");
 		}
