@@ -35,9 +35,10 @@ public class MatchDataController implements MatchDataService{
 	MatchPO po;
 		for(i=0;i<m.size();i++){
 			po=m.get(i);
-			if(po.getScores().size()>4){
-				System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+";"+po.getGuestTeam().getTeamName());
-			}
+			 
+				 System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+
+					 	";"+po.getGuestTeam().getTeamName()+";"+po.getScores().toString()+"---"+(1+i));
+			 
 		}
 	}
 	
@@ -131,8 +132,9 @@ public class MatchDataController implements MatchDataService{
         		matchScore=str1[2];
         		
         		}else if(num==2){
+        		//	System.out.println("--分割比分--"+line);
         			String score[]=line.split(";");
-        			for(int i=0;i<score.length-1;i++)
+        			for(int i=0;i<=score.length;i++)
         			scores.add(score[i]);
         		}
         		else{
@@ -336,11 +338,6 @@ public class MatchDataController implements MatchDataService{
 		        String[]path=l.split("\\\\");
 		        String s[]=path[path.length-1].split("_");
 		       //System.out.println("第 " +g+"场比赛");
-		         
-		        if(count==450)
-		        	break;
-		        	
-		        
 		        season=s[0];
 		        
 		       
@@ -381,9 +378,12 @@ public class MatchDataController implements MatchDataService{
 		        		matchScore=str1[2];
 		        		
 		        		}else if(num==2){
+		        			System.out.println("--分割比分--"+line);
 		        			String score[]=line.split(";");
-		        			for(int i=0;i<score.length-1;i++)
+		        			for(int i=0;i<score.length;i++)
 		        			scores.add(score[i]);
+		        			
+		        			System.out.println("--分割比分--"+score.toString());
 		        		}
 		        		else{
 		        			
