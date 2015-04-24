@@ -47,9 +47,9 @@ public class MatchDataFactory {
 			/*当赛季子仓库已经存在，则直接添加*/
 			if(matchList.get(i).getSeason().equals(vo.getSeason())){
 				matchList.get(i).add_A_match(vo);
-				System.out.println("添加比赛信息：" +vo.getDate()+"  ;"+
+				/*System.out.println("添加比赛信息：" +vo.getDate()+"  ;"+
 	vo.getHostTeam().getTeamName()+"-"+vo.getGuestTeam().getTeamName()+"比赛场数："+
-				matchList.get(0).getMatchList().size());
+				matchList.get(0).getMatchList().size());*/
 				return;
 			}
 		}

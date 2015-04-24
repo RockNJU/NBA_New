@@ -295,7 +295,7 @@ public class MatchDataController implements MatchDataService{
 		        
 		        for (String l:list) {
 		        	
-		        	System.out.println("最初的文件路劲："+l);
+		      //  	System.out.println("最初的文件路劲："+l);
 		        	/////
 		        	  H_fieldGoal=0;					//投篮命中数
 				   	     H_shootNum=0;					//投篮出手数

@@ -248,7 +248,7 @@ public class CenterController {
 		        String path = filePath;
 		        f = new FileListenerThread(path);
 		        Thread listener = new Thread(f);
-		        System.out.println("-----------------华丽丽的分割线--------------");
+		       // System.out.println("-----------------华丽丽的分割线--------------");
 		        listener.start();
 		    }
 
@@ -287,7 +287,7 @@ public class CenterController {
 		        				MatchDataService mc=new MatchDataController();
 		        				MatchPO po=mc.getMatch(path+"\\\\"+newFileList[i]);
 		        				addMatch(po);
-		        				System.out.println("---------检测到的文件："+newFileList[i]+"-------------：");
+		        				//System.out.println("---------检测到的文件："+newFileList[i]+"-------------：");
 		        			}
 		            	}
 		            	//System.out.println("?????");
