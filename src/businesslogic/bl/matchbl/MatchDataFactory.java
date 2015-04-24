@@ -6,8 +6,6 @@ import businesslogic.bl.center.LastMatchDay;
 import businesslogic.bl.center.SeasonInfo;
 import businesslogic.data.TeamData;
 import businesslogic.dataservice.TeamDataService;
-import VO.A_player_match_data;
-import VO.MatchInfo;
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
 import VO.TeamInfoVO;
@@ -17,6 +15,14 @@ public class MatchDataFactory {
 	ArrayList<TeamInfoVO> infoList;
 	
 	private LastMatchDay lastDay;
+	
+	public static void main(String args[]){
+		MatchDataFactory l=new MatchDataFactory();
+		ArrayList<MatchVO> list=l.get_A_Day_match("2013-12-03");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getDate());;
+		}
+	}
 	public MatchDataFactory(){
 		TeamDataService teamdata=new TeamData();
 		infoList=teamdata.getTeamInfoList();
@@ -56,10 +62,9 @@ public class MatchDataFactory {
 	
 	public MatchVO get_A_match(String date,String teamb){
 		String season=SeasonInfo.getSeason(date);
-		String d=SeasonInfo.getDate(date);
 		for(int i=0;i<matchList.size();i++){
 			if(matchList.get(i).getSeason().equals(season)){
-				return matchList.get(i).get_A_match(d, teamb);
+				return matchList.get(i).get_A_match(date, teamb);
 			}
 		}
 		return null;
@@ -67,11 +72,13 @@ public class MatchDataFactory {
 	
 	public ArrayList<MatchVO> get_A_Day_match(String date){
 		String season=SeasonInfo.getSeason(date);
-		String d=SeasonInfo.getDate(date);
-		
+          System.out.println("赛季?："+season);
+          
 		for(int i=0;i<matchList.size();i++){
+			System.out.println("存在的赛季："+matchList.get(i).getSeason());
 			if(matchList.get(i).getSeason().equals(season)){
-				return matchList.get(i).get_A_Day_Match(d);
+				System.out.println("找到对应赛季。");
+				return matchList.get(i).get_A_Day_Match(date);
 			}
 		}
 		return null;  					//当对应的日期没有比赛信息时，返回null

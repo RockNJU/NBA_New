@@ -2,6 +2,7 @@ package UI.blObject;
 
 import java.util.ArrayList;
 
+import VO.MatchVO;
 import VO.PlayerSeasonDataVO;
 import VO.TeamSeasonDataVO;
 import businessService.blservice.*;
@@ -34,20 +35,22 @@ public class RMIObject {
 		RMIObject m=new RMIObject();
 		TeamBLService team=m.getTeamObject();
 		PlayerBLService player=m.getPlayerObject();
-		
+		MatchBLService mac=m.getMatchObject();
 		
 		ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "pointNum_avg");
 		
-		for(int i=0;i<pl.size();i++){
+		/*for(int i=0;i<pl.size();i++){
 			System.out.println("姓名："+pl.get(i).getName()+"球员位置："+pl.get(i).getPosition()+"得分："+pl.get(i).getPointNum_avg());
 		}
 		
-		/*ArrayList<TeamSeasonDataVO> list=team.getAllTeamSeasonData("13-14");
+		ArrayList<TeamSeasonDataVO> list=team.getAllTeamSeasonData("13-14");
 		for(int i=0;i<list.size();i++){
 			System.out.println("--队名："+list.get(i).getTeamName()+";   "+list.get(i).getPointNum());
 		}*/
-		
-		
+		ArrayList<MatchVO> list=mac.getMatchByTeamTime("2013-12-03");
+		for(int i=0;i<list.size();i++){
+			System.out.println("--赛季："+list.get(i).getDate());
+		}
 		System.out.println("RMIObject测试结束！");
 	}
 	
