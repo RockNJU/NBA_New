@@ -8,12 +8,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
+
+import javax.swing.JButton;
+
+import UI.player.SinglePlayer;
+import UI.team.SingleTeam;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class test extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -42,24 +50,13 @@ public class test extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		table = new JTable();
-		table.setBackground(Color.BLACK);
-		table.setForeground(Color.YELLOW);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"New column", "New column"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
-		contentPane.add(table, BorderLayout.CENTER);
+		contentPane.add(btnNewButton, BorderLayout.CENTER);
 	}
 
 }
