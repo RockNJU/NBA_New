@@ -441,21 +441,23 @@ public class ChoosePlayerColumn extends JFrame  {
 					近五场篮板提升率.setSelected(true);
 				}
 				else{
-					参赛场数.setSelected(false);					
-					先发场数.setSelected(false);
-					篮板.setSelected(false);
-					助攻.setSelected(false);
-					上场时间.setSelected(false);
-					投篮命中率.setSelected(false);
-					三分命中率.setSelected(false);							
-					罚球命中率.setSelected(false);
-					进攻.setSelected(false);
-					防守.setSelected(false);
-					抢断.setSelected(false);
-					盖帽.setSelected(false);
-					失误.setSelected(false);								
-					犯规.setSelected(false);
-					得分.setSelected(false);
+					效率.setSelected(false);
+					Gmsc.setSelected(false);
+					真实命中率.setSelected(false);
+					投篮效率.setSelected(false);
+					
+					篮板率.setSelected(false);
+					进攻篮板数.setSelected(false);
+					防守篮板数.setSelected(false);
+					助攻率.setSelected(false);
+					抢断率.setSelected(false);
+					盖帽率.setSelected(false);
+								
+					失误率.setSelected(false);
+					使用率.setSelected(false);
+					近五场得分提升率.setSelected(false);
+					近五场助攻提升率.setSelected(false);
+					近五场篮板提升率.setSelected(false);
 				}
 				
 			}
@@ -476,10 +478,11 @@ public class ChoosePlayerColumn extends JFrame  {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				boolean ischangjun=false;
 				if(info.isSelected()){
-					title=playerAvgtitle;
+					ischangjun=true;
 				}else{
-					title=playerTotaltitle;
+					ischangjun=false;
 				}
 				System.out.println("a");
 				// TODO Auto-generated method stub
@@ -500,6 +503,8 @@ public class ChoosePlayerColumn extends JFrame  {
 				}
 				//System.out.println();
 				//TODO 方法调用
+				init.p.datachoose(ischangjun, hidecolumns);
+				dispose();// 销毁窗体
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {

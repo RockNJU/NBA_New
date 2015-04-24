@@ -55,7 +55,7 @@ public class SortItem_Map {
 	   map.put("¸ÇÃ±", "blockNum_avg");
 	   map.put("Àº°å", "reboundNum_avg");
 	   map.put("ÇÀ¶Ï", "stealNum_avg");
-	   map.put("Öú¹¥", "asistNum_avg");
+	   map.put("Öú¹¥", "assistNum_avg");
 	   map.put("·ÀÊØÀº°å", "D_ReboundNum_avg");
 	   map.put("½ø¹¥Àº°å", "O_ReboundNum_avg");
 	   map.put("·£ÀºÊı", "freeThrowNum_avg");

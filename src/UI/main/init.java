@@ -17,7 +17,8 @@ public class init extends JFrame {
 	JButton hotbutton;
 	
 	JPanel rightpanel;
-	 
+	static Player p;
+	static Team t;
 	
 	int x,y;
 	/**
@@ -132,8 +133,7 @@ public class init extends JFrame {
 
             	hotbutton.setToolTipText("热门信息");
             	teambutton.setToolTipText("队伍信息");
-            	matchbutton.setToolTipText("比赛信息");
-            	Player p;				
+            	matchbutton.setToolTipText("比赛信息");				
 				p = new Player();
 				change(p);
             }
@@ -181,9 +181,9 @@ public class init extends JFrame {
             	hotbutton.setToolTipText("热门信息");
             	teambutton.setToolTipText("队伍信息 ");
             	matchbutton.setToolTipText("比赛信息");
-            	Team p;				
-				p = new Team();
-				change(p);
+ 			
+				t = new Team();
+				change(t);
             }
         });
 
