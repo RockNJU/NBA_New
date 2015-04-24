@@ -35,6 +35,7 @@ public class Player extends JPanel {
 	JButton sort;
 	JButton find;
 	CreateTable playerlist;
+	
 	String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
 			"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 			"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
@@ -340,6 +341,33 @@ public class Player extends JPanel {
 		columns.setVisible(true);
 
 	}
+	//筛选
+	public void datachoose(boolean isaverage,int hide[]){
+		//更新信息
+		if(isaverage == true){
+			String Position = position.getSelectedItem().toString();
+			String Partition = partition.getSelectedItem().toString();
+			String According = according.getSelectedItem().toString();
+			String Season = playerseason.getSelectedItem().toString()
+					.substring(0, 5);
+			PlayerPosition_Map map1 = new PlayerPosition_Map();
+			PartitionMap map2 = new PartitionMap();
+			SortItem_Map map3 = new SortItem_Map();
+			Position = map1.getItem(Position);
+			Partition = map2.getItem(Partition);
+			According = map3.getItem(According);
+			psvo = pbl.sort(Season, Position, Partition, According);
+			System.out.println(Season + Position + Partition + According);
+			data = getAveragedata(psvo);
+			playerlist.updateTable(playerAvgtitle, data);
+		}
+		//隐藏表格
+		if(hide.length!=0){
+			for(int temp :hide){
+			playerlist.hideColumn(temp);
+			}
+		}
+	}
 
 	private Object[][] getTotaldata(ArrayList<PlayerSeasonDataVO> da) {
 		System.out.println(da == null);
@@ -408,6 +436,95 @@ public class Player extends JPanel {
 				re[i][15] = da.get(i).getTurnoverNum();
 				re[i][16] = da.get(i).getFoulNum();
 				re[i][17] = da.get(i).getPointNum();
+				re[i][18] = OftenUseMethod.changedouble(da.get(i).getEfficiency());
+				re[i][19] = OftenUseMethod.changedouble(da.get(i).getGmSc());
+				re[i][20] = OftenUseMethod.changedouble(da.get(i).getRealShootPercentage());
+				re[i][21] = OftenUseMethod.changedouble(da.get(i).getShootEfficiency());
+				re[i][22] = OftenUseMethod.changedouble(da.get(i).getReboundEfficiency());
+				re[i][23] = OftenUseMethod.changedouble(da.get(i).getOffensiveReboundEff());
+				re[i][24] = OftenUseMethod.changedouble(da.get(i).getDefenseReboundEff());
+				re[i][25] = OftenUseMethod.changedouble(da.get(i).getAssistEfficiency());
+				re[i][26] = OftenUseMethod.changedouble(da.get(i).getStealEfficiency());
+				re[i][27] = OftenUseMethod.changedouble(da.get(i).getBlockEfficiency());
+				re[i][28] = OftenUseMethod.changedouble(da.get(i).getTurnoverPercentage());
+				re[i][29] = OftenUseMethod.changedouble(da.get(i).getUsingPercentage());
+				re[0][30] = da.get(i).getL_f_point_rate();
+				re[0][31] = da.get(i).getL_f_assist_rate();
+				re[0][32] = da.get(i).getL_f_rebound_rate();
+			}
+			return re;
+
+		}
+
+	}
+	
+	private Object[][] getAveragedata(ArrayList<PlayerSeasonDataVO> da) {
+		System.out.println(da == null);
+		if (da == null) {
+			Object[][] re = new Object[1][33];
+			re[0][0] = "";
+			re[0][1] = "";
+			re[0][2] = "";
+			re[0][3] = "";
+			re[0][4] = "";
+			re[0][5] = "";
+			re[0][6] = "";
+			re[0][7] = "";
+			re[0][8] = "";
+			re[0][9] = "";
+			re[0][10] = "";
+			re[0][11] = "";
+			re[0][12] = "";
+			re[0][13] = "";
+			re[0][14] = "";
+			re[0][15] = "";
+			re[0][16] = "";
+			re[0][17] = "";
+			re[0][18] = "";
+			re[0][19] = "";
+			re[0][20] = "";
+			re[0][21] = "";
+			re[0][22] = "";
+			re[0][23] = "";
+			re[0][24] = "";
+			re[0][25] = "";
+			re[0][26] = "";
+			re[0][27] = "";
+			re[0][28] = "";
+			re[0][29] = "";
+			re[0][30] = "";
+			re[0][31] = "";
+			re[0][32] = "";
+			return re;
+		} else {
+			Object[][] re = new Object[da.size()][33];
+			/*
+			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
+			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
+			 * "进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",
+			 * "GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率",
+			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
+			 */
+			// TeamMap temp=new TeamMap();
+			for (int i = 0; i < da.size(); i++) {
+				re[i][0] = i + 1;
+				re[i][1] = da.get(i).getName();
+				re[i][2] = da.get(i).getTeamName();
+				re[i][3] = da.get(i).getMatchNum();
+				re[i][4] = da.get(i).getStartingNum();
+				re[i][5] = da.get(i).getReboundNum_avg();
+				re[i][6] = da.get(i).getAssistNum_avg();
+				re[i][7] = OftenUseMethod.changedouble(da.get(i).getTime());
+				re[i][8] = OftenUseMethod.changedouble(da.get(i).getShootPercentage());
+				re[i][9] = OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
+				re[i][10] = OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());
+				re[i][11] = da.get(i).getO_ReboundNum_avg();
+				re[i][12] = da.get(i).getD_ReboundNum_avg();
+				re[i][13] = da.get(i).getStealNum_avg();
+				re[i][14] = da.get(i).getBlockNum_avg();
+				re[i][15] = da.get(i).getTurnoverNum_avg();
+				re[i][16] = da.get(i).getFoulNum_avg();
+				re[i][17] = da.get(i).getPointNum_avg();
 				re[i][18] = OftenUseMethod.changedouble(da.get(i).getEfficiency());
 				re[i][19] = OftenUseMethod.changedouble(da.get(i).getGmSc());
 				re[i][20] = OftenUseMethod.changedouble(da.get(i).getRealShootPercentage());
