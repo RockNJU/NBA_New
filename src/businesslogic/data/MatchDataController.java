@@ -19,10 +19,12 @@ public class MatchDataController implements MatchDataService{
 		 * 
 		 * **/
 	private ArrayList<MatchPO> matchList;
-	char chr=39;
+	
+	Date day;
 	int info[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	public MatchDataController(){
 		matchList=new ArrayList<>();
+		day=new Date();
 		//readObject();
 	}
 	
@@ -171,7 +173,7 @@ public class MatchDataController implements MatchDataService{
     			   	     H_points=H_points+info[17];					//得分
     			   	     
     			   	    // System.out.println("文件：");
-        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim().replace(chr, '’'),
+        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim(),
         						str[1].trim(),calTime(str[2].trim()),
         						info[3],info[4],info[5],info[6],info[7],info[8],
         						info[9],info[10],info[11],info[12],info[13],info[14]
@@ -205,7 +207,7 @@ public class MatchDataController implements MatchDataService{
         		num++;
         }
         	 
-			        	      return new MatchPO(season,date,matchScore,scores,
+			        	      return new MatchPO(season,day.getDate(season, date),matchScore,scores,
 			        			(new TeamMatchPO(season,H_team,H_fieldGoal,H_shootNum,H_T_fieldGoal,H_T_shootNum
 		        			   			  ,H_freeThrowGoalNum,H_freeThrowNum,H_O_ReboundNum,H_D_ReboundNum,
 		        			   			  H_reboundNum,H_assistNum,H_stealNum,H_blockNum,H_turnoverNum,
@@ -378,12 +380,12 @@ public class MatchDataController implements MatchDataService{
 		        		matchScore=str1[2];
 		        		
 		        		}else if(num==2){
-		        			System.out.println("--分割比分--"+line);
+		        		//	System.out.println("--分割比分--"+line);
 		        			String score[]=line.split(";");
 		        			for(int i=0;i<score.length;i++)
 		        			scores.add(score[i]);
 		        			
-		        			System.out.println("--分割比分--"+score.toString());
+		        			//System.out.println("--分割比分--"+score.toString());
 		        		}
 		        		else{
 		        			
@@ -471,7 +473,7 @@ public class MatchDataController implements MatchDataService{
 		        		
 		        		/*String date,String matchScore,
 						ArrayList<String>scores,TeamMatch ht,TeamMatch gt*/  
-					        	 matchList.add(new MatchPO(season,date,matchScore,scores,
+					        	 matchList.add(new MatchPO(season,day.getDate(season, date),matchScore,scores,
 					        			(new TeamMatchPO(season,H_team,H_fieldGoal,H_shootNum,H_T_fieldGoal,H_T_shootNum
 				        			   			  ,H_freeThrowGoalNum,H_freeThrowNum,H_O_ReboundNum,H_D_ReboundNum,
 				        			   			  H_reboundNum,H_assistNum,H_stealNum,H_blockNum,H_turnoverNum,

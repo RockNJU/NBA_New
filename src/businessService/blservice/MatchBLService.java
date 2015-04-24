@@ -1,8 +1,6 @@
 package businessService.blservice;
 import java.util.ArrayList;
 
-import VO.A_player_match_data;
-import VO.MatchInfo;
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
 public interface MatchBLService {
