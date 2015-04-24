@@ -164,6 +164,17 @@ public class CreateTable extends JPanel{
 			 table.getColumnModel().getColumn(headTitle.length-2).setPreferredWidth(w); 
 		}
 		
+		//Òþ²Ø±íµ¥
+		public void hideColumn(int index){ 
+		    TableColumn tc= table.getColumnModel().getColumn(index); 
+		    tc.setMaxWidth(0); 
+		    tc.setPreferredWidth(0); 
+		    tc.setMinWidth(0); 
+		    tc.setWidth(0); 
+		    table.getTableHeader().getColumnModel().getColumn(index).setMaxWidth(0); 
+		    table.getTableHeader().getColumnModel().getColumn(index).setMinWidth(0); 
+		}
+		
 		public void FitTableColumns(JTable myTable){
 			  JTableHeader header = myTable.getTableHeader();
 			     int rowCount = myTable.getRowCount();
