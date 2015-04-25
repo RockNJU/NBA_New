@@ -82,10 +82,10 @@ public class TeamSeasonDataVO implements Serializable{
 	int turnoverNum,int foulNum,int points,
 	double offenseRound,double offenseEfficiency,
 	double defenseEfficiency,double O_ReboundEfficiency,double D_ReboundEfficiency,
-	double stealEfficiency ,double assistEfficiency,ArrayList<TeamMatchVO> last_five_match){
+	double stealEfficiency ,double assistEfficiency,TeamMatchVO first_match){
 		
 		last_five_match=new ArrayList<>();
-		this.last_five_match=last_five_match;
+		 last_five_match.add(first_match);
 		this.season=season;
 		this.teamName = teamName; 
 		this.info=info;

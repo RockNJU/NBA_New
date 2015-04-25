@@ -51,7 +51,7 @@ public class TeamSeasonData {
 				vo.getAssistNum(),vo.getStealNum(),vo.getReboundNum(),vo.getBlockNum(),vo.getTurnoverNum(),
 				vo.getFoulNum(),vo.getPointNum(),vo.getOffenseRound(),vo.getOffenseEfficiency(),
 				vo.getDefenseEfficiency(),vo.getO_ReboundEfficiency(),vo.getD_ReboundEfficiency(),
-				vo.getStealEfficiency(),vo.getAssistEfficiency()));            //当赛季列表中没有某支球队的时候，添加这支球队的信息
+				vo.getStealEfficiency(),vo.getAssistEfficiency(), vo));            //当赛季列表中没有某支球队的时候，添加这支球队的信息
 	}
 	
 	
