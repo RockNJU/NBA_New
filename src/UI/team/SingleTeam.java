@@ -282,7 +282,7 @@ public class SingleTeam extends JDialog {
 		 * 背景图片
 		 */
 
-		ImageIcon image = new ImageIcon("pic/详细界面.png");
+		ImageIcon image = new ImageIcon("pic/详细界面2.png");
 		image.setImage(image.getImage().getScaledInstance(764,635,Image.SCALE_DEFAULT)); 		
 		JLabel photo = new JLabel(image);		
 		photo.setBounds(0, 0, 764,635);		
