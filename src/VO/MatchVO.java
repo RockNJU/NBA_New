@@ -3,6 +3,8 @@ package VO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import businesslogic.bl.center.HotSort;
+
 public class MatchVO implements Serializable{
 	/**
 	 * 
@@ -48,5 +50,46 @@ public class MatchVO implements Serializable{
 
 	public TeamMatchVO getGuestTeam() {
 		return guestTeam;
+	}
+	public ArrayList<SingleMatchPersonalDataVO> sort(String item){
+		ArrayList<SingleMatchPersonalDataVO> list=hostTeam.getIndividualData();
+		list.addAll(guestTeam.getIndividualData());
+		HotSort sort=new HotSort();
+		return sort.hotSinglePlayer_Sort(list, item);	
+	}
+	
+	public SingleMatchPersonalDataVO get_Highest_point(){
+		/*获取一场比赛中得分王*/
+		ArrayList<SingleMatchPersonalDataVO>list= sort("pointNum");
+		
+		return list.get(0);
+	}
+	
+	public SingleMatchPersonalDataVO get_Highest_rebound(){
+		/*获取一场比赛中篮板王*/
+		ArrayList<SingleMatchPersonalDataVO>list= sort("reboundNum");
+		
+		return list.get(0);
+	}
+	
+	public SingleMatchPersonalDataVO get_Highest_assist(){
+		/*获取一场比赛中的助攻王**/
+		ArrayList<SingleMatchPersonalDataVO>list= sort("assistNum");
+		
+		return list.get(0);
+	}
+	
+	public SingleMatchPersonalDataVO get_Highest_steal(){
+		/*获取一场比赛中的抢断王*/
+		ArrayList<SingleMatchPersonalDataVO>list= sort("stealNum");
+		
+		return list.get(0);
+	}
+	
+	public SingleMatchPersonalDataVO get_Highest_block(){
+		/*获取一场比赛中的盖帽王*/
+		ArrayList<SingleMatchPersonalDataVO>list= sort("blockNum");
+		
+		return list.get(0);
 	}
 }

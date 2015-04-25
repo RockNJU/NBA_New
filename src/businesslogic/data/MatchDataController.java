@@ -256,8 +256,7 @@ public class MatchDataController implements MatchDataService{
 		        //System.out.println(list.size());  
 		        
 		        String season;
-		        int g=0;
-		        
+
 		       int H_fieldGoal ;					//投篮命中数
 		   	   int H_shootNum;					//投篮出手数
 		   	   int H_T_fieldGoal ;				//三分球命中数
@@ -333,7 +332,7 @@ public class MatchDataController implements MatchDataService{
 		        	
 		        	
 		        	//////////
-		        	g++;
+		         
 		        	try{ 
 		        	//BufferedReader br = new BufferedReader(new FileReader(new File(l))); 
 		        
