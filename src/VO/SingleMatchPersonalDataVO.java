@@ -29,8 +29,8 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	 private int stealNum;					//抢断数
 	 private int blockNum;					//盖帽数
 	 private int turnoverNum;				//失误数
-	 private int foulNum;					//犯规数
 	 private int pointNum;					//得分
+	 private int foulNum;					//犯规数
 	 
 		private double shootEfficiency=0 ;		//投篮效率
 		private double assistEfficiency;        //助攻率__
@@ -83,6 +83,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		 this.blockNum=blockNum;
 		 this.turnoverNum=turnoverNum;
 		 this.foulNum=foulNum;
+		 
 		 this.pointNum=points;
 		 
 		 this.assistEfficiency=assistEfficiency;
@@ -188,7 +189,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		return foulNum;
 	}
 
-	public int getPoints(){
+	public int getPointNum(){
 		return pointNum;
 	}
 	public int getStealNum(){

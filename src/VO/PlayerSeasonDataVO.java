@@ -279,7 +279,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		 turnoverNum=turnoverNum+vo.getTurnoverNum();
 		 
 		 foulNum=foulNum+vo.getFoulNum();
-		 pointNum=pointNum+vo.getPoints();
+		 pointNum=pointNum+vo.getPointNum();
 		 
 		 
 		 GmSc=(pointNum+fieldGoal*0.4-0.7*shootNum-
@@ -297,7 +297,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		  }
 		 
 		 int count=0;
-		 if(vo.getPoints()>=10)
+		 if(vo.getPointNum()>=10)
 			 count++;
 		 if(vo.getReboundNum()>=10)
 			 count++;
@@ -345,7 +345,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				T_shootPercentage=(double)T_fieldGoal/T_shootNum;
 		 
 		 if(last_f_point.size()<5){
-			 last_f_point.add(vo.getPoints());
+			 last_f_point.add(vo.getPointNum());
 			 last_f_assist.add(vo.getAssistNum());
 			 last_f_rebound.add(vo.getReboundNum());
 		 }else{
@@ -353,7 +353,7 @@ public class PlayerSeasonDataVO implements Serializable{
 			 last_f_assist.remove(0);
 			 last_f_rebound.remove(0);
 			 
-			 last_f_point.add(vo.getPoints());
+			 last_f_point.add(vo.getPointNum());
 			 last_f_assist.add(vo.getAssistNum());
 			 last_f_rebound.add(vo.getReboundNum());
 			 double p_avg=(pointNum-get_last_five_Sum(last_f_point))/matchNum;

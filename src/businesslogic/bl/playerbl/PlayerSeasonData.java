@@ -64,7 +64,7 @@ public class PlayerSeasonData {
 		}
 		
 		int count=0;
-		 if(vo.getPoints()>=10)
+		 if(vo.getPointNum()>=10)
 			 count++;
 		 if(vo.getReboundNum()>=10)
 			 count++;
@@ -91,7 +91,7 @@ public class PlayerSeasonData {
 				vo.getFreeThrowGoalNum(),vo.getFreeThrowNum(),vo.getO_ReboundNum(),
 				vo.getD_ReboundNum(),vo.getReboundNum(),
 				vo.getAssistNum(),vo.getStealNum(),vo.getBlockNum(),vo.getTurnoverNum(),
-				vo.getFoulNum(),vo.getPoints(),vo.getAssistEfficiency(),vo.getReboundEfficiency(),
+				vo.getFoulNum(),vo.getPointNum(),vo.getAssistEfficiency(),vo.getReboundEfficiency(),
 				vo.getOffensiveReboundEff(),vo.getDefenseReboundEff(),
 				vo.getStealEfficiency(),vo.getUsingPercentage(),
 				vo.getBlockEfficiency(),seasonDoubleNum,seasonThreeNum);

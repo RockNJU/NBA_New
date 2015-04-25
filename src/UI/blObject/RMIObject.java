@@ -47,10 +47,14 @@ public class RMIObject {
 		for(int i=0;i<list.size();i++){
 			System.out.println("--队名："+list.get(i).getTeamName()+";   "+list.get(i).getPointNum());
 		}*/
-		ArrayList<MatchVO> list=mac.getMatchByTeamTime("2013-12-03");
-		for(int i=0;i<list.size();i++){
-			System.out.println("--赛季："+list.get(i).getDate());
-		}
+		 MatchVO  vo=mac.getMatchByTeam("2013-12-03","TOR");
+		/*for(int i=0;i<list.size();i++){
+			System.out.println("--赛季："+list.get(i).getDate()+"队名："+list.get(i).getHostTeam().getTeamName());
+		}*/
+		 
+		 System.out.println("--赛季："+vo.getDate()+"队--员---名："+
+		 vo.get_GuestTeam_Highest_point().getPlayerName()+"；得分："+vo.get_GuestTeam_Highest_point().getPointNum());
+			
 		System.out.println("RMIObject测试结束！");
 	}
 	
