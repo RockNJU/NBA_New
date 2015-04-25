@@ -94,7 +94,7 @@ public class PlayerSeasonData {
 				vo.getFoulNum(),vo.getPointNum(),vo.getAssistEfficiency(),vo.getReboundEfficiency(),
 				vo.getOffensiveReboundEff(),vo.getDefenseReboundEff(),
 				vo.getStealEfficiency(),vo.getUsingPercentage(),
-				vo.getBlockEfficiency(),seasonDoubleNum,seasonThreeNum);
+				vo.getBlockEfficiency(),seasonDoubleNum,seasonThreeNum,vo);
 		playerDataList.add(newData);
 		
 	}

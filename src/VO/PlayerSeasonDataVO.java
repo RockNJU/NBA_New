@@ -86,6 +86,8 @@ public class PlayerSeasonDataVO implements Serializable{
 	private int seasonDoubleNum;		    //赛季两双数
 	private int seasonThreeNum;  		    //赛季三双数
 	
+	private ArrayList<SingleMatchPersonalDataVO> last_five_match_data; //最近五场比赛的数据
+	
 	private ArrayList<Integer> last_f_point=new ArrayList<>();
 	private ArrayList<Integer> last_f_assist=new ArrayList<>();
 	private ArrayList<Integer> last_f_rebound=new ArrayList<>();
@@ -104,7 +106,7 @@ public class PlayerSeasonDataVO implements Serializable{
 		                           double assistEfficiency,
 		 double reboundEfficiency,double offensiveReboundEff,
 		 double defenseReboundEff,double stealEfficiency,
-		 double usingPercentage,double blockEfficiency,int doubleNum,int threeNum){
+		 double usingPercentage,double blockEfficiency,int doubleNum,int threeNum,SingleMatchPersonalDataVO firstMatch){
 				
 				this.season=season;
 				this.name=name;
@@ -185,12 +187,11 @@ public class PlayerSeasonDataVO implements Serializable{
 				  foulNum_avg= foulNum;
 				  pointNum_avg= pointNum;
 				  
-				  if(matchNum!=0)
+				  
 						 efficiency=  pointNum+reboundNum+assistNum+stealNum+blockNum-
 						   (shootNum-fieldGoal)  -(freeThrowNum-freeThrowGoalNum)-turnoverNum ;
-						else 
-							efficiency=0;
-				  /////////////
+					 
+				   
 				     assistEfficiency_avg=assistEfficiency;        //助攻率
 					  reboundEfficiency_avg=reboundEfficiency;       //篮板率
 					  offensiveReboundEff_avg=offensiveReboundEff;     //进攻篮板率
@@ -212,6 +213,9 @@ public class PlayerSeasonDataVO implements Serializable{
 					 		 }else{ 
 					 			 turnoverPercentage=0.44*(freeThrowNum+turnoverNum)/matchNum;
 					 		 }
+					      
+					      last_five_match_data=new ArrayList<>(); 
+					     last_five_match_data.add(firstMatch);
 				
 	}
 	
@@ -341,21 +345,26 @@ public class PlayerSeasonDataVO implements Serializable{
 			 shootPercentage=(double)fieldGoal/shootNum ;
 		 if(freeThrowNum!=0)
 				freeThrowPercentage=(double)freeThrowGoalNum/freeThrowNum;
-		 if(T_shootNum==0)
+		 if(T_shootNum!=0)
 				T_shootPercentage=(double)T_fieldGoal/T_shootNum;
 		 
 		 if(last_f_point.size()<5){
 			 last_f_point.add(vo.getPointNum());
 			 last_f_assist.add(vo.getAssistNum());
 			 last_f_rebound.add(vo.getReboundNum());
+			 last_five_match_data.add(vo);
 		 }else{
+			 last_five_match_data.remove(0);
 			 last_f_point.remove(0);
 			 last_f_assist.remove(0);
 			 last_f_rebound.remove(0);
 			 
+			 last_five_match_data.add(vo);
 			 last_f_point.add(vo.getPointNum());
 			 last_f_assist.add(vo.getAssistNum());
 			 last_f_rebound.add(vo.getReboundNum());
+			 
+			 if(last_f_point.size()>5){
 			 double p_avg=(pointNum-get_last_five_Sum(last_f_point))/matchNum;
 			 double a_avg=(assistNum-get_last_five_Sum(last_f_assist))/matchNum;
 			 double r_avg=(reboundNum-get_last_five_Sum(last_f_rebound))/matchNum;
@@ -363,6 +372,7 @@ public class PlayerSeasonDataVO implements Serializable{
 			l_f_point_rate=(get_last_five_Sum(last_f_point)/5-p_avg)/p_avg;      //最近5场得分提升率
 			l_f_assist_rate=(get_last_five_Sum(last_f_assist)/5-a_avg)/a_avg;    //最近5场助攻提升率
 			l_f_rebound_rate=(get_last_five_Sum(last_f_rebound)/5-r_avg)/r_avg;  //最近5场篮板提升率
+			 }
 			 
 		 }
 		 
@@ -717,6 +727,12 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public String getReverseName() {
 		return reverseName;
+	}
+
+
+
+	public ArrayList<SingleMatchPersonalDataVO> getLast_five_match_data() {
+		return last_five_match_data;
 	}
 
 	

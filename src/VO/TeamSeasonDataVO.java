@@ -1,6 +1,7 @@
 package VO;
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class TeamSeasonDataVO implements Serializable{
 	/**
@@ -70,7 +71,10 @@ public class TeamSeasonDataVO implements Serializable{
 	double O_ReboundEfficiency_avg;
 	private double D_ReboundEfficiency =0;
 	double D_ReboundEfficiency_avg;
+	
+	private ArrayList<TeamMatchVO> last_five_match;
 
+    	
 	public TeamSeasonDataVO(String season,String teamName,TeamInfoVO info,int matchNum,int winNum,
 	int fieldGoal,int shootNum,int T_fieldGoal,int T_shootNum,
 	int freeThrowGoalNum,int freeThrowNum,int O_ReboundNum,
@@ -78,9 +82,10 @@ public class TeamSeasonDataVO implements Serializable{
 	int turnoverNum,int foulNum,int points,
 	double offenseRound,double offenseEfficiency,
 	double defenseEfficiency,double O_ReboundEfficiency,double D_ReboundEfficiency,
-	double stealEfficiency ,double assistEfficiency){
+	double stealEfficiency ,double assistEfficiency,ArrayList<TeamMatchVO> last_five_match){
 		
-		
+		last_five_match=new ArrayList<>();
+		this.last_five_match=last_five_match;
 		this.season=season;
 		this.teamName = teamName; 
 		this.info=info;
@@ -151,6 +156,13 @@ public class TeamSeasonDataVO implements Serializable{
 
 	 public void add_A_Match_Data(TeamMatchVO vo){
 		
+		 if(last_five_match.size()<5){
+			 last_five_match.add(vo);
+		 }else{
+			 last_five_match.remove(0);
+			 last_five_match.add(vo);
+		 }
+		 
 		 matchNum++;
 		 defenseRound=defenseRound+vo.getDefenseRound();
 		 fieldGoal=fieldGoal+vo.getFieldGoal();
@@ -494,5 +506,10 @@ public class TeamSeasonDataVO implements Serializable{
 
 		public TeamInfoVO getInfo() {
 			return info;
+		}
+
+
+		public ArrayList<TeamMatchVO> getLast_five_match() {
+			return last_five_match;
 		}
 }
