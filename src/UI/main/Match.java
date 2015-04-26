@@ -13,6 +13,8 @@ import UI.blObject.RMIObject;
 import UI.common.ComboBoxRenderer;
 import UI.common.CreateTable;
 import UI.common.DateChooser;
+import UI.match.SingleMatch;
+import UI.player.SinglePlayer;
 import VO.MatchInfo;
 import VO.MatchVO;
 
@@ -132,7 +134,7 @@ public class Match extends JPanel {
 	               matchlist.setVisible(true);
 	               
 	               mvo=mbl.getMatchByTeamTime(dc.showDate.getText());
-	               System.out.println(mvo==null);
+	               System.out.println("shifouweikong"+mvo==null);
 	               if(mvo==null){
 	            	   JOptionPane.showMessageDialog(Match.this, "您搜索的日期没有比赛！");
 	               }else{
@@ -247,6 +249,26 @@ public class Match extends JPanel {
 		matchlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(matchlist);
 		matchlist.setVisible(false);
+		// 双击进入球员界面
+				matchlist.getTable().addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						// System.out.println(playerlist.getSelectedRow()!=-1);
+						// System.out.println(e.getClickCount() == 2);
+						// TODO Auto-generated method stub
+						if (e.getClickCount() == 2 && matchlist.getSelectedRow() != -1) {
+							String team=matchlist.getValueAt(
+									matchlist.getSelectedRow(), 3);
+							String date= matchlist.getValueAt(
+									matchlist.getSelectedRow(), 1);
+							// System.out.println(name);
+							SingleMatch spi = new SingleMatch(team,date );
+							spi.setVisible(true);
+							spi.setLocation(375, 58);
+						}
+					}
+				});
+
 	}
 	
 

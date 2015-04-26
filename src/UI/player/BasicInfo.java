@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 
 import businessService.blservice.PlayerBLService;
 import UI.blObject.RMIObject;
+import UI.common.TeamName_Map;
 import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
 import VO.PlayerVO;
@@ -66,10 +67,10 @@ public class BasicInfo extends JPanel {
 			pivo=new PlayerInfoVO(pdvo.getName(), "??", pdvo.getPosition(), "??", 0, "??", 0, 0, "??");
 		}
 		else if(pdvo==null&&pivo!=null){
-			pdvo=new PlayerSeasonDataVO(season, pivo.getName(), pivo, "??", "??",pivo.getPosition(), "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
+			pdvo=new PlayerSeasonDataVO(season, pivo.getName(), pivo, "??", "??",pivo.getPosition(), "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0, null);
 		}else if(pivo==null&&pdvo==null){
 			pivo=new PlayerInfoVO(name, "??", "??", "??", 0, "??", 0, 0, "??");
-			pdvo=new PlayerSeasonDataVO(season, name, null, "??", "??","??", "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0);
+			pdvo=new PlayerSeasonDataVO(season, name, null, "??", "??","??", "??",0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0, null);
 			
 		}
 		pvo=new PlayerVO(pivo, pdvo);
@@ -102,7 +103,7 @@ public class BasicInfo extends JPanel {
 		add(num_2);
 		//TODO 位置/效力球队
 		
-		
+		//TeamName_Map m=new TeamName_Map();
 		JLabel num_3 = new JLabel(getlocation(pvo.getInfo().getPosition())+"/"+pvo.getData().getTeamName());
 		num_3.setForeground(new Color(102, 0, 51));
 		num_3.setFont(new Font("幼圆", Font.BOLD, 15));

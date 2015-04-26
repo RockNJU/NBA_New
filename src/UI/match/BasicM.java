@@ -27,7 +27,7 @@ public class BasicM extends JPanel {
 		
 		mbl=rmi.getMatchObject();
 		mvo=mbl.getMatchByTeam(date, team);
-		System.out.println(mvo==null);
+		//System.out.println(mvo==null);
 		ImageIcon imageA=new ImageIcon("pic\\TEAMPNG\\"+mvo.getHostTeam().getTeamName()+".png");	
 		//显示图片
 		imageA.setImage(imageA.getImage().getScaledInstance(226,226,Image.SCALE_DEFAULT)); 
@@ -176,7 +176,7 @@ public class BasicM extends JPanel {
 		
 		JLabel threeb = new JLabel(changedouble(mvo.getGuestTeam().getOffenseEfficiency()));
 		threeb.setFont(new Font("黑体", Font.PLAIN, 18));
-		threeb.setBounds(249, 356, 50, 27);
+		threeb.setBounds(249, 356, 88, 27);
 		add(threeb);
 		if(mvo.getHostTeam().getOffenseEfficiency()>(mvo.getGuestTeam().getOffenseEfficiency())){
 			threea.setForeground(win);
@@ -195,7 +195,7 @@ public class BasicM extends JPanel {
 		
 		JLabel fb = new JLabel(changedouble(mvo.getGuestTeam().getDefenseEfficiency()));
 		fb.setFont(new Font("黑体", Font.PLAIN, 18));
-		fb.setBounds(249, 383, 50, 27);
+		fb.setBounds(249, 383, 88, 27);
 		add(fb);
 		if(mvo.getHostTeam().getDefenseEfficiency()>(mvo.getGuestTeam().getDefenseEfficiency())){
 			fa.setForeground(win);
@@ -214,7 +214,7 @@ public class BasicM extends JPanel {
 		
 		JLabel fiveb = new JLabel(changedouble(mvo.getGuestTeam().getShootPercentage()));
 		fiveb.setFont(new Font("黑体", Font.PLAIN, 18));
-		fiveb.setBounds(249, 408, 50, 27);
+		fiveb.setBounds(249, 408, 88, 27);
 		add(fiveb);
 		if(mvo.getHostTeam().getShootPercentage()>(mvo.getGuestTeam().getShootPercentage())){
 			fivea.setForeground(win);
@@ -233,7 +233,7 @@ public class BasicM extends JPanel {
 		
 		JLabel sixb = new JLabel(changedouble(mvo.getGuestTeam().getFreeThrowPercentage()));
 		sixb.setFont(new Font("黑体", Font.PLAIN, 18));
-		sixb.setBounds(249, 435, 50, 27);
+		sixb.setBounds(249, 435, 88, 27);
 		add(sixb);
 		if(mvo.getHostTeam().getFreeThrowPercentage()>(mvo.getGuestTeam().getFreeThrowPercentage())){
 			sixa.setForeground(win);
@@ -252,7 +252,7 @@ public class BasicM extends JPanel {
 		
 		JLabel sevenb = new JLabel(changedouble(mvo.getGuestTeam().getThreePointPercentage()));
 		sevenb.setFont(new Font("黑体", Font.PLAIN, 18));
-		sevenb.setBounds(249, 459, 50, 27);
+		sevenb.setBounds(249, 459, 88, 27);
 		add(sevenb);
 		if(mvo.getHostTeam().getThreePointPercentage()>(mvo.getGuestTeam().getThreePointPercentage())){
 			sevena.setForeground(win);
@@ -288,7 +288,7 @@ public class BasicM extends JPanel {
 		
 		JLabel zg2 = new JLabel(mvo.get_GuestTeam_Highest_assist().getPlayerName());
 		zg2.setFont(new Font("黑体", Font.PLAIN, 15));
-		zg2.setBounds(608, 305, 143, 27);
+		zg2.setBounds(616, 305, 143, 27);
 		add(zg2);
 		
 		JLabel zga = new JLabel(String.valueOf(mvo.get_HostTeam_Highest_assist().getAssistNum()));
@@ -299,7 +299,7 @@ public class BasicM extends JPanel {
 	
 		JLabel zgb = new JLabel(String.valueOf(mvo.get_GuestTeam_Highest_assist().getAssistNum()));
 		zgb.setFont(new Font("黑体", Font.PLAIN, 18));
-		zgb.setBounds(638, 328, 58, 27);
+		zgb.setBounds(646, 328, 58, 27);
 		add(zgb);
 		
 		
@@ -326,7 +326,7 @@ public class BasicM extends JPanel {
 		add(lba);
 		JLabel lbb = new JLabel(mvo.get_GuestTeam_Highest_rebound().getPlayerName());
 		lbb.setFont(new Font("黑体", Font.PLAIN, 15));
-		lbb.setBounds(608, 360, 143, 27);
+		lbb.setBounds(616, 360, 143, 27);
 		add(lbb);
 		JLabel lb1 = new JLabel(String.valueOf(mvo.get_HostTeam_Highest_rebound().getReboundNum()));
 		lb1.setFont(new Font("黑体", Font.PLAIN, 18));
@@ -335,7 +335,7 @@ public class BasicM extends JPanel {
 		
 		JLabel lb2 = new JLabel(String.valueOf(mvo.get_GuestTeam_Highest_rebound().getReboundNum()));
 		lb2.setFont(new Font("黑体", Font.PLAIN, 18));
-		lb2.setBounds(638, 391, 58, 27);
+		lb2.setBounds(646, 391, 58, 27);
 		add(lb2);
 		
 		if(mvo.get_HostTeam_Highest_assist().getReboundNum()>(mvo.get_GuestTeam_Highest_assist().getReboundNum())){
@@ -362,25 +362,25 @@ public class BasicM extends JPanel {
 		
 		JLabel de2 = new JLabel(mvo.get_GuestTeam_Highest_point().getPlayerName());
 		de2.setFont(new Font("黑体", Font.PLAIN, 15));
-		de2.setBounds(608, 422, 143, 27);
+		de2.setBounds(616, 422, 143, 27);
 		add(de2);
 		
 
-		JLabel dea = new JLabel(String.valueOf(mvo.get_HostTeam_Highest_point().getPoints()));
+		JLabel dea = new JLabel(String.valueOf(mvo.get_HostTeam_Highest_point().getPointNum()));
 		dea.setFont(new Font("黑体", Font.PLAIN, 18));
 		dea.setBounds(495, 443, 58, 27);
 		add(dea);
 		
-		JLabel deb = new JLabel(String.valueOf(mvo.get_GuestTeam_Highest_point().getPoints()));
+		JLabel deb = new JLabel(String.valueOf(mvo.get_GuestTeam_Highest_point().getPointNum()));
 		deb.setFont(new Font("黑体", Font.PLAIN, 18));
-		deb.setBounds(638, 443, 58, 27);
+		deb.setBounds(646, 443, 58, 27);
 		add(deb);
-		if(mvo.get_HostTeam_Highest_assist().getPoints()>(mvo.get_GuestTeam_Highest_assist().getPoints())){
+		if(mvo.get_HostTeam_Highest_assist().getPointNum()>(mvo.get_GuestTeam_Highest_assist().getPointNum())){
 			dea.setForeground(win);
 			de1.setForeground(win);
 			deb.setForeground(lose);
 			de2.setForeground(lose);
-		}else if(mvo.get_HostTeam_Highest_assist().getPoints()==(mvo.get_GuestTeam_Highest_assist().getPoints())){
+		}else if(mvo.get_HostTeam_Highest_assist().getPointNum()==(mvo.get_GuestTeam_Highest_assist().getPointNum())){
 			dea.setForeground(lose);
 			de1.setForeground(lose);
 			deb.setForeground(lose);

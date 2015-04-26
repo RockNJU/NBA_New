@@ -202,7 +202,7 @@ public class SinglePlayer extends JDialog {
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
-            	MatP m=new MatP();
+            	MatP m=new MatP(playername,season);
             	change(m);
             }
         });

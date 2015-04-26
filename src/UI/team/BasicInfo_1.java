@@ -67,10 +67,10 @@ public class BasicInfo_1 extends JPanel {
 			tivo=new TeamInfoVO(tdvo.getTeamName(), "??", "??", "??", "??", "??", "??");
 		}
 		else if(tdvo==null&&tivo!=null){
-			tdvo=new TeamSeasonDataVO(season, tivo.getFullName(), tivo, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			tdvo=new TeamSeasonDataVO(season, tivo.getFullName(), tivo, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
 		}else if(tivo==null&&tdvo==null){
 			tivo=new TeamInfoVO(name, "??", "??", "??", "??", "??", "??");
-			tdvo=new TeamSeasonDataVO(season, name, null, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			tdvo=new TeamSeasonDataVO(season, name, null, 0, 0,0, 0,0,0, 0, 0, 0, 0,0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
 			
 		}
 		tvo=new TeamVO(tivo,tdvo);

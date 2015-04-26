@@ -22,7 +22,7 @@ public class SingleMatch extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	
+	/*
 	public static void main(String[] args) {
 		 try {
 	            UIManager
@@ -38,7 +38,7 @@ public class SingleMatch extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	/**
 	 * Create the dialog.
 	 */
@@ -202,7 +202,7 @@ public class SingleMatch extends JDialog {
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
-            	MatM m=new MatM();
+            	MatM m=new MatM(t,d);
             	change(m);
             }
         });
@@ -318,12 +318,5 @@ public class SingleMatch extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(OtherM ppanel){
-		rightpanel.removeAll();
-		rightpanel.add(ppanel);
-		ppanel.setVisible(true);
-		ppanel.setBounds(0, 0, 760,500);
-		rightpanel.validate();
-		rightpanel.repaint();
-	}
+	
 }
