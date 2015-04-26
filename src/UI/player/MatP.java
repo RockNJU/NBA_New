@@ -12,6 +12,7 @@ import UI.common.OftenUseMethod;
 import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 import businessService.blservice.PlayerBLService;
+import javax.swing.JLabel;
 
 public class MatP extends JPanel {
 
@@ -21,7 +22,7 @@ public class MatP extends JPanel {
 	CreateTable list;
 	ArrayList<SingleMatchPersonalDataVO> array;
 	Object[][] data;
-	String[] title = {"比赛日期","效力球队","球员位置","球员上场时间","进球数","投篮总数","三分进球数",
+	String[] title = {"比赛日期","效力球队","是否首发","球员位置","球员上场时间","进球数","投篮总数","三分进球数",
 			 "三分投射数","罚篮进球数","罚篮总数","进攻篮板数","防守篮板数","篮板总数",
 			 "助攻数","抢断数","盖帽数","失误数","得分","犯规数","投篮效率","助攻率","篮板率","进攻篮板率",
 			 "防守篮板率","抢断率","失误率","使用率","盖帽率","真实投篮命中率"};
@@ -34,17 +35,25 @@ public class MatP extends JPanel {
 		setOpaque(false);
 		
 		pbl=rmi.getPlayerObject();
+		
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
-		list = new CreateTable(title, data, 10, 45, 720, 460, 25,
+		data=getdata(pdvo.getLast_five_match_data());
+		list = new CreateTable(title, data, 15, 45, 720, 230, 25,
 				new Font("华文新魏", 0, 15), new Font("Dialog", 0, 12));
+		list.setLocation(18, 68);
 		add(list);
+		
+		JLabel lblNewLabel = new JLabel(pdvo.getName()+"近五场比赛的信息：");
+		lblNewLabel.setFont(new Font("华康雅宋体W9", Font.PLAIN, 20));
+		lblNewLabel.setBounds(18, 10, 413, 48);
+		add(lblNewLabel);
 		
 	}
 	
-	private Object[][] getTotaldata(ArrayList<PlayerSeasonDataVO> da) {
+	private Object[][] getdata(ArrayList<SingleMatchPersonalDataVO> da) {
 		System.out.println(da == null);
 		if (da == null) {
-			Object[][] re = new Object[1][33];
+			Object[][] re = new Object[1][30];
 			re[0][0] = "";
 			re[0][1] = "";
 			re[0][2] = "";
@@ -75,54 +84,44 @@ public class MatP extends JPanel {
 			re[0][27] = "";
 			re[0][28] = "";
 			re[0][29] = "";
-			re[0][30] = "";
-			re[0][31] = "";
-			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][33];
-			/*
-			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
-			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
-			 * "进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",
-			 * "GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率",
-			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
-			 */
-			// TeamMap temp=new TeamMap();
+			Object[][] re = new Object[da.size()][30];		
 			for (int i = 0; i < da.size(); i++) {
-				re[i][0] = i + 1;
-				re[i][1] = da.get(i).getName();
-				re[i][2] = da.get(i).getTeamName();
-				re[i][3] = da.get(i).getMatchNum();
-				re[i][4] = da.get(i).getStartingNum();
-				re[i][5] = da.get(i).getReboundNum();
-				re[i][6] = da.get(i).getAssistNum();
-				re[i][7] = OftenUseMethod.changedouble(da.get(i).getTime());
-				re[i][8] = OftenUseMethod.changedouble(da.get(i).getShootPercentage());
-				re[i][9] = OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
-				re[i][10] = OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());
+				re[i][0] = da.get(i).getDate();
+				re[i][1] = da.get(i).getTeamName();
+				if(da.get(i).getPlayerPosition()==null | da.get(i).getPlayerPosition().length()==0){
+					re[i][2] = "否";
+				}else{
+					re[i][2] = "是";
+				}	
+				re[i][3] = da.get(i).getPlayerPosition();
+				re[i][4] =  OftenUseMethod.changedouble(da.get(i).getTime());
+				re[i][5] = da.get(i).getFieldGoal();
+				re[i][6] = da.get(i).getShootNum();
+				re[i][7] = da.get(i).getT_fieldGoal();
+				re[i][8] = da.get(i).getT_shootNum();
+				re[i][9] = da.get(i).getFreeThrowGoalNum();
+				re[i][10] = da.get(i).getFreeThrowNum();
 				re[i][11] = da.get(i).getO_ReboundNum();
 				re[i][12] = da.get(i).getD_ReboundNum();
-				re[i][13] = da.get(i).getStealNum();
-				re[i][14] = da.get(i).getBlockNum();
-				re[i][15] = da.get(i).getTurnoverNum();
-				re[i][16] = da.get(i).getFoulNum();
+				re[i][13] = da.get(i).getAssistNum();
+				re[i][14] = da.get(i).getStealNum();
+				re[i][15] = da.get(i).getBlockNum();
+				re[i][16] = da.get(i).getTurnoverNum();
 				re[i][17] = da.get(i).getPointNum();
-				re[i][18] = OftenUseMethod.changedouble(da.get(i).getEfficiency());
-				re[i][19] = OftenUseMethod.changedouble(da.get(i).getGmSc());
-				re[i][20] = OftenUseMethod.changedouble(da.get(i).getRealShootPercentage());
-				re[i][21] = OftenUseMethod.changedouble(da.get(i).getShootEfficiency());
-				re[i][22] = OftenUseMethod.changedouble(da.get(i).getReboundEfficiency());
-				re[i][23] = OftenUseMethod.changedouble(da.get(i).getOffensiveReboundEff());
-				re[i][24] = OftenUseMethod.changedouble(da.get(i).getDefenseReboundEff());
-				re[i][25] = OftenUseMethod.changedouble(da.get(i).getAssistEfficiency());
-				re[i][26] = OftenUseMethod.changedouble(da.get(i).getStealEfficiency());
+				re[i][18] = da.get(i).getFoulNum();
+				re[i][19] = OftenUseMethod.changedouble(da.get(i).getShootEfficiency());
+				re[i][20] = OftenUseMethod.changedouble(da.get(i).getAssistEfficiency());
+				re[i][21] = OftenUseMethod.changedouble(da.get(i).getReboundEfficiency());
+				re[i][22] = OftenUseMethod.changedouble(da.get(i).getOffensiveReboundEff());
+				re[i][23] = OftenUseMethod.changedouble(da.get(i).getDefenseReboundEff());
+				re[i][24] = OftenUseMethod.changedouble(da.get(i).getStealEfficiency());
+				re[i][25] = OftenUseMethod.changedouble(da.get(i).getTurnoverPercentage());
+				re[i][26] = OftenUseMethod.changedouble(da.get(i).getUsingPercentage());
 				re[i][27] = OftenUseMethod.changedouble(da.get(i).getBlockEfficiency());
-				re[i][28] = OftenUseMethod.changedouble(da.get(i).getTurnoverPercentage());
-				re[i][29] = OftenUseMethod.changedouble(da.get(i).getUsingPercentage());
-				re[0][30] = da.get(i).getL_f_point_rate();
-				re[0][31] = da.get(i).getL_f_assist_rate();
-				re[0][32] = da.get(i).getL_f_rebound_rate();
+				re[i][28] = OftenUseMethod.changedouble(da.get(i).getGmSc());
+				re[i][29] = OftenUseMethod.changedouble(da.get(i).getRealShootPercentage());
 			}
 			return re;
 

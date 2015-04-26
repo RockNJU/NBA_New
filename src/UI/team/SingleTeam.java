@@ -227,7 +227,7 @@ public class SingleTeam extends JDialog {
             	jinjiebutton.setIcon(new ImageIcon("pic/but/进阶信息前.png"));
             	otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
-            	MatT m=new MatT();
+            	MatT m=new MatT(t, s);
             	change(m);
             }
         });
