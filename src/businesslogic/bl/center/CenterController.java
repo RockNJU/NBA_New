@@ -139,7 +139,7 @@ public class CenterController {
 	        }
 	        
 	        TeamMatchVO H_team=new TeamMatchVO(po.getSeason(), H_po.getTeamName(),H_win,
-	        		H_po.getPoints(),G_po.getPoints(), H_po.getReboundNum(),
+	        		po.getDate(), G_po.getTeamName(), H_po.getPoints(),G_po.getPoints(), H_po.getReboundNum(),
 	        		H_po.getO_ReboundNum(), H_po.getD_ReboundNum(), 
 	        		H_po.getAssistNum(), H_po.getTurnoverNum(),
 	        		H_po.getStealNum(), H_po.getFoulNum(), H_po.getFieldGoal(),
@@ -150,7 +150,7 @@ public class CenterController {
 	        		H_offenseReboundeEff, H_offenseReboundeEff, H_player_list);
 	        
 	        TeamMatchVO G_team=new TeamMatchVO(po.getSeason(), G_po.getTeamName(),G_win,
-	        		G_po.getPoints(),H_po.getPoints(), G_po.getReboundNum(),
+	        		po.getDate(), H_po.getTeamName(), G_po.getPoints(),H_po.getPoints(), G_po.getReboundNum(),
 	        		G_po.getO_ReboundNum(), G_po.getD_ReboundNum(), 
 	        		G_po.getAssistNum(), G_po.getTurnoverNum(),
 	        		G_po.getStealNum(), G_po.getFoulNum(), G_po.getFieldGoal(),
@@ -181,6 +181,7 @@ public class CenterController {
 			  double blockEff =0;			//盖帽率__
 			 ArrayList<SingleMatchPersonalDataVO> result=new ArrayList<>();
 			 SingleMatchPersonalDataPO po;
+			 
 			 for(int i=0;i<list.size();i++){
 				 po=list.get(i);
 				 /*助攻率：球员助攻数÷(球员上场时间÷(球队所有球员上场时间÷5)×球队总进 球数-球员进球数)*/
@@ -297,7 +298,7 @@ public class CenterController {
 		         
 		            try {
 		                //睡1秒
-		                Thread.sleep(300);
+		                Thread.sleep(1000);
 		            } catch (InterruptedException e) {
 		            }
 		        }

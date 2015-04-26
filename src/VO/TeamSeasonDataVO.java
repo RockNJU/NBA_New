@@ -182,7 +182,7 @@ public class TeamSeasonDataVO implements Serializable{
 		 
 		 foulNum=foulNum+vo.getFoulNum();
 		 pointNum=pointNum+vo.getPointNum();
-		 
+		 winNum=winNum+vo.getWinNum();
 		 winRate=(double)winNum/matchNum;
 		 
 		 

@@ -14,10 +14,10 @@ public class TeamMatchVO implements Serializable{
 	
 	private String season;					//赛季
 	private String teamName;				//球队名称
-	private int	winNum;						//胜利数
 	private int   points; 					// 得分
 	private int lost_points;                //一场比赛中的失分
-	 
+	private String date;                    //比赛日期 
+	
 	private int  reboundNum; 				// 
 	private int O_ReboundNum; 			 
 	private int D_ReboundNum; 			 
@@ -47,11 +47,13 @@ public class TeamMatchVO implements Serializable{
 	private double stealEfficiency ; 	 
 	private double defenseEfficiency;  
 	private double offenseEfficiency ; 	 
-
+     
+	private int winNum;
+	String opp_team;
 	private ArrayList<SingleMatchPersonalDataVO> individualData;                        
 
-	public TeamMatchVO(String season,String teamName, 
-			int winNum,int pointNum,int lost_point,
+	public TeamMatchVO(String season,String teamName, int winNum,
+			String date,String opp_team,int pointNum,int lost_point,
 			int reboundNum, int O_ReboundNum, int D_ReboundNum,
 			int assistNum, int turnoverNum, int stealNum, int foulNum,
 			int fieldGoal, int shootNum, int T_fieldGoal, int T_shootNum,
@@ -60,9 +62,11 @@ public class TeamMatchVO implements Serializable{
 			double O_ReboundEfficiency,double D_ReboundEfficiency,
 			ArrayList<SingleMatchPersonalDataVO> individualData) {
 		
+		this.winNum=winNum;
+		this.date=date;
+		this.opp_team=opp_team;
 		this.season=season;
 		this.teamName = teamName;
-		this.winNum=winNum;
 		this.points = pointNum;
 		this.reboundNum = reboundNum;
 		this.O_ReboundNum = O_ReboundNum;
@@ -105,9 +109,6 @@ public class TeamMatchVO implements Serializable{
 		return teamName;
 	}
 	
-	public int getWinNum(){
-		return winNum;
-	}
 	public int getPointNum() {
 		return points;
 	}
@@ -319,6 +320,21 @@ public class TeamMatchVO implements Serializable{
 
 	public ArrayList<SingleMatchPersonalDataVO> getIndividualData() {
 		return individualData;
+	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public String getOpp_team() {
+		return opp_team;
+	}
+
+
+	public int getWinNum() {
+		return winNum;
 	}
 
 }
