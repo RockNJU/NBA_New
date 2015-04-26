@@ -169,17 +169,12 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		return D_ReboundNum;
 	}
 
-	public int getReboundNum() {
-		return reboundNum;
-	}
+	 
 
 	public int getAssistNum() {
 		return assistNum;
 	}
-
-	public int getBlockNum() {
-		return blockNum;
-	}
+ 
 
 	public int getTurnoverNum() {
 		return turnoverNum;
@@ -189,12 +184,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		return foulNum;
 	}
 
-	public int getPointNum(){
-		return pointNum;
-	}
-	public int getStealNum(){
-		return stealNum;
-	}
+ 
 	
 	public double getThreePointPercentage(){
 		if(T_shootNum==0)
@@ -280,6 +270,26 @@ public class SingleMatchPersonalDataVO implements Serializable{
 
 	public String getPlayerReverseName(){
 		return playerReverseName;
+	}
+
+
+	public int getReboundNum() {
+		return reboundNum;
+	}
+
+
+	public int getStealNum() {
+		return stealNum;
+	}
+
+
+	public int getBlockNum() {
+		return blockNum;
+	}
+
+
+	public int getPointNum() {
+		return pointNum;
 	}
 
 	 
