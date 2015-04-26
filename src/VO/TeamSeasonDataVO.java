@@ -1,13 +1,11 @@
 package VO;
-import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class TeamSeasonDataVO implements Serializable{
+public class TeamSeasonDataVO {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	 
 	/* 
 	 * 注：基础数据中，带后缀_avg,是平均值，不带的是赛季进行到当下的总数，都可以通过get方法获得
 	 */
@@ -164,6 +162,7 @@ public class TeamSeasonDataVO implements Serializable{
 		 }
 		 
 		 matchNum++;
+		 offenseRound=offenseRound+vo.getOffenseRound();
 		 defenseRound=defenseRound+vo.getDefenseRound();
 		 fieldGoal=fieldGoal+vo.getFieldGoal();
 		 shootNum=vo.getShootNum()+shootNum;
@@ -221,7 +220,7 @@ public class TeamSeasonDataVO implements Serializable{
 			  pointNum_avg=(double)pointNum/matchNum;
 			  
 			  //////
-			   defenseRound_avg=0;
+			   defenseRound_avg=defenseRound/matchNum;
 			   offenseEfficiency_avg=offenseEfficiency/matchNum;
               defenseEfficiency_avg=defenseEfficiency/matchNum;
              stealEfficiency_avg=stealEfficiency/matchNum;
@@ -256,37 +255,11 @@ public class TeamSeasonDataVO implements Serializable{
 		return winRate;
 	}
 	 
-		public double getFreeThrowPercentage() {
-			if(matchNum!=0)
-				return freeThrowPercentage/matchNum;
-			else
-				return 0;
-		}
 		
-		public double getFoulNum() {
-			if(matchNum!=0)
-				return (double)foulNum/matchNum;
-			else
-				return 0;
-		}
 		
-		 
 		
-		public double getThreePointPercentage(){
-			if(T_shootNum==0)
-				return 0;
-			else
-				return (double)T_fieldGoal/T_shootNum;
-		}
-		public double getShootPercentage() {
-			if(shootNum==0)
-				return 0;
-			else{
-				return (double)fieldGoal/shootNum ;
-			}
-		}
-
-
+		
+	
 		public String getSeason() {
 			return season;
 		}
@@ -337,9 +310,7 @@ public class TeamSeasonDataVO implements Serializable{
 		}
 
 
-		public double getFreeThrowGoalNum_avg() {
-			return freeThrowGoalNum_avg;
-		}
+	 
 
 
 		public int getFreeThrowNum() {
@@ -511,5 +482,26 @@ public class TeamSeasonDataVO implements Serializable{
 
 		public ArrayList<TeamMatchVO> getLast_five_match() {
 			return last_five_match;
+		}
+
+
+		public double getFreeThrowPercentage() {
+			return freeThrowPercentage;
+		}
+
+
+		public int getFoulNum() {
+			return foulNum;
+		}
+
+
+		public double getShootPercentage() {
+			return shootPercentage;
+		}
+
+
+		public double getFreeThrowGoalNum_avg() {
+			// TODO Auto-generated method stub
+			return freeThrowGoalNum_avg;
 		}
 }
