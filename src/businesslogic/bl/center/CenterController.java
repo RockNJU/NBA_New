@@ -130,7 +130,7 @@ public class CenterController {
 				double offenseRound, double defenseRound,
 				double O_ReboundEfficiency,double D_ReboundEfficiency,
 				ArrayList<SingleMatchPersonalDataVO> individualData*/
-	        String []sco=po.getSeason().split("-");
+	        String []sco=po.getMatchScore().split("-");
 	        int H_win=0,G_win=0;
 	        if(sco[0].compareTo(sco[1])>0){
 	        	H_win=1;

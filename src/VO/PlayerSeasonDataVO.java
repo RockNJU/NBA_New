@@ -216,7 +216,9 @@ public class PlayerSeasonDataVO implements Serializable{
 					      
 					      last_five_match_data=new ArrayList<>(); 
 					     last_five_match_data.add(firstMatch);
-				
+					     last_f_point.add( pointNum );
+						 last_f_assist.add(assistNum );
+						 last_f_rebound.add(reboundNum);
 	}
 	
 	
@@ -354,25 +356,30 @@ public class PlayerSeasonDataVO implements Serializable{
 			 last_f_rebound.add(vo.getReboundNum());
 			 last_five_match_data.add(vo);
 		 }else{
-			 last_five_match_data.remove(0);
+			 
 			 last_f_point.remove(0);
 			 last_f_assist.remove(0);
 			 last_f_rebound.remove(0);
 			 
+			 last_five_match_data.remove(0);
 			 last_five_match_data.add(vo);
+			 
 			 last_f_point.add(vo.getPointNum());
 			 last_f_assist.add(vo.getAssistNum());
 			 last_f_rebound.add(vo.getReboundNum());
 			 
-			 if(last_f_point.size()>5){
+			  
 			 double p_avg=(pointNum-get_last_five_Sum(last_f_point))/matchNum;
 			 double a_avg=(assistNum-get_last_five_Sum(last_f_assist))/matchNum;
 			 double r_avg=(reboundNum-get_last_five_Sum(last_f_rebound))/matchNum;
 			 
-			l_f_point_rate=(get_last_five_Sum(last_f_point)/5-p_avg)/p_avg;      //最近5场得分提升率
-			l_f_assist_rate=(get_last_five_Sum(last_f_assist)/5-a_avg)/a_avg;    //最近5场助攻提升率
-			l_f_rebound_rate=(get_last_five_Sum(last_f_rebound)/5-r_avg)/r_avg;  //最近5场篮板提升率
-			 }
+			 if(p_avg!=0)
+				 l_f_point_rate=(get_last_five_Sum(last_f_point)/5-p_avg)/p_avg;      //最近5场得分提升率
+			 if(a_avg!=0)
+				 l_f_assist_rate=(get_last_five_Sum(last_f_assist)/5-a_avg)/a_avg;    //最近5场助攻提升率
+			 if(r_avg!=0)
+			 	l_f_rebound_rate=(get_last_five_Sum(last_f_rebound)/5-r_avg)/r_avg;  //最近5场篮板提升率
+			 
 			 
 		 }
 		 

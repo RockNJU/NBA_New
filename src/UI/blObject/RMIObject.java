@@ -39,10 +39,11 @@ public class RMIObject {
 		
 		ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "pointNum_avg");
 		
-		/*for(int i=0;i<pl.size();i++){
-			System.out.println("姓名："+pl.get(i).getName()+"球员位置："+pl.get(i).getPosition()+"得分："+pl.get(i).getPointNum_avg());
+		for(int i=0;i<pl.size();i++){
+			System.out.println("姓名："+pl.get(i).getName()+"球员位置："+pl.get(i).getPosition()
+					+"得分："+pl.get(i).getPointNum_avg()+"近5场提升率："+pl.get(i).getL_f_assist_rate());
 		}
-		
+		/*
 		ArrayList<TeamSeasonDataVO> list=team.getAllTeamSeasonData("13-14");
 		for(int i=0;i<list.size();i++){
 			System.out.println("--队名："+list.get(i).getTeamName()+";   "+list.get(i).getPointNum());
