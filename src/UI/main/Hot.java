@@ -343,36 +343,52 @@ public class Hot extends JPanel {
 		photo.setOpaque(false);
 		add(photo);
 		
+		HotPlayers hp = new HotPlayers("每日","得分");
+		p1=new JPanel();
+		p1.setLayout(null);
+		p1.setBounds(10, 200, 746,170);
+		p1.setOpaque(false);
+		add(p1);
+		changep1(hp);
+
+		
+		p2=new JPanel();
+		p2.setLayout(null);
+		p2.setOpaque(false);
+		p2.setBounds(10, 450, 746,170);
+		add(p2);
 		
 		//一坨监听 
 		defen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				HotPlayers hp = new HotPlayers("每日","得分");
+				changep1(hp);
+				
 			}
 		});
 		lanban.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				HotPlayers hp = new HotPlayers("每日","篮板");
+				HotPlayers hp = new HotPlayers("每日","篮板数");
 			}
 		});
 		zhugong.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				HotPlayers hp = new HotPlayers("每日","助攻");
+				HotPlayers hp = new HotPlayers("每日","助攻数");
 			}
 		});
 		qiangduan.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				HotPlayers hp = new HotPlayers("每日","抢断");
+				HotPlayers hp = new HotPlayers("每日","抢断数");
 			}
 		});
 		gaimao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				HotPlayers hp = new HotPlayers("每日","盖帽");
+				HotPlayers hp = new HotPlayers("每日","盖帽数");
 			}
 		});
 

@@ -9,6 +9,7 @@ import businessService.blservice.MatchBLService;
 import UI.blObject.RMIObject;
 import UI.common.CreateTableforhot;
 import UI.common.SortItem_Map;
+import UI.common.TeamMap;
 import VO.SingleMatchPersonalDataVO;
 
 
@@ -22,15 +23,16 @@ public class HotPlayers extends JPanel {
 	RMIObject rmi = new RMIObject();
 	MatchBLService mbs = rmi.getMatchObject();;
 	String[] title = {"名称","球队","球号","位置",according,"肖像"};
-	Object [][] data=new Object[4][5];
-	SortItem_Map map = new SortItem_Map();
+	Object [][] data=new Object[5][5];
+	SortItem_Map map1 = new SortItem_Map();
+	TeamMap map2 = new TeamMap();
 
 	/**
 	 * Create the panel.
 	 */
 	public HotPlayers(String tmpsaccording,String tmptype) {
 		if(tmpsaccording.equals("每日")){
-			smpd = mbs.getTodayHotPlayer(map.getItem(tmptype));
+			smpd = mbs.getTodayHotPlayer(map2.getItem(tmptype));
 			
 
 			int i = 0;
@@ -41,19 +43,22 @@ public class HotPlayers extends JPanel {
 				data[i][3]= temp.getTeamName();
 				//对应项得分
 				if(tmptype.equals("得分")){
-					data[i][4]= temp.getPoints();
+					data[i][4]= temp.getPointNum();
 				}
-				if(tmptype.equals("篮板")){
+				if(tmptype.equals("篮板数")){
 					data[i][4]= temp.getReboundNum();
 				}
-				if(tmptype.equals("助攻")){
+				if(tmptype.equals("助攻数")){
 					data[i][4]= temp.getAssistNum();
 				}
-				if(tmptype.equals("抢断")){
+				if(tmptype.equals("抢断数")){
 					data[i][4]= temp.getStealNum();
 				}
-				if(tmptype.equals("盖帽")){
+				if(tmptype.equals("盖帽数")){
 					data[i][4]= temp.getBlockNum();
+				}
+				else{
+					data[i][4] = -1;
 				}
 				
 				i++;
@@ -105,7 +110,7 @@ public class HotPlayers extends JPanel {
 		No1_num_positon.setBounds(189, 85, 85, 15);
 		add(No1_num_positon);
 		
-		JLabel No1_info = new JLabel((String)data[0][4]);
+		JLabel No1_info = new JLabel(Integer.toString((int)data[0][4]));
 		No1_info.setFont(new Font("华康雅宋体W9(P)", Font.PLAIN, 28));
 		No1_info.setBounds(217, 110, 85, 50);
 		add(No1_info);
