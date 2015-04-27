@@ -29,6 +29,7 @@ public class TeamMap {
 		   map.put("投篮命中率", "shootPercentage");
  
 		   map.put("比赛得分", "points");
+		   map.put("得分", "pointNum");
 		   map.put("篮板数", "reboundNum");
 		   map.put("助攻数", "assistNum");
 		    
