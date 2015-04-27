@@ -172,7 +172,7 @@ public class Team extends JPanel {
 	            	//System.out.println(sortItem);
 	            	tdvo=tbl.sort(Season, sortItem);
 	            	data=getTotaldata(tdvo);
-	            	teamlist.updateTable(teamtitle, data);
+	            	
 	            	teamlist.setVisible(true);
 	            	dd.setVisible(false);
 	            	east.setVisible(false);

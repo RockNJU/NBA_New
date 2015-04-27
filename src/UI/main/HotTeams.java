@@ -1,9 +1,16 @@
 package UI.main;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.*;
 
 import javax.swing.*;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.apache.batik.apps.rasterizer.SVGConverterException;
 
 import businessService.blservice.MatchBLService;
 import businessService.blservice.TeamBLService;
@@ -14,6 +21,8 @@ import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
 import UI.common.SortItem_Map;
 import UI.common.TeamName_Map;
+import UI.player.SinglePlayer;
+import UI.team.SingleTeam;
 import VO.SingleMatchPersonalDataVO;
 import VO.TeamSeasonDataVO;
 
@@ -27,6 +36,8 @@ public class HotTeams extends JPanel {
 	String type;
 	String according;
 	ArrayList<TeamSeasonDataVO> tsdv;
+	
+	String saiji = "13-14";
 	//RMIObject rmi = new RMIObject();
 	TeamBLService tbs = init.rmi.getTeamObject();
 	/**
@@ -39,7 +50,7 @@ public class HotTeams extends JPanel {
 		setOpaque(false);
 		setSize(746,170);
 		
-		tsdv = tbs.getHotTeam("13-14",map1.getItem(tmptype));
+		tsdv = tbs.getHotTeam(saiji,map1.getItem(tmptype));
 		
 		int i = 0;
 		for(TeamSeasonDataVO temp:tsdv){
@@ -79,11 +90,36 @@ public class HotTeams extends JPanel {
 			i++;
 		    }
 		
+		
+		
 		String[] title = {"球队","分区","建立时间","缩写",tmptype,"肖像"};
-		CreateTableforhot ctfh = new CreateTableforhot(title,data,
+		final CreateTableforhot ctfh = new CreateTableforhot(title,data,
 				381, 12,395, 150, 37,37, 6,
 				new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
 		add(ctfh);
+		
+		ctfh.getTable().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2 && ctfh.getSelectedRow() != -1) {
+					String name = ctfh.getValueAt(
+							ctfh.getSelectedRow(), 3);
+					System.out.println(name);
+					SingleTeam spi;
+					try {
+						spi = new SingleTeam(name, saiji);
+						spi.setVisible(true);
+						spi.setLocation(375, 58);
+					} catch (TransformerFactoryConfigurationError
+							| TransformerException | IOException
+							| SVGConverterException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}
+
+				}
+			}
+		});
 		
 		ImageIcon No1_Team = new ImageIcon("pic/TEAMPNG/"+data[0][3]+".png");
 		No1_Team.setImage(No1_Team.getImage().getScaledInstance(158, 158,Image.SCALE_DEFAULT)); 		

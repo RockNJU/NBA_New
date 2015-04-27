@@ -1,11 +1,18 @@
 package UI.main;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.*;
 
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.apache.batik.apps.rasterizer.SVGConverterException;
 
 import businessService.blservice.MatchBLService;
 import businessService.blservice.PlayerBLService;
@@ -15,6 +22,8 @@ import UI.common.OftenUseMethod;
 import UI.common.PlayerPosition_Map;
 import UI.common.SortItem_Map;
 import UI.common.TeamName_Map;
+import UI.player.SinglePlayer;
+import UI.team.SingleTeam;
 import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 
@@ -22,7 +31,7 @@ import VO.SingleMatchPersonalDataVO;
 
 
 public class HotPlayers extends JPanel {
-	
+	String saiji = "13-14";
 	ArrayList<SingleMatchPersonalDataVO> smpd;
 	ArrayList<PlayerSeasonDataVO> psdv;
 	PlayerSeasonDataVO psdvs;
@@ -74,12 +83,7 @@ public class HotPlayers extends JPanel {
 				i++;
 			    }
 			
-			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
-			CreateTableforhot ctfh = new CreateTableforhot(title,data,
-					381, 12,395, 150, 37,37, 6,
-					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
-			add(ctfh);
-			FitTableColumns(ctfh.getTable());
+
 			}
 		else if(tmpsaccording.equals("赛季")){
 			psdv = pbs.getSeasonHotPlayer("13-14",map1.getItem(tmptype));
@@ -121,13 +125,7 @@ public class HotPlayers extends JPanel {
 				
 				i++;
 			    }
-			
-			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
-			CreateTableforhot ctfh = new CreateTableforhot(title,data,
-					381, 12,395, 150, 37,37, 6,
-					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
-			add(ctfh);
-			FitTableColumns(ctfh.getTable());
+
 		}
 		else{
 			psdvs = pbs.getMost_Progress_Player(map1.getItem(tmptype));
@@ -135,7 +133,6 @@ public class HotPlayers extends JPanel {
 			int i = 0;
 			for(SingleMatchPersonalDataVO temp:smpd){
 				data[i][0]= temp.getPlayerName();		
-				System.out.println(data[i][0]);
 				data[i][1]= temp.getPlayerReverseName();
 				data[i][2]= temp.getPlayerPosition();
 				data[i][3]= map3.getFullName(temp.getTeamName());
@@ -155,12 +152,8 @@ public class HotPlayers extends JPanel {
 				i++;
 			    }
 			
-			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
-			CreateTableforhot ctfh = new CreateTableforhot(title,data,
-					381, 12,395, 150, 37,37, 6,
-					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
-			add(ctfh);
-			FitTableColumns(ctfh.getTable());
+
+			
 		}
 		
 	
@@ -227,10 +220,33 @@ public class HotPlayers extends JPanel {
 		label_2.setBounds(353, 126, 35, 35);
 		add(label_2);
 		
-		CreateTableforhot ctfh = new CreateTableforhot(title,data,
+		final CreateTableforhot ctfh = new CreateTableforhot(title,data,
 				381, 12,395, 150, 37,37, 6,
 				new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
+		FitTableColumns(ctfh.getTable());
 		add(ctfh);
+		
+		ctfh.getTable().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2 && ctfh.getSelectedRow() != -1) {
+					String name = ctfh.getValueAt(
+							ctfh.getSelectedRow(), 0);
+					System.out.println(name);
+					SinglePlayer spi;
+					try {
+
+						spi = new SinglePlayer(name, saiji);
+						spi.setVisible(true);
+						spi.setLocation(375, 58);
+					} catch (TransformerFactoryConfigurationError e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}
+
+				}
+			}
+		});
 		
 		
 
