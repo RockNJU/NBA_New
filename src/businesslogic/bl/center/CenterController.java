@@ -82,7 +82,7 @@ public class CenterController {
 	}
 	
 	public void addMatch(MatchPO po){
-		
+		System.out.println("添加的po是否为空："+po==null);
 		MatchVO vo=matchpo_TO_po(po);
 		match.add_A_match(vo);
 		 player.updatePlayerData(vo.getHostTeam().getIndividualData());
@@ -95,6 +95,7 @@ public class CenterController {
 	private  MatchVO matchpo_TO_po(MatchPO po){
 	       /*进攻回合：本队回合=投篮数+0.4*球队罚球数-1.07*（本队进攻篮板/（本队进攻篮
 						板+对手防守篮板）*投失球数）+1.07*失误数**/
+		//System.out.println("---matchpo_TO_po---中-：-"+po.getHostTeam()==null);
 			TeamMatchPO H_po=po.getHostTeam();
 			TeamMatchPO G_po=po.getGuestTeam();
 			double H_offense_round=H_po.getShootNum()+0.4*H_po.getFreeThrowNum()-1.07*(
@@ -265,7 +266,7 @@ public class CenterController {
 		        File file = new File(path);
 		        //原始文件中的文件数量
 		        String[] fileList = file.list();
-		        System.out.println("compiling file path");
+		       // System.out.println("compiling file path");
 		        int orginalSize = file.list().length;
 		        while(true){
 		            int size = file.list().length;
@@ -287,9 +288,17 @@ public class CenterController {
 		        				char c=92;
 		        				MatchDataService mc=new MatchDataController();
 		        				MatchPO po=mc.getMatch(path+"\\\\"+newFileList[i]);
+		        			//	System.out.println("----***--检测到的文件***："+newFileList[i]);
+		        				 // System.out.println("----***--检测到的文件："+newFileList[i]+"------"
+		        					//	+ "---比赛日期：--："+po.getDate());
+		        				try {
+		    		                //睡1秒
+		    		                Thread.sleep(1000);
+		    		            } catch (InterruptedException e) {
+		    		            }
 		        				addMatch(po);
 		        				//System.out.println("---------检测到的文件："+newFileList[i]+"-------------：");
-		        			}
+		        			} 
 		            	}
 		            	//System.out.println("?????");
 		            	fileList = newFileList;

@@ -30,18 +30,21 @@ public class MatchDataController implements MatchDataService{
 	
 	public static void main(String args[]){
 		MatchDataController c=new MatchDataController();
-		ArrayList<MatchPO> m=c.getAllMatch();
-		 int i=0;
+		 MatchPO  po=c.getMatch("NBAdata\\matches\\12-13_11-11_ATL-LAC");
+		
+		int i=0;
 		 
+		 System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+
+				 	";"+po.getGuestTeam().getTeamName()+";"+po.getScores().toString()+"---"+(1+i));
 		 
-	MatchPO po;
+	/*MatchPO po;
 		for(i=0;i<m.size();i++){
 			po=m.get(i);
 			 
 				 System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+
 					 	";"+po.getGuestTeam().getTeamName()+";"+po.getScores().toString()+"---"+(1+i));
 			 
-		}
+		}*/
 	}
 	
 	
@@ -61,13 +64,13 @@ public class MatchDataController implements MatchDataService{
 		/*
 		 * 
 		 * */
-		System.out.println("新添加的文件路劲："+filepath);
+		//System.out.println("新添加的文件路劲："+filepath);
 		 String[]path=filepath.split("\\\\");
 	        String s[]=path[path.length-1].split("_");
 	         
 	        String date=s[1];
 	       String season=s[0];
-	//	System.out.println("---------"+file);
+	 	//System.out.println("---------"+path.length);
         File f = new File(filepath);  
         String encoding="UTF-8";
 		
@@ -136,7 +139,7 @@ public class MatchDataController implements MatchDataService{
         		}else if(num==2){
         		//	System.out.println("--分割比分--"+line);
         			String score[]=line.split(";");
-        			for(int i=0;i<=score.length;i++)
+        			for(int i=0;i<score.length;i++)
         			scores.add(score[i]);
         		}
         		else{

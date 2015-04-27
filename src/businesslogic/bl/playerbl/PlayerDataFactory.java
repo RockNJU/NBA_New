@@ -45,7 +45,7 @@ public class PlayerDataFactory {
 		 * 当数据仓库中没有对应赛季数据的时候，新建仓库下的一个支分支
 		 * */
 		
-		System.out.println("添加的第  " +dataList.size()+"  赛季:"+list.get(0).getSeason());
+		//System.out.println("添加的第  " +dataList.size()+"  赛季:"+list.get(0).getSeason());
 		PlayerSeasonData newData=new PlayerSeasonData(list.get(0).getSeason(),infoList);
 		
 		for(int k=0;k<list.size();k++){

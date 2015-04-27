@@ -72,12 +72,12 @@ public class MatchDataFactory {
 	
 	public ArrayList<MatchVO> get_A_Day_match(String date){
 		String season=SeasonInfo.getSeason(date);
-          System.out.println("赛季?："+season);
+        //  System.out.println("赛季?："+season);
           
 		for(int i=0;i<matchList.size();i++){
-			System.out.println("存在的赛季："+matchList.get(i).getSeason());
+			//System.out.println("存在的赛季："+matchList.get(i).getSeason());
 			if(matchList.get(i).getSeason().equals(season)){
-				System.out.println("找到对应赛季。");
+			//	System.out.println("找到对应赛季。");
 				return matchList.get(i).get_A_Day_Match(date);
 			}
 		}

@@ -72,12 +72,12 @@ public class PlayerController implements PlayerBLService {
 				String position, String partition, String item) {
 			// TODO Auto-generated method stub
 			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(season) ;
-			System.out.println("筛选前《"+"list的大小"+list.size());
+		//	System.out.println("筛选前《"+"list的大小"+list.size());
 			
 			if(partition==null|partition.trim().length()==0){
 				if(position.length()>=1){
 					list=sort_position(list,position);
-					System.out.println("球员位置筛选后《"+"list的大小："+list.size());
+					//System.out.println("球员位置筛选后《"+"list的大小："+list.size());
 				}
 				HotSort sort=new HotSort();
 				return sort.hotPlayer_Sort(list,item);
@@ -86,10 +86,10 @@ public class PlayerController implements PlayerBLService {
 			
 			if(partition.trim().length()>1){
 				list=sort_partition(list,partition);
-				System.out.println("赛区筛选后《"+"list的大小："+list.size());
+				//System.out.println("赛区筛选后《"+"list的大小："+list.size());
 				if(position.length()>=1){
 					list=sort_position(list,position);
-					System.out.println("球员位置筛选后《"+"list的大小："+list.size());
+					//System.out.println("球员位置筛选后《"+"list的大小："+list.size());
 				}
 				HotSort sort=new HotSort();
 				return sort.hotPlayer_Sort(list,item);
@@ -99,13 +99,13 @@ public class PlayerController implements PlayerBLService {
 				
 				list=sort_division(list,partition);
 				
-				System.out.println("Division分区筛选后《"+"list的大小："+list.size());
+			//	System.out.println("Division分区筛选后《"+"list的大小："+list.size());
 			}
 			
 			
 			if(position.length()>=1){
 				list=sort_position(list,position);
-				System.out.println("球员位置筛选后《"+"list的大小："+list.size());
+				//System.out.println("球员位置筛选后《"+"list的大小："+list.size());
 			}
 			HotSort sort=new HotSort();
 			return sort.hotPlayer_Sort(list,item);
