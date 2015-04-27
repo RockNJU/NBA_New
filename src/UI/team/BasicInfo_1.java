@@ -20,6 +20,7 @@ import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
 import UI.common.DOMRasterizer;
 import UI.common.PlayerPosition_Map;
+import UI.main.init;
 import VO.PlayerInfoVO;
 import VO.TeamInfoVO;
 import VO.TeamSeasonDataVO;
@@ -39,7 +40,7 @@ public class BasicInfo_1 extends JPanel {
 	TeamSeasonDataVO tdvo;
 	String teamnameAbb;
 	String season;
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	TeamBLService tbl;
 	PlayerBLService pbl;
 	/**
@@ -56,8 +57,8 @@ public class BasicInfo_1 extends JPanel {
 		this.setBackground(new Color(253,212,146));
 		this.season=s;
 		this.teamnameAbb=name;
-		tbl=rmi.getTeamObject();
-		pbl=rmi.getPlayerObject();
+		tbl=init.rmi.getTeamObject();
+		pbl=init.rmi.getPlayerObject();
 		tivo=tbl.get_A_TeamInfo(s,name);
 		tdvo=tbl.get_A_TeamSeasonData(s, teamnameAbb);
 		

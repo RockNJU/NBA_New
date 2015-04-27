@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import businessService.blservice.MatchBLService;
 import UI.blObject.RMIObject;
+import UI.main.init;
 import VO.MatchVO;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class BasicM extends JPanel {
 
 	MatchVO mvo;
 	MatchBLService mbl;
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	Color win=Color.BLUE;
 	Color lose=Color.BLACK;
 	/**
@@ -25,7 +26,7 @@ public class BasicM extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		
-		mbl=rmi.getMatchObject();
+		mbl=init.rmi.getMatchObject();
 		mvo=mbl.getMatchByTeam(date, team);
 		//System.out.println(mvo==null);
 		ImageIcon imageA=new ImageIcon("pic\\TEAMPNG\\"+mvo.getHostTeam().getTeamName()+".png");	

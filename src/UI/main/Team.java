@@ -65,7 +65,7 @@ public class Team extends JPanel {
 	JLabel photo;
 	//String choose;
 	
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	TeamBLService tbl;
 	MatchBLService mbl;
 	ArrayList<TeamSeasonDataVO> tdvo;
@@ -76,8 +76,8 @@ public class Team extends JPanel {
 		setLayout(null);
 		setSize(764,635);
 		setOpaque(false);
-		tbl=rmi.getTeamObject();
-		mbl=rmi.getMatchObject();
+		tbl=init.rmi.getTeamObject();
+		mbl=init.rmi.getMatchObject();
 		
 		sortLabel = new JLabel("≈≈¡–£∫");
 		sortLabel.setForeground(Color.WHITE);

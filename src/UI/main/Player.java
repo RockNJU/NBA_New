@@ -56,7 +56,7 @@ public class Player extends JPanel {
 
 	PlayerBLService pbl;
 	MatchBLService mbl;
-	RMIObject rmi = new RMIObject();
+	//RMIObject rmi = new RMIObject();
 	ArrayList<PlayerSeasonDataVO> psvo;
 	ArrayList<PlayerInfoVO> pivo;
 
@@ -65,8 +65,8 @@ public class Player extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	public Player() {
-		pbl = rmi.getPlayerObject();
-		mbl = rmi.getMatchObject();
+		pbl = init.rmi.getPlayerObject();
+		mbl = init.rmi.getMatchObject();
 		setLayout(null);
 		setSize(764, 635);
 		setOpaque(false);

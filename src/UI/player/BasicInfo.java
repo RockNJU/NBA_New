@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 import businessService.blservice.PlayerBLService;
 import UI.blObject.RMIObject;
 import UI.common.TeamName_Map;
+import UI.main.init;
 import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
 import VO.PlayerVO;
@@ -43,7 +44,7 @@ public class BasicInfo extends JPanel {
 	PlayerInfoVO pivo;
 	PlayerVO pvo;
 	PlayerSeasonDataVO pdvo;
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	PlayerBLService pbl;
 	
 	public BasicInfo(String name,String season)   {
@@ -55,7 +56,7 @@ public class BasicInfo extends JPanel {
 		
 		
 		
-		pbl=rmi.getPlayerObject();
+		pbl=init.rmi.getPlayerObject();
 		pivo=pbl.getPlayerInfo(name);
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
 		

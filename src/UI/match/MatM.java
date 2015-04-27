@@ -9,6 +9,7 @@ import javax.swing.JFormattedTextField;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
 import UI.common.OftenUseMethod;
+import UI.main.init;
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
 
@@ -20,7 +21,7 @@ public class MatM extends JPanel {
 
 	MatchVO mvo;
 	MatchBLService mbl;
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	CreateTable lista;
 	CreateTable listb;
 	String[] title={"球员姓名","球员位置","球员上场时间","进球数","投篮总数","三分进球数",
@@ -43,7 +44,7 @@ public class MatM extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		
-		mbl=rmi.getMatchObject();
+		mbl=init.rmi.getMatchObject();
 		mvo=mbl.getMatchByTeam(date, team);
 		
 		JLabel lb1 = new JLabel("主队队员信息："+mvo.getHostTeam().getTeamName());

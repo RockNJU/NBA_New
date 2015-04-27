@@ -9,14 +9,16 @@ import javax.swing.JFormattedTextField;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
 import UI.common.OftenUseMethod;
+import UI.main.init;
 import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 import businessService.blservice.PlayerBLService;
+
 import javax.swing.JLabel;
 
 public class MatP extends JPanel {
 
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	PlayerBLService pbl;
 	PlayerSeasonDataVO pdvo;
 	CreateTable list;
@@ -34,7 +36,7 @@ public class MatP extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		
-		pbl=rmi.getPlayerObject();
+		pbl=init.rmi.getPlayerObject();
 		
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
 		data=getdata(pdvo.getLast_five_match_data());

@@ -37,7 +37,7 @@ public class Match extends JPanel {
 	JComboBox season;
 	JComboBox teams;
 	
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	MatchBLService mbl;
 	ArrayList<MatchVO> mvo;
 	/**
@@ -48,7 +48,7 @@ public class Match extends JPanel {
 		setSize(764,635);
 		setOpaque(false);
 
-		mbl=rmi.getMatchObject();
+		mbl=init.rmi.getMatchObject();
 		dc=new DateChooser(180,35);
 		dc.setSize(120, 30);
 		dc.setLocation(131, 27);
@@ -85,8 +85,7 @@ public class Match extends JPanel {
 		teams.setBounds(292, 67, 150, 50);		
 		add(teams);
 		teams.setVisible(true);
-		
-		mbl=rmi.getMatchObject();
+
 		season = new JComboBox();
 		season.setToolTipText("Èü¼¾");
 		

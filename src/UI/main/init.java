@@ -2,8 +2,11 @@ package UI.main;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
+
+import UI.blObject.RMIObject;
 
 public class init extends JFrame {
 
@@ -20,6 +23,7 @@ public class init extends JFrame {
 	static Player p;
 	static Team t;
 	
+	public static RMIObject rmi=new RMIObject();
 	int x,y;
 	/**
 	 * Launch the application.

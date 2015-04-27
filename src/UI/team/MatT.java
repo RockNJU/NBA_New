@@ -10,13 +10,14 @@ import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
 import UI.common.OftenUseMethod;
+import UI.main.init;
 import VO.TeamMatchVO;
 import VO.TeamSeasonDataVO;
 
 public class MatT extends JPanel {
  
 	TeamBLService tbl;
-	RMIObject rmi=new RMIObject();
+	//RMIObject rmi=new RMIObject();
 	Object[][] data;
 	ArrayList<TeamMatchVO> tmvo;
 	String[] title = {"赛季","对抗队伍","得分","篮板数","进攻篮板数","防守篮板数","助攻数","失误数","抢断数",
@@ -31,7 +32,7 @@ public class MatT extends JPanel {
 		setSize(760,500);
 		setLayout(null);
 		setOpaque(false);
-		tbl=rmi.getTeamObject();
+		tbl=init.rmi.getTeamObject();
 		tmvo=tbl.get_A_TeamSeasonData(season, name).getLast_five_match();
 		data=getdata(tmvo);
 		JLabel lblNewLabel = new JLabel(tbl.get_A_TeamSeasonData(season, name).getTeamName()+"近五场比赛的信息：");
