@@ -62,6 +62,14 @@ public class SortItem_Map {
 	   map.put("罚篮命中数", "freeThrowGoalNum_avg");
 	   ////////
 	   //---------------------
+	   map.put("篮板数", "reboundNum");
+	   map.put("助攻数", "assistNum");
+	   map.put("盖帽数", "blockNum");
+	   map.put("抢断数", "stealNum");
+	   map.put("犯规数", "foulNum");
+	   map.put("失误数", "turoverNum");
+	   map.put("得分总", "pointNum");
+	   
 	  
 	   //map.put("", "");   
    }

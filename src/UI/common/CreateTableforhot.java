@@ -134,7 +134,7 @@ import javax.swing.table.TableRowSorter;
 				/* 这本身是一个Panel,panel 是可以直接用的，传进信息便可以了直接使用 */
 				/* title 是表头信息，data 是传进来的数据，二维字符串数组,x,y 是表格的坐标，wideth,height 是大小的设置,columnnum为要输出多少列 */
 				// this.setLayout(null);
-				this.setBounds(x, y, width, height);
+				this.setBounds(x, y-3, width, height);
 				this.data = data;
 				this.headTitle = title;
 				this.piclength = piclength;
@@ -152,7 +152,7 @@ import javax.swing.table.TableRowSorter;
 				table.getTableHeader().setFont(fbig);
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				table.setFillsViewportHeight(true);
-				// table.setEnabled(false);S
+				// table.setEnabled(false);
 				// table.isEditing();
 				table.getColumnModel().getColumn(5).setPreferredWidth(0);
 				
@@ -164,11 +164,11 @@ import javax.swing.table.TableRowSorter;
 				table.setSelectionForeground(Color.WHITE);
 				table.setShowVerticalLines(true);// 是否显示垂直网格线?
 				table.setGridColor(new Color(67, 54, 49));
-				
-				
+				table.setAutoCreateRowSorter(true);
+				table.setDefaultRenderer(Object.class, new FenseRenderforhot());
 
 				// 其他一些属性
-				table.setDragEnabled(false); // 不许乱拖动
+				table.setDragEnabled(true); // 不许乱拖动
 				table.getSelectionModel().setSelectionMode(
 						ListSelectionModel.SINGLE_SELECTION); // 只允许单选
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -188,27 +188,6 @@ import javax.swing.table.TableRowSorter;
 				model.updatedata(info,columnnum);
 			}
 
-			public void updateTable(String info[][], int rowheight, int rowwidth1,
-					int rowwidth2, int rowwidth3) {
-				/* 用于刷新表格，info[][]为改动过后的数组，存储表格数据 */
-
-				data = info;
-				DefaultTableModel model = new DefaultTableModel(data, headTitle);
-
-				table.setModel(model);
-				table.setRowHeight(rowheight);
-				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-				table.setFillsViewportHeight(true);
-				table.setColumnSelectionAllowed(true);
-
-				table.getColumnModel().getColumn(0).setPreferredWidth(rowwidth1);
-				table.getColumnModel().getColumn(1).setPreferredWidth(rowwidth2);
-				table.getColumnModel().getColumn(2).setPreferredWidth(rowwidth3);
-
-				table.setVisible(true);
-				table.repaint();
-				this.repaint();
-			}
 
 			public JTable getTable() {
 				return table;
