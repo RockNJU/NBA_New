@@ -90,7 +90,6 @@ public class TeamSeasonDataVO {
 		this.matchNum = matchNum ; 
 		this.winNum = winNum;
 		this.fieldGoal = fieldGoal ;  
-		this.fieldGoal = 
 		this.shootNum = shootNum ;  
 		this.T_fieldGoal = T_fieldGoal ;  
 		this.T_shootNum = T_shootNum ; 
@@ -105,7 +104,7 @@ public class TeamSeasonDataVO {
 		this.turnoverNum = turnoverNum ;  
 		this.foulNum = foulNum ;  
 		this.pointNum = points ;  
-		winRate=1;
+		winRate=winNum;
 		
 		this.shootPercentage =  (double)fieldGoal/shootNum;  
 		this.T_shootPercentage =(double)T_fieldGoal/T_shootNum ; 
