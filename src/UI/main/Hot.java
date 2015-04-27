@@ -348,8 +348,9 @@ public class Hot extends JPanel {
 		p1.setLayout(null);
 		p1.setBounds(10, 200, 746,170);
 		p1.setOpaque(false);
+		p1.add(hp);
 		add(p1);
-		changep1(hp);
+		//changep1(hp);
 
 		
 		p2=new JPanel();
