@@ -19,7 +19,6 @@ import UI.common.OftenUseMethod;
 import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
 import UI.common.SortItem_Map;
-import UI.common.TeamMap;
 import UI.common.TeamName_Map;
 import UI.team.SingleTeam;
 import VO.TeamSeasonDataVO;
@@ -53,7 +52,7 @@ public class Team extends JPanel {
 			"MIN","NOP","DAL","DEN","GSW",
 			"OKC","PHX","POR",
 			"SAC","SAS","UTA"};
- 
+	SortItem_Map m=new SortItem_Map();
 	String[] title;
 	Object[][] data;
 	JLabel dd;
@@ -168,7 +167,6 @@ public class Team extends JPanel {
 	            	//TODO
 	            	String Season=season.getSelectedItem().toString().substring(0, 5);
 	            	
-	            	TeamMap m=new TeamMap();
 	            	String sortItem=m.getItem(according.getSelectedItem().toString());
 	            	//System.out.println(according.getSelectedItem().toString());
 	            	//System.out.println(sortItem);
@@ -400,7 +398,6 @@ public class Team extends JPanel {
 		if(isaverage == true){
 			String Season=season.getSelectedItem().toString().substring(0, 5);
         	
-        	TeamMap m=new TeamMap();
         	String sortItem=m.getItem(according.getSelectedItem().toString());
         	//System.out.println(according.getSelectedItem().toString());
         	//System.out.println(sortItem);
@@ -415,7 +412,7 @@ public class Team extends JPanel {
 		else{
 			String Season=season.getSelectedItem().toString().substring(0, 5);
         	
-        	TeamMap m=new TeamMap();
+			
         	String sortItem=m.getItem(according.getSelectedItem().toString());
         	//System.out.println(according.getSelectedItem().toString());
         	//System.out.println(sortItem);

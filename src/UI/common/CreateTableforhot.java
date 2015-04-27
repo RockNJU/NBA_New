@@ -12,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
+import java.util.Enumeration;
 
 		import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -166,7 +167,7 @@ import javax.swing.table.TableRowSorter;
 				table.setGridColor(new Color(67, 54, 49));
 				table.setAutoCreateRowSorter(true);
 				table.setDefaultRenderer(Object.class, new FenseRenderforhot());
-
+				//FitTableColumns(table);
 				// 其他一些属性
 				table.setDragEnabled(true); // 不许乱拖动
 				table.getSelectionModel().setSelectionMode(
@@ -184,6 +185,7 @@ import javax.swing.table.TableRowSorter;
 				data = info;
 				headTitle = HeadTitle;
 				//MyTableModel model = new MyTableModel();
+				//FitTableColumns(table);
 				MyTableModel model = (MyTableModel)table.getModel();
 				model.updatedata(info,columnnum);
 			}
@@ -216,7 +218,7 @@ import javax.swing.table.TableRowSorter;
 			public String getValueAt(int selectedRow, int i) {
 				return 	table.getValueAt(selectedRow, i).toString();
 			}
-
+			
 		}
 
 

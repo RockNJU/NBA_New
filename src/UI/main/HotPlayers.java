@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 import businessService.blservice.MatchBLService;
 import businessService.blservice.PlayerBLService;
@@ -26,9 +28,9 @@ public class HotPlayers extends JPanel {
 	PlayerSeasonDataVO psdvs;
 	String according;
 	String type;
-	RMIObject rmi = new RMIObject();
-	MatchBLService mbs = rmi.getMatchObject();
-	PlayerBLService pbs = rmi.getPlayerObject();
+	//RMIObject rmi = new RMIObject();
+	MatchBLService mbs = init.rmi.getMatchObject();
+	PlayerBLService pbs = init.rmi.getPlayerObject();
 	String[] title = {"名称","球队","球号","位置",according,"肖像"};
 	Object [][] data=new Object[5][5];
 	
@@ -74,10 +76,10 @@ public class HotPlayers extends JPanel {
 			
 			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
 			CreateTableforhot ctfh = new CreateTableforhot(title,data,
-					381, 12,409, 150, 37,37, 6,
+					381, 12,395, 150, 37,37, 6,
 					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
 			add(ctfh);
-			
+			FitTableColumns(ctfh.getTable());
 			}
 		else if(tmpsaccording.equals("赛季")){
 			psdv = pbs.getSeasonHotPlayer("13-14",map1.getItem(tmptype));
@@ -85,24 +87,24 @@ public class HotPlayers extends JPanel {
 			int i = 0;
 			for(PlayerSeasonDataVO temp:psdv){
 				data[i][0]= temp.getName();					
-				data[i][1]= temp.getReverseName();
+				data[i][1]= temp.getInfo().getBirth();
 				data[i][2]= temp.getPosition();
 				data[i][3]= map3.getFullName( temp.getTeamName());
 				//对应项得分
 				if(tmptype.equals("得分")){
-					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getPointNum()));
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getPointNum_avg()));
 				}
 				else if(tmptype.equals("篮板")){
-					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getReboundNum()));
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getReboundNum_avg()));
 				}
 				else if(tmptype.equals("助攻")){
-					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getAssistNum()));
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getAssistNum_avg()));
 				}
 				else if(tmptype.equals("抢断")){
-					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getStealNum()));
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getStealNum_avg()));
 				}
 				else if(tmptype.equals("盖帽")){
-					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getBlockNum()));
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getBlockNum_avg()));
 				}
 				else if(tmptype.equals("三分命中率")){
 					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getT_shootPercentage()));
@@ -122,10 +124,10 @@ public class HotPlayers extends JPanel {
 			
 			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
 			CreateTableforhot ctfh = new CreateTableforhot(title,data,
-					381, 12,409, 150, 37,37, 6,
+					381, 12,395, 150, 37,37, 6,
 					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
 			add(ctfh);
-			
+			FitTableColumns(ctfh.getTable());
 		}
 		else{
 			psdvs = pbs.getMost_Progress_Player(map1.getItem(tmptype));
@@ -155,10 +157,10 @@ public class HotPlayers extends JPanel {
 			
 			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
 			CreateTableforhot ctfh = new CreateTableforhot(title,data,
-					381, 12,409, 150, 37,37, 6,
+					381, 12,395, 150, 37,37, 6,
 					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
 			add(ctfh);
-			
+			FitTableColumns(ctfh.getTable());
 		}
 		
 	
@@ -180,7 +182,7 @@ public class HotPlayers extends JPanel {
 		JLabel No1_name = new JLabel((String)data[0][0]);
 		No1_name.setForeground(new Color(51, 0, 51));
 		No1_name.setFont(new Font("华康雅宋体W9(P)", Font.PLAIN, 20));
-		No1_name.setBounds(189, 20, 137, 36);
+		No1_name.setBounds(189, 20, 180, 36);
 		add(No1_name);
 		
 		JLabel No1_team = new JLabel((String)data[0][3]);
@@ -226,7 +228,7 @@ public class HotPlayers extends JPanel {
 		add(label_2);
 		
 		CreateTableforhot ctfh = new CreateTableforhot(title,data,
-				381, 12,409, 150, 37,37, 6,
+				381, 12,395, 150, 37,37, 6,
 				new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
 		add(ctfh);
 		
@@ -250,7 +252,25 @@ public class HotPlayers extends JPanel {
         scrollPane.setViewportView(list);
         */
 	}
-
+	public void FitTableColumns(JTable myTable){
+		  JTableHeader header = myTable.getTableHeader();
+		     int rowCount = myTable.getRowCount();
+		     Enumeration columns = myTable.getColumnModel().getColumns();
+		     while(columns.hasMoreElements()){
+		         TableColumn column = (TableColumn)columns.nextElement();
+		         int col = header.getColumnModel().getColumnIndex(column.getIdentifier());
+		         int width = (int)myTable.getTableHeader().getDefaultRenderer()
+		                 .getTableCellRendererComponent(myTable, column.getIdentifier()
+		                         , false, false, -1, col).getPreferredSize().getWidth();
+		         for(int row = 0; row<rowCount; row++){
+		             int preferedWidth = (int)myTable.getCellRenderer(row, col).getTableCellRendererComponent(myTable,
+		               myTable.getValueAt(row, col), false, false, row, col).getPreferredSize().getWidth();
+		             width = Math.max(width, preferedWidth);
+		         }
+		         header.setResizingColumn(column); // 此行很重要
+		         column.setWidth(width+myTable.getIntercellSpacing().width);
+		     }
+	}
 	/*
 	@SuppressWarnings("null")
 	private Object[][] getdata(){

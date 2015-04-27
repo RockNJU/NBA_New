@@ -27,8 +27,8 @@ public class HotTeams extends JPanel {
 	String type;
 	String according;
 	ArrayList<TeamSeasonDataVO> tsdv;
-	RMIObject rmi = new RMIObject();
-	TeamBLService tbs = rmi.getTeamObject();
+	//RMIObject rmi = new RMIObject();
+	TeamBLService tbs = init.rmi.getTeamObject();
 	/**
 	 * Create the panel.
 	 */
@@ -41,7 +41,6 @@ public class HotTeams extends JPanel {
 		
 		tsdv = tbs.getHotTeam("13-14",map1.getItem(tmptype));
 		
-
 		int i = 0;
 		for(TeamSeasonDataVO temp:tsdv){
 			data[i][0]= map3.getFullName(temp.getTeamName());
@@ -82,21 +81,21 @@ public class HotTeams extends JPanel {
 		
 		String[] title = {"球队","分区","建立时间","缩写",tmptype,"肖像"};
 		CreateTableforhot ctfh = new CreateTableforhot(title,data,
-				381, 12,409, 150, 37,37, 6,
+				381, 12,395, 150, 37,37, 6,
 				new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
 		add(ctfh);
 		
 		ImageIcon No1_Team = new ImageIcon("pic/TEAMPNG/"+data[0][3]+".png");
 		No1_Team.setImage(No1_Team.getImage().getScaledInstance(158, 158,Image.SCALE_DEFAULT)); 		
 		JLabel No1_p = new JLabel(No1_Team);		
-		No1_p.setBounds(4, 25, 160, 130);		
+		No1_p.setBounds(4, 25, 180, 130);		
 		No1_p.setOpaque(false);
 		add(No1_p);
 		
 		JLabel No1_name = new JLabel((String)data[0][0]);
 		No1_name.setForeground(new Color(51, 0, 51));
 		No1_name.setFont(new Font("华康雅宋体W9(P)", Font.PLAIN, 20));
-		No1_name.setBounds(189, 20, 137, 36);
+		No1_name.setBounds(189, 20, 170, 36);
 		add(No1_name);
 		
 		JLabel No1_part = new JLabel((String)data[0][1]);
