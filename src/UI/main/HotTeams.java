@@ -7,14 +7,14 @@ import javax.swing.*;
 
 
 public class HotTeams extends JPanel {
-	ArrayList<String> teams;
+	String type;
 	String according;
 	/**
 	 * Create the panel.
 	 */
-	public HotTeams(ArrayList<String> tmps,String tmpsaccording) {
-		this.teams=tmps;
+	public HotTeams(String tmpsaccording,String tmptype) {{
 		this.according=tmpsaccording;
+		this.type=tmptype;
 		setLayout(null);
 		setOpaque(false);
 		setSize(746,170);
@@ -48,4 +48,5 @@ public class HotTeams extends JPanel {
 		add(No1_info);
 	}
 
-}
+	}
+	}

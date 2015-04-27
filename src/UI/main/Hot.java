@@ -299,7 +299,7 @@ public class Hot extends JPanel {
 		qiangduan = new JButton("");
 		qiangduan.setIcon(new ImageIcon("pic\\hotbut\\抢断.jpg"));
 		toolBar.add(qiangduan);
-		*/
+		
 		
 		ArrayList<String> tmps=new ArrayList<String>();
 		tmps.add("Aaron Brooks");
@@ -325,7 +325,7 @@ public class Hot extends JPanel {
 		tmps2.add("DET");
 		tmps2.add("DAL");
 		
-		ht=new HotTeams(tmps,"");
+		ht=new HotTeams("tmps","");
 		p2=new JPanel();
 		p2.setLayout(null);
 		p2.setOpaque(false);
@@ -334,6 +334,7 @@ public class Hot extends JPanel {
 		
 		ht.setLocation(0, 0);
 		add(p2);
+		*/
 		
 		ImageIcon image = new ImageIcon("pic/热点.png");
 		image.setImage(image.getImage().getScaledInstance(753, 510,Image.SCALE_DEFAULT)); 		
@@ -449,49 +450,49 @@ public class Hot extends JPanel {
 				changjundefen1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","场均得分");
+						HotTeams ht = new HotTeams("球队赛季","场均得分");
 					}
 				});
 				changjunlanban1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","场均篮板");
+						HotTeams ht = new HotTeams("球队赛季","场均篮板");
 					}
 				});
 				changjunzhugong1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","场均助攻");
+						HotTeams ht = new HotTeams("球队赛季","场均助攻");
 					}
 				});
 				changjungaimao1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","场均盖帽");
+						HotTeams ht = new HotTeams("球队赛季","场均盖帽");
 					}
 				});
 				changjunqiangduan1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","场均抢断");
+						HotTeams ht = new HotTeams("球队赛季","场均抢断");
 					}
 				});
 				sanfenmingzhonglv1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","三分命中率");
+						HotTeams ht = new HotTeams("球队赛季","三分命中率");
 					}
 				});
 				toulanmingzhonglv1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","投篮命中率");
+						HotTeams ht = new HotTeams("球队赛季","投篮命中率");
 					}
 				});
 				faqiumingzhonglv1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HotPlayers hp = new HotPlayers("球队赛季","罚球命中率");
+						HotTeams ht = new HotTeams("球队赛季","罚球命中率");
 					}
 				});
 	}
