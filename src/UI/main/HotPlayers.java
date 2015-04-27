@@ -6,10 +6,15 @@ import java.util.*;
 import javax.swing.*;
 
 import businessService.blservice.MatchBLService;
+import businessService.blservice.PlayerBLService;
 import UI.blObject.RMIObject;
 import UI.common.CreateTableforhot;
+import UI.common.OftenUseMethod;
+import UI.common.PlayerPosition_Map;
 import UI.common.SortItem_Map;
 import UI.common.TeamMap;
+import UI.common.TeamName_Map;
+import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
 
 
@@ -18,14 +23,19 @@ import VO.SingleMatchPersonalDataVO;
 public class HotPlayers extends JPanel {
 	
 	ArrayList<SingleMatchPersonalDataVO> smpd;
+	ArrayList<PlayerSeasonDataVO> psdv;
 	String according;
 	String type;
 	RMIObject rmi = new RMIObject();
-	MatchBLService mbs = rmi.getMatchObject();;
+	MatchBLService mbs = rmi.getMatchObject();
+	PlayerBLService pbs = rmi.getPlayerObject();
 	String[] title = {"名称","球队","球号","位置",according,"肖像"};
 	Object [][] data=new Object[5][5];
+	
 	SortItem_Map map1 = new SortItem_Map();
 	TeamMap map2 = new TeamMap();
+	TeamName_Map map3 = new TeamName_Map();	
+	PlayerPosition_Map map4 = new PlayerPosition_Map();	
 
 	/**
 	 * Create the panel.
@@ -37,25 +47,26 @@ public class HotPlayers extends JPanel {
 
 			int i = 0;
 			for(SingleMatchPersonalDataVO temp:smpd){
-				data[i][0]= temp.getPlayerName();					
+				data[i][0]= temp.getPlayerName();		
+				System.out.println(data[i][0]);
 				data[i][1]= temp.getPlayerReverseName();
 				data[i][2]= temp.getPlayerPosition();
-				data[i][3]= temp.getTeamName();
+				data[i][3]= map3.getFullName(temp.getTeamName());
 				//对应项得分
 				if(tmptype.equals("得分")){
-					data[i][4]= temp.getPointNum();
+					data[i][4]= Integer.toString(temp.getPointNum());
 				}
-				if(tmptype.equals("篮板数")){
-					data[i][4]= temp.getReboundNum();
+				else if(tmptype.equals("篮板数")){
+					data[i][4]= Integer.toString(temp.getReboundNum());
 				}
-				if(tmptype.equals("助攻数")){
-					data[i][4]= temp.getAssistNum();
+				else if(tmptype.equals("助攻数")){
+					data[i][4]= Integer.toString(temp.getAssistNum());
 				}
-				if(tmptype.equals("抢断数")){
-					data[i][4]= temp.getStealNum();
+				else if(tmptype.equals("抢断数")){
+					data[i][4]= Integer.toString(temp.getStealNum());
 				}
-				if(tmptype.equals("盖帽数")){
-					data[i][4]= temp.getBlockNum();
+				else if(tmptype.equals("盖帽数")){
+					data[i][4]= Integer.toString(temp.getBlockNum());
 				}
 				else{
 					data[i][4] = -1;
@@ -71,7 +82,52 @@ public class HotPlayers extends JPanel {
 			add(ctfh);
 			
 			}
-		else if(tmptype.equals("赛季")){
+		else if(tmpsaccording.equals("赛季")){
+			psdv = pbs.getSeasonHotPlayer("13-14",map1.getItem(tmptype));
+			
+			int i = 0;
+			for(PlayerSeasonDataVO temp:psdv){
+				data[i][0]= temp.getName();					
+				data[i][1]= temp.getReverseName();
+				data[i][2]= temp.getPosition();
+				data[i][3]= map3.getFullName( temp.getTeamName());
+				//对应项得分
+				if(tmptype.equals("得分")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getPointNum()));
+				}
+				else if(tmptype.equals("篮板")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getReboundNum()));
+				}
+				else if(tmptype.equals("助攻")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getAssistNum()));
+				}
+				else if(tmptype.equals("抢断")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getStealNum()));
+				}
+				else if(tmptype.equals("盖帽")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getBlockNum()));
+				}
+				else if(tmptype.equals("三分命中率")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getT_shootPercentage()));
+				}
+				else if(tmptype.equals("投篮命中率")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getShootPercentage()));
+				}
+				else if(tmptype.equals("罚球命中率")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getFreeThrowPercentage()));
+				}
+				else{
+					data[i][4] = -1;
+				}
+				
+				i++;
+			    }
+			
+			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
+			CreateTableforhot ctfh = new CreateTableforhot(title,data,
+					381, 12,409, 150, 37,37, 6,
+					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
+			add(ctfh);
 			
 		}
 		else{
@@ -110,7 +166,7 @@ public class HotPlayers extends JPanel {
 		No1_num_positon.setBounds(189, 85, 85, 15);
 		add(No1_num_positon);
 		
-		JLabel No1_info = new JLabel(Integer.toString((int)data[0][4]));
+		JLabel No1_info = new JLabel((String)data[0][4]);
 		No1_info.setFont(new Font("华康雅宋体W9(P)", Font.PLAIN, 28));
 		No1_info.setBounds(217, 110, 85, 50);
 		add(No1_info);
@@ -125,19 +181,19 @@ public class HotPlayers extends JPanel {
 		add(No1_p1);
 		
 		ImageIcon No1_Player2 = new ImageIcon("pic/portrait/"+data[2][0]+".png");
-		No1_Player2.setImage(No1_Player.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player2.setImage(No1_Player2.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
 		JLabel label = new JLabel(No1_Player2);
 		label.setBounds(353, 52, 35, 35);
 		add(label);
 		
 		ImageIcon No1_Player3 = new ImageIcon("pic/portrait/"+data[3][0]+".png");
-		No1_Player3.setImage(No1_Player.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player3.setImage(No1_Player3.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
 		JLabel label_1 = new JLabel(No1_Player3);
 		label_1.setBounds(353, 89, 35, 35);
 		add(label_1);
 		
 		ImageIcon No1_Player4 = new ImageIcon("pic/portrait/"+data[4][0]+".png");
-		No1_Player4.setImage(No1_Player.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player4.setImage(No1_Player4.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
 		JLabel label_2 = new JLabel(No1_Player4);
 		label_2.setBounds(353, 126, 35, 35);
 		add(label_2);
