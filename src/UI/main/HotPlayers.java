@@ -34,7 +34,6 @@ public class HotPlayers extends JPanel {
 	String saiji = "13-14";
 	ArrayList<SingleMatchPersonalDataVO> smpd;
 	ArrayList<PlayerSeasonDataVO> psdv;
-	PlayerSeasonDataVO psdvs;
 	String according;
 	String type;
 	//RMIObject rmi = new RMIObject();
@@ -128,23 +127,23 @@ public class HotPlayers extends JPanel {
 
 		}
 		else{
-			psdvs = pbs.getMost_Progress_Player(map1.getItem(tmptype));
+			psdv = pbs.getMost_Progress_Player(map1.getItem(tmptype));
 			
 			int i = 0;
-			for(SingleMatchPersonalDataVO temp:smpd){
-				data[i][0]= temp.getPlayerName();		
-				data[i][1]= temp.getPlayerReverseName();
-				data[i][2]= temp.getPlayerPosition();
-				data[i][3]= map3.getFullName(temp.getTeamName());
+			for(PlayerSeasonDataVO temp:psdv){
+				data[i][0]= temp.getName();					
+				data[i][1]= temp.getInfo().getBirth();
+				data[i][2]= temp.getPosition();
+				data[i][3]= map3.getFullName( temp.getTeamName());
 				//对应项得分
-				if(tmptype.equals("场均得分")){
-					data[i][4]= Integer.toString(temp.getPointNum());
+				if(tmptype.equals("得分")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getPointNum_avg()));
 				}
-				else if(tmptype.equals("场均篮板")){
-					data[i][4]= Integer.toString(temp.getReboundNum());
+				else if(tmptype.equals("篮板")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getReboundNum_avg()));
 				}
-				else if(tmptype.equals("场均助攻")){
-					data[i][4]= Integer.toString(temp.getAssistNum());
+				else if(tmptype.equals("助攻")){
+					data[i][4]= Double.toString(OftenUseMethod.changedouble(temp.getAssistNum_avg()));
 				}
 				else{
 					data[i][4] = -1;
