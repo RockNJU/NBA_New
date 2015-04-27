@@ -59,7 +59,8 @@ public class DateChooser extends JPanel{
     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
     private boolean isShow=false;
     private Popup pop;
-    
+	  Color a=new Color(255,219,151);
+	  Color b=new Color(226,66,11);
     Font fb=new Font("微软雅黑",Font.BOLD,17);
     /**
      * Creates a new instance of DateChooser
@@ -89,7 +90,7 @@ public class DateChooser extends JPanel{
     private void initPanel(){
     	//this.setSize(100,30);
         monthPanel=new JPanel(new BorderLayout());
-        monthPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        monthPanel.setBorder(BorderFactory.createLineBorder(a));
         JPanel up=new JPanel(new BorderLayout());
         up.add(jp1=new JP1(),BorderLayout.NORTH);
         up.add(jp2=new JP2(),BorderLayout.CENTER);
@@ -135,7 +136,7 @@ public class DateChooser extends JPanel{
             public void mouseEntered(MouseEvent me){
                 if(showDate.isEnabled()){
                     showDate.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    showDate.setForeground(Color.RED);
+                    showDate.setForeground(b);
                 }
             }
             public void mouseExited(MouseEvent me){
@@ -233,7 +234,7 @@ public class DateChooser extends JPanel{
             left.addMouseListener(new MouseAdapter(){
                 public void mouseEntered(MouseEvent me){
                     left.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    left.setForeground(Color.RED);
+                    left.setForeground(b);
                 }
                 public void mouseExited(MouseEvent me){
                     left.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -251,7 +252,7 @@ public class DateChooser extends JPanel{
             right.addMouseListener(new MouseAdapter(){
                 public void mouseEntered(MouseEvent me){
                     right.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    right.setForeground(Color.RED);
+                    right.setForeground(b);
                 }
                 public void mouseExited(MouseEvent me){
                     right.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -364,7 +365,7 @@ public class DateChooser extends JPanel{
                     day==now.get(Calendar.DAY_OF_MONTH)){
                 //如果日期和当前日期一样,则用红框
                 Graphics2D gd=(Graphics2D)g;
-                gd.setColor(Color.RED);
+                gd.setColor(b);
                 Polygon p=new Polygon();
                 p.addPoint(0,0);
                 p.addPoint(getWidth()-1,0);
@@ -502,7 +503,7 @@ public class DateChooser extends JPanel{
             jl.addMouseListener(new MouseAdapter(){
                 public void mouseEntered(MouseEvent me){
                     jl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    jl.setForeground(Color.RED);
+                    jl.setForeground(b);
                 }
                 public void mouseExited(MouseEvent me){
                     jl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

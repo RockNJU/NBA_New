@@ -47,6 +47,7 @@ public class CreateTable extends JPanel{
 		Object data[][];
 		Font fbig;
 		Font fsmall;
+		  Color a=new Color(255,219,151);
 		public CreateTable(String title[], Object datas[][],int x,int y,int width,int height,int rowheight,Font Fbig,Font Fsmall){
 			/*这本身是一个Panel,panel 是可以直接用的，传进信息便可以了直接使用*/
 			/*title 是表头信息，data 是传进来的数据，二维字符串数组,x,y 是表格的坐标，wideth,height 是大小的设置*/
@@ -94,10 +95,10 @@ public class CreateTable extends JPanel{
 			 //获得表头
 				JTableHeader tableH = table.getTableHeader();
 			    //设置表头的背景色
-			    tableH.setBackground(new Color(252, 213, 146));
+			    tableH.setBackground(a);
 			    //设置表头的文字颜色
-			    tableH.setForeground(new Color(255, 255, 255));
-			    
+			     tableH.setForeground(Color.DARK_GRAY);
+			    tableH.setOpaque(false);
 
 			
 			

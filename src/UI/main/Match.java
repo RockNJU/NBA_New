@@ -312,9 +312,10 @@ public class Match extends JPanel {
 					re[i][10]="无加时赛";
 				}else{
 					for(int m=4;m<k;m++){
-						re[i][10]=(re[i][10]+"/"+mdata.get(i).getScores().get(m)).substring(1);
+						re[i][10]=((re[i][10]+"/"+mdata.get(i).getScores().get(m)));
+						
 					}
-					
+					System.out.println(re[i][10]);
 				}
 			}		
 			return re;
