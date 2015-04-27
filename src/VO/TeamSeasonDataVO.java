@@ -21,18 +21,18 @@ public class TeamSeasonDataVO {
 	double fieldGoal_avg;
 	int shootNum; 				     //投篮出手数
 	double shootNum_avg;
-	int T_fieldGoal; 				 //三分命中数
-	double T_fieldGoal_avg;
-	int T_shootNum; 				 //三分出手数
-	double T_shootNum_avg;
+	int t_fieldGoal; 				 //三分命中数
+	double t_fieldGoal_avg;
+	int t_shootNum; 				 //三分出手数
+	double t_shootNum_avg;
 	int freeThrowGoalNum; 			 //罚球命中数
 	double freeThrowGoalNum_avg;
 	int freeThrowNum; 				 //罚球总数
 	double freeThrowNum_avg;
-	int O_ReboundNum; 				 //进攻篮板数
-	double O_ReboundNum_avg;
-	int D_ReboundNum; 				 //防守篮板数
-	double D_ReboundNum_avg;
+	int o_ReboundNum; 				 //进攻篮板数
+	double o_ReboundNum_avg;
+	int d_ReboundNum; 				 //防守篮板数
+	double d_ReboundNum_avg;
 	int assistNum;					 //助攻数
 	double assistNum_avg;
 	int stealNum; 					 //抢断数
@@ -49,7 +49,7 @@ public class TeamSeasonDataVO {
 	double pointNum_avg;
 	
 	double shootPercentage; 		 //全队的投篮命中率
-	double T_shootPercentage; 	     //全队的三分球命中率
+	double t_shootPercentage; 	     //全队的三分球命中率
 	double freeThrowPercentage; 	 //全队的罚球命中率
 	
 	double offenseRound;
@@ -66,9 +66,9 @@ public class TeamSeasonDataVO {
 	double assistEfficiency = 0;
 	double assistEfficiency_avg;
 	private double O_ReboundEfficiency =0; 
-	double O_ReboundEfficiency_avg;
-	private double D_ReboundEfficiency =0;
-	double D_ReboundEfficiency_avg;
+	double o_ReboundEfficiency_avg;
+	private double d_ReboundEfficiency =0;
+	double d_ReboundEfficiency_avg;
 	
 	private ArrayList<TeamMatchVO> last_five_match;
 
@@ -91,12 +91,12 @@ public class TeamSeasonDataVO {
 		this.winNum = winNum;
 		this.fieldGoal = fieldGoal ;  
 		this.shootNum = shootNum ;  
-		this.T_fieldGoal = T_fieldGoal ;  
-		this.T_shootNum = T_shootNum ; 
+		this.t_fieldGoal = T_fieldGoal ;  
+		this.t_shootNum = T_shootNum ; 
 		this.freeThrowGoalNum =  freeThrowGoalNum;  
 		this.freeThrowNum = freeThrowNum;  
-		this.O_ReboundNum = O_ReboundNum ;  
-		this.D_ReboundNum =  D_ReboundNum;  
+		this.o_ReboundNum = O_ReboundNum ;  
+		this.d_ReboundNum =  D_ReboundNum;  
 		this.assistNum =  assistNum;  
 		this.stealNum = stealNum ;  
 		this.reboundNum = reboundNum ; 
@@ -107,7 +107,7 @@ public class TeamSeasonDataVO {
 		winRate=winNum;
 		
 		this.shootPercentage =  (double)fieldGoal/shootNum;  
-		this.T_shootPercentage =(double)T_fieldGoal/T_shootNum ; 
+		this.t_shootPercentage =(double)T_fieldGoal/T_shootNum ; 
 		this.freeThrowPercentage = (double)freeThrowGoalNum/freeThrowNum ;  
 		 
 		this.offenseRound = offenseRound ;  
@@ -119,18 +119,18 @@ public class TeamSeasonDataVO {
 		this.assistEfficiency = assistEfficiency;  
 		
 		this.O_ReboundEfficiency = O_ReboundEfficiency; 
-		this.D_ReboundEfficiency = D_ReboundEfficiency;
+		this.d_ReboundEfficiency = D_ReboundEfficiency;
 		
 		
 		 /////////////////////
 	     fieldGoal_avg= fieldGoal;				    
 		 shootNum_avg= shootNum;
-		  T_fieldGoal_avg= T_fieldGoal;
-		  T_shootNum_avg= T_shootNum;
+		  t_fieldGoal_avg= T_fieldGoal;
+		  t_shootNum_avg= T_shootNum;
 		  freeThrowGoalNum_avg= freeThrowGoalNum;
 		  freeThrowNum_avg= freeThrowNum;		 
-		  O_ReboundNum_avg= O_ReboundNum;	 
-		  D_ReboundNum_avg= D_ReboundNum;		 
+		  o_ReboundNum_avg= O_ReboundNum;	 
+		  d_ReboundNum_avg= D_ReboundNum;		 
 		  assistNum_avg= assistNum;		 
 		  stealNum_avg= stealNum;	 
 		  reboundNum_avg= reboundNum;	 
@@ -145,8 +145,8 @@ public class TeamSeasonDataVO {
          defenseEfficiency_avg=defenseEfficiency;
         stealEfficiency_avg=stealEfficiency;
          assistEfficiency_avg=assistEfficiency;
-		  O_ReboundEfficiency_avg=O_ReboundEfficiency;
-		 D_ReboundEfficiency_avg=D_ReboundEfficiency;
+		  o_ReboundEfficiency_avg=O_ReboundEfficiency;
+		 d_ReboundEfficiency_avg=D_ReboundEfficiency;
 		
 	}
 	
@@ -165,12 +165,12 @@ public class TeamSeasonDataVO {
 		 defenseRound=defenseRound+vo.getDefenseRound();
 		 fieldGoal=fieldGoal+vo.getFieldGoal();
 		 shootNum=vo.getShootNum()+shootNum;
-		 T_fieldGoal=T_fieldGoal+vo.getT_fieldGoal();
-		 T_shootNum=T_shootNum+vo.getT_shootNum();
+		 t_fieldGoal=t_fieldGoal+vo.getT_fieldGoal();
+		 t_shootNum=t_shootNum+vo.getT_shootNum();
 		 freeThrowGoalNum=freeThrowGoalNum+vo.getFreeThrowGoalNum();
 		 freeThrowNum=vo.getFreeThrowNum()+freeThrowNum;
-		 O_ReboundNum=O_ReboundNum+vo.getO_ReboundNum();
-		 D_ReboundNum=D_ReboundNum+vo.getD_ReboundNum();
+		 o_ReboundNum=o_ReboundNum+vo.getO_ReboundNum();
+		 d_ReboundNum=d_ReboundNum+vo.getD_ReboundNum();
 		 
 		 reboundNum=reboundNum+vo.getReboundNum();
 		 assistNum=assistNum+vo.getAssistNum();
@@ -185,7 +185,7 @@ public class TeamSeasonDataVO {
 		 
 		 
 		  shootPercentage=(double)fieldGoal/shootNum; 		 
-		  T_shootPercentage=(double)T_fieldGoal/T_shootNum; 	 
+		  t_shootPercentage=(double)t_fieldGoal/t_shootNum; 	 
 		  freeThrowPercentage=(double)freeThrowGoalNum/freeThrowNum; 	
 			  	
 			  
@@ -197,19 +197,19 @@ public class TeamSeasonDataVO {
 		 assistEfficiency = assistEfficiency+vo.getAssistEfficiency(); 	 
 			 
 		 O_ReboundEfficiency = O_ReboundEfficiency+vo.getO_ReboundEfficiency(); 
-		 D_ReboundEfficiency = D_ReboundEfficiency+vo.getD_ReboundEfficiency();
+		 d_ReboundEfficiency = d_ReboundEfficiency+vo.getD_ReboundEfficiency();
 		 
 		 
 		 
 		 /////////////////////
 		     fieldGoal_avg=(double)fieldGoal/matchNum;				    
 			 shootNum_avg=(double)shootNum/matchNum;
-			  T_fieldGoal_avg=(double)T_fieldGoal/matchNum;
-			  T_shootNum_avg=(double)T_shootNum/matchNum;
+			  t_fieldGoal_avg=(double)t_fieldGoal/matchNum;
+			  t_shootNum_avg=(double)t_shootNum/matchNum;
 			  freeThrowGoalNum_avg=(double)freeThrowGoalNum/matchNum;
 			  freeThrowNum_avg=(double)freeThrowNum/matchNum;		 
-			  O_ReboundNum_avg=(double)O_ReboundNum/matchNum;	 
-			  D_ReboundNum_avg=(double)D_ReboundNum/matchNum;		 
+			  o_ReboundNum_avg=(double)o_ReboundNum/matchNum;	 
+			  d_ReboundNum_avg=(double)d_ReboundNum/matchNum;		 
 			  assistNum_avg=(double)assistNum/matchNum;		 
 			  stealNum_avg=(double)stealNum/matchNum;	 
 			  reboundNum_avg=(double)reboundNum/matchNum;	 
@@ -224,8 +224,8 @@ public class TeamSeasonDataVO {
               defenseEfficiency_avg=defenseEfficiency/matchNum;
              stealEfficiency_avg=stealEfficiency/matchNum;
              assistEfficiency_avg=assistEfficiency/matchNum;
-			  O_ReboundEfficiency_avg=O_ReboundEfficiency/matchNum;
-			 D_ReboundEfficiency_avg=D_ReboundEfficiency/matchNum;
+			  o_ReboundEfficiency_avg=O_ReboundEfficiency/matchNum;
+			 d_ReboundEfficiency_avg=d_ReboundEfficiency/matchNum;
 		 
 	 }
 	
@@ -285,22 +285,22 @@ public class TeamSeasonDataVO {
 
 
 		public int getT_fieldGoal() {
-			return T_fieldGoal;
+			return t_fieldGoal;
 		}
 
 
 		public double getT_fieldGoal_avg() {
-			return T_fieldGoal_avg;
+			return t_fieldGoal_avg;
 		}
 
 
 		public int getT_shootNum() {
-			return T_shootNum;
+			return t_shootNum;
 		}
 
 
 		public double getT_shootNum_avg() {
-			return T_shootNum_avg;
+			return t_shootNum_avg;
 		}
 
 
@@ -323,22 +323,22 @@ public class TeamSeasonDataVO {
 
 
 		public int getO_ReboundNum() {
-			return O_ReboundNum;
+			return o_ReboundNum;
 		}
 
 
 		public double getO_ReboundNum_avg() {
-			return O_ReboundNum_avg;
+			return o_ReboundNum_avg;
 		}
 
 
 		public int getD_ReboundNum() {
-			return D_ReboundNum;
+			return d_ReboundNum;
 		}
 
 
 		public double getD_ReboundNum_avg() {
-			return D_ReboundNum_avg;
+			return d_ReboundNum_avg;
 		}
 
 
@@ -408,7 +408,7 @@ public class TeamSeasonDataVO {
 
 
 		public double getT_shootPercentage() {
-			return T_shootPercentage;
+			return t_shootPercentage;
 		}
 
 
@@ -457,7 +457,7 @@ public class TeamSeasonDataVO {
 
 
 		public double getO_ReboundEfficiency() {
-			return O_ReboundEfficiency_avg;
+			return o_ReboundEfficiency_avg;
 		}
 
 
@@ -465,7 +465,7 @@ public class TeamSeasonDataVO {
 
 
 		public double getD_ReboundEfficiency() {
-			return D_ReboundEfficiency_avg;
+			return d_ReboundEfficiency_avg;
 		}
 
 

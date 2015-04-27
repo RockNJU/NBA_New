@@ -30,18 +30,18 @@ public class PlayerSeasonDataVO implements Serializable{
 		double fieldGoal_avg;
 		int shootNum; 				     //投篮出手数
 		double shootNum_avg;
-		int T_fieldGoal; 				 //三分命中数
-		double T_fieldGoal_avg;
-		int T_shootNum; 				 //三分出手数
-		double T_shootNum_avg;
+		int t_fieldGoal; 				 //三分命中数
+		double t_fieldGoal_avg;
+		int t_shootNum; 				 //三分出手数
+		double t_shootNum_avg;
 		int freeThrowGoalNum; 			 //罚球命中数
 		double freeThrowGoalNum_avg;
 		int freeThrowNum; 				 //罚球总数
 		double freeThrowNum_avg;
-		int O_ReboundNum; 				 //进攻篮板数
-		double O_ReboundNum_avg;
-		int D_ReboundNum; 				 //防守篮板数
-		double D_ReboundNum_avg;
+		int o_ReboundNum; 				 //进攻篮板数
+		double o_ReboundNum_avg;
+		int d_ReboundNum; 				 //防守篮板数
+		double d_ReboundNum_avg;
 		int assistNum;					 //助攻数
 		double assistNum_avg;
 		int stealNum; 					 //抢断数
@@ -62,7 +62,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	
 	private double freeThrowPercentage;		//罚球命中率
 	private double shootPercentage;			//投篮命中率
-	private double T_shootPercentage;		//三分球命中率
+	private double t_shootPercentage;		//三分球命中率
 	
 	private double shootEfficiency;		    //投篮效率
 	
@@ -82,7 +82,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	private double usingPercentage_avg;         //使用率
 	private double blockEfficiency_avg;	 //篮板效率
 	private double realShootPercentage=0;	//真实投篮命中率
-	private double GmSc;				    //GmSc效率值
+	private double gmSc;				    //GmSc效率值
 	private int seasonDoubleNum;		    //赛季两双数
 	private int seasonThreeNum;  		    //赛季三双数
 	
@@ -136,8 +136,8 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.freeThrowNum=freeThrowNum;
 				this.blockEfficiency=blockEfficiency;
 				this.reboundNum=reboundNum;
-				this.O_ReboundNum=O_R_N;
-				 this.D_ReboundNum=D_R_N;
+				this.o_ReboundNum=O_R_N;
+				 this.d_ReboundNum=D_R_N;
 				this.assistNum=assistNum;
 				this.turnoverNum=turnoverNum;
 				this.stealNum=stealNum;
@@ -153,8 +153,8 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.seasonDoubleNum=doubleNum;
 				this.seasonThreeNum=threeNum;	
 				
-				GmSc=pointNum+fieldGoal*0.4-0.7*shootNum-
-						  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*O_ReboundNum+0.3*D_ReboundNum
+				gmSc=pointNum+fieldGoal*0.4-0.7*shootNum-
+						  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*o_ReboundNum+0.3*d_ReboundNum
 						  +stealNum+0.7*assistNum+0.7*blockNum-0.4*foulNum-turnoverNum;
 				
 				/*  真实投篮命中率： 得分÷(2×(投篮出手数+0.44×罚球出手数))*/
@@ -173,12 +173,12 @@ public class PlayerSeasonDataVO implements Serializable{
 				 time_avg=time;
 				 fieldGoal_avg= fieldGoal;				    
 				 shootNum_avg= shootNum;
-				  T_fieldGoal_avg= T_fieldGoal;
-				  T_shootNum_avg= T_shootNum;
+				  t_fieldGoal_avg= T_fieldGoal;
+				  t_shootNum_avg= T_shootNum;
 				  freeThrowGoalNum_avg= freeThrowGoalNum;
 				  freeThrowNum_avg= freeThrowNum;		 
-				  O_ReboundNum_avg= O_ReboundNum;	 
-				  D_ReboundNum_avg= D_ReboundNum;		 
+				  o_ReboundNum_avg= o_ReboundNum;	 
+				  d_ReboundNum_avg= d_ReboundNum;		 
 				  assistNum_avg= assistNum;		 
 				  stealNum_avg= stealNum;	 
 				  reboundNum_avg= reboundNum;	 
@@ -205,7 +205,7 @@ public class PlayerSeasonDataVO implements Serializable{
 					      if(shootNum!=0)
 						 shootPercentage=(double)fieldGoal/shootNum;			//投篮命中率
 					      if(T_shootNum!=0)
-						  T_shootPercentage=(double)T_fieldGoal/T_shootNum;		//三分球命中率
+						  t_shootPercentage=(double)T_fieldGoal/T_shootNum;		//三分球命中率
 					      
 					      if((shootNum-T_shootNum)!=0){	  
 					 		 turnoverPercentage=(double)turnoverNum/((shootNum-T_shootNum)+0.44*
@@ -270,13 +270,13 @@ public class PlayerSeasonDataVO implements Serializable{
 		 time=time+vo.getTime();
 		 fieldGoal=fieldGoal+vo.getFieldGoal();
 		 shootNum=vo.getShootNum()+shootNum;
-		 T_fieldGoal=T_fieldGoal+vo.getT_fieldGoal();
+		 t_fieldGoal=t_fieldGoal+vo.getT_fieldGoal();
 		 
-		 T_shootNum=T_shootNum+vo.getT_shootNum();
+		 t_shootNum=t_shootNum+vo.getT_shootNum();
 		 freeThrowGoalNum=freeThrowGoalNum+vo.getFreeThrowGoalNum();
 		 freeThrowNum=vo.getFreeThrowNum()+freeThrowNum;
-		 O_ReboundNum=O_ReboundNum+vo.getO_ReboundNum();
-		 D_ReboundNum=D_ReboundNum+vo.getD_ReboundNum();
+		 o_ReboundNum=o_ReboundNum+vo.getO_ReboundNum();
+		 d_ReboundNum=d_ReboundNum+vo.getD_ReboundNum();
 		 
 		 reboundNum=reboundNum+vo.getReboundNum();
 		 assistNum=assistNum+vo.getAssistNum();
@@ -288,15 +288,15 @@ public class PlayerSeasonDataVO implements Serializable{
 		 pointNum=pointNum+vo.getPointNum();
 		 
 		 
-		 GmSc=(pointNum+fieldGoal*0.4-0.7*shootNum-
-				  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*O_ReboundNum+0.3*D_ReboundNum
+		 gmSc=(pointNum+fieldGoal*0.4-0.7*shootNum-
+				  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*o_ReboundNum+0.3*d_ReboundNum
 				  +stealNum+0.7*assistNum+0.7*blockNum-0.4*foulNum-turnoverNum)/matchNum;
 		 if((shootNum+0.44*freeThrowNum)!=0)
 				realShootPercentage=pointNum/(2*(shootNum+0.44*freeThrowNum));
 		 
 		 if(shootNum!=0){
 			   
-			   shootEfficiency=(fieldGoal+0.5*T_fieldGoal)/shootNum;
+			   shootEfficiency=(fieldGoal+0.5*t_fieldGoal)/shootNum;
 		 // 
 		  }else{
 			  shootEfficiency=0;
@@ -340,15 +340,15 @@ public class PlayerSeasonDataVO implements Serializable{
 			    freeThrowPercentage=(double)freeThrowGoalNum/freeThrowNum;		//罚球命中率
 			      if(shootNum!=0)
 				 shootPercentage=(double)fieldGoal/shootNum;			//投篮命中率
-			      if(T_shootNum!=0)
-				  T_shootPercentage=(double)T_fieldGoal/T_shootNum;		//三分球命中率
+			      if(t_shootNum!=0)
+				  t_shootPercentage=(double)t_fieldGoal/t_shootNum;		//三分球命中率
 		 
 		 if(shootNum!=0)
 			 shootPercentage=(double)fieldGoal/shootNum ;
 		 if(freeThrowNum!=0)
 				freeThrowPercentage=(double)freeThrowGoalNum/freeThrowNum;
-		 if(T_shootNum!=0)
-				T_shootPercentage=(double)T_fieldGoal/T_shootNum;
+		 if(t_shootNum!=0)
+				t_shootPercentage=(double)t_fieldGoal/t_shootNum;
 		 
 		 if(last_f_point.size()<5){
 			 last_f_point.add(vo.getPointNum());
@@ -390,12 +390,12 @@ public class PlayerSeasonDataVO implements Serializable{
 		 time_avg=time/matchNum;
 		 fieldGoal_avg=(double)fieldGoal/matchNum;				    
 		 shootNum_avg=(double)shootNum/matchNum;
-		  T_fieldGoal_avg=(double)T_fieldGoal/matchNum;
-		  T_shootNum_avg=(double)T_shootNum/matchNum;
+		  t_fieldGoal_avg=(double)t_fieldGoal/matchNum;
+		  t_shootNum_avg=(double)t_shootNum/matchNum;
 		  freeThrowGoalNum_avg=(double)freeThrowGoalNum/matchNum;
 		  freeThrowNum_avg=(double)freeThrowNum/matchNum;		 
-		  O_ReboundNum_avg=(double)O_ReboundNum/matchNum;	 
-		  D_ReboundNum_avg=(double)D_ReboundNum/matchNum;		 
+		  o_ReboundNum_avg=(double)o_ReboundNum/matchNum;	 
+		  d_ReboundNum_avg=(double)d_ReboundNum/matchNum;		 
 		  assistNum_avg=(double)assistNum/matchNum;		 
 		  stealNum_avg=(double)stealNum/matchNum;	 
 		  reboundNum_avg=(double)reboundNum/matchNum;	 
@@ -412,8 +412,8 @@ public class PlayerSeasonDataVO implements Serializable{
 		  blockEfficiency_avg=blockEfficiency/matchNum;
 		  usingPercentage_avg=usingPercentage/matchNum;         //使用率
 		  
-		  if((shootNum-T_shootNum)!=0){	  
-		 turnoverPercentage=(double)turnoverNum/((shootNum-T_shootNum)+0.44*
+		  if((shootNum-t_shootNum)!=0){	  
+		 turnoverPercentage=(double)turnoverNum/((shootNum-t_shootNum)+0.44*
 				   (double)freeThrowNum/matchNum+(double)turnoverNum/matchNum);
 		 }else{ 
 			 turnoverPercentage=0.44*(freeThrowNum+turnoverNum)/matchNum;
@@ -439,7 +439,7 @@ public class PlayerSeasonDataVO implements Serializable{
  
 	
 	public double getT_shootPercentage(){
-		return T_shootPercentage;  //获取三分球命中率
+		return t_shootPercentage;  //获取三分球命中率
 	}
 	public double getShootPercentage() {
 		return shootPercentage;
@@ -526,25 +526,25 @@ public class PlayerSeasonDataVO implements Serializable{
 
 
 	public int getT_fieldGoal() {
-		return T_fieldGoal;
+		return t_fieldGoal;
 	}
 
 
 
 	public double getT_fieldGoal_avg() {
-		return T_fieldGoal_avg;
+		return t_fieldGoal_avg;
 	}
 
 
 
 	public int getT_shootNum() {
-		return T_shootNum;
+		return t_shootNum;
 	}
 
 
 
 	public double getT_shootNum_avg() {
-		return T_shootNum_avg;
+		return t_shootNum_avg;
 	}
 
 
@@ -568,25 +568,25 @@ public class PlayerSeasonDataVO implements Serializable{
 
 
 	public int getO_ReboundNum() {
-		return O_ReboundNum;
+		return o_ReboundNum;
 	}
 
 
 
 	public double getO_ReboundNum_avg() {
-		return O_ReboundNum_avg;
+		return o_ReboundNum_avg;
 	}
 
 
 
 	public int getD_ReboundNum() {
-		return D_ReboundNum;
+		return d_ReboundNum;
 	}
 
 
 
 	public double getD_ReboundNum_avg() {
-		return D_ReboundNum_avg;
+		return d_ReboundNum_avg;
 	}
 
 
@@ -697,7 +697,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	}
 
 	public double getGmSc() {
-		return GmSc;
+		return gmSc;
 	}
 
 

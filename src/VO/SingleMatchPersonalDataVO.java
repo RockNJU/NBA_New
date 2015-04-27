@@ -18,12 +18,12 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	 private double time;					//球员上场时间
 	 private int fieldGoal;					//进球数
 	 private int shootNum;					//投篮总数
-	 private int T_fieldGoal;				//三分进球数
-	 private int T_shootNum;				//三分投射数
+	 private int t_fieldGoal;				//三分进球数
+	 private int t_shootNum;				//三分投射数
 	 private int freeThrowGoalNum;			//罚篮进球数
 	 private int freeThrowNum;				//罚篮总数
-	 private int O_ReboundNum;				//进攻篮板数
-	 private int D_ReboundNum;				//防守篮板数
+	 private int o_ReboundNum;				//进攻篮板数
+	 private int d_ReboundNum;				//防守篮板数
 	 private int reboundNum;				//篮板总数
 	 private int assistNum;				    //助攻数
 	 private int stealNum;					//抢断数
@@ -42,7 +42,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		private double usingPercentage=0;         //使用率__
 		private double realShootPercentage =0;			//真实投篮命中率
 		private double blockEfficiency=0;			//盖帽率__
-		private double GmSc;
+		private double gmSc;
 		
 		private String teamName;                  //本场比赛所效力的球队
 	 
@@ -71,12 +71,12 @@ public class SingleMatchPersonalDataVO implements Serializable{
 		 this.time=time;
 		 this.fieldGoal=fieldGoal;
 		 this.shootNum=shootNum;
-		 this.T_fieldGoal=T_fieldGoal;
-		 this.T_shootNum=T_shootNum;
+		 this.t_fieldGoal=T_fieldGoal;
+		 this.t_shootNum=T_shootNum;
 		 this.freeThrowGoalNum=freeThrowGoalNum;
 		 this.freeThrowNum=freeThrowNum;
-		 this.O_ReboundNum=O_R_N;
-		 this.D_ReboundNum=D_R_N;
+		 this.o_ReboundNum=O_R_N;
+		 this.d_ReboundNum=D_R_N;
 		 this.reboundNum=reboundNum;
 		 this.assistNum=assistNum;
 		 this.stealNum=steal;
@@ -111,8 +111,8 @@ public class SingleMatchPersonalDataVO implements Serializable{
 				   freeThrowNum+turnoverNum); 
 		   
 			  //usingPercentage;    
-			  GmSc=points+fieldGoal*0.4-0.7*shootNum-
-					  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*O_ReboundNum+0.3*D_ReboundNum
+			  gmSc=points+fieldGoal*0.4-0.7*shootNum-
+					  0.4*(freeThrowNum-freeThrowGoalNum)+0.7*o_ReboundNum+0.3*d_ReboundNum
 					  +stealNum+0.7*assistNum+0.7*blockNum-0.4*foulNum-turnoverNum;
 		 
 		 
@@ -145,11 +145,11 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	}
 
 	public int getT_fieldGoal(){
-		return T_fieldGoal;
+		return t_fieldGoal;
 	}
 
 	public int getT_shootNum() {
-		return T_shootNum;
+		return t_shootNum;
 	}
 
 	public int getFreeThrowGoalNum() {
@@ -162,11 +162,11 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	}
 
 	public int getO_ReboundNum() {
-		return O_ReboundNum;
+		return o_ReboundNum;
 	}
 
 	public int getD_ReboundNum() {
-		return D_ReboundNum;
+		return d_ReboundNum;
 	}
 
 	 
@@ -187,10 +187,10 @@ public class SingleMatchPersonalDataVO implements Serializable{
  
 	
 	public double getThreePointPercentage(){
-		if(T_shootNum==0)
+		if(t_shootNum==0)
 			return 0;
 		else
-			return (double)T_fieldGoal/T_shootNum;
+			return (double)t_fieldGoal/t_shootNum;
 	}
 	 
 	public double getShootPercentage() {
@@ -205,7 +205,7 @@ public class SingleMatchPersonalDataVO implements Serializable{
 	}
 	 
 	public double getGmSc() {
-		return GmSc;
+		return gmSc;
 	}
 
 	public String getSeason() {

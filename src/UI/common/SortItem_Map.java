@@ -19,7 +19,7 @@ public class SortItem_Map {
 	   map.put("近五场助攻提升率", "l_f_assist_rate");
 	   map.put("近五场篮板提升率", "l_f_rebound_rate");
 	   
-	   map.put("GmSc效率值", "GmSc");
+	   map.put("GmSc效率值", "gmSc");
 	   map.put("进攻效率", "offensiveReboundEff_avg");
 	   map.put("篮板率", "reboundEfficiency_avg");
 	   map.put("助攻率", "assistEfficiency_avg");
@@ -36,7 +36,7 @@ public class SortItem_Map {
 	   map.put("两双数", "seasonDoubleNum");
 	   map.put("三双数", "seasonThreeNum");
 	   map.put("投篮命中率", "shootPercentage");
-	   map.put("三分命中率", "T_shootPercentage");
+	   map.put("三分命中率", "t_shootPercentage");
 	   map.put("罚球命中率", "freeThrowPercentage");
 	   
 	   
@@ -45,8 +45,8 @@ public class SortItem_Map {
 	   map.put("上场时间", "time_avg");
 	   map.put("进球数", "fieldGoal_avg");
 	   map.put("出手数", "shootNum_avg");
-	   map.put("三分命中数", "T_fieldGoal_avg");
-	   map.put("三分出手数", "T_shootNum_avg");
+	   map.put("三分命中数", "t_fieldGoal_avg");
+	   map.put("三分出手数", "t_shootNum_avg");
 	   //////
 	   map.put("得分", "pointNum_avg");
 	   map.put("效率", "efficiency");
@@ -56,8 +56,8 @@ public class SortItem_Map {
 	   map.put("篮板", "reboundNum_avg");
 	   map.put("抢断", "stealNum_avg");
 	   map.put("助攻", "assistNum_avg");
-	   map.put("防守篮板", "D_ReboundNum_avg");
-	   map.put("进攻篮板", "O_ReboundNum_avg");
+	   map.put("防守篮板", "d_ReboundNum_avg");
+	   map.put("进攻篮板", "o_ReboundNum_avg");
 	   map.put("罚篮数", "freeThrowNum_avg");
 	   map.put("罚篮命中数", "freeThrowGoalNum_avg");
 	   ////////
