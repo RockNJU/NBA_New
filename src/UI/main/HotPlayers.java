@@ -12,7 +12,6 @@ import UI.common.CreateTableforhot;
 import UI.common.OftenUseMethod;
 import UI.common.PlayerPosition_Map;
 import UI.common.SortItem_Map;
-import UI.common.TeamMap;
 import UI.common.TeamName_Map;
 import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
@@ -24,6 +23,7 @@ public class HotPlayers extends JPanel {
 	
 	ArrayList<SingleMatchPersonalDataVO> smpd;
 	ArrayList<PlayerSeasonDataVO> psdv;
+	PlayerSeasonDataVO psdvs;
 	String according;
 	String type;
 	RMIObject rmi = new RMIObject();
@@ -33,7 +33,6 @@ public class HotPlayers extends JPanel {
 	Object [][] data=new Object[5][5];
 	
 	SortItem_Map map1 = new SortItem_Map();
-	TeamMap map2 = new TeamMap();
 	TeamName_Map map3 = new TeamName_Map();	
 	PlayerPosition_Map map4 = new PlayerPosition_Map();	
 
@@ -42,9 +41,7 @@ public class HotPlayers extends JPanel {
 	 */
 	public HotPlayers(String tmpsaccording,String tmptype) {
 		if(tmpsaccording.equals("每日")){
-			smpd = mbs.getTodayHotPlayer(map2.getItem(tmptype));
-			
-
+			smpd = mbs.getTodayHotPlayer(map1.getItem(tmptype));
 			int i = 0;
 			for(SingleMatchPersonalDataVO temp:smpd){
 				data[i][0]= temp.getPlayerName();		
@@ -53,7 +50,7 @@ public class HotPlayers extends JPanel {
 				data[i][2]= temp.getPlayerPosition();
 				data[i][3]= map3.getFullName(temp.getTeamName());
 				//对应项得分
-				if(tmptype.equals("得分")){
+				if(tmptype.equals("得分总")){
 					data[i][4]= Integer.toString(temp.getPointNum());
 				}
 				else if(tmptype.equals("篮板数")){
@@ -131,6 +128,36 @@ public class HotPlayers extends JPanel {
 			
 		}
 		else{
+			psdvs = pbs.getMost_Progress_Player(map1.getItem(tmptype));
+			
+			int i = 0;
+			for(SingleMatchPersonalDataVO temp:smpd){
+				data[i][0]= temp.getPlayerName();		
+				System.out.println(data[i][0]);
+				data[i][1]= temp.getPlayerReverseName();
+				data[i][2]= temp.getPlayerPosition();
+				data[i][3]= map3.getFullName(temp.getTeamName());
+				//对应项得分
+				if(tmptype.equals("场均得分")){
+					data[i][4]= Integer.toString(temp.getPointNum());
+				}
+				else if(tmptype.equals("场均篮板")){
+					data[i][4]= Integer.toString(temp.getReboundNum());
+				}
+				else if(tmptype.equals("场均助攻")){
+					data[i][4]= Integer.toString(temp.getAssistNum());
+				}
+				else{
+					data[i][4] = -1;
+				}
+				i++;
+			    }
+			
+			String[] title = {"名称","球队","球号","位置",tmptype,"肖像"};
+			CreateTableforhot ctfh = new CreateTableforhot(title,data,
+					381, 12,409, 150, 37,37, 6,
+					new Font("华康雅宋体W9(P)", Font.PLAIN, 14), new Font("华康雅宋体W9(P)", Font.PLAIN, 14),15, 15);
+			add(ctfh);
 			
 		}
 		
@@ -172,7 +199,7 @@ public class HotPlayers extends JPanel {
 		add(No1_info);
 		
 		ImageIcon No1_Player1 = new ImageIcon("pic/portrait/"+data[1][0]+".png");
-		No1_Player1.setImage(No1_Player.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player1.setImage(No1_Player1.getImage().getScaledInstance(48, 39,Image.SCALE_DEFAULT)); 		
 		JLabel No1_p1 = new JLabel(No1_Player1);		
 		No1_p1.setSize(35, 35);
 		No1_p1.setLocation(353, 14);
@@ -181,19 +208,19 @@ public class HotPlayers extends JPanel {
 		add(No1_p1);
 		
 		ImageIcon No1_Player2 = new ImageIcon("pic/portrait/"+data[2][0]+".png");
-		No1_Player2.setImage(No1_Player2.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player2.setImage(No1_Player2.getImage().getScaledInstance(48, 39,Image.SCALE_DEFAULT)); 		
 		JLabel label = new JLabel(No1_Player2);
 		label.setBounds(353, 52, 35, 35);
 		add(label);
 		
 		ImageIcon No1_Player3 = new ImageIcon("pic/portrait/"+data[3][0]+".png");
-		No1_Player3.setImage(No1_Player3.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player3.setImage(No1_Player3.getImage().getScaledInstance(48, 39,Image.SCALE_DEFAULT)); 		
 		JLabel label_1 = new JLabel(No1_Player3);
 		label_1.setBounds(353, 89, 35, 35);
 		add(label_1);
 		
 		ImageIcon No1_Player4 = new ImageIcon("pic/portrait/"+data[4][0]+".png");
-		No1_Player4.setImage(No1_Player4.getImage().getScaledInstance(64, 52,Image.SCALE_DEFAULT)); 		
+		No1_Player4.setImage(No1_Player4.getImage().getScaledInstance(48, 39,Image.SCALE_DEFAULT)); 		
 		JLabel label_2 = new JLabel(No1_Player4);
 		label_2.setBounds(353, 126, 35, 35);
 		add(label_2);
