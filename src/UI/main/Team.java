@@ -289,7 +289,7 @@ public class Team extends JPanel {
 								String s=season.getSelectedItem().toString().substring(0, 5);
 							 String name = teamlist.getValueAt(teamlist.getSelectedRow(),1);
 							 SingleTeam spi;
-							System.out.println("aha"+s+name);
+							//System.out.println("aha"+s+name);
 							spi = new SingleTeam(name,s);
 							
 							 spi.setVisible(true);
@@ -324,14 +324,13 @@ public class Team extends JPanel {
 			final String tempa = teamswest[i];
 			JButton btnNewButton = new JButton(image);
 			btnNewButton.setContentAreaFilled(false);
-			//TeamName_Map mm=new TeamName_Map();
-			//btnNewButton.setToolTipText(mm.getFullName(tempa));
-			btnNewButton.setToolTipText(tempa);
+			TeamName_Map mm=new TeamName_Map();
+			btnNewButton.setToolTipText(mm.getFullName(tempa));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					SingleTeam sti;
 					try {
-						System.out.println("qiudui:"+tempa);
+						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);
 						sti.setLocation(375, 58);	
@@ -356,15 +355,14 @@ public class Team extends JPanel {
 			
 			final String tempa = teamseast[i];
 			JButton btnNewButton = new JButton(image);
-			//TeamName_Map mm=new TeamName_Map();
-			//btnNewButton.setToolTipText(mm.getFullName(tempa));
-			btnNewButton.setToolTipText(tempa);
+			TeamName_Map mm=new TeamName_Map();
+			btnNewButton.setToolTipText(mm.getFullName(tempa));
 			btnNewButton.setContentAreaFilled(false);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					SingleTeam sti;
 					try {
-						System.out.println("qiudui:"+tempa);
+						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);
 						sti.setLocation(375, 58);	

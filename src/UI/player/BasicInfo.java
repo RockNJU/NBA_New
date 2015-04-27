@@ -60,8 +60,8 @@ public class BasicInfo extends JPanel {
 		pivo=pbl.getPlayerInfo(name);
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
 		
-		System.out.println(pivo==null);
-		System.out.println(pdvo==null);
+		//System.out.println(pivo==null);
+		//System.out.println(pdvo==null);
 		
 		
 		if(pivo==null&&pdvo!=null){
@@ -104,22 +104,13 @@ public class BasicInfo extends JPanel {
 		add(num_2);
 		//TODO 位置/效力球队
 		
-		//TeamName_Map m=new TeamName_Map();
-		JLabel num_3 = new JLabel(getlocation(pvo.getInfo().getPosition())+"/"+pvo.getData().getTeamName());
+		TeamName_Map m=new TeamName_Map();
+		JLabel num_3 = new JLabel(getlocation(pvo.getInfo().getPosition())+"/"+m.getFullName(pvo.getData().getTeamName()));
 		num_3.setForeground(new Color(102, 0, 51));
 		num_3.setFont(new Font("幼圆", Font.BOLD, 15));
 		num_3.setBounds(283, 50, 220, 20);
 		add(num_3);
-		/**
-		ImageIcon image1 = new ImageIcon("pic/labelbg.png"); 
-		image1.setImage(image1.getImage().getScaledInstance(374,63,Image.SCALE_DEFAULT)); 
-		JLabel num = new JLabel(image1);
-		num.setBounds(197, 13, 374, 63);
-		num.setOpaque(true);
-		//num.setBackground(back);
-		num.setBorder(BorderFactory.createLineBorder(line));
-		add(num);
-		*/
+
 		JLabel weight = new JLabel("\u4F53\u91CD\uFF1A");
 		weight.setForeground(Color.DARK_GRAY);
 		weight.setFont(new Font("黑体", Font.PLAIN, 14));
@@ -420,7 +411,7 @@ public class BasicInfo extends JPanel {
 		//158,157
 		//197,457
 		//三分命中率
-		System.out.println(pvo.getData().getT_shootPercentage());
+	//	System.out.println(pvo.getData().getT_shootPercentage());
 		ImageIcon percent_2 = new ImageIcon("pic\\1-100\\命中率_"+getpicturename(pvo.getData().getT_shootPercentage())+".png"); 
 		percent_2.setImage(percent_2.getImage().getScaledInstance(188,185,Image.SCALE_DEFAULT)); 		
 		JLabel percent2 = new JLabel(percent_2);
@@ -477,14 +468,14 @@ public class BasicInfo extends JPanel {
 	
 	
 	private String getpicturename(double rate){
-		System.out.println(rate);
+		//System.out.println(rate);
 		rate=rate*100;		
 		DecimalFormat df = new DecimalFormat("00000");    
 		String temp=String.valueOf(df.format(rate));
 		while(temp.length()<5){
 			temp="0"+temp;
 		}
-		System.out.println(temp);
+		//System.out.println(temp);
 		return temp;
 		
 	}
@@ -493,7 +484,7 @@ public class BasicInfo extends JPanel {
 		//rate=rate*100;		
 		DecimalFormat df = new DecimalFormat("0.00");    
 		String temp=String.valueOf(df.format(rate));
-		System.out.println(temp);
+		//System.out.println(temp);
 		return temp;
 		
 	}

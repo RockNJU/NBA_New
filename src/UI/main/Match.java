@@ -13,6 +13,7 @@ import UI.blObject.RMIObject;
 import UI.common.ComboBoxRenderer;
 import UI.common.CreateTable;
 import UI.common.DateChooser;
+import UI.common.TeamName_Map;
 import UI.match.SingleMatch;
 import UI.player.SinglePlayer;
 import VO.MatchInfo;
@@ -133,7 +134,7 @@ public class Match extends JPanel {
 	               matchlist.setVisible(true);
 	               
 	               mvo=mbl.getMatchByTeamTime(dc.showDate.getText());
-	               System.out.println("shifouweikong"+mvo==null);
+	               //System.out.println("shifouweikong"+mvo==null);
 	               if(mvo==null){
 	            	   JOptionPane.showMessageDialog(Match.this, "您搜索的日期没有比赛！");
 	               }else{
@@ -256,8 +257,9 @@ public class Match extends JPanel {
 						// System.out.println(e.getClickCount() == 2);
 						// TODO Auto-generated method stub
 						if (e.getClickCount() == 2 && matchlist.getSelectedRow() != -1) {
-							String team=matchlist.getValueAt(
-									matchlist.getSelectedRow(), 3);
+							TeamName_Map mm=new TeamName_Map();
+							String team=mm.getFullName(matchlist.getValueAt(
+									matchlist.getSelectedRow(), 3));
 							String date= matchlist.getValueAt(
 									matchlist.getSelectedRow(), 1);
 							// System.out.println(name);
@@ -290,6 +292,7 @@ public class Match extends JPanel {
 		}
 		else{
 			Object[][] re=new Object[mdata.size()][11];
+			TeamName_Map mm=new TeamName_Map();
 			//String[] matchtitle={" 日期  "," 赛季  "," 主队  "," 比分  "," 客队  ",
 			//	" 第一节比分  "," 第二节比分  "," 第三节比分  "," 第四节比分  "," 加时赛比分  "};
 			for(int i=0;i<mdata.size();i++){		
@@ -297,13 +300,13 @@ public class Match extends JPanel {
 				re[i][0]=i+1;
 				re[i][1]=mdata.get(i).getDate();
 				re[i][2]=mdata.get(i).getSeason()+"赛季";
-				re[i][3]=mdata.get(i).getHostTeam().getTeamName();
+				re[i][3]=mm.getFullName(mdata.get(i).getHostTeam().getTeamName());
 				re[i][4]=mdata.get(i).getMatchScore();
-				re[i][5]=mdata.get(i).getGuestTeam().getTeamName();
-				re[i][6]=re[i][3]+" "+mdata.get(i).getScores().get(0)+" "+re[i][5];
-				re[i][7]=re[i][3]+" "+mdata.get(i).getScores().get(1)+" "+re[i][5];
-				re[i][8]=re[i][3]+" "+mdata.get(i).getScores().get(2)+" "+re[i][5];
-				re[i][9]=re[i][3]+" "+mdata.get(i).getScores().get(3)+" "+re[i][5];				
+				re[i][5]=mm.getFullName(mdata.get(i).getGuestTeam().getTeamName());
+				re[i][6]=mdata.get(i).getScores().get(0);
+				re[i][7]=mdata.get(i).getScores().get(1);
+				re[i][8]=mdata.get(i).getScores().get(2);
+				re[i][9]=mdata.get(i).getScores().get(3);				
 				re[i][10]="";
 				if(k==4){
 					re[i][10]="无加时赛";
@@ -313,7 +316,6 @@ public class Match extends JPanel {
 					}
 					
 				}
-				System.out.println(re[i][10]);
 			}		
 			return re;
 		

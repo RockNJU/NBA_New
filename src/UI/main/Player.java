@@ -235,7 +235,7 @@ public class Player extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("sort");
+				//System.out.println("sort");
 				// TODO
 				String Position = position.getSelectedItem().toString();
 				String Partition = partition.getSelectedItem().toString();
@@ -249,7 +249,7 @@ public class Player extends JPanel {
 				Partition = map2.getItem(Partition);
 				According = map3.getItem(According);
 				psvo = pbl.sort(Season, Position, Partition, According);
-				System.out.println(Season + Position + Partition + According);
+				//System.out.println(Season + Position + Partition + According);
 				data = getTotaldata(psvo);
 				playerlist.updateTable(playerTotaltitle, data);
 			}
@@ -358,7 +358,7 @@ public class Player extends JPanel {
 			Partition = map2.getItem(Partition);
 			According = map3.getItem(According);
 			psvo = pbl.sort(Season, Position, Partition, According);
-			System.out.println(Season + Position + Partition + According);
+			//System.out.println(Season + Position + Partition + According);
 			data = getAveragedata(psvo);
 			playerlist.updateTable(playerAvgtitle, data);
 		}
@@ -375,7 +375,7 @@ public class Player extends JPanel {
 			Partition = map2.getItem(Partition);
 			According = map3.getItem(According);
 			psvo = pbl.sort(Season, Position, Partition, According);
-			System.out.println(Season + Position + Partition + According);
+			//System.out.println(Season + Position + Partition + According);
 			data = getTotaldata(psvo);
 			playerlist.updateTable(playerTotaltitle, data);
 		}
@@ -388,7 +388,7 @@ public class Player extends JPanel {
 	}
 
 	private Object[][] getTotaldata(ArrayList<PlayerSeasonDataVO> da) {
-		System.out.println(da == null);
+		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][33];
 			re[0][0] = "";
@@ -466,9 +466,9 @@ public class Player extends JPanel {
 				re[i][27] = OftenUseMethod.changedouble(da.get(i).getBlockEfficiency());
 				re[i][28] = OftenUseMethod.changedouble(da.get(i).getTurnoverPercentage());
 				re[i][29] = OftenUseMethod.changedouble(da.get(i).getUsingPercentage());
-				re[0][30] = da.get(i).getL_f_point_rate();
-				re[0][31] = da.get(i).getL_f_assist_rate();
-				re[0][32] = da.get(i).getL_f_rebound_rate();
+				re[i][30] = OftenUseMethod.changedouble(da.get(i).getL_f_point_rate());
+				re[i][31] =  OftenUseMethod.changedouble(da.get(i).getL_f_assist_rate());
+				re[i][32] =  OftenUseMethod.changedouble(da.get(i).getL_f_rebound_rate());
 			}
 			return re;
 
@@ -477,7 +477,7 @@ public class Player extends JPanel {
 	}
 	
 	private Object[][] getAveragedata(ArrayList<PlayerSeasonDataVO> da) {
-		System.out.println(da == null);
+		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][33];
 			re[0][0] = "";
@@ -555,9 +555,9 @@ public class Player extends JPanel {
 				re[i][27] = OftenUseMethod.changedouble(da.get(i).getBlockEfficiency());
 				re[i][28] = OftenUseMethod.changedouble(da.get(i).getTurnoverPercentage());
 				re[i][29] = OftenUseMethod.changedouble(da.get(i).getUsingPercentage());
-				re[0][30] = da.get(i).getL_f_point_rate();
-				re[0][31] = da.get(i).getL_f_assist_rate();
-				re[0][32] = da.get(i).getL_f_rebound_rate();
+				re[i][30] = OftenUseMethod.changedouble(da.get(i).getL_f_point_rate());
+				re[i][31] = OftenUseMethod.changedouble(da.get(i).getL_f_assist_rate());
+				re[i][32] = OftenUseMethod.changedouble(da.get(i).getL_f_rebound_rate());
 			}
 			return re;
 
@@ -566,7 +566,7 @@ public class Player extends JPanel {
 	}
 
 	private Object[][] getinfodata(ArrayList<PlayerInfoVO> da) {
-		System.out.println(da == null);
+		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][10];
 			re[0][0] = "";

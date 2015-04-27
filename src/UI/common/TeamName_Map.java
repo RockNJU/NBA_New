@@ -8,6 +8,51 @@ public class TeamName_Map {
 	  
 	
 	   public TeamName_Map(){
+		   map.put( "ATL","Hawks");	
+		   map.put( "BKN","Nets");
+		   map.put("BOS","Celtics" );
+		   map.put("CHA", "Hornets");
+		   map.put("CHI", "Bulls");
+		   map.put("CLE","Cavaliers" );
+		   map.put("DAL", "Mavericks");
+		   map.put("DEN","Nuggets" );
+		   map.put("DET", "Pistons");
+		   map.put("GSW","Warriors" );
+		   
+		   
+		   //---------------------
+		   map.put("HOU", "Rockets");
+		   map.put("IND","Pacers" );
+		   map.put("LAC","Clippers" );
+		   map.put("LAL","Lakers" );	   
+		   
+		   map.put( "MEM","Grizzlies");
+
+		   map.put("MIA", "Heat");
+		   map.put("MIL","Bucks" );
+		   map.put("MIN","TimBerwolves" );
+		    
+		   map.put("NOP", "Pelicans");
+		   map.put("NYK","Knicks" );
+		   map.put("OKC", "Thunder");
+		   map.put("ORL", "Magic");
+		   //map.put("", "");   
+		   
+		   map.put("PHI","76ers" );	   
+		   
+		   map.put( "PHX","Suns");
+		   //
+		   map.put( "POR","Trail Blazers");
+		   map.put( "SAC","Kings");
+		   map.put( "SAS","Spurs");
+		    
+		   map.put("TOR", "Raptors");
+		   map.put("UTA", "Jazz");
+		   map.put("WAS","Wizards" );
+		   
+		   
+		   
+		   
 		   map.put("Hawks", "ATL");
 		   map.put("Nets", "BKN");
 		   map.put("Celtics", "BOS");

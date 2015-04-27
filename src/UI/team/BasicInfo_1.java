@@ -62,7 +62,7 @@ public class BasicInfo_1 extends JPanel {
 		tivo=tbl.get_A_TeamInfo(s,name);
 		tdvo=tbl.get_A_TeamSeasonData(s, teamnameAbb);
 		
-		System.out.println(s+teamnameAbb);
+	//	System.out.println(s+teamnameAbb);
 		
 		if(tivo==null&&tdvo!=null){
 			tivo=new TeamInfoVO(tdvo.getTeamName(), "??", "??", "??", "??", "??", "??");
@@ -117,7 +117,7 @@ public class BasicInfo_1 extends JPanel {
 		photo.setBorder(BorderFactory.createLineBorder(line));
 		
 		//TODO Çò¶ÓÃû³Æ
-		System.out.println(tvo.getInfo().getFullName());
+		//System.out.println(tvo.getInfo().getFullName());
 		JLabel teamname = new JLabel(tvo.getInfo().getFullName());
 		teamname.setForeground(Color.DARK_GRAY);
 		teamname.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 30));

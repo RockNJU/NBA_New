@@ -413,7 +413,7 @@ public class BasicM extends JPanel {
 		//rate=rate*100;		
 		DecimalFormat df = new DecimalFormat("0.00");    
 		String temp=String.valueOf(df.format(rate));
-		System.out.println(temp);
+		//System.out.println(temp);
 		return temp;		
 	}
 }
