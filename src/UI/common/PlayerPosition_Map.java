@@ -14,6 +14,6 @@ public class PlayerPosition_Map{
 		  // map.put("µÃ·Ö/Àº°å/Öú¹¥", "");
 	   }
 	   public String getItem(String item){
-		   return map.get(item).toString();
+			   return map.get(item).toString();
 	   }
 }

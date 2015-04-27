@@ -37,7 +37,7 @@ public class SortItem_Map {
 	   map.put("三双数", "seasonThreeNum");
 	   map.put("投篮命中率", "shootPercentage");
 	   map.put("三分命中率", "T_shootPercentage");
-	   map.put("罚球命中数", "freeThrowPercentage");
+	   map.put("罚球命中率", "freeThrowPercentage");
 	   
 	   
 	   map.put("参赛场数", "matchNum");
