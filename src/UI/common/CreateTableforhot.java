@@ -83,7 +83,7 @@ import javax.swing.table.TableRowSorter;
 					for(int i = 0; i<info.length-1;i++){
 						Data[i][0] = getImageIcon((String)info[i+1][0],picwidth, piclength);
 						int tempadd = 1;
-						while(tempadd!=columnnum){
+						while(tempadd!=columnnum-1){
 							Data[i][tempadd] = info[i+1][tempadd];
 							tempadd++;
 						}
