@@ -18,6 +18,7 @@ import UI.team.SingleTeam;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class test extends JFrame {
 
@@ -50,13 +51,8 @@ public class test extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		contentPane.add(btnNewButton, BorderLayout.CENTER);
+		JLabel lblNewLabel = new JLabel("New label");
+		contentPane.add(lblNewLabel, BorderLayout.CENTER);
 	}
 
 }

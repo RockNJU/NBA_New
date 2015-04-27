@@ -78,14 +78,13 @@ import javax.swing.table.TableRowSorter;
 				
 				//更新表格数据
 				public Object[][] updatedata(Object[][] info,int columnnum){
-					Object Data[][]  = new Object[info.length][columnnum];
-					for(int i = 0; i<info.length;i++){
-						System.out.println(info[i][0]);
-						Data[i][0] = getImageIcon((String)info[i][0],
-								picwidth, piclength);
+					columnnum = 6;
+					Object Data[][]  = new Object[info.length-1][columnnum];
+					for(int i = 0; i<info.length-1;i++){
+						Data[i][0] = getImageIcon((String)info[i+1][0],picwidth, piclength);
 						int tempadd = 1;
 						while(tempadd!=columnnum){
-							Data[i][tempadd] = info[i][tempadd];
+							Data[i][tempadd] = info[i+1][tempadd];
 							tempadd++;
 						}
 					}
@@ -95,10 +94,6 @@ import javax.swing.table.TableRowSorter;
 				
 				//初始化数据
 				private Object data[][] = updatedata(CreateTableforhot.this.data,columnnum);
-
-				public MyTableModel() {
-				}
-
 				private static final long serialVersionUID = 1L;
 
 
@@ -146,27 +141,28 @@ import javax.swing.table.TableRowSorter;
 				this.picwidth = picwidth;
 				this.fbig = fbig;
 				this.fsmall = fsmall;
+				this.setBackground(new Color(252, 213, 146));
 				
 				MyTableModel model = new MyTableModel();
 				table = new JTable(model);
 				table.setRowHeight(rowHeight);
-				RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);  
-				table.setRowSorter(sorter);  
+				//RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);  
+				//table.setRowSorter(sorter);  
 				// 为所有表格设上文字属性
-				changefont();
 				table.getTableHeader().setFont(fbig);
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				table.setFillsViewportHeight(true);
-				// table.setEnabled(false);
+				// table.setEnabled(false);S
 				// table.isEditing();
-				table.getColumnModel().getColumn(0).setPreferredWidth(rowwidth1);
+				table.getColumnModel().getColumn(5).setPreferredWidth(0);
+				
 				// 各种颜色设定
-				table.setBorder(new LineBorder(new Color(67, 54, 49), 2, true));
+				//table.setBorder(new LineBorder(new Color(67, 54, 49), 2, true));
 				table.setForeground(Color.DARK_GRAY);
 				table.setBackground(new Color(252, 213, 146));
 				table.setSelectionBackground(new Color(67, 54, 49));
 				table.setSelectionForeground(Color.WHITE);
-				table.setShowVerticalLines(false);// 是否显示垂直网格线?
+				table.setShowVerticalLines(true);// 是否显示垂直网格线?
 				table.setGridColor(new Color(67, 54, 49));
 				
 				
@@ -181,47 +177,7 @@ import javax.swing.table.TableRowSorter;
 				this.add(table);
 			}
 
-			// 让第二行和第三行的字体不同,不同行颜色不同
-			private void changefont() {
-				TableColumnModel tcm = table.getColumnModel();
-				TableColumn tc = tcm.getColumn(1);
-				tc.setCellRenderer(new RowRenderer1());
-				tcm.getColumn(2).setCellRenderer(new RowRenderer2());
-				// TODO 自动生成的方法存根
-			}
-
-			// 第2/3竖行
-			class RowRenderer1 extends DefaultTableCellRenderer {
-				public Component getTableCellRendererComponent(JTable t, Object value,
-						boolean isSelected, boolean hasFocus, int row, int column) {
-					// 设置奇偶行的背景色，可在此根据需要进行修改
-					table.setFont(fbig);
-					if (row % 2 == 1)
-						setBackground(new Color(246, 164, 21));
-					else
-						setBackground(new Color(231, 153, 16));
-
-					return super.getTableCellRendererComponent(t, value, isSelected,
-							hasFocus, row, column);
-				}
-			}
-
-			class RowRenderer2 extends DefaultTableCellRenderer {
-				public Component getTableCellRendererComponent(JTable t, Object value,
-						boolean isSelected, boolean hasFocus, int row, int column) {
-					// 设置奇偶行的背景色，可在此根据需要进行修改
-					table.setFont(fsmall);
-					if (row % 2 == 1)
-						setBackground(new Color(246, 164, 21));
-					else
-						setBackground(new Color(231, 153, 16));
-
-					return super.getTableCellRendererComponent(t, value, isSelected,
-							hasFocus, row, column);
-				}
-			}
-
-			// stop
+			
 			
 			/* 用于刷新表格，info[][]为改动过后的数组，存储表格数据 */
 			public void updateTable(Object info[][],int columnnum,String[] HeadTitle) {
