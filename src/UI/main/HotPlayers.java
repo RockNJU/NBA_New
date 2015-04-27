@@ -232,7 +232,6 @@ public class HotPlayers extends JPanel {
 				if (e.getClickCount() == 2 && ctfh.getSelectedRow() != -1) {
 					String name = ctfh.getValueAt(
 							ctfh.getSelectedRow(), 0);
-					System.out.println(name);
 					SinglePlayer spi;
 					try {
 
