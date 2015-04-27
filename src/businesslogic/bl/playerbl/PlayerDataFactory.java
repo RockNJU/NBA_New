@@ -60,6 +60,7 @@ public class PlayerDataFactory {
 	}
 	
 	public ArrayList<PlayerSeasonDataVO> get_MostImprove(){
+		
 		for(int i=0;i<dataList.size();i++){
 			if(dataList.get(i).getSeason().equals(lastDay.getSeason())){
 				return dataList.get(i).getPlayerDataList();

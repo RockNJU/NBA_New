@@ -157,13 +157,18 @@ public class PlayerController implements PlayerBLService {
 			return playerFactory.get_A_Team_Player(season, teamAbb);
 		}
 		@Override
-		public  PlayerSeasonDataVO  getMost_Progress_Player(String item) {
+		public  ArrayList<PlayerSeasonDataVO>  getMost_Progress_Player(String item) {
 			// TODO Auto-generated method stub
 			
 			ArrayList<PlayerSeasonDataVO> list= playerFactory.get_MostImprove() ;
 			HotSort sort=new HotSort();
-			return sort.hotPlayer_Sort(list,item).get(0);
-			 
+			
+			list=sort.hotPlayer_Sort(list,item);
+			ArrayList<PlayerSeasonDataVO> result=new ArrayList<>();
+			for(int i=0;i<5;i++){
+				result.add(list.get(i));
+			}
+			 return result;
 		}
 	
 }

@@ -22,6 +22,6 @@ public interface PlayerBLService{
 		public ArrayList<PlayerInfoVO> getTeamAllPlayer(String season,String teamAbb);    
 		//根据球队的缩写获取球队所有的球员姓名，其实你可以考虑返回所有的基本信息，这容易做到
 		
-		public  PlayerSeasonDataVO getMost_Progress_Player(String item);
+		public  ArrayList<PlayerSeasonDataVO> getMost_Progress_Player(String item);
 	
 }
