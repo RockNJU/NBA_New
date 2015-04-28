@@ -114,8 +114,9 @@ public class PlayerSeasonData {
 	public ArrayList<PlayerInfoVO> get_A_Team_Player(String teamAbb){
 		ArrayList<PlayerInfoVO> list=new ArrayList<>();
 		for(int i=0;i<playerDataList.size();i++){
-			if(playerDataList.get(i).getTeamName().equals(teamAbb));
+			if(playerDataList.get(i).getTeamName().equals(teamAbb)){
 				list.add(playerDataList.get(i).getInfo());
+			}
 		}
 		return list;
 	}
