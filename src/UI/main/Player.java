@@ -36,7 +36,7 @@ public class Player extends JPanel {
 	JButton columns;
 	JButton sort;
 	JButton find;
-	CreateTable playerlist;
+	static CreateTable playerlist;
 	
 	JLabel filterLabel;
 	JComboBox filter;
@@ -521,7 +521,7 @@ public class Player extends JPanel {
 		}
 	}
 
-	private Object[][] getTotaldata(ArrayList<PlayerSeasonDataVO> da) {
+	public static Object[][] getTotaldata(ArrayList<PlayerSeasonDataVO> da) {
 		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][33];
@@ -610,7 +610,7 @@ public class Player extends JPanel {
 
 	}
 	
-	private Object[][] getAveragedata(ArrayList<PlayerSeasonDataVO> da) {
+	public Object[][] getAveragedata(ArrayList<PlayerSeasonDataVO> da) {
 		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][33];
@@ -699,7 +699,7 @@ public class Player extends JPanel {
 
 	}
 
-	private Object[][] getinfodata(ArrayList<PlayerInfoVO> da) {
+	public Object[][] getinfodata(ArrayList<PlayerInfoVO> da) {
 		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][10];
@@ -715,7 +715,7 @@ public class Player extends JPanel {
 			re[0][9] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[50][30];
+			Object[][] re = new Object[da.size()][30];
 			/* "序号","姓名","球号","位置","身高","体重","出生日期","年龄","球龄","毕业院校" */
 			for (int i = 0; i < 50; i++) {
 				re[i][0] = i + 1;

@@ -20,7 +20,7 @@ public class SingleTeam extends JDialog {
 	JButton matchbutton;
 	JButton otherbutton;
 	JButton  back;
-	JPanel rightpanel;
+	static JPanel rightpanel;
 	String t;
 	String s;
 	/**
@@ -322,7 +322,7 @@ public class SingleTeam extends JDialog {
 			});
 	}
 
-	void change(BasicT ppanel){
+	public static void change(BasicT ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);

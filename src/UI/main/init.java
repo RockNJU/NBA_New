@@ -2,11 +2,29 @@ package UI.main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import org.apache.batik.apps.rasterizer.SVGConverterException;
+
+import businessService.blservice.MatchBLService;
+import businessService.blservice.PlayerBLService;
+import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
+import UI.match.BasicM;
+import UI.match.SingleMatch;
+import UI.player.BasicP;
+import UI.player.SinglePlayer;
+import UI.team.BasicT;
+import UI.team.SingleTeam;
+import VO.MatchVO;
+import VO.PlayerSeasonDataVO;
+import VO.TeamSeasonDataVO;
 
 public class init extends JFrame {
 
@@ -25,6 +43,9 @@ public class init extends JFrame {
 	public static String currentpanel="";
 	public static RMIObject rmi=new RMIObject();
 	int x,y;
+	public static PlayerBLService pbl=rmi.getPlayerObject();
+	public static TeamBLService tbl=rmi.getTeamObject();
+	public static MatchBLService mbl=rmi.getMatchObject();
 	/**
 	 * Launch the application.
 	 */
@@ -526,4 +547,123 @@ public class init extends JFrame {
 			rightpanel.repaint();
 		}
 
+		void updatepanel(String command) throws TransformerFactoryConfigurationError, TransformerException, IOException, SVGConverterException{
+			String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
+					"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
+					"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
+					"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
+					"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
+					"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
+			String[] teamtitle={" 序号  "," 球队名称  "," 比赛场数  "," 投篮命中数  "," 投篮出手次数  "," 三分命中数  ",
+					" 三分出手数  "," 罚球命中数  "," 罚球出手数  "," 进攻篮板数  "," 防守篮板数  "," 篮板数  "," 助攻数  ",
+					" 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 比赛得分  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
+					" 胜率  "," 进攻回合  ","防守回合"," 防守效率  "," 进攻效率  "," 进攻篮板率  "," 防守篮板率  "," 抢断效率  "," 助攻率  "};
+			String[] matchtitle={"序号"," 日期  "," 赛季  "," 主队  "," 比分  "," 客队  ",
+					" 第一节  "," 第二节  "," 第三节  "," 第四节  "," 加时赛  "};
+			if(command.equals("hot")){
+				Hot p;			
+            	//currentpanel="hot";
+            	//System.out.println(currentpanel);
+				p = new Hot();
+				change(p);
+			}else if(command.equals("match")){
+				Match p;			
+            	//currentpanel="match";
+            	//System.out.println(currentpanel);
+				p = new Match();
+				change(p);
+			}else if(command.equals("team")){
+				Team p;			
+            	//currentpanel="team";
+            	//System.out.println(currentpanel);
+				p = new Team();
+				change(p);
+			}else if(command.equals("player")){
+				Player p;			
+            	//currentpanel="hot";
+            	//System.out.println(currentpanel);
+				p = new Player();
+				change(p);
+			}else{
+				String[] com=command.split("&");
+				if(com[0].equals("player")){
+					if(com.length==3){
+						String[]com2=com[2].split(";");
+						BasicP p=new BasicP(com2[0],com2[1]);
+						SinglePlayer.change(p);
+					}else if(com.length==2){					
+						String[]com2=com[1].split(";");
+						if(com2.length==1){					
+							ArrayList<PlayerSeasonDataVO>psvo = pbl.keyfind(com2[0]);					
+							Object[][] data = Player.getTotaldata(psvo);					
+							Player.playerlist.updateTable(playerTotaltitle, data);					
+						}else if(com2.length==4){					
+							String Position = com2[1];					
+							String Partition = com2[2];					
+							String According = com2[3];
+							String Season = com2[0];				
+							ArrayList<PlayerSeasonDataVO>psvo = pbl.sort(Season, Position, Partition, According);
+						//System.out.println(Season + Position + Partition + According);						
+							Object[][] data = Player.getTotaldata(psvo);					
+							Player.playerlist.updateTable(playerTotaltitle, data);					
+						}else{						
+							System.out.println("未知错误");						
+						}					
+					}													
+				}else if(com[0].equals("team")){
+					if(com.length==3){
+						String[]com2=com[2].split(";");
+						BasicT p=new BasicT(com2[0],com2[1]);
+						SingleTeam.change(p);
+					}else if(com.length==2){
+						String[] com2=com[1].split(";");
+						if(com2.length==1){
+							ArrayList<TeamSeasonDataVO>tdvo =tbl.find(com2[0]);
+			            	Object[][] data=Team.getTotaldata(tdvo);
+			            	Team.teamlist.updateTable(teamtitle, data);
+						}else if(com2.length==2){
+							if(com2[0].length()==3){
+								BasicT p=new BasicT(com2[0],com2[1]);
+								SingleTeam.change(p);
+							}else{
+								ArrayList<TeamSeasonDataVO>tdvo=tbl.sort(com2[0], com2[1]);
+				            	Object[][]data=Team.getTotaldata(tdvo);
+				            	Team.teamlist.updateTable(teamtitle, data);
+				            	Team.teamlist.setVisible(true);
+							}
+						}else{
+							System.out.println("未知错误");	
+						}
+					}
+				}else if(com[0].equals("match")){
+					if(com.length==2){
+						String[] com2=com[1].split(";");
+						if(com2.length==1){
+							ArrayList<MatchVO>mvo=mbl.getMatchByTeamTime(com2[0]);             
+				              Object[][] data=Match.getdata(mvo);
+				               Match.matchlist.updateTable(matchtitle, data);
+				               Match.matchlist.hideColumn(2);	          
+						}else{
+							
+							ArrayList<MatchVO> mvo=mbl.getMatchBySeason(com2[0], com2[1]);
+			            	
+				               
+				              Object[][] data=Match.getdata(mvo);
+				               Match.matchlist.updateTable(matchtitle, data);
+				              Match. matchlist.hideColumn(2);
+			            	
+			            	
+						}
+					}else if(com.length==3){
+						String[]com2=com[2].split(";");
+						BasicM p=new BasicM(com2[0],com2[1]);
+						SingleMatch.change(p);
+					}
+				}else{
+					System.out.println("未知错误");	
+				}
+				
+		
+			}
+		}
 }

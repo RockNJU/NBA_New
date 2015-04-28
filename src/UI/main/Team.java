@@ -37,7 +37,7 @@ public class Team extends JPanel {
 	JButton columns;
 	JButton sort;
 	JButton find;
-	CreateTable teamlist;
+	static CreateTable teamlist;
 	
 	JLabel filterLabel;
 	JComboBox filter;
@@ -565,7 +565,7 @@ public class Team extends JPanel {
 		}
 	}
 	
-	private Object[][] getTotaldata(ArrayList<TeamSeasonDataVO> da){
+	public static Object[][] getTotaldata(ArrayList<TeamSeasonDataVO> da){
 		//System.out.println(da==null);
 		if(da==null){
 			Object[][] re=new Object[1][30];

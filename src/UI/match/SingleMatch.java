@@ -16,7 +16,7 @@ public class SingleMatch extends JDialog {
 	JButton matchbutton;
 	//JButton otherbutton;
 	LimpidButton  back;
-	JPanel rightpanel;
+	static JPanel rightpanel;
 	String t;
 	String d;
 	/**
@@ -297,7 +297,7 @@ public class SingleMatch extends JDialog {
 			});
 	}
 
-	void change(BasicM ppanel){
+	public static void change(BasicM ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);

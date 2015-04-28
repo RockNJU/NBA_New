@@ -16,7 +16,7 @@ public class SinglePlayer extends JDialog {
 	JButton matchbutton;
 	JButton otherbutton;
 	LimpidButton  back;
-	JPanel rightpanel;
+	static JPanel rightpanel;
 	String playername;
 	String season;
 	/**
@@ -297,7 +297,7 @@ public class SinglePlayer extends JDialog {
 			});
 	}
 
-	void change(BasicP ppanel){
+	public static void change(BasicP ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);

@@ -36,7 +36,7 @@ public class Match extends JPanel {
 	int tempchossen = 0;
 	JButton filterb;
 	//JButton columns;
-	CreateTable matchlist;
+	static CreateTable matchlist;
 	//日期、赛季、主队、比分、客队、第一节、二、三、四、加时、
 	String[] matchtitle={"序号"," 日期  "," 赛季  "," 主队  "," 比分  "," 客队  ",
 			" 第一节  "," 第二节  "," 第三节  "," 第四节  "," 加时赛  "};
@@ -406,7 +406,7 @@ public class Match extends JPanel {
 	}
 	
 
-	private Object[][] getdata(ArrayList<MatchVO> mdata){
+	public static  Object[][] getdata(ArrayList<MatchVO> mdata){
 		//System.out.println(mdata.size());
 		if(mdata==null){
 			Object[][] re=new Object[1][11];
