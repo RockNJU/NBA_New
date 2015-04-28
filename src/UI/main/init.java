@@ -22,7 +22,7 @@ public class init extends JFrame {
 	JPanel rightpanel;
 	static Player p;
 	static Team t;
-	
+	public static String currentpanel="";
 	public static RMIObject rmi=new RMIObject();
 	int x,y;
 	/**
@@ -137,7 +137,8 @@ public class init extends JFrame {
 
             	hotbutton.setToolTipText("热门信息");
             	teambutton.setToolTipText("队伍信息");
-            	matchbutton.setToolTipText("比赛信息");				
+            	matchbutton.setToolTipText("比赛信息");	
+            	currentpanel="player";
 				p = new Player();
 				change(p);
             }
@@ -185,7 +186,7 @@ public class init extends JFrame {
             	hotbutton.setToolTipText("热门信息");
             	teambutton.setToolTipText("队伍信息 ");
             	matchbutton.setToolTipText("比赛信息");
- 			
+            	currentpanel="team";
 				t = new Team();
 				change(t);
             }
@@ -235,7 +236,8 @@ public class init extends JFrame {
             	hotbutton.setToolTipText("热门信息");
             	teambutton.setToolTipText("队伍信息");
             	matchbutton.setToolTipText("比赛信息 ");
-            	Match p;				
+            	Match p;		
+            	currentpanel="match";
 				p = new Match();
 				change(p);
             }
@@ -285,7 +287,8 @@ public class init extends JFrame {
             	hotbutton.setToolTipText("热门信息 ");
             	teambutton.setToolTipText("队伍信息");
             	matchbutton.setToolTipText("比赛信息");
-            	Hot p;				
+            	Hot p;			
+            	currentpanel="hot";
 				p = new Hot();
 				change(p);
             }

@@ -244,8 +244,8 @@ public class Match extends JPanel {
 		
 		*/
 		
-		String Title[]={"空表格"};
-		Object Data[][]={{"q"},{"e"},{"w"},{"r"},{"b"}};
+		String Title[]={""};
+		Object Data[][]={{""},{""},{""},{""},{""}};
 		this.title=Title;
 		this.data=Data;
 		matchlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));

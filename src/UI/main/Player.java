@@ -120,14 +120,7 @@ public class Player extends JPanel {
 		according = new JComboBox();
 		according.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		according.setToolTipText("\u6392\u5E8F\u4F9D\u636E");
-		according.setModel(new DefaultComboBoxModel(new String[] { 
-				 "参赛场数",
-				"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
-				"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
-				"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
-				"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
-				"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"
-		}));
+		according.setModel(new DefaultComboBoxModel(new String[] {"\u5F97\u5206", "\u7BEE\u677F", "\u52A9\u653B", "\u62A2\u65AD", "\u76D6\u5E3D", "\u5931\u8BEF", "\u72AF\u89C4", "\u4E24\u53CC\u6570", "\u4E09\u53CC\u6570", "\u4E0A\u573A\u65F6\u95F4", "\u6295\u7BEE\u547D\u4E2D\u7387", "\u4E09\u5206\u547D\u4E2D\u7387", "\u7F5A\u7403\u547D\u4E2D\u7387", "\u6548\u7387 ", "GmSc\u6548\u7387\u503C", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u771F\u5B9E\u547D\u4E2D\u7387", "\u6295\u7BEE\u6548\u7387", "\u7BEE\u677F\u7387", "\u52A9\u653B\u7387", "\u62A2\u65AD\u7387", "\u76D6\u5E3D\u7387", "\u5931\u8BEF\u7387", "\u4F7F\u7528\u7387", "\u9632\u5B88\u6548\u7387", "GmSc\u6548\u7387\u503C", "\u4E09\u5206\u51FA\u624B\u6570", "\u4E09\u5206\u547D\u4E2D\u6570", "\u6295\u7BEE\u51FA\u624B\u6570", "\u6295\u7BEE\u547D\u4E2D\u6570", "\u7F5A\u7BEE\u6570", "\u7F5A\u7BEE\u547D\u4E2D\u6570", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u8FD1\u4E94\u573A\u5F97\u5206\u63D0\u5347\u7387", "\u8FD1\u4E94\u573A\u52A9\u653B\u63D0\u5347\u7387", "\u8FD1\u4E94\u573A\u7BEE\u677F\u63D0\u5347\u7387", "\u53C2\u8D5B\u573A\u6570", "\u5148\u53D1\u573A\u6570"}));
 		according.setEditable(true);
 		according.setBounds(315, 35, 86, 30);
 		add(according);
@@ -290,6 +283,7 @@ public class Player extends JPanel {
 				// String
 				// Season=playerseason.getSelectedItem().toString().substring(0,
 				// 5);
+				//System.out.println("a");
 				psvo = pbl.keyfind(findkey.getText());
 				data = getTotaldata(psvo);
 				playerlist.updateTable(playerTotaltitle, data);
