@@ -5,6 +5,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.RowFilter.ComparisonType;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import businessService.blservice.MatchBLService;
 import businessService.blservice.PlayerBLService;
@@ -34,6 +37,10 @@ public class Player extends JPanel {
 	JButton sort;
 	JButton find;
 	CreateTable playerlist;
+	JComboBox filter;
+	JTextField fliterkey;
+	int tempchossen = 0;
+	JButton filterb;
 	
 	String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
 			"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
@@ -73,22 +80,122 @@ public class Player extends JPanel {
 		sortLabel = new JLabel("排列：");
 		sortLabel.setForeground(Color.WHITE);
 		sortLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
-		sortLabel.setBounds(31, 35, 130, 30);
+		sortLabel.setBounds(31, 10, 130, 30);
 		add(sortLabel);
 		sortLabel.setVisible(true);
 		findLabel = new JLabel("查找：");
 		findLabel.setForeground(Color.WHITE);
 		findLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
-		findLabel.setBounds(31, 75, 130, 30);
+		findLabel.setBounds(31, 50, 130, 30);
 		add(findLabel);
 		findLabel.setVisible(true);
+		
+		findLabel = new JLabel("排除：");
+		findLabel.setForeground(Color.WHITE);
+		findLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
+		findLabel.setBounds(31, 90, 130, 30);
+		add(findLabel);
+		findLabel.setVisible(true);
+		/**
+		 * 筛选
+		 */
+		filter = new JComboBox();
+		filter.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		filter.setBounds(135, 90, 70, 30);
+		filter.setMaximumRowCount(100);
+		filter.setModel(new DefaultComboBoxModel(new String[] {
+				"大于","等于","小于" }));
+		filter.setToolTipText("筛选");
+		filter.setEditable(true);
+		add(filter);
+		filter.setVisible(true);
+		/**
+		 * 筛选的关键词
+		 * 
+		 */
+		fliterkey = new JTextField("请输入数值");
+		fliterkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		fliterkey.setBounds(225, 90, 314, 30);
+		add(fliterkey);
+		fliterkey.setColumns(20);
+		fliterkey.setVisible(true);
+		filterb = new JButton(new ImageIcon("pic/but/排列前.png"));
+	    
+		filterb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(playerlist.getmodel());
+			    	 playerlist.setRowSorter(sorter);
+			    	  int[] a =  {playerlist.getSelectedColumn()};
+			    	  //test;
+				String comparisonType = filter.getSelectedItem().toString();
+			    String text = fliterkey.getText();
+                if (text.length() == 0)
+                {
+                    sorter.setRowFilter(null);
+                }
+                else
+                {
+                	try{
+                	if(comparisonType.equals("等于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.EQUAL, Double.valueOf(text), a));
+                	}
+                	else if(comparisonType.equals("小于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.BEFORE, Double.valueOf(text), a));
+                	}
+                	else if(comparisonType.equals("大于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.AFTER, Double.valueOf(text),a));
+                	}
+                	}
+                	catch(Exception e1){
+                		
+                	}
+                	}
+			}
+		});
+		filterb.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				filterb.setIcon(new ImageIcon("pic/but/排列前.png"));
+			}
 
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				// TODO Auto-generated method stub
+				filterb.setIcon(new ImageIcon("pic/but/排列后.png"));
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+		filterb.setToolTipText("进行排除");
+		filterb.setBounds(566, 90, 75, 26);
+		add(filterb);
+		filterb.setVisible(true);
+		
 		/**
 		 * 球员的位置
 		 */
 		position = new JComboBox();
 		position.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		position.setBounds(135, 35, 70, 30);
+		position.setBounds(135, 10, 70, 30);
 		position.setMaximumRowCount(100);
 		position.setModel(new DefaultComboBoxModel(new String[] {
 				"\u524D\u950B", "\u4E2D\u950B", "\u540E\u536B" }));
@@ -109,7 +216,7 @@ public class Player extends JPanel {
 				"\u4E2D\u90E8", "\u4E1C\u5357", "\u897F\u5357",
 				"\u897F\u5317\u90E8", "\u592A\u5E73\u6D0B" }));
 		partition.setEditable(true);
-		partition.setBounds(225, 35, 70, 30);
+		partition.setBounds(225, 10, 70, 30);
 		add(partition);
 		partition.setVisible(true);
 
@@ -120,9 +227,16 @@ public class Player extends JPanel {
 		according = new JComboBox();
 		according.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		according.setToolTipText("\u6392\u5E8F\u4F9D\u636E");
-		according.setModel(new DefaultComboBoxModel(new String[] {"\u5F97\u5206", "\u7BEE\u677F", "\u52A9\u653B", "\u62A2\u65AD", "\u76D6\u5E3D", "\u5931\u8BEF", "\u72AF\u89C4", "\u4E24\u53CC\u6570", "\u4E09\u53CC\u6570", "\u4E0A\u573A\u65F6\u95F4", "\u6295\u7BEE\u547D\u4E2D\u7387", "\u4E09\u5206\u547D\u4E2D\u7387", "\u7F5A\u7403\u547D\u4E2D\u7387", "\u6548\u7387 ", "GmSc\u6548\u7387\u503C", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u771F\u5B9E\u547D\u4E2D\u7387", "\u6295\u7BEE\u6548\u7387", "\u7BEE\u677F\u7387", "\u52A9\u653B\u7387", "\u62A2\u65AD\u7387", "\u76D6\u5E3D\u7387", "\u5931\u8BEF\u7387", "\u4F7F\u7528\u7387", "\u9632\u5B88\u6548\u7387", "GmSc\u6548\u7387\u503C", "\u4E09\u5206\u51FA\u624B\u6570", "\u4E09\u5206\u547D\u4E2D\u6570", "\u6295\u7BEE\u51FA\u624B\u6570", "\u6295\u7BEE\u547D\u4E2D\u6570", "\u7F5A\u7BEE\u6570", "\u7F5A\u7BEE\u547D\u4E2D\u6570", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u8FD1\u4E94\u573A\u5F97\u5206\u63D0\u5347\u7387", "\u8FD1\u4E94\u573A\u52A9\u653B\u63D0\u5347\u7387", "\u8FD1\u4E94\u573A\u7BEE\u677F\u63D0\u5347\u7387", "\u53C2\u8D5B\u573A\u6570", "\u5148\u53D1\u573A\u6570"}));
+		according.setModel(new DefaultComboBoxModel(new String[] { 
+				 "参赛场数",
+				"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
+				"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
+				"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
+				"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
+				"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"
+		}));
 		according.setEditable(true);
-		according.setBounds(315, 35, 86, 30);
+		according.setBounds(315, 10, 86, 30);
 		add(according);
 		according.setVisible(true);
 		/**
@@ -142,7 +256,7 @@ public class Player extends JPanel {
 		}
 
 		playerseason.setEditable(true);
-		playerseason.setBounds(422, 35, 117, 30);
+		playerseason.setBounds(422, 10, 117, 30);
 		add(playerseason);
 		playerseason.setVisible(true);
 
@@ -185,6 +299,10 @@ public class Player extends JPanel {
 					spi.setVisible(true);
 					spi.setLocation(375, 58);
 				}
+				else{
+					
+					
+				}
 			}
 		});
 
@@ -194,11 +312,12 @@ public class Player extends JPanel {
 		 */
 		findkey = new JTextField("请输入关键词");
 		findkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-		findkey.setBounds(135, 75, 404, 30);
+		findkey.setBounds(135, 50, 404, 30);
 		add(findkey);
 		findkey.setColumns(20);
 		findkey.setVisible(true);
 
+		
 		sort = new JButton(new ImageIcon("pic/but/排列前.png"));
 		sort.addMouseListener(new MouseListener() {
 			@Override
@@ -248,7 +367,7 @@ public class Player extends JPanel {
 
 		});
 		sort.setToolTipText("\u663E\u793A\u67E5\u627E\u7684\u7403\u5458\u4FE1\u606F");
-		sort.setBounds(566, 35, 75, 26);
+		sort.setBounds(566, 10, 75, 26);
 		add(sort);
 		sort.setVisible(true);
 
@@ -283,7 +402,6 @@ public class Player extends JPanel {
 				// String
 				// Season=playerseason.getSelectedItem().toString().substring(0,
 				// 5);
-				//System.out.println("a");
 				psvo = pbl.keyfind(findkey.getText());
 				data = getTotaldata(psvo);
 				playerlist.updateTable(playerTotaltitle, data);
@@ -292,7 +410,7 @@ public class Player extends JPanel {
 		});
 
 		find.setToolTipText("\u67E5\u8BE2\u5355\u72EC\u7403\u5458\u4FE1\u606F");
-		find.setBounds(566, 79, 75, 26);
+		find.setBounds(566, 50, 75, 26);
 		add(find);
 		find.setVisible(true);
 
@@ -330,7 +448,7 @@ public class Player extends JPanel {
 
 		});
 		columns.setToolTipText("\u9009\u62E9\u8868\u683C\u5C5E\u6027");
-		columns.setBounds(670, 35, 75, 26);
+		columns.setBounds(670, 10, 75, 26);
 		add(columns);
 		columns.setVisible(true);
 
@@ -419,7 +537,7 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][33];
+			Object[][] re = new Object[50][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -428,7 +546,7 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < da.size(); i++) {
+			for (int i = 0; i < 50; i++) {
 				re[i][0] = i + 1;
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
@@ -508,7 +626,7 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][33];
+			Object[][] re = new Object[50][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -517,7 +635,7 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < da.size(); i++) {
+			for (int i = 0; i < 50; i++) {
 				re[i][0] = i + 1;
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
@@ -574,9 +692,9 @@ public class Player extends JPanel {
 			re[0][9] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][30];
+			Object[][] re = new Object[50][30];
 			/* "序号","姓名","球号","位置","身高","体重","出生日期","年龄","球龄","毕业院校" */
-			for (int i = 0; i < da.size(); i++) {
+			for (int i = 0; i < 50; i++) {
 				re[i][0] = i + 1;
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getNumber();
