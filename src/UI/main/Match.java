@@ -240,6 +240,12 @@ public class Match extends JPanel {
 		 * 
 		 */
 		fliterkey = new JTextField("ÇëÊäÈëÊıÖµ");
+		fliterkey.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fliterkey.setText(null);
+			}
+		});
 		fliterkey.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		fliterkey.setBounds(225, 90, 314, 30);
 		add(fliterkey);

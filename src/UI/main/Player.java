@@ -116,6 +116,12 @@ public class Player extends JPanel {
 		 * 
 		 */
 		fliterkey = new JTextField("ÇëÊäÈëÊıÖµ");
+		fliterkey.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fliterkey.setText(null);
+			}
+		});
 		fliterkey.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		fliterkey.setBounds(225, 90, 314, 30);
 		add(fliterkey);
@@ -318,6 +324,12 @@ public class Player extends JPanel {
 		 * 
 		 */
 		findkey = new JTextField("ÇëÊäÈë¹Ø¼ü´Ê");
+		findkey.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				findkey.setText(null);
+			}
+		});
 		findkey.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		findkey.setBounds(135, 50, 404, 30);
 		add(findkey);

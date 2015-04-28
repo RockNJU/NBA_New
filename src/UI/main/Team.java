@@ -125,6 +125,12 @@ public class Team extends JPanel {
 		 * 
 		 */
 		fliterkey = new JTextField("«Î ‰»Î ˝÷µ");
+		fliterkey.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fliterkey.setText(null);
+			}
+		});
 		fliterkey.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 14));
 		fliterkey.setBounds(225, 90, 314, 30);
 		add(fliterkey);
@@ -237,8 +243,14 @@ public class Team extends JPanel {
 		 * 
 		 */
 		findkey = new JTextField("«Î ‰»Îπÿº¸¥ ");
+		findkey.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				findkey.setText(null);
+			}
+		});
 		findkey.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 14));
-		findkey.setBounds(135, 50, 286, 30);		
+		findkey.setBounds(135, 50, 404, 30);		
 		add(findkey);
 		findkey.setColumns(20);
 		findkey.setVisible(true);
@@ -289,7 +301,7 @@ public class Team extends JPanel {
 	       
 		});
 		sort.setToolTipText("\u663E\u793A\u67E5\u627E\u7684\u7403\u961F\u4FE1\u606F");
-		sort.setBounds(480, 10, 75, 26);
+		sort.setBounds(464, 14, 75, 26);
 		add(sort);
 		sort.setVisible(true);
 		
@@ -335,7 +347,7 @@ public class Team extends JPanel {
 		});
 		
 		find.setToolTipText("\u67E5\u8BE2\u5355\u72EC\u7403\u961F\u4FE1\u606F");
-		find.setBounds(480, 50, 75, 26);
+		find.setBounds(566, 54, 75, 26);
 		add(find);
 		find.setVisible(true);
 		
@@ -375,7 +387,7 @@ public class Team extends JPanel {
 	       
 		});
 		columns.setToolTipText("\u9009\u62E9\u8868\u683C\u5C5E\u6027");
-		columns.setBounds(600, 10, 75, 26);
+		columns.setBounds(566, 14, 75, 26);
 		add(columns);
 		columns.setVisible(true);	
 		
