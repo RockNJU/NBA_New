@@ -25,8 +25,8 @@ public class MatM extends JPanel {
 	//RMIObject rmi=new RMIObject();
 	CreateTable lista;
 	CreateTable listb;
-	String[] title={"球员姓名","球员位置","球员上场时间","进球数/投篮总数","三分进球数/三分投射数","罚篮进球数/罚篮总数","进攻篮板数",
-			"防守篮板数","篮板总数",
+	String[] title={"球员姓名","位置","上场时间","进球数/总数","三分进球数/总数","罚篮进球数/总数","进攻篮板",
+			"防守篮板","篮板总数",
 			 "助攻数","抢断数","盖帽数","失误数","得分","犯规数"};
 	Object[][] dataa;
 	Object[][] datab;

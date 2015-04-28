@@ -172,7 +172,8 @@ public class Team extends JPanel {
 	            	//System.out.println(sortItem);
 	            	tdvo=tbl.sort(Season, sortItem);
 	            	data=getTotaldata(tdvo);
-	            	
+	            	System.out.println("a"+tdvo.size());
+	            	teamlist.updateTable(teamtitle, data);
 	            	teamlist.setVisible(true);
 	            	dd.setVisible(false);
 	            	east.setVisible(false);
@@ -213,6 +214,7 @@ public class Team extends JPanel {
 	                         
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
+	            	//System.out.println("a");
 	            	tdvo =tbl.find(findkey.getText());
 	            	data=getTotaldata(tdvo);
 	            	teamlist.updateTable(teamtitle, data);

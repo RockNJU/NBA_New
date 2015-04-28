@@ -31,7 +31,7 @@ public class Match extends JPanel {
 	CreateTable matchlist;
 	//日期、赛季、主队、比分、客队、第一节、二、三、四、加时、
 	String[] matchtitle={"序号"," 日期  "," 赛季  "," 主队  "," 比分  "," 客队  ",
-			" 第一节比分  "," 第二节比分  "," 第三节比分  "," 第四节比分  "," 加时赛比分  "};
+			" 第一节  "," 第二节  "," 第三节  "," 第四节  "," 加时赛  "};
 	String[] title;
 	Object[][] data;
 	private JLabel team;
@@ -140,6 +140,7 @@ public class Match extends JPanel {
 	               }else{
 	               data=getdata(mvo);
 	               matchlist.updateTable(matchtitle, data);
+	               matchlist.hideColumn(2);
 	               }
 	            }	
 	       
@@ -197,6 +198,7 @@ public class Match extends JPanel {
 		               
 		               data=getdata(mvo);
 		               matchlist.updateTable(matchtitle, data);
+		               matchlist.hideColumn(2);
 	            	}
 	            }	
 	       
@@ -247,7 +249,9 @@ public class Match extends JPanel {
 		this.title=Title;
 		this.data=Data;
 		matchlist=new CreateTable(title,data,25,144,720,460,25,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
+		//matchlist.getJScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(matchlist);
+		
 		matchlist.setVisible(false);
 		// 双击进入球员界面
 				matchlist.getTable().addMouseListener(new MouseAdapter() {
@@ -314,8 +318,14 @@ public class Match extends JPanel {
 					for(int m=4;m<k;m++){
 						re[i][10]=((re[i][10]+"/"+mdata.get(i).getScores().get(m)));
 						
+						
 					}
-					System.out.println(re[i][10]);
+					String str=re[i][10].toString();
+						
+					str=str.substring(str.indexOf('/')+1);
+					//System.out.println(str);
+					re[i][10]=str;
+					//System.out.println(re[i][10]);
 				}
 			}		
 			return re;

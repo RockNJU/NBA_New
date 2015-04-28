@@ -48,6 +48,7 @@ public class CreateTable extends JPanel{
 		Font fbig;
 		Font fsmall;
 		  Color a=new Color(255,219,151);
+		 // int tablew=0;
 		public CreateTable(String title[], Object datas[][],int x,int y,int width,int height,int rowheight,Font Fbig,Font Fsmall){
 			/*这本身是一个Panel,panel 是可以直接用的，传进信息便可以了直接使用*/
 			/*title 是表头信息，data 是传进来的数据，二维字符串数组,x,y 是表格的坐标，wideth,height 是大小的设置*/
@@ -104,7 +105,7 @@ public class CreateTable extends JPanel{
 			
 			FitTableColumns(table);		
 			roll=new JScrollPane(table);
-			
+			roll.getViewport().setBackground(a);
 			roll.setPreferredSize(new Dimension(width,height-10)); 
 			roll.setLocation(0, 0);
 			roll.setVisible(true);
@@ -117,6 +118,9 @@ public class CreateTable extends JPanel{
 		}
 		
 	
+		public JScrollPane getJScrollPane(){
+			return roll;
+		}
 		
 		public void updateTable(String[] newheadTitle,Object info[][]){
 			/*用于刷新表格，info[][]为改动过后的数组，存储表格数据*/
@@ -177,7 +181,7 @@ public class CreateTable extends JPanel{
 		}
 		
 		public void FitTableColumns(JTable myTable){
-			  JTableHeader header = myTable.getTableHeader();
+			  	 JTableHeader header = myTable.getTableHeader();
 			     int rowCount = myTable.getRowCount();
 			     Enumeration columns = myTable.getColumnModel().getColumns();
 			     while(columns.hasMoreElements()){
@@ -190,9 +194,11 @@ public class CreateTable extends JPanel{
 			             int preferedWidth = (int)myTable.getCellRenderer(row, col).getTableCellRendererComponent(myTable,
 			               myTable.getValueAt(row, col), false, false, row, col).getPreferredSize().getWidth();
 			             width = Math.max(width, preferedWidth);
+			           
 			         }
 			         header.setResizingColumn(column); // 此行很重要
 			         column.setWidth(width+myTable.getIntercellSpacing().width);
+			        
 			     }
 		}
 

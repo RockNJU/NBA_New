@@ -18,7 +18,9 @@ import org.w3c.dom.Document;
 import businessService.blservice.PlayerBLService;
 import businessService.blservice.TeamBLService;
 import UI.blObject.RMIObject;
+import UI.common.CreateTable;
 import UI.common.DOMRasterizer;
+import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
 import UI.main.init;
 import VO.PlayerInfoVO;
@@ -124,12 +126,25 @@ public class BasicInfo_1 extends JPanel {
 		teamname.setBounds(275, 15, 247, 45);
 		add(teamname);
 		//TODO 胜负情况
-		JLabel winlose = new JLabel(tvo.getData().getWinNum()+"W - "+
+		PartitionMap ss=new PartitionMap();
+		JLabel basicin = new JLabel("联盟："+ss.getItem(tvo.getInfo().getPartition())+"/"+tvo.getInfo().getLocation());
+		basicin.setForeground(Color.WHITE);
+		basicin.setFont(new Font("微软雅黑", Font.BOLD, 12));
+		basicin.setBounds(280, 48, 180, 25);
+		add(basicin);
+		
+		JLabel label = new JLabel("建队时间:"+tvo.getInfo().getFormedTime());
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("微软雅黑", Font.BOLD, 12));
+		label.setBounds(280, 65, 180, 25);
+		add(label);
+		
+		JLabel losewin = new JLabel(tvo.getData().getWinNum()+"W - "+
 				(tvo.getData().getMatchNum()-tvo.getData().getWinNum())+"L");
-		winlose.setForeground(Color.WHITE);
-		winlose.setFont(new Font("微软雅黑", Font.BOLD, 22));
-		winlose.setBounds(280, 60, 180, 25);
-		add(winlose);
+		losewin.setForeground(Color.WHITE);
+		losewin.setFont(new Font("微软雅黑", Font.BOLD, 12));
+		losewin.setBounds(480, 35, 80, 25);
+		add(losewin);
 		//TODO 比赛场数
 		JLabel matchcounts = new JLabel("\u6BD4\u8D5B\u573A\u6570\uFF1A"+String.valueOf(tvo.getData().getMatchNum()));
 		matchcounts.setForeground(Color.WHITE);
@@ -232,6 +247,13 @@ public class BasicInfo_1 extends JPanel {
 		shiwu.setBounds(422, 210, 150, 18);
 		add(shiwu);
 		
+		
+		//TODO
+				Object[][] data=getTeamPlayers(pbl.getTeamAllPlayer(season,teamnameAbb));
+				String[] t=new String[] {"                          姓名                       ","              位置                ","             球龄            "};
+		CreateTable list=new CreateTable(t,data, 12,265,558,198, 20,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
+		add(list);
+		/*
 		table = new JTable(){    //设置jtable的单元格为透明的
 			public Component prepareRenderer(TableCellRenderer renderer,int row,int column){
 				Component c=super.prepareRenderer(renderer,row,column);
@@ -250,9 +272,7 @@ public class BasicInfo_1 extends JPanel {
 		table.setBounds(12, 270, 558, 198);
 		table.setOpaque(false);
 		table.setEnabled(false);
-		//TODO
-		Object[][] data=getTeamPlayers(pbl.getTeamAllPlayer(season,teamnameAbb));
-		table.setModel(new DefaultTableModel(data,new String[] {"姓名","位置","球龄"}));
+		
 		
 		DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();// 设置table内容居中
 		  tcr.setHorizontalAlignment(JLabel.CENTER);
@@ -281,7 +301,7 @@ public class BasicInfo_1 extends JPanel {
         roll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     	roll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     	add(roll);
-    	
+    	*/
     	ImageIcon imagebg = new ImageIcon("pic\\球队背景.png"); 
 		imagebg.setImage(imagebg.getImage().getScaledInstance(582,474,Image.SCALE_DEFAULT)); 
 		JLabel bg = new JLabel(imagebg);

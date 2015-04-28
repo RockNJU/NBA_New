@@ -19,6 +19,17 @@ public class PartitionMap {
 		   map.put("西北部", "Northwest");
 		   map.put("东南", "Southeast");
 		   
+		   map.put( "  ","无");
+		   map.put("E","东区" );
+		   map.put( "W","西区");
+		   
+		   map.put("Pacific","太平洋" );
+		   map.put( "Atlantic","大西洋");
+		   map.put( "Southwest","西南");
+		   map.put("Central", "中部");
+		   map.put("Northwest", "西北部");
+		   map.put( "Southeast","东南");
+		   
 		  // map.put("得分/篮板/助攻", "");
 	   }
 	   public String getItem(String item){
