@@ -201,6 +201,9 @@ public class CreateTable extends JPanel{
 			        
 			     }
 		}
+		public void setRowSorter(TableRowSorter<TableModel> sorter){
+		    table.setRowSorter(sorter);
+		}
 
 
 
