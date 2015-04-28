@@ -106,7 +106,8 @@ public class PlayerSeasonDataVO implements Serializable{
 		                           double assistEfficiency,
 		 double reboundEfficiency,double offensiveReboundEff,
 		 double defenseReboundEff,double stealEfficiency,
-		 double usingPercentage,double blockEfficiency,int doubleNum,int threeNum,SingleMatchPersonalDataVO firstMatch){
+		 double usingPercentage,double blockEfficiency,int doubleNum,
+		 int threeNum,SingleMatchPersonalDataVO firstMatch){
 				
 				this.season=season;
 				this.name=name;
@@ -115,7 +116,7 @@ public class PlayerSeasonDataVO implements Serializable{
 					
 				String str[]=name.trim().split(" ");
 				if(str.length>1){
-					System.out.println("-----");
+					//System.out.println("-----");
 					this.reverseName=str[1]+" "+str[0];
 				}else{
 					this.reverseName=name;

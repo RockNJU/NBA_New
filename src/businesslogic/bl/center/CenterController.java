@@ -111,13 +111,15 @@ public class CenterController {
 	        
 	        TeamBase tb=new TeamBase();
 	        
-	        ArrayList<SingleMatchPersonalDataVO> H_player_list=playerMatchPO_To_VO(H_po.getTeamName(),
+	        int Alltime=48+(po.getScores().size()-4)*5;
+	        
+	        ArrayList<SingleMatchPersonalDataVO> H_player_list=playerMatchPO_To_VO(H_po.getTeamName(),Alltime,
 	        		tb.getDivision(H_po.getTeamName()),tb.getpartition(H_po.getTeamName()),po.getSeason(),po.getDate(),
 	        		H_po.getIndividualData(),
 					H_po.getReboundNum(),G_po.getReboundNum(),H_po.getFieldGoal(),G_offense_round,
 					G_po.getShootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum());
 	        
-	        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(G_po.getTeamName(),
+	        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(G_po.getTeamName(),Alltime,
 	        		tb.getDivision(G_po.getTeamName()),tb.getpartition(G_po.getTeamName()),po.getSeason(),po.getDate(),
 	        		G_po.getIndividualData(),
 					G_po.getReboundNum(),H_po.getReboundNum(),G_po.getFieldGoal(),H_offense_round,
@@ -167,8 +169,8 @@ public class CenterController {
 					H_team,G_team);
 			}
 		
-		private ArrayList<SingleMatchPersonalDataVO> playerMatchPO_To_VO(String team,String division,
-				String partition,String season,
+		private ArrayList<SingleMatchPersonalDataVO> playerMatchPO_To_VO(String team,
+				double allTime,String division,String partition,String season,
 				String date,ArrayList<SingleMatchPersonalDataPO>list,
 				int T_reboundNum,int E_reboundNum,int T_fieldGoal,double E_offenseRound,
 				int E_two_shootNum,int T_shootNum,int T_freeThrowNum,int T_turnoverNum){
@@ -187,20 +189,20 @@ public class CenterController {
 				 po=list.get(i);
 				 /*助攻率：球员助攻数÷(球员上场时间÷(球队所有球员上场时间÷5)×球队总进 球数-球员进球数)*/
 				 if(po.getTime()!=0){
-				 assistEff=(double)po.getAssistNum()/(po.getTime()/48*T_fieldGoal-po.getFieldGoal());
+				 assistEff=(double)po.getAssistNum()/(po.getTime()/(allTime/5)*T_fieldGoal-po.getFieldGoal());
 				/* 篮板率：球员篮板数×(球队所有球员上场时间÷5)÷球员上场时间÷(球队总篮板+对手总篮板)*/
-				 reboundEff=(double)po.getReboundNum()*48/po.getTime()/(T_reboundNum+E_reboundNum);
-				 offensiveReboundEff=(double)po.getO_ReboundNum()*48/po.getTime()/(T_reboundNum+E_reboundNum);
-				 defenseReboundEff=(double)po.getD_ReboundNum()*48/po.getTime()/(T_reboundNum+E_reboundNum);
+				 reboundEff=(double)po.getReboundNum()*(allTime/5)/po.getTime()/(T_reboundNum+E_reboundNum);
+				 offensiveReboundEff=(double)po.getO_ReboundNum()*(allTime/5)/po.getTime()/(T_reboundNum+E_reboundNum);
+				 defenseReboundEff=(double)po.getD_ReboundNum()*(allTime/5)/po.getTime()/(T_reboundNum+E_reboundNum);
 				 /*抢断率： 球员抢断数×(球队所有球员上场时间÷5)÷球员上场时间÷对手进攻次数)*/
-				 stealEff=(double)po.getStealNum()*48/po.getTime()/E_offenseRound;
+				 stealEff=(double)po.getStealNum()*(allTime/5)/po.getTime()/E_offenseRound;
 				 /*盖帽率：球员盖帽数×(球队所有球员上场时间÷5)÷球员上场时间÷对手两分球出手次数*/
-				 blockEff=po.getBlockNum()*48/po.getTime()/E_two_shootNum;
+				 blockEff=po.getBlockNum()*(allTime/5)/po.getTime()/E_two_shootNum;
 				 /*使用率： (球员出手次数+0.44×球员罚球次数+球员失误次数)×(球队所有球员
 				上场时间÷5)÷球员上场时间÷(球队所有总球员出手次数+0.44×球队所有球员罚球
 				次数+球队所有球员失误次数) */
 				 usingPer=(po.getShootNum()+0.44*po.getFreeThrowNum()+po.getTurnoverNum())*
-				 48/po.getTime()/(T_shootNum+0.44*T_freeThrowNum+T_turnoverNum);
+				 (allTime/5)/po.getTime()/(T_shootNum+0.44*T_freeThrowNum+T_turnoverNum);
 				 }
 				 /*String season,String date,String name,String p,String time,int fieldGoal,
 				 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
