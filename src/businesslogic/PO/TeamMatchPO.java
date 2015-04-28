@@ -26,6 +26,8 @@ public class TeamMatchPO {
 	 private int turnoverNum;				//失误数
 	 private int foulNum;					//犯规数
 	 private int points;					//得分	
+	 
+	 private double allTime;                //所有球员的上场时间，用于检测球员的脏数据
 	
 	
 	private ArrayList<SingleMatchPersonalDataPO> individualData;		//该场比赛的所有球员的数据信息
@@ -33,10 +35,11 @@ public class TeamMatchPO {
 	public TeamMatchPO(String season,String teamName,int fieldGoal,
 			 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
 			 int O_R_N,int D_R_N,int reboundNum,int assistNum,int stealNum,int blockNum,int turnoverNum,
-			 int foulNum,int points ,ArrayList<SingleMatchPersonalDataPO> individualData){
+			 int foulNum,int points ,double allTime,ArrayList<SingleMatchPersonalDataPO> individualData){
 		 this.season=season;
 		 this.teamName= teamName;
 		
+		 this.allTime=allTime;
 		 this.fieldGoal=fieldGoal;
 		 this.shootNum=shootNum;
 		 this.T_fieldGoal=T_fieldGoal;
@@ -123,5 +126,9 @@ public class TeamMatchPO {
 	}
 	public ArrayList<SingleMatchPersonalDataPO> getIndividualData() {
 		return individualData;
+	}
+
+	public double getAllTime() {
+		return allTime;
 	}
 }

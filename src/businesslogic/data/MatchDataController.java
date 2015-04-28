@@ -30,21 +30,21 @@ public class MatchDataController implements MatchDataService{
 	
 	public static void main(String args[]){
 		MatchDataController c=new MatchDataController();
-		 MatchPO  po=c.getMatch("NBAdata\\matches\\12-13_11-11_ATL-LAC");
-		
+		 //MatchPO  po=c.getMatch("NBAdata\\matches\\12-13_11-11_ATL-LAC");
+		ArrayList<MatchPO> m=c.getAllMatch();
 		int i=0;
 		 
-		 System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+
+		/* System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+
 				 	";"+po.getGuestTeam().getTeamName()+";"+po.getScores().toString()+"---"+(1+i));
-		 
-	/*MatchPO po;
+		 */
+	    MatchPO po;
 		for(i=0;i<m.size();i++){
 			po=m.get(i);
+			 if(po.getScores().size()>4)
+				 System.out.println(po.getDate()+"_"+po.getHostTeam().getTeamName()+
+					 	"_"+po.getGuestTeam().getTeamName()+"_"+po.getScores().toString()+"---"+(1+i));
 			 
-				 System.out.println(po.getDate()+";"+po.getHostTeam().getTeamName()+
-					 	";"+po.getGuestTeam().getTeamName()+";"+po.getScores().toString()+"---"+(1+i));
-			 
-		}*/
+		} 
 	}
 	
 	
@@ -70,6 +70,9 @@ public class MatchDataController implements MatchDataService{
 	         
 	        String date=s[1];
 	       String season=s[0];
+	       
+	       double H_allTime=0;
+	       double G_allTime=0;
 	 	//System.out.println("---------"+path.length);
         File f = new File(filepath);  
         String encoding="UTF-8";
@@ -173,7 +176,13 @@ public class MatchDataController implements MatchDataService{
     			   	     H_blockNum=H_blockNum+info[14];					//盖帽数
     			   	     H_turnoverNum=H_turnoverNum+info[15];				//失误数
     			   	     H_foulNum=H_foulNum+info[16];					//犯规数
-    			   	     H_points=H_points+info[17];					//得分
+    			   	  if(info[17]>=0){
+     			   	     H_points=H_points+getPoint(str[16]);					//得分
+     			   	     }
+     			   	   
+     			   	  if(calTime(str[2])>=0){
+	        			   	     H_allTime=calTime(str[2])+H_allTime;
+	        			   	     }
     			   	     
     			   	    // System.out.println("文件：");
         				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim(),
@@ -198,8 +207,15 @@ public class MatchDataController implements MatchDataService{
    			   	     G_stealNum=G_stealNum+info[13];					//抢断数
    			   	     G_blockNum=G_blockNum+info[14];					//盖帽数
    			   	     G_turnoverNum=G_turnoverNum+info[15];				//失误数
-   			   	     G_foulNum=G_foulNum+info[16];					//犯规数
-   			   	     G_points=G_points+info[17];		
+   			   	     G_foulNum=G_foulNum+info[16];	
+   			   	     //犯规数
+   			   	if(info[17]>=0){
+   			   		G_points=G_points+getPoint(str[16]);					//得分
+			   	     }
+			   	   
+			   	  if(calTime(str[2])>=0){
+			   		  G_allTime=calTime(str[2])+G_allTime;
+   			   	     }		
         				G_teamData.add(new SingleMatchPersonalDataPO(str[0],str[1],calTime(str[2].trim()),
         						info[3],info[4],info[5],info[6],info[7],info[8],
         						info[9],info[10],info[11],info[12],info[13],info[14]
@@ -214,11 +230,11 @@ public class MatchDataController implements MatchDataService{
 			        			(new TeamMatchPO(season,H_team,H_fieldGoal,H_shootNum,H_T_fieldGoal,H_T_shootNum
 		        			   			  ,H_freeThrowGoalNum,H_freeThrowNum,H_O_ReboundNum,H_D_ReboundNum,
 		        			   			  H_reboundNum,H_assistNum,H_stealNum,H_blockNum,H_turnoverNum,
-		        			   			  G_foulNum,H_points,H_teamData)),
+		        			   			  G_foulNum,H_points,H_allTime,H_teamData)),
 			        			(new TeamMatchPO(season,G_team,G_fieldGoal,G_shootNum,G_T_fieldGoal,G_T_shootNum
 		        			   			  ,G_freeThrowGoalNum,G_freeThrowNum,G_O_ReboundNum,G_D_ReboundNum,
 		        			   			  G_reboundNum,G_assistNum,G_stealNum,G_blockNum,G_turnoverNum,
-		        			   			  G_foulNum,G_points,G_teamData)));
+		        			   			  G_foulNum,G_points,G_allTime,G_teamData)));
 	        }catch(Exception e){
 	        		System.out.println("error:"+e.toString());
 	        		} 
@@ -292,10 +308,13 @@ public class MatchDataController implements MatchDataService{
 		   	   int G_foulNum ;					//犯规数
 		   	   int G_points ;					//得分
 		        
-		        
+		        double H_allTime;
+		        double G_allTime;
 		        
 		        
 		        for (String l:list) {
+		        	H_allTime=0;
+		        	G_allTime=0;
 		        	
 		      //  	System.out.println("最初的文件路劲："+l);
 		        	/////
@@ -421,8 +440,14 @@ public class MatchDataController implements MatchDataService{
 		        			   	     H_blockNum=H_blockNum+info[14];					//盖帽数
 		        			   	     H_turnoverNum=H_turnoverNum+info[15];				//失误数
 		        			   	     H_foulNum=H_foulNum+info[16];					//犯规数
-		        			   	     H_points=H_points+info[17];					//得分
-		        				
+		        			   	      
+		        			   	     if(info[17]>=0){
+			        			   	     H_points=H_points+getPoint(str[16]);					//得分
+			        			   	     }					//得分
+		        				     
+		        			   	     if(calTime(str[2])>=0){
+		        			   	    	 H_allTime=calTime(str[2])+H_allTime;
+		        			   	     }
 		        				H_teamData.add(new SingleMatchPersonalDataPO(str[0].trim(),
 		        						str[1].trim(),calTime(str[2]),
 		        						info[3],info[4],info[5],info[6],info[7],info[8],
@@ -451,9 +476,14 @@ public class MatchDataController implements MatchDataService{
 	        			   	     G_blockNum=G_blockNum+info[14];					//盖帽数
 	        			   	     G_turnoverNum=G_turnoverNum+info[15];				//失误数
 	        			   	     G_foulNum=G_foulNum+info[16];					//犯规数
-	        			   	     G_points=G_points+info[17];					//得分
-	        			   	
+	        			   	     
+	        			   	     if(info[17]>=0){
+	        			   	     G_points=G_points+getPoint(str[16]);					//得分
+	        			   	     }
 	        			   	   
+	        			   	  if(calTime(str[2])>=0){
+		        			   	     G_allTime=calTime(str[2])+G_allTime;
+		        			   	     }
 	        			   	     
 		        				G_teamData.add(new SingleMatchPersonalDataPO(str[0].trim(),
 		        						str[1],calTime(str[2]),info[3],info[4],
@@ -479,11 +509,11 @@ public class MatchDataController implements MatchDataService{
 					        			(new TeamMatchPO(season,H_team,H_fieldGoal,H_shootNum,H_T_fieldGoal,H_T_shootNum
 				        			   			  ,H_freeThrowGoalNum,H_freeThrowNum,H_O_ReboundNum,H_D_ReboundNum,
 				        			   			  H_reboundNum,H_assistNum,H_stealNum,H_blockNum,H_turnoverNum,
-				        			   			  G_foulNum,H_points,H_teamData)),
+				        			   			  G_foulNum,H_points,H_allTime,H_teamData)),
 					        			(new TeamMatchPO(season,G_team,G_fieldGoal,G_shootNum,G_T_fieldGoal,G_T_shootNum
 				        			   			  ,G_freeThrowGoalNum,G_freeThrowNum,G_O_ReboundNum,G_D_ReboundNum,
 				        			   			  G_reboundNum,G_assistNum,G_stealNum,G_blockNum,G_turnoverNum,
-				        			   			  G_foulNum,G_points,G_teamData)))); 
+				        			   			  G_foulNum,G_points,G_allTime,G_teamData)))); 
 					        	 
 			        }catch(Exception e){
 			        		continue;
@@ -507,11 +537,13 @@ public class MatchDataController implements MatchDataService{
 			return 0;
 		
 		time=time.trim();
-		String s[]=time.split(":");
+		
 		try{
+			String s[]=time.split(":");
 			result=Integer.parseInt(s[0])+(double)Integer.parseInt(s[1])/60;
 		}catch(Exception e){
-			System.out.println("时间转化错误："+e.toString());
+			result=-1;
+			//System.out.println("时间转化错误："+e.toString());
 		}
 		return result;
 	}
@@ -526,4 +558,14 @@ public class MatchDataController implements MatchDataService{
     	}
     }
 
+    private int getPoint(String point){
+    	int result=0;
+    	try{
+    		result=Integer.parseInt(point);
+    		}catch(Exception e){
+    			result=-1;
+    		}
+    	return result;
+    }
+    
 }

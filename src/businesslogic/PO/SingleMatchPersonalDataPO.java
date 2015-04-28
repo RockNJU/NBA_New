@@ -121,4 +121,12 @@ public class SingleMatchPersonalDataPO {
 	public int getStealNum() {
 		return stealNum;
 	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
 }

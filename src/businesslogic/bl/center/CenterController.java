@@ -111,19 +111,25 @@ public class CenterController {
 	        
 	        TeamBase tb=new TeamBase();
 	        
-	        int Alltime=48+(po.getScores().size()-4)*5;
+	        int Alltime=48*5+(po.getScores().size()-4)*5;
+	        
+	        String sco[]=po.getMatchScore().split("-");
+	        int H_points=Integer.parseInt(sco[0]);
+	        int G_points=Integer.parseInt(sco[1]);
 	        
 	        ArrayList<SingleMatchPersonalDataVO> H_player_list=playerMatchPO_To_VO(H_po.getTeamName(),Alltime,
 	        		tb.getDivision(H_po.getTeamName()),tb.getpartition(H_po.getTeamName()),po.getSeason(),po.getDate(),
 	        		H_po.getIndividualData(),
 					H_po.getReboundNum(),G_po.getReboundNum(),H_po.getFieldGoal(),G_offense_round,
-					G_po.getShootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum());
+					G_po.getShootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum()
+					,H_po.getAllTime(),H_points,H_po.getPoints());
 	        
 	        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(G_po.getTeamName(),Alltime,
 	        		tb.getDivision(G_po.getTeamName()),tb.getpartition(G_po.getTeamName()),po.getSeason(),po.getDate(),
 	        		G_po.getIndividualData(),
 					G_po.getReboundNum(),H_po.getReboundNum(),G_po.getFieldGoal(),H_offense_round,
-					H_po.getShootNum(),G_po.getShootNum(),G_po.getFreeThrowNum(),G_po.getTurnoverNum());
+					H_po.getShootNum(),G_po.getShootNum(),G_po.getFreeThrowNum(),G_po.getTurnoverNum(),
+					G_po.getAllTime(),G_points,G_po.getPoints());
 	        /*String season,String teamName, 
 				int winNum,int pointNum,int lost_point,
 				int reboundNum, int O_ReboundNum, int D_ReboundNum,
@@ -133,9 +139,9 @@ public class CenterController {
 				double offenseRound, double defenseRound,
 				double O_ReboundEfficiency,double D_ReboundEfficiency,
 				ArrayList<SingleMatchPersonalDataVO> individualData*/
-	        String []sco=po.getMatchScore().split("-");
+	      
 	        int H_win=0,G_win=0;
-	        if(sco[0].compareTo(sco[1])>0){
+	        if(H_points>G_points){
 	        	H_win=1;
 	        }else{
 	        	G_win=1;
@@ -170,10 +176,11 @@ public class CenterController {
 			}
 		
 		private ArrayList<SingleMatchPersonalDataVO> playerMatchPO_To_VO(String team,
-				double allTime,String division,String partition,String season,
+				double teamTime,String division,String partition,String season,
 				String date,ArrayList<SingleMatchPersonalDataPO>list,
 				int T_reboundNum,int E_reboundNum,int T_fieldGoal,double E_offenseRound,
-				int E_two_shootNum,int T_shootNum,int T_freeThrowNum,int T_turnoverNum){
+				int E_two_shootNum,int T_shootNum,int T_freeThrowNum,int T_turnoverNum,
+				  double allTime,int teamPoints,int allPoints){
 			
 			  double assistEff =0;        //助攻率__
 			  double reboundEff =0;       //篮板率__
@@ -187,6 +194,21 @@ public class CenterController {
 			 
 			 for(int i=0;i<list.size();i++){
 				 po=list.get(i);
+				 
+				 
+				 /*先处理脏数据*/
+				 
+				 
+				 
+				 if(po.getTime()<0){
+					 po.setTime(teamTime-allTime);
+				 }
+				 if(po.getPoints()<0){
+					 po.setPoints(teamPoints-allPoints);
+				 }
+				 
+				 
+				 
 				 /*助攻率：球员助攻数÷(球员上场时间÷(球队所有球员上场时间÷5)×球队总进 球数-球员进球数)*/
 				 if(po.getTime()!=0){
 				 assistEff=(double)po.getAssistNum()/(po.getTime()/(allTime/5)*T_fieldGoal-po.getFieldGoal());
