@@ -91,7 +91,7 @@ public class Match extends JPanel {
 	    
 		teams.setRenderer(renderer);
 	     
-		teams.setBounds(290, 30, 150, 50);		
+		teams.setBounds(290, 30, 200, 50);		
 		add(teams);
 		teams.setVisible(true);
 
@@ -169,13 +169,13 @@ public class Match extends JPanel {
 		add(team);
 		
 		find.setToolTipText("\u67E5\u8BE2\u6BD4\u8D5B");
-		find.setBounds(483, 10, 75, 26);
+		find.setBounds(532, 10, 75, 26);
 		add(find);
 		find.setVisible(true);
 		
 		findteam = new JButton(new ImageIcon("pic/but/查找前.png"));
 		findteam.setToolTipText("\u67E5\u8BE2\u6BD4\u8D5B");
-		findteam.setBounds(483, 50, 75, 26);
+		findteam.setBounds(532, 50, 75, 26);
 		add(findteam);
 		findteam.setVisible(true);		
 		findteam.addMouseListener(new MouseListener() {
@@ -227,7 +227,7 @@ public class Match extends JPanel {
 		 */
 		filter = new JComboBox();
 		filter.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		filter.setBounds(135, 90, 70, 30);
+		filter.setBounds(131, 90, 120, 30);
 		filter.setMaximumRowCount(100);
 		filter.setModel(new DefaultComboBoxModel(new String[] {
 				"包含","大于","等于","小于" }));
@@ -247,7 +247,7 @@ public class Match extends JPanel {
 			}
 		});
 		fliterkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-		fliterkey.setBounds(225, 90, 314, 30);
+		fliterkey.setBounds(290, 90, 200, 30);
 		add(fliterkey);
 		fliterkey.setColumns(20);
 		fliterkey.setVisible(true);
@@ -321,7 +321,7 @@ public class Match extends JPanel {
 			}
 		});
 		filterb.setToolTipText("选择表格中的一列，进行排除");
-		filterb.setBounds(566, 90, 75, 26);
+		filterb.setBounds(532, 90, 75, 26);
 		add(filterb);
 		filterb.setVisible(true);
 		/*
