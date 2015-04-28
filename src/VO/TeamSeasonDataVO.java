@@ -65,7 +65,7 @@ public class TeamSeasonDataVO {
 	double stealEfficiency_avg;
 	double assistEfficiency = 0;
 	double assistEfficiency_avg;
-	private double O_ReboundEfficiency =0; 
+	private double o_ReboundEfficiency =0; 
 	double o_ReboundEfficiency_avg;
 	private double d_ReboundEfficiency =0;
 	double d_ReboundEfficiency_avg;
@@ -118,7 +118,7 @@ public class TeamSeasonDataVO {
 		this.stealEfficiency = stealEfficiency;  
 		this.assistEfficiency = assistEfficiency;  
 		
-		this.O_ReboundEfficiency = O_ReboundEfficiency; 
+		this.o_ReboundEfficiency = O_ReboundEfficiency; 
 		this.d_ReboundEfficiency = D_ReboundEfficiency;
 		
 		
@@ -196,7 +196,7 @@ public class TeamSeasonDataVO {
 		 stealEfficiency = stealEfficiency+vo.getStealEfficiency(); 	
 		 assistEfficiency = assistEfficiency+vo.getAssistEfficiency(); 	 
 			 
-		 O_ReboundEfficiency = O_ReboundEfficiency+vo.getO_ReboundEfficiency(); 
+		 o_ReboundEfficiency = o_ReboundEfficiency+vo.getO_ReboundEfficiency(); 
 		 d_ReboundEfficiency = d_ReboundEfficiency+vo.getD_ReboundEfficiency();
 		 
 		 
@@ -224,7 +224,7 @@ public class TeamSeasonDataVO {
               defenseEfficiency_avg=defenseEfficiency/matchNum;
              stealEfficiency_avg=stealEfficiency/matchNum;
              assistEfficiency_avg=assistEfficiency/matchNum;
-			  o_ReboundEfficiency_avg=O_ReboundEfficiency/matchNum;
+			  o_ReboundEfficiency_avg=o_ReboundEfficiency/matchNum;
 			 d_ReboundEfficiency_avg=d_ReboundEfficiency/matchNum;
 		 
 	 }
@@ -502,5 +502,40 @@ public class TeamSeasonDataVO {
 		public double getFreeThrowGoalNum_avg() {
 			// TODO Auto-generated method stub
 			return freeThrowGoalNum_avg;
+		}
+
+
+		public double getDefenseRound_avg() {
+			return defenseRound_avg;
+		}
+
+
+		public double getOffenseEfficiency_avg() {
+			return offenseEfficiency_avg;
+		}
+
+
+		public double getDefenseEfficiency_avg() {
+			return defenseEfficiency_avg;
+		}
+
+
+		public double getStealEfficiency_avg() {
+			return stealEfficiency_avg;
+		}
+
+
+		public double getAssistEfficiency_avg() {
+			return assistEfficiency_avg;
+		}
+
+
+		public double getO_ReboundEfficiency_avg() {
+			return o_ReboundEfficiency_avg;
+		}
+
+
+		public double getD_ReboundEfficiency_avg() {
+			return d_ReboundEfficiency_avg;
 		}
 }

@@ -35,7 +35,7 @@ public class RMIObject {
 		PlayerBLService player=m.getPlayerObject();
 		MatchBLService mac=m.getMatchObject();
 		
-		/*ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "t_shootPercentage");
+		 ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "assistEfficiency_avg");
 		
 		for(int i=0;i<pl.size();i++){
 			System.out.println("姓名："+pl.get(i).getName()+"球员位置："+pl.get(i).getPosition()
@@ -43,7 +43,7 @@ public class RMIObject {
 			 
 			//System.out.println("姓名："+pl.get(i).getName()+"  球员进攻篮板："+pl.get(i).getD_ReboundNum_avg()
 				//	+"    得分："+pl.get(i).getPointNum_avg());
-		}*/
+		} 
 		
 		/*ArrayList<TeamSeasonDataVO> list=team.getAllTeamSeasonData("13-14");
 		for(int i=0;i<list.size();i++){

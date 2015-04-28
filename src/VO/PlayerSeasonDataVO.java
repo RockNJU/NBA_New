@@ -742,5 +742,47 @@ public class PlayerSeasonDataVO implements Serializable{
 		return last_five_match_data;
 	}
 
+
+
+	public double getFreeThrowNum_avg() {
+		return freeThrowNum_avg;
+	}
+
+
+
+	public double getAssistEfficiency_avg() {
+		return assistEfficiency_avg;
+	}
+
+
+
+	public double getReboundEfficiency_avg() {
+		return reboundEfficiency_avg;
+	}
+
+
+
+	public double getOffensiveReboundEff_avg() {
+		return offensiveReboundEff_avg;
+	}
+
+
+
+	public double getDefenseReboundEff_avg() {
+		return defenseReboundEff_avg;
+	}
+
+
+
+	public double getStealEfficiency_avg() {
+		return stealEfficiency_avg;
+	}
+
+
+
+	public double getUsingPercentage_avg() {
+		return usingPercentage_avg;
+	}
+
 	
 }

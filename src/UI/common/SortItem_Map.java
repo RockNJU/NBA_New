@@ -39,12 +39,17 @@ public class SortItem_Map {
 	   map.put("三分命中率", "t_shootPercentage");
 	   map.put("罚球命中率", "freeThrowPercentage");
 	   
+	   map.put("进攻篮板率", "o_ReboundEfficiency_avg");
+	   map.put("防守篮板率", "d_ReboundEfficiency_avg");
+	   
+	   map.put("进攻回合", "offenseRound_avg");
+	   
 	   
 	   map.put("参赛场数", "matchNum");
 	   map.put("先发场数", "startingNum");
 	   map.put("上场时间", "time_avg");
-	   map.put("进球数", "fieldGoal_avg");
-	   map.put("出手数", "shootNum_avg");
+	   map.put("投篮命中数", "fieldGoal_avg");
+	   map.put("投篮出手数", "shootNum_avg");
 	   map.put("三分命中数", "t_fieldGoal_avg");
 	   map.put("三分出手数", "t_shootNum_avg");
 	   //////
