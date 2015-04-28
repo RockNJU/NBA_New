@@ -170,7 +170,8 @@ public class Player extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
-				
+				init.currentpanel="player&"+"TODOTODOTODO";
+				System.out.println(init.currentpanel);
 			}
 
 			@Override
@@ -295,6 +296,8 @@ public class Player extends JPanel {
 					String name = playerlist.getValueAt(
 							playerlist.getSelectedRow(), 1);
 					// System.out.println(name);
+					init.currentpanel+="&"+name+";"+season;
+					System.out.println(init.currentpanel);
 					SinglePlayer spi = new SinglePlayer(name, season);
 					spi.setVisible(true);
 					spi.setLocation(375, 58);
@@ -362,6 +365,8 @@ public class Player extends JPanel {
 				psvo = pbl.sort(Season, Position, Partition, According);
 				//System.out.println(Season + Position + Partition + According);
 				data = getTotaldata(psvo);
+				init.currentpanel="player&"+Season+";" + Position+";" + Partition+";" + According;
+				System.out.println(init.currentpanel);
 				playerlist.updateTable(playerTotaltitle, data);
 			}
 
@@ -404,6 +409,8 @@ public class Player extends JPanel {
 				// 5);
 				psvo = pbl.keyfind(findkey.getText());
 				data = getTotaldata(psvo);
+				init.currentpanel="player&"+findkey.getText();
+				System.out.println(init.currentpanel);
 				playerlist.updateTable(playerTotaltitle, data);
 			}
 
