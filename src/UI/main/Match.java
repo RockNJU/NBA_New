@@ -7,6 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.swing.*;
+import javax.swing.RowFilter.ComparisonType;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import businessService.blservice.MatchBLService;
 import UI.blObject.RMIObject;
@@ -27,6 +30,11 @@ public class Match extends JPanel {
 	JLabel dateLabel;
 	JButton find;
 	JButton findteam;
+	JComboBox filter;
+	JTextField fliterkey;
+	JLabel filterLabel;
+	int tempchossen = 0;
+	JButton filterb;
 	//JButton columns;
 	CreateTable matchlist;
 	//日期、赛季、主队、比分、客队、第一节、二、三、四、加时、
@@ -52,13 +60,13 @@ public class Match extends JPanel {
 		mbl=init.rmi.getMatchObject();
 		dc=new DateChooser(180,35);
 		dc.setSize(120, 30);
-		dc.setLocation(131, 27);
+		dc.setLocation(131, 10);
 		add(dc);
 		
 		dateLabel = new JLabel("\u65E5\u671F\uFF1A");
 		dateLabel.setForeground(Color.WHITE);
 		dateLabel.setFont(new Font("华文新魏", Font.BOLD, 30));
-		dateLabel.setBounds(29, 28, 110, 30);
+		dateLabel.setBounds(29, 10, 110, 30);
 		add(dateLabel);
 		
 		/**
@@ -83,7 +91,7 @@ public class Match extends JPanel {
 	    
 		teams.setRenderer(renderer);
 	     
-		teams.setBounds(292, 67, 150, 50);		
+		teams.setBounds(290, 30, 150, 50);		
 		add(teams);
 		teams.setVisible(true);
 
@@ -98,10 +106,16 @@ public class Match extends JPanel {
 			season.addItem(seasons.get(o));
 			
 		}
-		season.setBounds(131, 77, 120, 30);		
+		season.setBounds(131, 50, 120, 30);		
 		add(season);
 		season.setVisible(true);
 		
+		filterLabel = new JLabel("排除：");
+		filterLabel.setForeground(Color.WHITE);
+		filterLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
+		filterLabel.setBounds(31, 90, 130, 30);
+		add(filterLabel);
+		filterLabel.setVisible(true);
 		
 		
 		
@@ -151,17 +165,17 @@ public class Match extends JPanel {
 		team = new JLabel("\u7403\u961F\uFF1A");
 		team.setForeground(Color.WHITE);
 		team.setFont(new Font("华文新魏", Font.BOLD, 30));
-		team.setBounds(29, 78, 110, 30);
+		team.setBounds(29, 50, 110, 30);
 		add(team);
 		
 		find.setToolTipText("\u67E5\u8BE2\u6BD4\u8D5B");
-		find.setBounds(483, 27, 75, 26);
+		find.setBounds(483, 10, 75, 26);
 		add(find);
 		find.setVisible(true);
 		
 		findteam = new JButton(new ImageIcon("pic/but/查找前.png"));
 		findteam.setToolTipText("\u67E5\u8BE2\u6BD4\u8D5B");
-		findteam.setBounds(483, 77, 75, 26);
+		findteam.setBounds(483, 50, 75, 26);
 		add(findteam);
 		findteam.setVisible(true);		
 		findteam.addMouseListener(new MouseListener() {
@@ -207,6 +221,103 @@ public class Match extends JPanel {
 	            }	
 	       
 		});
+		
+		/**
+		 * 筛选
+		 */
+		filter = new JComboBox();
+		filter.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		filter.setBounds(135, 90, 70, 30);
+		filter.setMaximumRowCount(100);
+		filter.setModel(new DefaultComboBoxModel(new String[] {
+				"包含","大于","等于","小于" }));
+		filter.setToolTipText("排除");
+		filter.setEditable(true);
+		add(filter);
+		filter.setVisible(true);
+		/**
+		 * 筛选的关键词
+		 * 
+		 */
+		fliterkey = new JTextField("请输入数值");
+		fliterkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		fliterkey.setBounds(225, 90, 314, 30);
+		add(fliterkey);
+		fliterkey.setColumns(20);
+		fliterkey.setVisible(true);
+		filterb = new JButton(new ImageIcon("pic/but/排除前.png"));
+	    
+		filterb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(matchlist.getmodel());
+			    matchlist.setRowSorter(sorter);
+			    	  int[] a =  {tempchossen};
+			    	  //test;
+				String comparisonType = filter.getSelectedItem().toString();
+			    String text = fliterkey.getText();
+                if (text.length() == 0)
+                {
+                    sorter.setRowFilter(null);
+                }
+                else
+                {
+                	try{
+                	if(comparisonType.equals("包含")){
+                    	sorter.setRowFilter (RowFilter.regexFilter(text, a));
+                    }
+                	if(comparisonType.equals("等于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.EQUAL, Double.valueOf(text), a));
+                	}
+                	else if(comparisonType.equals("小于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.BEFORE, Double.valueOf(text), a));
+                	}
+                	else if(comparisonType.equals("大于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.AFTER, Double.valueOf(text),a));
+                	}
+                	}
+                	catch(Exception e1){
+                		
+                	}
+                	}
+			}
+		});
+		filterb.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				filterb.setIcon(new ImageIcon("pic/but/排除前.png"));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				// TODO Auto-generated method stub
+				filterb.setIcon(new ImageIcon("pic/but/排除后.png"));
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				System.out.println(init.currentpanel);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+		filterb.setToolTipText("选择表格中的一列，进行排除");
+		filterb.setBounds(566, 90, 75, 26);
+		add(filterb);
+		filterb.setVisible(true);
 		/*
 		columns = new JButton(new ImageIcon("pic/but/筛选前.png"));
 		columns.addActionListener(new ActionListener() {
@@ -277,7 +388,13 @@ public class Match extends JPanel {
 							spi.setVisible(true);
 							spi.setLocation(375, 58);
 						}
+						else{
+							tempchossen = matchlist.getSelectedColumn();
+							fliterkey.setText("目前选择的是："+matchlist.getColumnName(tempchossen));
+						}
 					}
+					
+				
 				});
 
 	}

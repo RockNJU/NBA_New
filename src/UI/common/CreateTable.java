@@ -211,6 +211,12 @@ public class CreateTable extends JPanel{
 		}
 
 
+		public String getColumnName(int tempchossen) {
+			// TODO 自动生成的方法存根
+			return table.getColumnName(tempchossen);
+		}
+
+
 
 		
 		

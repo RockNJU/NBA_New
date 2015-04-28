@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.RowFilter.ComparisonType;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
@@ -35,6 +38,13 @@ public class Team extends JPanel {
 	JButton sort;
 	JButton find;
 	CreateTable teamlist;
+	
+	JLabel filterLabel;
+	JComboBox filter;
+	JTextField fliterkey;
+	int tempchossen = 0;
+	JButton filterb;
+	
 	String[] teamtitle={" 序号  "," 球队名称  "," 比赛场数  "," 投篮命中数  "," 投篮出手次数  "," 三分命中数  ",
 			" 三分出手数  "," 罚球命中数  "," 罚球出手数  "," 进攻篮板数  "," 防守篮板数  "," 篮板数  "," 助攻数  ",
 			" 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 比赛得分  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
@@ -81,15 +91,119 @@ public class Team extends JPanel {
 		sortLabel = new JLabel("排列：");
 		sortLabel.setForeground(Color.WHITE);
 		sortLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
-		sortLabel.setBounds(31, 35, 130, 30);
+		sortLabel.setBounds(31, 10, 130, 30);
 		add(sortLabel);
 		sortLabel.setVisible(true);
 		findLabel = new JLabel("查找：");
 		findLabel.setForeground(Color.WHITE);
 		findLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
-		findLabel.setBounds(31, 75, 130, 30);
+		findLabel.setBounds(31, 50, 130, 30);
 		add(findLabel);
 		findLabel.setVisible(true);
+		
+		filterLabel = new JLabel("排除：");
+		filterLabel.setForeground(Color.WHITE);
+		filterLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
+		filterLabel.setBounds(31, 90, 130, 30);
+		add(filterLabel);
+		filterLabel.setVisible(true);
+		/**
+		 * 筛选
+		 */
+		filter = new JComboBox();
+		filter.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		filter.setBounds(135, 90, 70, 30);
+		filter.setMaximumRowCount(100);
+		filter.setModel(new DefaultComboBoxModel(new String[] {
+				"包含","大于","等于","小于" }));
+		filter.setToolTipText("排除");
+		filter.setEditable(true);
+		add(filter);
+		filter.setVisible(true);
+		/**
+		 * 筛选的关键词
+		 * 
+		 */
+		fliterkey = new JTextField("请输入数值");
+		fliterkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		fliterkey.setBounds(225, 90, 314, 30);
+		add(fliterkey);
+		fliterkey.setColumns(20);
+		fliterkey.setVisible(true);
+		filterb = new JButton(new ImageIcon("pic/but/排除前.png"));
+	    
+		filterb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(teamlist.getmodel());
+			    	teamlist.setRowSorter(sorter);
+			    	  int[] a =  {tempchossen};
+			    	  //test;
+				String comparisonType = filter.getSelectedItem().toString();
+			    String text = fliterkey.getText();
+                if (text.length() == 0)
+                {
+                    sorter.setRowFilter(null);
+                }
+                else
+                {
+                	try{
+                	if(comparisonType.equals("包含")){
+                    	sorter.setRowFilter (RowFilter.regexFilter(text, a));
+                    }
+                	if(comparisonType.equals("等于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.EQUAL, Double.valueOf(text), a));
+                	}
+                	else if(comparisonType.equals("小于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.BEFORE, Double.valueOf(text), a));
+                	}
+                	else if(comparisonType.equals("大于")){
+                		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.AFTER, Double.valueOf(text),a));
+                	}
+                	}
+                	catch(Exception e1){
+                		
+                	}
+                	}
+			}
+		});
+		filterb.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				filterb.setIcon(new ImageIcon("pic/but/排除前.png"));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				// TODO Auto-generated method stub
+				filterb.setIcon(new ImageIcon("pic/but/排除后.png"));
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				System.out.println(init.currentpanel);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+		filterb.setToolTipText("选择表格中的一列，进行排除");
+		filterb.setBounds(566, 90, 75, 26);
+		add(filterb);
+		filterb.setVisible(true);
+		
 		/**
 		 * 球队筛选的依据
 		 */
@@ -97,7 +211,7 @@ public class Team extends JPanel {
 		according = new JComboBox();
 		according.setToolTipText("\u7B5B\u9009\u4F9D\u636E");
 		according.setModel(new DefaultComboBoxModel(new String[] {"\u6295\u7BEE\u51FA\u624B\u6570", "\u6295\u7BEE\u547D\u4E2D\u6570", "\u4E09\u5206\u547D\u4E2D\u6570", "\u4E09\u5206\u51FA\u624B\u6570", "\u7F5A\u7BEE\u547D\u4E2D\u6570", "\u7F5A\u7BEE\u6570", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u7BEE\u677F\u6570", "\u52A9\u653B\u6570", "\u62A2\u65AD\u6570", "\u76D6\u5E3D\u6570", "\u5931\u8BEF\u6570", "\u72AF\u89C4\u6570", "\u5F97\u5206", "\u6295\u7BEE\u547D\u4E2D\u7387", "\u4E09\u5206\u547D\u4E2D\u7387", "\u7F5A\u7403\u547D\u4E2D\u7387", "\u80DC\u7387", "\u8FDB\u653B\u56DE\u5408", "\u8FDB\u653B\u6548\u7387", "\u9632\u5B88\u6548\u7387", "\u8FDB\u653B\u7BEE\u677F\u7387", "\u9632\u5B88\u7BEE\u677F\u7387", "\u62A2\u65AD\u7387", "\u52A9\u653B\u7387"}));
-		according.setBounds(135, 35, 127, 30);		
+		according.setBounds(135, 10, 127, 30);		
 		add(according);
 		according.setVisible(true);
 		season = new JComboBox();
@@ -115,7 +229,7 @@ public class Team extends JPanel {
 			season.addItem(seasons.get(o));
 			
 		}
-		season.setBounds(291, 35, 130, 30);		
+		season.setBounds(291, 10, 130, 30);		
 		add(season);
 		season.setVisible(true);
 		
@@ -124,7 +238,7 @@ public class Team extends JPanel {
 		 */
 		findkey = new JTextField("请输入关键词");
 		findkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-		findkey.setBounds(135, 75, 286, 30);		
+		findkey.setBounds(135, 50, 286, 30);		
 		add(findkey);
 		findkey.setColumns(20);
 		findkey.setVisible(true);
@@ -156,7 +270,6 @@ public class Team extends JPanel {
 	            	//TODO
 	            	
 	            	String Season=season.getSelectedItem().toString().substring(0, 5);
-	            	
 	            	String sortItem=m.getItem(according.getSelectedItem().toString());
 	            	//System.out.println(according.getSelectedItem().toString());
 	            	//System.out.println(sortItem);
@@ -176,7 +289,7 @@ public class Team extends JPanel {
 	       
 		});
 		sort.setToolTipText("\u663E\u793A\u67E5\u627E\u7684\u7403\u961F\u4FE1\u606F");
-		sort.setBounds(480, 35, 75, 26);
+		sort.setBounds(480, 10, 75, 26);
 		add(sort);
 		sort.setVisible(true);
 		
@@ -222,7 +335,7 @@ public class Team extends JPanel {
 		});
 		
 		find.setToolTipText("\u67E5\u8BE2\u5355\u72EC\u7403\u961F\u4FE1\u606F");
-		find.setBounds(480, 75, 75, 26);
+		find.setBounds(480, 50, 75, 26);
 		add(find);
 		find.setVisible(true);
 		
@@ -262,7 +375,7 @@ public class Team extends JPanel {
 	       
 		});
 		columns.setToolTipText("\u9009\u62E9\u8868\u683C\u5C5E\u6027");
-		columns.setBounds(600, 35, 75, 26);
+		columns.setBounds(600, 10, 75, 26);
 		add(columns);
 		columns.setVisible(true);	
 		
@@ -278,7 +391,7 @@ public class Team extends JPanel {
 				teamlist.getTable().addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {	        
-							
+						if (e.getClickCount() == 2 && teamlist.getSelectedRow() != -1) {
 							try {  
 								String s=season.getSelectedItem().toString().substring(0, 5);
 							 String name = teamlist.getValueAt(teamlist.getSelectedRow(),1);
@@ -295,6 +408,11 @@ public class Team extends JPanel {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+						}
+						else{
+							tempchossen = teamlist.getSelectedColumn();
+							fliterkey.setText("目前选择的是："+teamlist.getColumnName(tempchossen));
+						}
 					}
 				});		
 		west=new JPanel();

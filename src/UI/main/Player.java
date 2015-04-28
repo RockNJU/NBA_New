@@ -37,6 +37,8 @@ public class Player extends JPanel {
 	JButton sort;
 	JButton find;
 	CreateTable playerlist;
+	
+	JLabel filterLabel;
 	JComboBox filter;
 	JTextField fliterkey;
 	int tempchossen = 0;
@@ -46,13 +48,13 @@ public class Player extends JPanel {
 			"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 			"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
 			"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
-			"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
+			"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 			"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
 				"先发场数", "平均篮板", "平均助攻", "平均上场时间", "投篮命中率", "三分命中率",
 				"罚球命中s率", "平均进攻", "平均防守", "平均抢断", "平均盖帽", "平均失误",
 				"平均犯规", "平均得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
-				"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
+				"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 				"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	String[] playerinfo = { " 序号  ", " 姓名  ", " 球号  ", " 位置  ", " 身高  ",
 			" 体重  ", " 出生日期  ", " 年龄  ", " 球龄  ", " 毕业院校  " };
@@ -90,12 +92,12 @@ public class Player extends JPanel {
 		add(findLabel);
 		findLabel.setVisible(true);
 		
-		findLabel = new JLabel("排除：");
-		findLabel.setForeground(Color.WHITE);
-		findLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
-		findLabel.setBounds(31, 90, 130, 30);
-		add(findLabel);
-		findLabel.setVisible(true);
+		filterLabel = new JLabel("排除：");
+		filterLabel.setForeground(Color.WHITE);
+		filterLabel.setFont(new Font("华文新魏", Font.BOLD, 32));
+		filterLabel.setBounds(31, 90, 130, 30);
+		add(filterLabel);
+		filterLabel.setVisible(true);
 		/**
 		 * 筛选
 		 */
@@ -105,7 +107,7 @@ public class Player extends JPanel {
 		filter.setMaximumRowCount(100);
 		filter.setModel(new DefaultComboBoxModel(new String[] {
 				"包含","大于","等于","小于" }));
-		filter.setToolTipText("筛选");
+		filter.setToolTipText("排除");
 		filter.setEditable(true);
 		add(filter);
 		filter.setVisible(true);
@@ -119,7 +121,7 @@ public class Player extends JPanel {
 		add(fliterkey);
 		fliterkey.setColumns(20);
 		fliterkey.setVisible(true);
-		filterb = new JButton(new ImageIcon("pic/but/排列前.png"));
+		filterb = new JButton(new ImageIcon("pic/but/排除前.png"));
 	    
 		filterb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -159,14 +161,14 @@ public class Player extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				filterb.setIcon(new ImageIcon("pic/but/排列前.png"));
+				filterb.setIcon(new ImageIcon("pic/but/排除前.png"));
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 
 				// TODO Auto-generated method stub
-				filterb.setIcon(new ImageIcon("pic/but/排列后.png"));
+				filterb.setIcon(new ImageIcon("pic/but/排除后.png"));
 
 			}
 
@@ -188,7 +190,7 @@ public class Player extends JPanel {
 				
 			}
 		});
-		filterb.setToolTipText("进行排除");
+		filterb.setToolTipText("选择表格中的一列，进行排除");
 		filterb.setBounds(566, 90, 75, 26);
 		add(filterb);
 		filterb.setVisible(true);
@@ -306,6 +308,7 @@ public class Player extends JPanel {
 				}
 				else{
 					tempchossen = playerlist.getSelectedColumn();
+					fliterkey.setText("目前选择的是："+playerlist.getColumnName(tempchossen));
 				}
 			}
 		});
