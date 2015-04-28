@@ -50,7 +50,7 @@ public class SearchHistory {
 			Player_list.add(h);
 			writeFile("NBAdata\\playerHistory",Player_list);
 		}
-		ArrayList<History> get_player_History(){
+		public ArrayList<History> get_player_History(){
 			return Player_list;
 		}
 		
