@@ -41,12 +41,13 @@ public class MatP extends JPanel {
 		pbl=init.rmi.getPlayerObject();
 		
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
-		data1=getdata1(pdvo.getLast_five_match_data());
+		array=pdvo.getLast_five_match_data();
+		data1=getdata1(array);
 		list1 = new CreateTable(title1, data1,18, 68, 720, 170, 25,
 				new Font("华文新魏", 0, 15), new Font("Dialog", 0, 12));
 		//list1.setLocation(18, 68);
 		add(list1);
-		data2=getdata2(pdvo.getLast_five_match_data());
+		data2=getdata2(array);
 		list2 = new CreateTable(title2, data2, 18, 230, 720, 200, 25,
 				new Font("华文新魏", 0, 15), new Font("Dialog", 0, 12));
 		add(list2);
@@ -76,6 +77,7 @@ public class MatP extends JPanel {
 			return re;
 		} else {
 			Object[][] re = new Object[da.size()][12];	
+			System.out.println(da.size());
 			TeamName_Map mm=new TeamName_Map();
 			for (int i = 0; i < da.size(); i++) {
 				re[i][0] = da.get(i).getDate();

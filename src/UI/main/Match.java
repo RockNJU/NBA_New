@@ -142,6 +142,8 @@ public class Match extends JPanel {
 	               matchlist.updateTable(matchtitle, data);
 	               matchlist.hideColumn(2);
 	               }
+	               init.currentpanel="match"+"&"+dc.showDate.getText();
+	               System.out.println(init.currentpanel);
 	            }	
 	       
 		});
@@ -200,6 +202,8 @@ public class Match extends JPanel {
 		               matchlist.updateTable(matchtitle, data);
 		               matchlist.hideColumn(2);
 	            	}
+	            	init.currentpanel="match"+"&"+Season+";"+Team;
+		            System.out.println(init.currentpanel);
 	            }	
 	       
 		});
@@ -267,6 +271,8 @@ public class Match extends JPanel {
 							String date= matchlist.getValueAt(
 									matchlist.getSelectedRow(), 1);
 							// System.out.println(name);
+							init.currentpanel+="&"+team+";"+date;
+							System.out.println(init.currentpanel);
 							SingleMatch spi = new SingleMatch(team,date );
 							spi.setVisible(true);
 							spi.setLocation(375, 58);

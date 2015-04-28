@@ -154,6 +154,7 @@ public class Team extends JPanel {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
 	            	//TODO
+	            	
 	            	String Season=season.getSelectedItem().toString().substring(0, 5);
 	            	
 	            	String sortItem=m.getItem(according.getSelectedItem().toString());
@@ -161,7 +162,9 @@ public class Team extends JPanel {
 	            	//System.out.println(sortItem);
 	            	tdvo=tbl.sort(Season, sortItem);
 	            	data=getTotaldata(tdvo);
-	            	System.out.println("a"+tdvo.size());
+	            	//System.out.println("a"+tdvo.size());
+	            	init.currentpanel="team"+"&"+Season+";"+sortItem;
+	            	System.out.println(init.currentpanel);
 	            	teamlist.updateTable(teamtitle, data);
 	            	teamlist.setVisible(true);
 	            	dd.setVisible(false);
@@ -207,6 +210,8 @@ public class Team extends JPanel {
 	            	tdvo =tbl.find(findkey.getText());
 	            	data=getTotaldata(tdvo);
 	            	teamlist.updateTable(teamtitle, data);
+	            	init.currentpanel="team"+"&"+findkey.getText();
+	            	System.out.println(init.currentpanel);
 	            	teamlist.setVisible(true);
 	            	dd.setVisible(false);
 	            	east.setVisible(false);
@@ -280,7 +285,8 @@ public class Team extends JPanel {
 							 SingleTeam spi;
 							//System.out.println("aha"+s+name);
 							spi = new SingleTeam(name,s);
-							
+							init.currentpanel+="&"+name+";"+s;
+							System.out.println(init.currentpanel);
 							 spi.setVisible(true);
 							 spi.setLocation(375, 58);
 							} catch (TransformerFactoryConfigurationError
@@ -319,6 +325,9 @@ public class Team extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					SingleTeam sti;
 					try {
+						String s=season.getSelectedItem().toString().substring(0, 5);
+						init.currentpanel+="&"+tempa+";"+s;
+						System.out.println(init.currentpanel);
 						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);
@@ -351,6 +360,9 @@ public class Team extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					SingleTeam sti;
 					try {
+						String s=season.getSelectedItem().toString().substring(0, 5);
+						init.currentpanel+="&"+tempa+";"+s;
+						System.out.println(init.currentpanel);
 						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);

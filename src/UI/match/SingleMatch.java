@@ -93,6 +93,9 @@ public class SingleMatch extends JDialog {
             }            
             @Override
             public void mouseClicked(MouseEvent e) {
+            	String news=UI.main.init.currentpanel;
+            	UI.main.init.currentpanel=news.substring(0,news.lastIndexOf('&'));
+            	System.out.println(UI.main.init.currentpanel);
             	dispose();// Οϊ»Ω΄°Με
             }
         });
