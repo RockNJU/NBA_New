@@ -104,7 +104,7 @@ public class Player extends JPanel {
 		filter.setBounds(135, 90, 70, 30);
 		filter.setMaximumRowCount(100);
 		filter.setModel(new DefaultComboBoxModel(new String[] {
-				"大于","等于","小于" }));
+				"包含","大于","等于","小于" }));
 		filter.setToolTipText("筛选");
 		filter.setEditable(true);
 		add(filter);
@@ -125,7 +125,7 @@ public class Player extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			    final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(playerlist.getmodel());
 			    	 playerlist.setRowSorter(sorter);
-			    	  int[] a =  {playerlist.getSelectedColumn()};
+			    	  int[] a =  {tempchossen};
 			    	  //test;
 				String comparisonType = filter.getSelectedItem().toString();
 			    String text = fliterkey.getText();
@@ -136,6 +136,9 @@ public class Player extends JPanel {
                 else
                 {
                 	try{
+                	if(comparisonType.equals("包含")){
+                    	sorter.setRowFilter (RowFilter.regexFilter(text, a));
+                    }
                 	if(comparisonType.equals("等于")){
                 		sorter.setRowFilter (RowFilter.numberFilter(ComparisonType.EQUAL, Double.valueOf(text), a));
                 	}
@@ -170,7 +173,6 @@ public class Player extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
-				init.currentpanel="player&"+"TODOTODOTODO";
 				System.out.println(init.currentpanel);
 			}
 
@@ -303,8 +305,7 @@ public class Player extends JPanel {
 					spi.setLocation(375, 58);
 				}
 				else{
-					
-					
+					tempchossen = playerlist.getSelectedColumn();
 				}
 			}
 		});
