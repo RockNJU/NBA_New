@@ -206,6 +206,11 @@ public class CreateTable extends JPanel{
 		}
 
 
+		public TableModel getmodel() {
+			return table.getModel();
+		}
+
+
 
 		
 		
