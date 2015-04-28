@@ -94,9 +94,13 @@ public class TeamName_Map {
 		   map.put("Raptors", "TOR");
 		   map.put("Jazz", "UTA");
 		   map.put("Wizards", "WAS");
+		   map.put("unknown", "??");
 	   }
 	   
 	   public String getFullName(String item){
+		   if(map.get(item)==null){
+			   return "unknown";
+		   }
 		   return map.get(item).toString();
 	   }
 }
