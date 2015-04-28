@@ -124,8 +124,8 @@ public class PlayerSeasonData {
 	public ArrayList<PlayerSeasonDataVO> get_Related_Player(String item){
 		ArrayList<PlayerSeasonDataVO> list=new ArrayList<>();
 		for(int i=0;i<playerDataList.size();i++){
-			if(playerDataList.get(i).getTeamName().contains(item)||
-					playerDataList.get(i).getName().contains(item)||
+			if(playerDataList.get(i).getTeamName().contains(item)|
+					playerDataList.get(i).getName().contains(item)|
 					playerDataList.get(i).getInfo().getPosition().contains(item)){
 				list.add(playerDataList.get(i));
 			}

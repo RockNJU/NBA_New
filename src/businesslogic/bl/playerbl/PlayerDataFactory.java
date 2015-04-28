@@ -91,9 +91,10 @@ public class PlayerDataFactory {
 	
 	
 	public ArrayList<PlayerSeasonDataVO> get_Related_Player(String item){
+		
 		for(int i=0;i<dataList.size();i++){
 			if(dataList.get(i).season.equals(lastDay.getSeason())){
-				return dataList.get(i).get_Related_Player(lastDay.getSeason());
+				return dataList.get(i).get_Related_Player(item);
 			}
 		}
 		return new ArrayList<PlayerSeasonDataVO>();

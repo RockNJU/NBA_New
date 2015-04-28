@@ -189,9 +189,9 @@ public class CenterController {
 				 if(po.getTime()!=0){
 				 assistEff=(double)po.getAssistNum()/(po.getTime()/48*T_fieldGoal-po.getFieldGoal());
 				/* 篮板率：球员篮板数×(球队所有球员上场时间÷5)÷球员上场时间÷(球队总篮板+对手总篮板)*/
-				 reboundEff=(double)po.getReboundNum()/48/po.getTime()/(T_reboundNum+E_reboundNum);
-				 offensiveReboundEff=(double)po.getO_ReboundNum()/48/po.getTime()/(T_reboundNum+E_reboundNum);
-				 defenseReboundEff=(double)po.getD_ReboundNum()/48/po.getTime()/(T_reboundNum+E_reboundNum);
+				 reboundEff=(double)po.getReboundNum()*48/po.getTime()/(T_reboundNum+E_reboundNum);
+				 offensiveReboundEff=(double)po.getO_ReboundNum()*48/po.getTime()/(T_reboundNum+E_reboundNum);
+				 defenseReboundEff=(double)po.getD_ReboundNum()*48/po.getTime()/(T_reboundNum+E_reboundNum);
 				 /*抢断率： 球员抢断数×(球队所有球员上场时间÷5)÷球员上场时间÷对手进攻次数)*/
 				 stealEff=(double)po.getStealNum()*48/po.getTime()/E_offenseRound;
 				 /*盖帽率：球员盖帽数×(球队所有球员上场时间÷5)÷球员上场时间÷对手两分球出手次数*/

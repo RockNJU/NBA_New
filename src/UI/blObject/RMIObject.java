@@ -35,11 +35,11 @@ public class RMIObject {
 		PlayerBLService player=m.getPlayerObject();
 		MatchBLService mac=m.getMatchObject();
 		
-		 ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "assistEfficiency_avg");
+		 ArrayList<PlayerSeasonDataVO> pl=player.sort("13-14", "C", "  ", "offensiveReboundEff_avg");
 		
 		for(int i=0;i<pl.size();i++){
 			System.out.println("姓名："+pl.get(i).getName()+"球员位置："+pl.get(i).getPosition()
-					+"得分："+pl.get(i).getPointNum_avg()+"近5场提升率："+pl.get(i).getL_f_assist_rate());
+					+"得分："+pl.get(i).getPointNum_avg()+"进攻篮板率："+pl.get(i).getOffensiveReboundEff_avg());
 			 
 			//System.out.println("姓名："+pl.get(i).getName()+"  球员进攻篮板："+pl.get(i).getD_ReboundNum_avg()
 				//	+"    得分："+pl.get(i).getPointNum_avg());
