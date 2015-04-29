@@ -663,7 +663,7 @@ public class Team extends JPanel {
 		}
 		
 	}
-	private Object[][] getAveragedata(ArrayList<TeamSeasonDataVO> da){
+	Object[][] getAveragedata(ArrayList<TeamSeasonDataVO> da){
 		//System.out.println(da==null);
 		if(da==null){
 			Object[][] re=new Object[1][30];
