@@ -64,7 +64,10 @@ public class HotSort {
         ComparatorChain cc = new ComparatorChain();
         //第一个参数是指定排序的属性，第二个参数指定降序升序
         for(int i=0;i<condition.length;i++){
-        	cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        	if(condition[i]!=null){
+        		cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        	}
+        	
         }
         Collections.sort(playerSeasondata,cc );
 		return playerSeasondata;
@@ -121,7 +124,9 @@ public class HotSort {
         ComparatorChain cc = new ComparatorChain();
         //第一个参数是指定排序的属性，第二个参数指定降序升序
         for(int i=0;i<condition.length;i++){
-        	cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        	if(condition[i]!=null){
+        		cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        	}
         }
         Collections.sort(teamSeasondata,cc );
 		return teamSeasondata;
@@ -180,7 +185,9 @@ public class HotSort {
         ComparatorChain cc = new ComparatorChain();
         //第一个参数是指定排序的属性，第二个参数指定降序升序
         for(int i=0;i<condition.length;i++){
-        	cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        	if(condition[i]!=null){
+        		cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        	}
         }
         Collections.sort(playerSeasondata,cc );
 		return playerSeasondata;
