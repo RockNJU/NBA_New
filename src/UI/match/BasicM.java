@@ -87,7 +87,7 @@ public class BasicM extends JPanel {
 			}else if(singlescore[0].equals(singlescore[1])){
 				scoreA.setForeground(lose);
 				scoreB.setForeground(lose);
-			}else{
+			}else {
 				scoreA.setForeground(lose);
 				scoreB.setForeground(win);
 			}
