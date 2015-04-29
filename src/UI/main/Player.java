@@ -35,10 +35,10 @@ public class Player extends JPanel {
 
 	JLabel findLabel;
 	JLabel sortLabel;
-	JComboBox position;
-	JComboBox partition;
+	static JComboBox position;
+	static JComboBox partition;
 	JComboBox according;
-	JComboBox playerseason;
+	static JComboBox playerseason;
 	JComboBox playerseason1;
 	JTextField findkey;
 	JButton columns;
@@ -54,13 +54,13 @@ public class Player extends JPanel {
 	int tempchossen = 0;
 	JButton filterb;
 	
-	String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
+	static String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
 			"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 			"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
 			"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 			"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 			"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
-	String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
+	static String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
 				"先发场数", "场均篮板", "场均助攻", "场均上场时间", "投篮命中率", "三分命中率",
 				"罚球命中s率", "场均进攻", "场均防守", "场均抢断", "场均盖帽", "场均失误",
 				"场均犯规", "场均得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
@@ -70,12 +70,12 @@ public class Player extends JPanel {
 			" 体重  ", " 出生日期  ", " 年龄  ", " 球龄  ", " 毕业院校  " };
 
 	String[] title;
-	Object[][] data;
+	static Object[][] data;
 
 	//PlayerBLService pbl;
 	//MatchBLService mbl;
 	//RMIObject rmi = new RMIObject();
-	ArrayList<PlayerSeasonDataVO> psvo;
+	static ArrayList<PlayerSeasonDataVO> psvo;
 	ArrayList<PlayerInfoVO> pivo;
 
 	/**
@@ -348,6 +348,9 @@ public class Player extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				findkey.setText(null);
+				init.currenttext=null;
+				init.currentunordown=null; 
+				init.currentisaverage=false;
 			}
 		});
 		findkey.setFont(new Font("微软雅黑", Font.PLAIN, 14));
@@ -440,6 +443,9 @@ public class Player extends JPanel {
 				psvo = init.pbl.sort(Season, Position, Partition, According);
 				//System.out.println(Season + Position + Partition + According);
 				data = getAveragedata(psvo);
+				init.currenttext=null;
+				init.currentunordown=null; 
+				init.currentisaverage=false;
 				init.currentpanel="3&"+Season+";" + Position+";" + Partition+";" + According;
 				System.out.println(init.currentpanel);
 				playerlist.updateTable(playerAvgtitle, data);
@@ -491,6 +497,9 @@ public class Player extends JPanel {
 				psvo = init.pbl.keyfind(findkey.getText());
 				data = getTotaldata(psvo);
 				init.currentpanel="3&"+findkey.getText();
+				init.currenttext=null;
+				init.currentunordown=null; 
+				init.currentisaverage=false;
 				System.out.println(init.currentpanel);
 				playerlist.updateTable(playerTotaltitle, data);
 			}
@@ -541,7 +550,7 @@ public class Player extends JPanel {
 		columns.setVisible(true);
 
 	}
-	public void supersort(String[] text,boolean[] unordown,boolean isaverage){
+	public static void supersort(String[] text,boolean[] unordown,boolean isaverage){
 		if(isaverage == true){
 			String Position = position.getSelectedItem().toString();
 			String Partition = partition.getSelectedItem().toString();

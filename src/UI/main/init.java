@@ -50,6 +50,9 @@ public class init extends JFrame {
 	static Match m;
 	public static String currentpanel="";
 	public static String currentdio="";
+	public static String[] currenttext=null;
+	public static boolean[] currentunordown=null; 
+	public static boolean currentisaverage;
 	public static RMIObject rmi=new RMIObject();
 	int x,y;
 	public static PlayerBLService pbl=rmi.getPlayerObject();
@@ -600,12 +603,12 @@ public class init extends JFrame {
 		}
 
 		static void updatepanel(String command) throws TransformerFactoryConfigurationError, TransformerException, IOException, SVGConverterException{
-			String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
-					"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
-					"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
-					"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
-					"篮板率", "进攻篮板数", "防守篮板数", "助攻率", "抢断率", "盖帽率",
-					"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
+			String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
+					"先发场数", "场均篮板", "场均助攻", "场均上场时间", "投篮命中率", "三分命中率",
+					"罚球命中s率", "场均进攻", "场均防守", "场均抢断", "场均盖帽", "场均失误",
+					"场均犯规", "场均得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
+					"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
+					"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 			String[] teamtitle={" 序号  "," 球队名称  "," 比赛场数  "," 投篮命中数  "," 投篮出手次数  "," 三分命中数  ",
 					" 三分出手数  "," 罚球命中数  "," 罚球出手数  "," 进攻篮板数  "," 防守篮板数  "," 篮板数  "," 助攻数  ",
 					" 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 比赛得分  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
@@ -617,6 +620,8 @@ public class init extends JFrame {
 			
 			String com_panel[]=currentpanel.split("&");
 			String com_dio[]=currentdio.split("&");
+			
+									
 			if(currentdio!=""){
 				String com2[]=com_dio[1].split(";");
 				if(com_dio[0]=="4(1)"){
@@ -667,7 +672,7 @@ public class init extends JFrame {
 			}
 			//if(currentdio==""){//如果dio为“”，那么当前panel是初始的
 				//以下判断panel的刷新
-			System.out.println("???///");
+			//System.out.println("???///");
 				if(com_panel[0].equals("hot")){//hot针对每个panel刷新
 					String[] com2=com_panel[1].split(";");
 					String[] panel1=com2[0].split(",");
@@ -686,8 +691,8 @@ public class init extends JFrame {
 					String[]com2=com_panel[1].split(";");
 					if(com2.length==1){					
 						ArrayList<PlayerSeasonDataVO>psvo = pbl.keyfind(com2[0]);					
-						Object[][] data = init.p.getTotaldata(psvo);					
-						init.p.changetabledata(playerTotaltitle, data);					
+						Object[][] data = init.p.getAveragedata(psvo);					
+						init.p.changetabledata(playerAvgtitle, data);					
 					}else if(com2.length==4){	
 						System.out.println("fangfa");
 						String Position = com2[1];					
@@ -695,8 +700,8 @@ public class init extends JFrame {
 						String According = com2[3];
 						String Season = com2[0];				
 						ArrayList<PlayerSeasonDataVO>psvo = pbl.sort(Season, Position, Partition, According);					
-						Object[][] data = init.p.getTotaldata(psvo);					
-						init.p.changetabledata(playerTotaltitle, data);					
+						Object[][] data = init.p.getAveragedata(psvo);					
+						init.p.changetabledata(playerAvgtitle, data);					
 					}else{
 						System.out.println("Player里不应出现这种情况");
 					}			
@@ -737,6 +742,11 @@ public class init extends JFrame {
 							System.out.println("match9里不应出现这种情况");
 					 
 						}
+				}
+				
+				if(currenttext!=null){
+					init.p.supersort(currenttext, currentunordown, currentisaverage);
+					System.out.println("diaoyongle supersort");
 				}
 			//}
 			

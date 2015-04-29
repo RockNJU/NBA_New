@@ -362,6 +362,9 @@ public class SortPlayerColumn extends JFrame {
 						upordown[0] = false;
 					}
 				}
+				init.currenttext=textforsort;
+				init.currentunordown=upordown; 
+				init.currentisaverage=isaverage;
 				init.p.supersort(textforsort, upordown,isaverage);
 				dispose();// Οϊ»Ω΄°Με
 			}
