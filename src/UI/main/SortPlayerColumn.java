@@ -347,6 +347,9 @@ public class SortPlayerColumn extends JFrame {
 						upordown[0] = false;
 					}
 				}
+				else{
+					textforsort[0] = map.getItem("参赛场数");
+				}
 				if(!secondtext.getText().equals("第二个筛选条件")){
 					textforsort[0] = map.getItem(secondtext.getText());
 					if(secondinfo.isSelected()){
@@ -435,10 +438,13 @@ public class SortPlayerColumn extends JFrame {
 				final String name = tempjb.getText();
 				tempjb.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+
 						boolean temp = do_this_whenclick(name);
 						if (temp == false) {
 							tempjb.setSelected(false);
 						}
+						
+
 					}
 				});
 			
@@ -448,7 +454,6 @@ public class SortPlayerColumn extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (int k = 0; k < jbs.size(); k++) {
-					if (jbs.get(k).isSelected()) {// 表示要隐藏的列
 						jbs.get(k).setSelected(false);
 						firsttext.setText("第一个筛选条件");
 						secondtext.setText("第二个筛选条件");
@@ -457,7 +462,7 @@ public class SortPlayerColumn extends JFrame {
 						secondinfo.setSelected(false);
 						thirdinfo.setSelected(false);
 						averageornot.setSelected(false);
-					}
+					
 				}
 			}
 		});
@@ -481,10 +486,10 @@ public class SortPlayerColumn extends JFrame {
 		if (firsttext.getText().equals("第一个筛选条件")) {
 			firsttext.setText(text);
 			return true;
-		} else if (secondtext.getText().equals("第二个筛选条件")) {
+		} else if (secondtext.getText().equals("第二个筛选条件")&&(!firsttext.getText().equals(text))) {
 			secondtext.setText(text);
 			return true;
-		} else if (thirdtext.getText().equals("第三个筛选条件")) {
+		} else if (thirdtext.getText().equals("第三个筛选条件")&&(!secondtext.getText().equals(text))&&(!firsttext.getText().equals(text))) {
 			thirdtext.setText(text);
 			return true;
 		} else

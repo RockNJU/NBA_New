@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/batik-all-1.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-logging-1.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/commons-logging-1.1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/log4j-1.2.14.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/org.apache.commons.logging.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/sqlite-jdbc-3.8.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/xml-apis-ext.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Desktop/项目所需架包/logging/org.apache.commons.logging.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/batik-all-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/org.apache.commons.logging.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/xml-apis-ext.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
