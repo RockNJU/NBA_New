@@ -69,6 +69,7 @@ public class Team extends JPanel {
 			"OKC","PHX","POR",
 			"SAC","SAS","UTA"};
 	SortItem_Map m=new SortItem_Map();
+	TeamName_Map tm = new TeamName_Map();
 	String[] title;
 	Object[][] data;
 	JLabel dd;

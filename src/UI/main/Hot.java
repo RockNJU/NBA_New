@@ -532,12 +532,22 @@ public class Hot extends JPanel {
 					}
 				});
 				
+				ImageIcon image1 = new ImageIcon("pic/热门信息.jpg");
+				//image1.setImage(image1.getImage().getScaledInstance(753, 510,Image.SCALE_DEFAULT)); 		
+				JLabel lblNewLabel = new JLabel(image1);
+				lblNewLabel.setBounds(55, 5, 665, 120);
+				lblNewLabel.setOpaque(false);
+				add(lblNewLabel);
+				
 				ImageIcon image = new ImageIcon("pic/热点.png");
 				image.setImage(image.getImage().getScaledInstance(753, 510,Image.SCALE_DEFAULT)); 		
 				JLabel photo = new JLabel(image);		
 				photo.setBounds(7, 125, 753, 510);		
 				photo.setOpaque(false);
 				add(photo);
+				
+				
+	
 	}
 	
 	
