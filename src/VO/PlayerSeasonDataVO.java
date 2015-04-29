@@ -3,11 +3,11 @@ package VO;
 import java.io.Serializable;
 import java.util.ArrayList;
 public class PlayerSeasonDataVO implements Serializable{
-	
 
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	String season;					 //Èü¼¾
 	private String name;					 //ÇòÔ±ĞÕÃû

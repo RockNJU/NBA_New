@@ -194,5 +194,51 @@ public class PlayerController implements PlayerBLService {
 			}
 			return result;
 		}
+		@Override
+		public ArrayList<PlayerSeasonDataVO> sort(String season,
+				String position, String partition, String[] condition,
+				boolean[] reverse) {
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(season) ;
+			//	System.out.println("筛选前《"+"list的大小"+list.size());
+				
+				if(partition==null|partition.trim().length()==0){
+					if(position.length()>=1){
+						list=sort_position(list,position);
+						//System.out.println("球员位置筛选后《"+"list的大小："+list.size());
+					}
+					HotSort sort=new HotSort();
+					return sort.hotPlayer_Sort(list, condition,
+							  reverse);
+				}
+				
+				
+				if(partition.trim().length()>1){
+					list=sort_partition(list,partition);
+					//System.out.println("赛区筛选后《"+"list的大小："+list.size());
+					if(position.length()>=1){
+						list=sort_position(list,position);
+						//System.out.println("球员位置筛选后《"+"list的大小："+list.size());
+					}
+					HotSort sort=new HotSort();
+					return sort.hotPlayer_Sort(list, condition,
+							  reverse);
+				}
+				
+				if(partition.trim().equals("E")|partition.equals("W")){
+					
+					list=sort_division(list,partition);
+					
+				//	System.out.println("Division分区筛选后《"+"list的大小："+list.size());
+				}
+				
+				
+				if(position.length()>=1){
+					list=sort_position(list,position);
+					//System.out.println("球员位置筛选后《"+"list的大小："+list.size());
+				}
+				HotSort sort=new HotSort();
+				return sort.hotPlayer_Sort(list, condition,
+						  reverse);
+		}
 	
 }

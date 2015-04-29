@@ -24,6 +24,11 @@ public interface PlayerBLService{
 		
 		public  ArrayList<PlayerSeasonDataVO> getMost_Progress_Player(String item);
 	
+		
+		public ArrayList<PlayerSeasonDataVO> sort(String season,String position,String partition,
+						 String[] condition,boolean[] reverse);/*为筛选球员，实现多级排序，较之前有赛季的要求*/
+		
+		
 		/////////////////////////以下接口仅为测试服务
 		
 		public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(String sortItem);//获取最新赛季的热点球员,传入的参数是赛季和筛选项目
