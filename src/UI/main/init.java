@@ -47,6 +47,7 @@ public class init extends JFrame {
 	static JPanel rightpanel;
 	static Player p;
 	static Team t;
+	static Match m;
 	public static String currentpanel="";
 	public static String currentdio="";
 	public static RMIObject rmi=new RMIObject();
@@ -71,7 +72,7 @@ public class init extends JFrame {
 				try {
 					init frame = new init();
 					frame.setVisible(true);
-					
+					listen();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -96,7 +97,7 @@ public class init extends JFrame {
             try {
               	 updatepanel(currentpanel);
               	 System.out.println("刷新"+currentpanel+"  "+currentdio);
-                  Thread.sleep(60000);// 线程休眠3秒
+                  Thread.sleep(10000);// 线程休眠3秒
               } catch (InterruptedException e1) {
                   e1.printStackTrace();
               } catch (TransformerFactoryConfigurationError e) {
@@ -133,7 +134,7 @@ public class init extends JFrame {
 		x=(screen.width-getWidth())/2;
 		y=(screen.height-getHeight())/2-16;	
 		setLocation(x,y);
-		listen();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBounds(5,5,948,709);
@@ -666,7 +667,8 @@ public class init extends JFrame {
 			}
 			//if(currentdio==""){//如果dio为“”，那么当前panel是初始的
 				//以下判断panel的刷新
-				if(com_panel[0]=="hot"){//hot针对每个panel刷新
+			System.out.println("???///");
+				if(com_panel[0].equals("hot")){//hot针对每个panel刷新
 					String[] com2=com_panel[1].split(";");
 					String[] panel1=com2[0].split(",");
 					String[] panel2=com2[1].split(",");
@@ -675,59 +677,61 @@ public class init extends JFrame {
 					HotPlayers hp = new HotPlayers(panel1[0],panel1[1]);
 					Hot.changep1(hp);
 				}
-				if(com_panel[0]=="player"){//球员信息表格刷新
-					Object[][] d=Player.getinfodata(pbl.getAllPlayerInfo());
-					Player.changetabledata(playerinfo, d);
+				if(com_panel[0].equals("player")){//球员信息表格刷新
+					Object[][] d=init.p.getinfodata(pbl.getAllPlayerInfo());
+					init.p.changetabledata(playerinfo, d);
 				}
-				if(com_panel[0]=="3"){//球员筛选表格刷新
+				if(com_panel[0].equals("3")){//球员筛选表格刷新
+					System.out.println("3");
 					String[]com2=com_panel[1].split(";");
 					if(com2.length==1){					
 						ArrayList<PlayerSeasonDataVO>psvo = pbl.keyfind(com2[0]);					
-						Object[][] data = Player.getTotaldata(psvo);					
-						Player.changetabledata(playerTotaltitle, data);					
-					}else if(com2.length==4){					
+						Object[][] data = init.p.getTotaldata(psvo);					
+						init.p.changetabledata(playerTotaltitle, data);					
+					}else if(com2.length==4){	
+						System.out.println("fangfa");
 						String Position = com2[1];					
 						String Partition = com2[2];					
 						String According = com2[3];
 						String Season = com2[0];				
 						ArrayList<PlayerSeasonDataVO>psvo = pbl.sort(Season, Position, Partition, According);					
-						Object[][] data = Player.getTotaldata(psvo);					
-						Player.changetabledata(playerTotaltitle, data);					
+						Object[][] data = init.p.getTotaldata(psvo);					
+						init.p.changetabledata(playerTotaltitle, data);					
 					}else{
 						System.out.println("Player里不应出现这种情况");
 					}			
 				}
-				if(com_panel[0]=="team"){
+				if(com_panel[0].equals("team")){
 					System.out.println("TEAM不需要变");
 				}
-				if(com_panel[0]=="6"){
+				if(com_panel[0].equals("6")){
 					String[] com2=com_panel[1].split(";");
 					if(com2.length==1){
 						ArrayList<TeamSeasonDataVO>tdvo =tbl.find(com2[0]);
-		            	Object[][] data=Team.getTotaldata(tdvo);
-		            	Team.changetabledata(teamtitle, data);
+		            	Object[][] data=init.t.getTotaldata(tdvo);
+		            	init.t.changetabledata(teamtitle, data);
 					}
 					else if(com2.length==2){						
 							ArrayList<TeamSeasonDataVO>tdvo=tbl.sort(com2[0], com2[1]);
-			            	Object[][]data=Team.getTotaldata(tdvo);
-			            	Team.changetabledata(teamtitle, data);
+			            	Object[][]data=init.t.getAveragedata(tdvo);
+			            	init.t.changetabledata(teamtitle, data);
 			            	//Team.teamlist.setVisible(true);						
 					}else{
 						System.out.println("team6里不应出现这种情况");
 					}
 				}
-				if(com_panel[0]=="9"){
+				if(com_panel[0].equals("9")){
 					
 						String[] com2=com_panel[1].split(";");
 						if(com2.length==1){
 							ArrayList<MatchVO>mvo=mbl.getMatchByTeamTime(com2[0]);             
-				              Object[][] data=Match.getdata(mvo);
-				               Match.changetabledata(matchtitle, data);
+				              Object[][] data=init.m.getdata(mvo);
+				               init.m.changetabledata(matchtitle, data);
 				              // Match.matchlist.hideColumn(2);	          
 						}else if(com2.length==2){			
 							ArrayList<MatchVO> mvo=mbl.getMatchBySeason(com2[0], com2[1]);		         
-							Object[][] data=Match.getdata(mvo);				          
-							Match.changetabledata(matchtitle, data);			         
+							Object[][] data=init.m.getdata(mvo);				          
+							init.m.changetabledata(matchtitle, data);			         
 							//Match. matchlist.hideColumn(2);										
 						}else{
 							System.out.println("match9里不应出现这种情况");
