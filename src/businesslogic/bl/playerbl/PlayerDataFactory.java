@@ -100,8 +100,6 @@ public class PlayerDataFactory {
 		return new ArrayList<PlayerSeasonDataVO>();
 	}
 
-
-
 	public LastMatchDay getLastDay() {
 		return lastDay;
 	}

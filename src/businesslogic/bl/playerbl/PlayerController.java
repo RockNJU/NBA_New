@@ -181,5 +181,18 @@ public class PlayerController implements PlayerBLService {
 			}
 			return result;
 		}
+		@Override
+		public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(
+				String sortItem, int n) {
+			// TODO Auto-generated method stub
+			ArrayList<PlayerSeasonDataVO> result=new ArrayList<>();
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(playerFactory.getLastDay().getSeason()) ;
+			HotSort sort=new HotSort();
+			list= sort.hotPlayer_Sort(list,sortItem);
+			for(int i=0;i<n;i++){
+				result.add(list.get(i));
+			}
+			return result;
+		}
 	
 }

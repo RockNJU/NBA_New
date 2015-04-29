@@ -27,6 +27,6 @@ public interface PlayerBLService{
 		/////////////////////////以下接口仅为测试服务
 		
 		public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(String sortItem);//获取最新赛季的热点球员,传入的参数是赛季和筛选项目
-		
+		public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(String sortItem,int n);//获取最新赛季的热点球员,传入的参数是赛季和筛选项目
 		
 }
