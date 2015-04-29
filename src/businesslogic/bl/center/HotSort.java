@@ -62,6 +62,8 @@ public class HotSort {
 
 	       //创建多属性排序链
         ComparatorChain cc = new ComparatorChain();
+        //String conditions[]={"pointNum_avg","assistNum_avg","foulNum_avg"};
+       // boolean reverses[] = {true,true,false};
         //第一个参数是指定排序的属性，第二个参数指定降序升序
         for(int i=0;i<condition.length;i++){
         	if(condition[i]!=null){
@@ -70,6 +72,11 @@ public class HotSort {
         	
         }
         Collections.sort(playerSeasondata,cc );
+       /* for(int i=0;i<playerSeasondata.size();i++){
+        	PlayerSeasonDataVO pvo = playerSeasondata.get(i);
+            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum_avg()+"]"+"  ["+pvo.getAssistNum_avg()+"]"+"  ["+pvo.getFoulNum_avg()+"]");
+        	
+        }*/
 		return playerSeasondata;
 	}
 
@@ -197,12 +204,12 @@ public class HotSort {
  
 	/*public static void main(String[] args){
 		System.out.println("进入main函数：");
-		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", null, "Eagle", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 190, 100, 10, 10, 10, 10, 10, 10, 160, 150, null);
-		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", null, "EDG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 190, 102, 10, 10, 10, 10, 10, 130, 160, null);
-		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", null, "OMG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 190, 107, 10, 10, 10, 10, 10, 144, 144, 160, null);
-		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", null, "Tiger", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 10, 10, 10, 10, 10, 10, 10, 156, 99, null);
-		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", null, "Rabbit", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 105, 10, 10, 10, 10, 10, 111, 111, 99, null);
-		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", null, "WE", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 107, 109, 10, 10, 10, 10, 10, 10, 90, 135, null);
+		PlayerSeasonDataVO pvo1 = new PlayerSeasonDataVO("13-14", "John", null, "Eagle", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 35, 190, 100, 10, 10, 10, 10, 10, 10, 160, 150, null);
+		PlayerSeasonDataVO pvo2 = new PlayerSeasonDataVO("13-14", "Bob", null, "EDG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 34, 190, 102, 10, 10, 10, 10, 10, 130, 160, null);
+		PlayerSeasonDataVO pvo3 = new PlayerSeasonDataVO("13-14", "William", null, "OMG", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 36, 190, 107, 10, 10, 10, 10, 10, 144, 144, 160, null);
+		PlayerSeasonDataVO pvo4 = new PlayerSeasonDataVO("13-14", "Swen", null, "Tiger", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 55, 107, 10, 10, 10, 10, 10, 10, 10, 156, 99, null);
+		PlayerSeasonDataVO pvo5 = new PlayerSeasonDataVO("13-14", "Keven", null, "Rabbit", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 22, 107, 105, 10, 10, 10, 10, 10, 111, 111, 99, null);
+		PlayerSeasonDataVO pvo6 = new PlayerSeasonDataVO("13-14", "Blues", null, "WE", "front", null, null, 1, 17, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 33, 107, 109, 10, 10, 10, 10, 10, 10, 90, 135, null);
 		ArrayList<PlayerSeasonDataVO> list = new ArrayList<PlayerSeasonDataVO>();
 		list.add(pvo1);
 		list.add(pvo2);
@@ -218,12 +225,12 @@ public class HotSort {
 	            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum()+"]"+"  ["+pvo.getSeasonThreeNum()+"]"+"  ["+pvo.getSeasonDoubleNum()+"]");
 	        }
 	        System.out.println("-----------------多属性排序，排序后-------------------");
-	        String[] conditions = {"pointNum_avg","seasonThreeNum","seasonDoubleNum"};
+	        String[] conditions = {"pointNum_avg","assistNum_avg","foulNum_avg"};
 	        boolean[] reverse = {true,true,false};
 	        list = h.hotPlayer_Sort(list, conditions,reverse);
 	        
 	        for(PlayerSeasonDataVO pvo:list){
-	            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum()+"]"+"  ["+pvo.getSeasonThreeNum()+"]"+"  ["+pvo.getSeasonDoubleNum()+"]");
+	            System.out.println(pvo.getName()+"  "+"  ["+pvo.getPointNum_avg()+"]"+"  ["+pvo.getAssistNum_avg()+"]"+"  ["+pvo.getFoulNum_avg()+"]");
 	        }
 	        
 		
