@@ -60,9 +60,9 @@ public class Player extends JPanel {
 			"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 			"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
-				"先发场数", "平均篮板", "平均助攻", "平均上场时间", "投篮命中率", "三分命中率",
-				"罚球命中s率", "平均进攻", "平均防守", "平均抢断", "平均盖帽", "平均失误",
-				"平均犯规", "平均得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
+				"先发场数", "场均篮板", "场均助攻", "场均上场时间", "投篮命中率", "三分命中率",
+				"罚球命中s率", "场均进攻", "场均防守", "场均抢断", "场均盖帽", "场均失误",
+				"场均犯规", "场均得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 				"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 				"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	String[] playerinfo = { " 序号  ", " 姓名  ", " 球号  ", " 位置  ", " 身高  ",
@@ -584,7 +584,11 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[50][33];
+			int length=50;
+			if(da.size()<50){
+				length=da.size();
+			}
+			Object[][] re = new Object[length][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -593,7 +597,7 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < length; i++) {
 				re[i][0] = changenumber(i + 1);
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
@@ -673,7 +677,11 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[50][33];
+			int length=50;
+			if(da.size()<50){
+				length=da.size();
+			}
+			Object[][] re = new Object[length][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -682,7 +690,7 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i <length; i++) {
 				re[i][0] = changenumber(i + 1);
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
@@ -690,7 +698,7 @@ public class Player extends JPanel {
 				re[i][4] = da.get(i).getStartingNum();
 				re[i][5] = OftenUseMethod.changedouble(da.get(i).getReboundNum_avg());
 				re[i][6] = OftenUseMethod.changedouble(da.get(i).getAssistNum_avg());
-				re[i][7] = OftenUseMethod.changedouble(da.get(i).getTime());
+				re[i][7] = OftenUseMethod.changedouble(da.get(i).getTime_avg());
 				re[i][8] = OftenUseMethod.changedouble(da.get(i).getShootPercentage());
 				re[i][9] = OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
 				re[i][10] = OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());
