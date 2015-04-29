@@ -23,7 +23,7 @@ public class MatP extends JPanel {
 	PlayerBLService pbl;
 	PlayerSeasonDataVO pdvo;
 	CreateTable list1,list2;
-	ArrayList<SingleMatchPersonalDataVO> array;
+	ArrayList<SingleMatchPersonalDataVO> array=new ArrayList<SingleMatchPersonalDataVO>();
 	Object[][] data1,data2;
 	String[] title1 = {"比赛日期","效力球队","球员位置",
 			"上场时间","进球数/总数","三分","罚篮",
@@ -41,7 +41,12 @@ public class MatP extends JPanel {
 		pbl=init.rmi.getPlayerObject();
 		
 		pdvo=pbl.getAPlayerSeasonMatch(season, name);
-		array=pdvo.getLast_five_match_data();
+		
+		if(pdvo==null){
+			array=null;
+		}else{
+			array=pdvo.getLast_five_match_data();
+		}
 		data1=getdata1(array);
 		list1 = new CreateTable(title1, data1,18, 68, 720, 170, 25,
 				new Font("华文新魏", 0, 15), new Font("Dialog", 0, 12));
@@ -60,6 +65,7 @@ public class MatP extends JPanel {
 	}
 	
 	private Object[][] getdata1(ArrayList<SingleMatchPersonalDataVO> da) {
+		//System.out.println(da==null);
 		if (da == null) {
 			Object[][] re = new Object[1][12];
 			re[0][0] = "";

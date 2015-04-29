@@ -68,6 +68,17 @@ public class init extends JFrame {
 				}
 			}
 		});
+		/*
+		 new Thread() {// 创建新线程
+	            public void run() {	               
+	                     try {
+	                        Thread.sleep(1);// 线程休眠1毫秒
+	                    } catch (InterruptedException e1) {
+	                        e1.printStackTrace();
+	                    }
+	                }
+	            
+	        }.start();// 启动线程*/
 	}
 
 	/**
