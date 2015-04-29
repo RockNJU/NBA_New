@@ -128,6 +128,29 @@ public class HotTeams extends JPanel {
 		No1_p.setOpaque(false);
 		add(No1_p);
 		
+		No1_p.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					String season = "13-14";
+					String name = (String) data[0][3];
+					init.currentpanel+="&"+name+";"+season;
+					 SingleTeam spi;
+					// System.out.println(name);
+					try {
+						spi = new SingleTeam(name,season);
+						spi.setVisible(true);
+						spi.setLocation(375, 58);
+					} catch (TransformerFactoryConfigurationError
+							| TransformerException | IOException
+							| SVGConverterException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}
+
+				}
+			}
+		});
 		JLabel No1_name = new JLabel((String)data[0][0]);
 		No1_name.setForeground(new Color(51, 0, 51));
 		No1_name.setFont(new Font("华康雅宋体W9(P)", Font.PLAIN, 20));
