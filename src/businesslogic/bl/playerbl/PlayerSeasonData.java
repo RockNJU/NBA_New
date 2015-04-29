@@ -80,9 +80,6 @@ public class PlayerSeasonData {
 		 }else if(count==3){
 		 seasonThreeNum++;   //¼ÆËãÈýË«Êý
 		 }
-		 
-		 if(vo.getPlayerPosition()!=null&vo.getPlayerPosition().length()!=0)
-		 startingNum++;
 		
 		PlayerSeasonDataVO newData=new PlayerSeasonDataVO(season,vo.getPlayerName(),
 				get_PlayerInfo(vo.getPlayerName()), vo.getTeamName(),vo.getDivision(),

@@ -14,6 +14,7 @@ public class SortItem_Map {
 		//最近五场篮板的提升率    //投篮效率*/
 	   
 	   map.put("胜利场数", "winNum");
+	   map.put("胜率", "winRate");
 	   
 	   map.put("近五场得分提升率", "l_f_point_rate");
 	   map.put("近五场助攻提升率", "l_f_assist_rate");

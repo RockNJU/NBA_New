@@ -244,15 +244,11 @@ public class PlayerSeasonDataVO implements Serializable{
 	public int getMatchNum() {
 		return matchNum;
 	}
-	public void addMatchNum(){
-		 matchNum ++;
-	}
+	
 	public int getStartingNum() {
 		return startingNum;
 	}
-	public void addStartingNum(double startingNum) {
-		 startingNum ++;
-	}
+	 
  
 	public double getL_f_point_rate(){
 	  return l_f_point_rate;
@@ -267,6 +263,7 @@ public class PlayerSeasonDataVO implements Serializable{
 	  }
 	
 	 public void add_A_MatchData(SingleMatchPersonalDataVO vo){
+		 
 		 matchNum++;
 		 time=time+vo.getTime();
 		 fieldGoal=fieldGoal+vo.getFieldGoal();
@@ -322,7 +319,8 @@ public class PlayerSeasonDataVO implements Serializable{
 		 }
 		 
 		 if(vo.getPlayerPosition()!=null&vo.getPlayerPosition().length()!=0)
-		 startingNum++;
+			 startingNum++;
+		 
 		 
 		 
 		 assistEfficiency= assistEfficiency+vo.getAssistEfficiency();

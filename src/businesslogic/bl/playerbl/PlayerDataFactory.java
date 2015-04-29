@@ -34,9 +34,9 @@ public class PlayerDataFactory {
 			//当数据仓库中已经有数据的时候，往数据仓库中添加数据
 			if(dataList.get(i).getSeason().equals(list.get(0).getSeason())){
 			
-				for(int k=0;k<list.size();k++)
-				dataList.get(i).updatePlayerSeasonData(list.get(k));
-				
+				for(int k=0;k<list.size();k++){
+				 dataList.get(i).updatePlayerSeasonData(list.get(k));
+				}
 				return;
 			}
 		}
