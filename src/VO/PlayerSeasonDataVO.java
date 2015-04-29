@@ -783,5 +783,11 @@ public class PlayerSeasonDataVO implements Serializable{
 		return usingPercentage_avg;
 	}
 
+
+
+	public double getBlockEfficiency_avg() {
+		return blockEfficiency_avg;
+	}
+
 	
 }
