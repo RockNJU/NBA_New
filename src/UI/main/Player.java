@@ -44,6 +44,7 @@ public class Player extends JPanel {
 	JButton columns;
 	JButton sort;
 	JButton find;
+	JButton supersort;
 	static CreateTable playerlist;
 	SearchHistory sh = new SearchHistory();
 	
@@ -344,9 +345,24 @@ public class Player extends JPanel {
 		add(findkey);
 		findkey.setColumns(20);
 		findkey.setVisible(true);
-
+		
+		supersort = new JButton(new ImageIcon("pic/but/排列前.png"));
+		supersort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SortPlayerColumn spc=new SortPlayerColumn();
+				spc.setVisible(true);
+			}
+		});
+		supersort.setToolTipText("\u663E\u793A\u67E5\u627E\u7684\u7403\u5458\u4FE1\u606F");
+		supersort.setBounds(670, 10, 75, 26);
+		add(supersort);
+		supersort.setVisible(true);
 		
 		sort = new JButton(new ImageIcon("pic/but/排列前.png"));
+		sort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		sort.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -495,11 +511,43 @@ public class Player extends JPanel {
 
 		});
 		columns.setToolTipText("\u9009\u62E9\u8868\u683C\u5C5E\u6027");
-		columns.setBounds(670, 10, 75, 26);
+		columns.setBounds(670, 50, 75, 26);
 		add(columns);
 		columns.setVisible(true);
 
 	}
+	public void supersort(String[] text,boolean[] unordown,boolean isaverage){
+		if(isaverage == true){
+			String Position = position.getSelectedItem().toString();
+			String Partition = partition.getSelectedItem().toString();
+			String Season = playerseason.getSelectedItem().toString()
+					.substring(0, 5);
+			PlayerPosition_Map map1 = new PlayerPosition_Map();
+			PartitionMap map2 = new PartitionMap();
+			SortItem_Map map3 = new SortItem_Map();
+			Position = map1.getItem(Position);
+			Partition = map2.getItem(Partition);
+			psvo = init.pbl.sort(Season, Position, Partition, text,unordown);
+			data = getAveragedata(psvo);
+			playerlist.updateTable(playerAvgtitle, data);
+		}
+		else{
+			String Position = position.getSelectedItem().toString();
+			String Partition = partition.getSelectedItem().toString();
+			String Season = playerseason.getSelectedItem().toString()
+					.substring(0, 5);
+			PlayerPosition_Map map1 = new PlayerPosition_Map();
+			PartitionMap map2 = new PartitionMap();
+			SortItem_Map map3 = new SortItem_Map();
+			Position = map1.getItem(Position);
+			Partition = map2.getItem(Partition);
+			psvo = init.pbl.sort(Season, Position, Partition, text ,unordown);
+			data = getTotaldata(psvo);
+			playerlist.updateTable(playerTotaltitle, data);
+		}
+	}
+	
+	
 	//筛选
 	public void datachoose(boolean isaverage,int hide[]){
 		//更新信息

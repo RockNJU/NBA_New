@@ -48,6 +48,7 @@ public class SortPlayerColumn extends JFrame {
 			"\u9009\u4E2D\u4E3A\u964D\u5E8F");
 	JRadioButton thirdinfo = new JRadioButton(
 			"\u9009\u4E2D\u4E3A\u964D\u5E8F");
+	JRadioButton averageornot = new JRadioButton("\u9009\u4E2D\u8F93\u51FA\u5E73\u5747\u503C");
 	/*
 	 * String[] playerTotaltitle = { "1 序号  ", " 2球员名称  ", " 3所属球队  ", "参赛场数",
 	 * "先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率", "罚球命中率", "进攻", "防守", "抢断",
@@ -334,6 +335,12 @@ public class SortPlayerColumn extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String[] textforsort = {null,null,null};
 				boolean[] upordown = {true,true,true};
+				boolean isaverage = false;
+				
+				if(averageornot.isSelected()){
+					isaverage = true;
+				}
+				
 				if(!firsttext.getText().equals("第一个筛选条件")){
 					textforsort[0] = map.getItem(firsttext.getText());
 					if(firstinfo.isSelected()){
@@ -352,7 +359,7 @@ public class SortPlayerColumn extends JFrame {
 						upordown[0] = false;
 					}
 				}
-				
+				init.p.supersort(textforsort, upordown,isaverage);
 				dispose();// 销毁窗体
 			}
 
@@ -446,6 +453,10 @@ public class SortPlayerColumn extends JFrame {
 						firsttext.setText("第一个筛选条件");
 						secondtext.setText("第二个筛选条件");
 						thirdtext.setText("第三个筛选条件");
+						firstinfo.setSelected(false);
+						secondinfo.setSelected(false);
+						thirdinfo.setSelected(false);
+						averageornot.setSelected(false);
 					}
 				}
 			}
@@ -453,6 +464,11 @@ public class SortPlayerColumn extends JFrame {
 		button.setFont(new Font("华康雅宋体W9", Font.PLAIN, 20));
 		button.setBounds(242, 394, 100, 36);
 		contentPane.add(button);
+		
+
+		averageornot.setFont(new Font("华康雅宋体W9", Font.PLAIN, 16));
+		averageornot.setBounds(344, 87, 151, 23);
+		contentPane.add(averageornot);
 
 		JLabel photo = new JLabel(image);
 		photo.setBounds(0, 0, 520, 450);
