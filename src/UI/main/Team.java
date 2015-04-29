@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -474,7 +475,7 @@ public class Team extends JPanel {
 					SingleTeam sti;
 					try {
 						String s=season.getSelectedItem().toString().substring(0, 5);
-						init.currentpanel+="&"+tempa+";"+s;
+						init.currentdio="7(1)&"+tempa+";"+s;
 						System.out.println(init.currentpanel);
 						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
@@ -509,7 +510,7 @@ public class Team extends JPanel {
 					SingleTeam sti;
 					try {
 						String s=season.getSelectedItem().toString().substring(0, 5);
-						init.currentpanel+="&"+tempa+";"+s;
+						init.currentdio="7(1)&"+tempa+";"+s;
 						System.out.println(init.currentpanel);
 						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
@@ -626,7 +627,7 @@ public class Team extends JPanel {
 			"抢断数","盖帽数","失误数","犯规数","比赛得分"," 投篮命中率","三分命中率"," 罚球命中率",
 			"胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻率"};*/
 			for(int i=0;i<da.size();i++){						
-				re[i][0]=i+1;
+				re[i][0]=changenumber(i+1);
 				re[i][1]=da.get(i).getTeamName();
 				re[i][2]=da.get(i).getMatchNum();
 				re[i][3]=da.get(i).getFieldGoal();
@@ -705,7 +706,7 @@ public class Team extends JPanel {
 			"抢断数","盖帽数","失误数","犯规数","比赛得分"," 投篮命中率","三分命中率"," 罚球命中率",
 			"胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻率"};*/
 			for(int i=0;i<da.size();i++){						
-				re[i][0]=i+1;
+				re[i][0]=changenumber(i+1);
 				re[i][1]=da.get(i).getTeamName();
 				re[i][2]=da.get(i).getMatchNum();
 				re[i][3]=OftenUseMethod.changedouble(da.get(i).getFieldGoal_avg());
@@ -743,5 +744,13 @@ public class Team extends JPanel {
 	}
 	public static void changetabledata(String[]t,Object[][] d){
 		teamlist.updateTable(t, d);
+	}
+	private static String changenumber(int number){
+		//System.out.println(rate);
+				
+		DecimalFormat df = new DecimalFormat("000");    
+		String temp=String.valueOf(df.format(number));
+		return temp;
+		
 	}
 }

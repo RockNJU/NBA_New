@@ -3,6 +3,7 @@ package UI.main;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -583,7 +584,7 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][33];
+			Object[][] re = new Object[50][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -592,8 +593,8 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < da.size(); i++) {
-				re[i][0] = i + 1;
+			for (int i = 0; i < 50; i++) {
+				re[i][0] = changenumber(i + 1);
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
 				re[i][3] = da.get(i).getMatchNum();
@@ -672,7 +673,7 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[da.size()][33];
+			Object[][] re = new Object[50][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -681,8 +682,8 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < da.size(); i++) {
-				re[i][0] = i + 1;
+			for (int i = 0; i < 50; i++) {
+				re[i][0] = changenumber(i + 1);
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
 				re[i][3] = da.get(i).getMatchNum();
@@ -741,7 +742,7 @@ public class Player extends JPanel {
 			Object[][] re = new Object[da.size()][30];
 			/* "序号","姓名","球号","位置","身高","体重","出生日期","年龄","球龄","毕业院校" */
 			for (int i = 0; i < da.size(); i++) {
-				re[i][0] = i + 1;
+				re[i][0] =changenumber( i + 1);
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getNumber();
 				re[i][3] = da.get(i).getPosition();
@@ -759,5 +760,13 @@ public class Player extends JPanel {
 	}
 	public static void changetabledata(String[]t,Object[][] d){
 		playerlist.updateTable(t, d);
+	}
+	private static String changenumber(int number){
+		//System.out.println(rate);
+				
+		DecimalFormat df = new DecimalFormat("000");    
+		String temp=String.valueOf(df.format(number));
+		return temp;
+		
 	}
 }

@@ -307,7 +307,7 @@ public class SinglePlayer extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(JinP ppanel){
+	public static void change(JinP ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -315,7 +315,7 @@ public class SinglePlayer extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(MatP ppanel){
+	public static void change(MatP ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -323,7 +323,7 @@ public class SinglePlayer extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(OtherP ppanel){
+	public static void change(OtherP ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);

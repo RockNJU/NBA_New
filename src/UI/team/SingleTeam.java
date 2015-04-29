@@ -335,7 +335,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(JinT ppanel){
+	public static void change(JinT ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -343,7 +343,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(MatT ppanel){
+	public static void change(MatT ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);
@@ -351,7 +351,7 @@ public class SingleTeam extends JDialog {
 		rightpanel.validate();
 		rightpanel.repaint();
 	}
-	void change(OtherT ppanel){
+	public static void change(OtherT ppanel){
 		rightpanel.removeAll();
 		rightpanel.add(ppanel);
 		ppanel.setVisible(true);

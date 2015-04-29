@@ -36,7 +36,7 @@ public class MatT extends JPanel {
 		//tbl=init.rmi.getTeamObject();
 		tmvo=init.tbl.get_A_TeamSeasonData(season, name).getLast_five_match();
 		
-		JLabel lblNewLabel = new JLabel(init.tbl.get_A_TeamSeasonData(season, name).getTeamName()+"近五场比赛的信息：");
+		JLabel lblNewLabel = new JLabel(name+"近五场比赛的信息：");
 		lblNewLabel.setFont(new Font("华康雅宋体W9", Font.PLAIN, 20));
 		lblNewLabel.setBounds(18, 10, 413, 48);
 		add(lblNewLabel);

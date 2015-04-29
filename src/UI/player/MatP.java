@@ -43,6 +43,7 @@ public class MatP extends JPanel {
 		pdvo=init.pbl.getAPlayerSeasonMatch(season, name);
 		
 		if(pdvo==null){
+			//System.out.println(pdvo==null);
 			array=null;
 		}else{
 			array=pdvo.getLast_five_match_data();
@@ -57,7 +58,7 @@ public class MatP extends JPanel {
 				new Font("华文新魏", 0, 15), new Font("Dialog", 0, 12));
 		add(list2);
 		
-		JLabel lblNewLabel = new JLabel(pdvo.getName()+"近五场比赛的信息：");
+		JLabel lblNewLabel = new JLabel(name+"近五场比赛的信息：");
 		lblNewLabel.setFont(new Font("华康雅宋体W9", Font.PLAIN, 20));
 		lblNewLabel.setBounds(18, 10, 413, 48);
 		add(lblNewLabel);
