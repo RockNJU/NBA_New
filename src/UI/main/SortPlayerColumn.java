@@ -351,15 +351,15 @@ public class SortPlayerColumn extends JFrame {
 					textforsort[0] = map.getItem("参赛场数");
 				}
 				if(!secondtext.getText().equals("第二个筛选条件")){
-					textforsort[0] = map.getItem(secondtext.getText());
+					textforsort[1] = map.getItem(secondtext.getText());
 					if(secondinfo.isSelected()){
-						upordown[0] = false;
+						upordown[1] = false;
 					}
 				}
 				if(!thirdtext.getText().equals("第三个筛选条件")){
-					textforsort[0] = map.getItem(thirdtext.getText());
+					textforsort[2] = map.getItem(thirdtext.getText());
 					if(thirdinfo.isSelected()){
-						upordown[0] = false;
+						upordown[2] = false;
 					}
 				}
 				init.currenttext=textforsort;
