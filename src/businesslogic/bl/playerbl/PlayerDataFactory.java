@@ -105,4 +105,7 @@ public class PlayerDataFactory {
 	public LastMatchDay getLastDay() {
 		return lastDay;
 	}
+	
+	
+	
 }
