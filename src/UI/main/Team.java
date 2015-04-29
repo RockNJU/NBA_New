@@ -708,7 +708,7 @@ public class Team extends JPanel {
 				re[i][0]=i+1;
 				re[i][1]=da.get(i).getTeamName();
 				re[i][2]=da.get(i).getMatchNum();
-				re[i][3]=da.get(i).getFieldGoal();
+				re[i][3]=OftenUseMethod.changedouble(da.get(i).getFieldGoal_avg());
 				re[i][4]=OftenUseMethod.changedouble(da.get(i).getShootNum_avg());
 				re[i][5]=OftenUseMethod.changedouble(da.get(i).getT_fieldGoal_avg());
 				re[i][6]=OftenUseMethod.changedouble(da.get(i).getT_shootNum_avg());				
