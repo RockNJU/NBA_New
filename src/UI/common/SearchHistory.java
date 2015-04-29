@@ -42,7 +42,7 @@ public class SearchHistory {
 			Team_list.add(h);
 			writeFile("NBAdata\\teamHistory",Team_list);
 		}
-		ArrayList<History> get_Team_History(){
+		public ArrayList<History> get_team_History(){
 			return Team_list;
 		}
 		

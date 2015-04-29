@@ -13,7 +13,7 @@ import UI.common.SearchHistory;
 public class OtherP extends JPanel {
 	CreateTable pastlist;
 	String title[] = {"ÈÕÆÚ","²Ù×÷"};
-	Object[][] data;
+
 	SearchHistory sh = new SearchHistory();
 	ArrayList<History> ah;
 	/**
@@ -26,6 +26,7 @@ public class OtherP extends JPanel {
 		
 		ah = sh.get_player_History();
 		int i = 0;
+		Object[][] data = new Object[ah.size()][2];
 		for(History his:ah){
 			data[i][0] = his.getDate();
 			data[i][1] = his.getContent();

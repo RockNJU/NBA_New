@@ -3,7 +3,10 @@ package UI.main;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.*;
 import javax.swing.RowFilter.ComparisonType;
@@ -16,11 +19,14 @@ import org.apache.batik.apps.rasterizer.SVGConverterException;
 
 import businessService.blservice.MatchBLService;
 import businessService.blservice.TeamBLService;
+import businesslogic.data.Date;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
+import UI.common.History;
 import UI.common.OftenUseMethod;
 import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
+import UI.common.SearchHistory;
 import UI.common.SortItem_Map;
 import UI.common.TeamName_Map;
 import UI.team.SingleTeam;
@@ -33,7 +39,7 @@ public class Team extends JPanel {
 	JComboBox according;
 	JComboBox season;
 	JTextField findkey;
-	
+	SearchHistory sh = new SearchHistory();
 	JButton columns;
 	JButton sort;
 	JButton find;
@@ -280,7 +286,12 @@ public class Team extends JPanel {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
 	            	//TODO
-	            	
+	            	//保存历史记录
+				      Calendar ca = Calendar.getInstance();
+					 String time = ca.getTime().toString();
+					History his = new History(time,"teamHistory","排列："+season.getSelectedItem().toString()+","+according.getSelectedItem().toString());
+						sh.add_team_History(his);
+					
 	            	String Season=season.getSelectedItem().toString().substring(0, 5);
 	            	String sortItem=m.getItem(according.getSelectedItem().toString());
 	            	//System.out.println(according.getSelectedItem().toString());
@@ -331,6 +342,13 @@ public class Team extends JPanel {
 	                         
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
+	            	//保存历史记录
+					 Date date=new Date();
+					 DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					 String time=format.format(date);
+					History his = new History(time,"teamHistory","查找:"+"findkey.getText()");
+					sh.add_team_History(his);
+
 	            	//System.out.println("a");
 	            	tdvo =tbl.find(findkey.getText());
 	            	data=getTotaldata(tdvo);

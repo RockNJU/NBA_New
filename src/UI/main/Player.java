@@ -2,7 +2,10 @@ package UI.main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.*;
 import javax.swing.RowFilter.ComparisonType;
@@ -12,16 +15,20 @@ import javax.swing.table.TableRowSorter;
 import businessService.blservice.MatchBLService;
 import businessService.blservice.PlayerBLService;
 import businessService.blservice.TeamBLService;
+import businesslogic.data.Date;
 import UI.blObject.RMIObject;
 import UI.common.CreateTable;
+import UI.common.History;
 import UI.common.OftenUseMethod;
 import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
+import UI.common.SearchHistory;
 import UI.common.SortItem_Map;
 import UI.player.SinglePlayer;
 import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
 import VO.PlayerVO;
+import businesslogic.data.*;
 
 public class Player extends JPanel {
 
@@ -37,6 +44,7 @@ public class Player extends JPanel {
 	JButton sort;
 	JButton find;
 	static CreateTable playerlist;
+	SearchHistory sh = new SearchHistory();
 	
 	JLabel filterLabel;
 	JComboBox filter;
@@ -365,6 +373,15 @@ public class Player extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+            	//保存历史记录
+			      Calendar ca = Calendar.getInstance();
+				 String time = ca.getTime().toString();
+				History his = new History(time,"playerHistory","排列："+position.getSelectedItem().toString()
+						+","+partition.getSelectedItem().toString()+","+according.getSelectedItem().toString()
+						+","+playerseason.getSelectedItem().toString()
+						.substring(0, 5));
+					sh.add_player_History(his);
+				
 				//System.out.println("sort");
 				// TODO
 				String Position = position.getSelectedItem().toString();
@@ -420,6 +437,13 @@ public class Player extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+            	//保存历史记录
+				 Date date=new Date();
+				 DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				 String time=format.format(date);
+				History his = new History(time,"playerHistory","查找:"+"findkey.getText()");
+				sh.add_player_History(his);
+
 				// String
 				// Season=playerseason.getSelectedItem().toString().substring(0,
 				// 5);
@@ -560,7 +584,7 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[50][33];
+			Object[][] re = new Object[da.size()][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -569,7 +593,7 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < da.size(); i++) {
 				re[i][0] = i + 1;
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
@@ -649,7 +673,7 @@ public class Player extends JPanel {
 			re[0][32] = "";
 			return re;
 		} else {
-			Object[][] re = new Object[50][33];
+			Object[][] re = new Object[da.size()][33];
 			/*
 			 * {"序号","球员名称","所属球队","参赛场数","先发场数",
 			 * "篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -658,7 +682,7 @@ public class Player extends JPanel {
 			 * "助攻率","抢断率","盖帽率","失误率","使用率"};
 			 */
 			// TeamMap temp=new TeamMap();
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < da.size(); i++) {
 				re[i][0] = i + 1;
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getTeamName();
@@ -717,7 +741,7 @@ public class Player extends JPanel {
 		} else {
 			Object[][] re = new Object[da.size()][30];
 			/* "序号","姓名","球号","位置","身高","体重","出生日期","年龄","球龄","毕业院校" */
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < da.size(); i++) {
 				re[i][0] = i + 1;
 				re[i][1] = da.get(i).getName();
 				re[i][2] = da.get(i).getNumber();
