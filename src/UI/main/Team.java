@@ -343,9 +343,8 @@ public class Team extends JPanel {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
 	            	//保存历史记录
-					 Date date=new Date();
-					 DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					 String time=format.format(date);
+				      Calendar ca = Calendar.getInstance();
+					 String time = ca.getTime().toString();
 					History his = new History(time,"teamHistory","查找:"+"findkey.getText()");
 					sh.add_team_History(his);
 
