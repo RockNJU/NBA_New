@@ -648,8 +648,8 @@ public class Team extends JPanel {
 				re[i][19]=OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
 				re[i][20]=OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());				
 				re[i][21]=OftenUseMethod.changedouble(da.get(i).getWinRate());				
-				re[i][22]=da.get(i).getOffenseRound();
-				re[i][23]=da.get(i).getDefenseRound();					
+				re[i][22]=OftenUseMethod.changedouble(da.get(i).getOffenseRound());
+				re[i][23]=OftenUseMethod.changedouble(da.get(i).getDefenseRound());					
 				re[i][24]=OftenUseMethod.changedouble(da.get(i).getDefenseEfficiency());
 				re[i][25]=OftenUseMethod.changedouble(da.get(i).getOffenseEfficiency());
 				re[i][26]=OftenUseMethod.changedouble(da.get(i).getO_ReboundEfficiency());
