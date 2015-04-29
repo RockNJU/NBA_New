@@ -82,8 +82,8 @@ public class Team extends JPanel {
 	//String choose;
 	
 	//RMIObject rmi=new RMIObject();
-	TeamBLService tbl;
-	MatchBLService mbl;
+	//TeamBLService tbl;
+	//MatchBLService mbl;
 	ArrayList<TeamSeasonDataVO> tdvo;
 	/**
 	 * Create the panel.
@@ -92,8 +92,8 @@ public class Team extends JPanel {
 		setLayout(null);
 		setSize(764,635);
 		setOpaque(false);
-		tbl=init.rmi.getTeamObject();
-		mbl=init.rmi.getMatchObject();
+		//tbl=init.rmi.getTeamObject();
+		//mbl=init.rmi.getMatchObject();
 		
 		sortLabel = new JLabel("排列：");
 		sortLabel.setForeground(Color.WHITE);
@@ -197,7 +197,7 @@ public class Team extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
-				System.out.println(init.currentpanel);
+				//System.out.println(init.currentpanel);
 			}
 
 			@Override
@@ -234,7 +234,7 @@ public class Team extends JPanel {
 		//if(seasons==null){
 		//	seasons[0]="13-14赛季";
 		//}
-		ArrayList<String> seasons=mbl.getAllSeason();
+		ArrayList<String> seasons=init.mbl.getAllSeason();
 		if(seasons.size()==0||seasons==null){
 			seasons.add("13-14赛季");
 		}		
@@ -297,10 +297,10 @@ public class Team extends JPanel {
 	            	String sortItem=m.getItem(according.getSelectedItem().toString());
 	            	//System.out.println(according.getSelectedItem().toString());
 	            	//System.out.println(sortItem);
-	            	tdvo=tbl.sort(Season, sortItem);
+	            	tdvo=init.tbl.sort(Season, sortItem);
 	            	data=getTotaldata(tdvo);
 	            	//System.out.println("a"+tdvo.size());
-	            	init.currentpanel="team"+"&"+Season+";"+sortItem;
+	            	init.currentpanel="6"+"&"+Season+";"+sortItem;
 	            	System.out.println(init.currentpanel);
 	            	teamlist.updateTable(teamtitle, data);
 	            	teamlist.setVisible(true);
@@ -350,10 +350,10 @@ public class Team extends JPanel {
 					sh.add_team_History(his);
 
 	            	//System.out.println("a");
-	            	tdvo =tbl.find(findkey.getText());
+	            	tdvo =init.tbl.find(findkey.getText());
 	            	data=getTotaldata(tdvo);
 	            	teamlist.updateTable(teamtitle, data);
-	            	init.currentpanel="team"+"&"+findkey.getText();
+	            	init.currentpanel="6"+"&"+findkey.getText();
 	            	System.out.println(init.currentpanel);
 	            	teamlist.setVisible(true);
 	            	dd.setVisible(false);
@@ -428,7 +428,7 @@ public class Team extends JPanel {
 							 SingleTeam spi;
 							//System.out.println("aha"+s+name);
 							spi = new SingleTeam(name,s);
-							init.currentpanel+="&"+name+";"+s;
+							init.currentdio="7(1)&"+name+";"+s;
 							System.out.println(init.currentpanel);
 							 spi.setVisible(true);
 							 spi.setLocation(375, 58);
@@ -552,7 +552,7 @@ public class Team extends JPanel {
         	String sortItem=m.getItem(according.getSelectedItem().toString());
         	//System.out.println(according.getSelectedItem().toString());
         	//System.out.println(sortItem);
-        	tdvo=tbl.sort(Season, sortItem);
+        	tdvo=init.tbl.sort(Season, sortItem);
         	data=getAveragedata(tdvo);
         	teamlist.updateTable(teamtitleaverage, data);
         	teamlist.setVisible(true);
@@ -567,7 +567,7 @@ public class Team extends JPanel {
         	String sortItem=m.getItem(according.getSelectedItem().toString());
         	//System.out.println(according.getSelectedItem().toString());
         	//System.out.println(sortItem);
-        	tdvo=tbl.sort(Season, sortItem);
+        	tdvo=init.tbl.sort(Season, sortItem);
         	data=getTotaldata(tdvo);
         	teamlist.updateTable(teamtitle, data);
         	teamlist.setVisible(true);
@@ -740,5 +740,8 @@ public class Team extends JPanel {
 		
 		}
 			
+	}
+	public static void changetabledata(String[]t,Object[][] d){
+		teamlist.updateTable(t, d);
 	}
 }

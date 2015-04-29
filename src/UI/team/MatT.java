@@ -16,7 +16,7 @@ import VO.TeamSeasonDataVO;
 
 public class MatT extends JPanel {
  
-	TeamBLService tbl;
+	//TeamBLService tbl;
 	//RMIObject rmi=new RMIObject();
 	Object[][] data1,data2;
 	ArrayList<TeamMatchVO> tmvo;
@@ -33,10 +33,10 @@ public class MatT extends JPanel {
 		setSize(760,500);
 		setLayout(null);
 		setOpaque(false);
-		tbl=init.rmi.getTeamObject();
-		tmvo=tbl.get_A_TeamSeasonData(season, name).getLast_five_match();
+		//tbl=init.rmi.getTeamObject();
+		tmvo=init.tbl.get_A_TeamSeasonData(season, name).getLast_five_match();
 		
-		JLabel lblNewLabel = new JLabel(tbl.get_A_TeamSeasonData(season, name).getTeamName()+"近五场比赛的信息：");
+		JLabel lblNewLabel = new JLabel(init.tbl.get_A_TeamSeasonData(season, name).getTeamName()+"近五场比赛的信息：");
 		lblNewLabel.setFont(new Font("华康雅宋体W9", Font.PLAIN, 20));
 		lblNewLabel.setBounds(18, 10, 413, 48);
 		add(lblNewLabel);

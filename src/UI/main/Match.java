@@ -47,7 +47,7 @@ public class Match extends JPanel {
 	JComboBox teams;
 	
 	//RMIObject rmi=new RMIObject();
-	MatchBLService mbl;
+	//MatchBLService mbl;
 	ArrayList<MatchVO> mvo;
 	/**
 	 * Create the panel.
@@ -57,7 +57,7 @@ public class Match extends JPanel {
 		setSize(764,635);
 		setOpaque(false);
 
-		mbl=init.rmi.getMatchObject();
+		//mbl=init.rmi.getMatchObject();
 		dc=new DateChooser(180,35);
 		dc.setSize(120, 30);
 		dc.setLocation(131, 10);
@@ -98,7 +98,7 @@ public class Match extends JPanel {
 		season = new JComboBox();
 		season.setToolTipText("赛季");
 		
-		ArrayList<String> seasons=mbl.getAllSeason();
+		ArrayList<String> seasons=init.mbl.getAllSeason();
 		if(seasons.size()==0||seasons==null){
 			seasons.add("13-14赛季");
 		}		
@@ -147,7 +147,7 @@ public class Match extends JPanel {
 	               //info=mbl.getAllMatchInfo(dc.showDate.getText());
 	               matchlist.setVisible(true);
 	               
-	               mvo=mbl.getMatchByTeamTime(dc.showDate.getText());
+	               mvo=init.mbl.getMatchByTeamTime(dc.showDate.getText());
 	               //System.out.println("shifouweikong"+mvo==null);
 	               if(mvo==null){
 	            	   JOptionPane.showMessageDialog(Match.this, "您搜索的日期没有比赛！");
@@ -156,7 +156,7 @@ public class Match extends JPanel {
 	               matchlist.updateTable(matchtitle, data);
 	               matchlist.hideColumn(2);
 	               }
-	               init.currentpanel="match"+"&"+dc.showDate.getText();
+	               init.currentpanel="9"+"&"+dc.showDate.getText();
 	               System.out.println(init.currentpanel);
 	            }	
 	       
@@ -206,7 +206,7 @@ public class Match extends JPanel {
 	            	String Team=teams.getSelectedItem().toString();
 	            	//System.out.println(Team);
 	            	matchlist.setVisible(true);
-	            	mvo=mbl.getMatchBySeason(Season, Team);
+	            	mvo=init.mbl.getMatchBySeason(Season, Team);
 	            	if(mvo==null){
 		            	   JOptionPane.showMessageDialog(Match.this, "没有比赛！");
 		             }
@@ -216,7 +216,7 @@ public class Match extends JPanel {
 		               matchlist.updateTable(matchtitle, data);
 		               matchlist.hideColumn(2);
 	            	}
-	            	init.currentpanel="match"+"&"+Season+";"+Team;
+	            	init.currentpanel="9"+"&"+Season+";"+Team;
 		            System.out.println(init.currentpanel);
 	            }	
 	       
@@ -305,7 +305,7 @@ public class Match extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
-				System.out.println(init.currentpanel);
+				//System.out.println(init.currentpanel);
 			}
 
 			@Override
@@ -388,8 +388,8 @@ public class Match extends JPanel {
 							String date= matchlist.getValueAt(
 									matchlist.getSelectedRow(), 1);
 							// System.out.println(name);
-							init.currentpanel+="&"+team+";"+date;
-							System.out.println(init.currentpanel);
+							init.currentdio="10(1)&"+team+";"+date;
+							//System.out.println(init.currentpanel);
 							SingleMatch spi = new SingleMatch(team,date );
 							spi.setVisible(true);
 							spi.setLocation(375, 58);
@@ -460,5 +460,8 @@ public class Match extends JPanel {
 			return re;
 		
 		}
+	}
+	public static void changetabledata(String[]t,Object[][] d){
+		matchlist.updateTable(t, d);
 	}
 }

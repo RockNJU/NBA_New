@@ -26,13 +26,13 @@ public class Hot extends JPanel {
 	JToolBar toolBar;
 	JToolBar toolBar1;
 	
-	JPanel p1;
-	JPanel p2;
+	static JPanel p1;
+	static JPanel p2;
 	HotPlayers hp;
 	HotTeams ht;
 	String cmdplayer="day";
 	
-	MatchBLService mbl;
+	//MatchBLService mbl;
 	/*
 	JButton changjundefen;
 	JButton changjungaimao;
@@ -335,7 +335,7 @@ public class Hot extends JPanel {
 		ht.setLocation(0, 0);
 		add(p2);
 		*/
-		
+		init.currentpanel="hot&"+"每日,得分总;球队赛季,得分";
 
 		
 		HotPlayers hp = new HotPlayers("每日","得分总");
@@ -586,14 +586,14 @@ public class Hot extends JPanel {
 		}
 	}
 	
-	void changep1(HotPlayers newhp){
+	static void changep1(HotPlayers newhp){
 		p1.removeAll();
 		p1.add(newhp);
 		newhp.setLocation(0, 0);
 		p1.validate();
 		p1.repaint();
 	}
-	void changep2(HotTeams newht){
+	static void changep2(HotTeams newht){
 		p2.removeAll();
 		p2.add(newht);
 		newht.setLocation(0, 0);

@@ -23,6 +23,7 @@ import UI.player.SinglePlayer;
 import UI.team.BasicT;
 import UI.team.SingleTeam;
 import VO.MatchVO;
+import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
 import VO.TeamSeasonDataVO;
 
@@ -37,10 +38,11 @@ public class init extends JFrame {
 	JButton teambutton;
 	JButton hotbutton;
 	
-	JPanel rightpanel;
+	static JPanel rightpanel;
 	static Player p;
 	static Team t;
 	public static String currentpanel="";
+	public static String currentdio="";
 	public static RMIObject rmi=new RMIObject();
 	int x,y;
 	public static PlayerBLService pbl=rmi.getPlayerObject();
@@ -63,24 +65,45 @@ public class init extends JFrame {
 				try {
 					init frame = new init();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		/*
-		 new Thread() {// 创建新线程
-	            public void run() {	               
-	                     try {
-	                        Thread.sleep(1);// 线程休眠1毫秒
-	                    } catch (InterruptedException e1) {
-	                        e1.printStackTrace();
-	                    }
-	                }
-	            
-	        }.start();// 启动线程*/
+		
 	}
-
+	static PanelUpdateThread f ;	
+	protected static void listen(){
+		//System.out.println("aaa");
+		f=new PanelUpdateThread();
+		Thread thread = new Thread(f);
+		//System.out.println("ccc");
+		thread.start();
+	}
+	static class PanelUpdateThread implements Runnable{
+		@Override
+		public void run() {	  
+			
+			while(true){
+			//System.out.println("bbb");
+            try {
+              	 //updatepanel(currentpanel);
+              	 System.out.println("刷新"+currentpanel+"  "+currentdio);
+                  Thread.sleep(3000);// 线程休眠3秒
+              } catch (InterruptedException e1) {
+                  e1.printStackTrace();
+              } catch (TransformerFactoryConfigurationError e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+          }
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -95,7 +118,7 @@ public class init extends JFrame {
 		x=(screen.width-getWidth())/2;
 		y=(screen.height-getHeight())/2-16;	
 		setLocation(x,y);
-		
+		listen();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBounds(5,5,948,709);
@@ -171,7 +194,7 @@ public class init extends JFrame {
             	teambutton.setToolTipText("队伍信息");
             	matchbutton.setToolTipText("比赛信息");	
             	currentpanel="player";
-            	System.out.println(currentpanel);
+            	//System.out.println(currentpanel);
 				p = new Player();
 				change(p);
             }
@@ -220,7 +243,7 @@ public class init extends JFrame {
             	teambutton.setToolTipText("队伍信息 ");
             	matchbutton.setToolTipText("比赛信息");
             	currentpanel="team";
-            	System.out.println(currentpanel);
+            	//System.out.println(currentpanel);
 				t = new Team();
 				change(t);
             }
@@ -272,7 +295,7 @@ public class init extends JFrame {
             	matchbutton.setToolTipText("比赛信息 ");
             	Match p;		
             	currentpanel="match";
-            	System.out.println(currentpanel);
+            	//System.out.println(currentpanel);
 				p = new Match();
 				change(p);
             }
@@ -324,7 +347,7 @@ public class init extends JFrame {
             	matchbutton.setToolTipText("比赛信息");
             	Hot p;			
             	currentpanel="hot";
-            	System.out.println(currentpanel);
+            	//System.out.println(currentpanel);
 				p = new Hot();
 				change(p);
             }
@@ -492,7 +515,9 @@ public class init extends JFrame {
 	                }
 	            }
 	        }.start();// 启动线程
+	        
 	    }
+	
 	
 	 private boolean isDragged = false;
 	 private Point loc = null;
@@ -525,7 +550,7 @@ public class init extends JFrame {
 			});
 		}
        
-		void change(Player ppanel){
+		static void change(Player ppanel){
 			rightpanel.removeAll();
 			rightpanel.add(ppanel);
 			ppanel.setVisible(true);
@@ -533,7 +558,7 @@ public class init extends JFrame {
 			rightpanel.validate();
 			rightpanel.repaint();
 		}
-		void change(Team ppanel){
+		static void change(Team ppanel){
 			rightpanel.removeAll();
 			rightpanel.add(ppanel);
 			ppanel.setVisible(true);
@@ -541,7 +566,7 @@ public class init extends JFrame {
 			rightpanel.validate();
 			rightpanel.repaint();
 		}
-		void change(Hot ppanel){
+		static void change(Hot ppanel){
 			rightpanel.removeAll();
 			rightpanel.add(ppanel);
 			ppanel.setVisible(true);
@@ -549,7 +574,7 @@ public class init extends JFrame {
 			rightpanel.validate();
 			rightpanel.repaint();
 		}
-		void change(Match ppanel){
+		static void change(Match ppanel){
 			rightpanel.removeAll();
 			rightpanel.add(ppanel);
 			ppanel.setVisible(true);
@@ -558,7 +583,7 @@ public class init extends JFrame {
 			rightpanel.repaint();
 		}
 
-		void updatepanel(String command) throws TransformerFactoryConfigurationError, TransformerException, IOException, SVGConverterException{
+		static void updatepanel(String command) throws TransformerFactoryConfigurationError, TransformerException, IOException, SVGConverterException{
 			String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
 					"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
 					"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
@@ -571,30 +596,47 @@ public class init extends JFrame {
 					" 胜率  "," 进攻回合  ","防守回合"," 防守效率  "," 进攻效率  "," 进攻篮板率  "," 防守篮板率  "," 抢断效率  "," 助攻率  "};
 			String[] matchtitle={"序号"," 日期  "," 赛季  "," 主队  "," 比分  "," 客队  ",
 					" 第一节  "," 第二节  "," 第三节  "," 第四节  "," 加时赛  "};
-			if(command.equals("hot")){
-				Hot p;			
-            	//currentpanel="hot";
-            	//System.out.println(currentpanel);
-				p = new Hot();
-				change(p);
+			String[] playerinfo = { " 序号  ", " 姓名  ", " 球号  ", " 位置  ", " 身高  ",
+					" 体重  ", " 出生日期  ", " 年龄  ", " 球龄  ", " 毕业院校  " };
+			
+			String com_panel[]=currentpanel.split("&");
+			if(currentdio==""){//如果dio为“”，那么当前panel是初始的
+				//以下判断panel的刷新
+				if(com_panel[0]=="hot"){//hot针对每个panel刷新
+					String[] com2=com_panel[1].split(";");
+					String[] panel1=com2[0].split(",");
+					String[] panel2=com2[1].split(",");
+					HotTeams ht = new HotTeams(panel2[0],panel2[1]);
+					Hot.changep2(ht);		
+					HotPlayers hp = new HotPlayers(panel1[0],panel1[1]);
+					Hot.changep1(hp);
+				}
+				if(com_panel[0]=="player"){//信息表格刷新
+					Object[][] d=Player.getinfodata(pbl.getAllPlayerInfo());
+					Player.changetabledata(playerinfo, d);
+				}
+				if(com_panel[0]=="3"){//筛选表格刷新
+					
+				}
+			}
+			
+			
+			/**
+			if(command.equals("")){
+				System.out.println(command+"不用刷新");	
+			}
+			else if(command.equals("hot")){
+				HotTeams ht = new HotTeams("球队赛季","得分");
+				Hot.changep2(ht);		
+				HotPlayers hp = new HotPlayers("每日","得分总");
+				Hot.changep1(hp);
 			}else if(command.equals("match")){
-				Match p;			
-            	//currentpanel="match";
-            	//System.out.println(currentpanel);
-				p = new Match();
-				change(p);
+				System.out.println("match不需要变");
 			}else if(command.equals("team")){
-				Team p;			
-            	//currentpanel="team";
-            	//System.out.println(currentpanel);
-				p = new Team();
-				change(p);
+				System.out.println("team不需要变");
 			}else if(command.equals("player")){
-				Player p;			
-            	//currentpanel="hot";
-            	//System.out.println(currentpanel);
-				p = new Player();
-				change(p);
+				//Object[][] d=Player.getinfodata(pbl.getAllPlayerInfo());
+				//Player.changetabledata(playerinfo, d);
 			}else{
 				String[] com=command.split("&");
 				if(com[0].equals("player")){
@@ -607,7 +649,7 @@ public class init extends JFrame {
 						if(com2.length==1){					
 							ArrayList<PlayerSeasonDataVO>psvo = pbl.keyfind(com2[0]);					
 							Object[][] data = Player.getTotaldata(psvo);					
-							Player.playerlist.updateTable(playerTotaltitle, data);					
+							Player.changetabledata(playerTotaltitle, data);					
 						}else if(com2.length==4){					
 							String Position = com2[1];					
 							String Partition = com2[2];					
@@ -616,9 +658,9 @@ public class init extends JFrame {
 							ArrayList<PlayerSeasonDataVO>psvo = pbl.sort(Season, Position, Partition, According);
 						//System.out.println(Season + Position + Partition + According);						
 							Object[][] data = Player.getTotaldata(psvo);					
-							Player.playerlist.updateTable(playerTotaltitle, data);					
+							Player.changetabledata(playerTotaltitle, data);					
 						}else{						
-							System.out.println("未知错误");						
+							System.out.println("player未知错误");						
 						}					
 					}													
 				}else if(com[0].equals("team")){
@@ -626,24 +668,28 @@ public class init extends JFrame {
 						String[]com2=com[2].split(";");
 						BasicT p=new BasicT(com2[0],com2[1]);
 						SingleTeam.change(p);
-					}else if(com.length==2){
+					}
+
+					if(com.length==2){
 						String[] com2=com[1].split(";");
 						if(com2.length==1){
 							ArrayList<TeamSeasonDataVO>tdvo =tbl.find(com2[0]);
 			            	Object[][] data=Team.getTotaldata(tdvo);
-			            	Team.teamlist.updateTable(teamtitle, data);
-						}else if(com2.length==2){
+			            	Team.changetabledata(teamtitle, data);
+						}
+
+						if(com2.length==2){
 							if(com2[0].length()==3){
 								BasicT p=new BasicT(com2[0],com2[1]);
 								SingleTeam.change(p);
 							}else{
 								ArrayList<TeamSeasonDataVO>tdvo=tbl.sort(com2[0], com2[1]);
 				            	Object[][]data=Team.getTotaldata(tdvo);
-				            	Team.teamlist.updateTable(teamtitle, data);
-				            	Team.teamlist.setVisible(true);
+				            	Team.changetabledata(teamtitle, data);
+				            	//Team.teamlist.setVisible(true);
 							}
 						}else{
-							System.out.println("未知错误");	
+							System.out.println("team未知错误");	
 						}
 					}
 				}else if(com[0].equals("match")){
@@ -652,16 +698,16 @@ public class init extends JFrame {
 						if(com2.length==1){
 							ArrayList<MatchVO>mvo=mbl.getMatchByTeamTime(com2[0]);             
 				              Object[][] data=Match.getdata(mvo);
-				               Match.matchlist.updateTable(matchtitle, data);
-				               Match.matchlist.hideColumn(2);	          
+				               Match.changetabledata(matchtitle, data);
+				              // Match.matchlist.hideColumn(2);	          
 						}else{
 							
 							ArrayList<MatchVO> mvo=mbl.getMatchBySeason(com2[0], com2[1]);
 			            	
 				               
 				              Object[][] data=Match.getdata(mvo);
-				               Match.matchlist.updateTable(matchtitle, data);
-				              Match. matchlist.hideColumn(2);
+				               Match.changetabledata(matchtitle, data);
+				              //Match. matchlist.hideColumn(2);
 			            	
 			            	
 						}
@@ -670,11 +716,21 @@ public class init extends JFrame {
 						BasicM p=new BasicM(com2[0],com2[1]);
 						SingleMatch.change(p);
 					}
+				}else if(com[0].equals("hot")){
+					//"hot&"+"每日,得分总;球队赛季,得分";
+					String[] com2=com[1].split(";");
+					String[] panel1=com2[0].split(",");
+					String[] panel2=com2[1].split(",");
+					HotTeams ht = new HotTeams(panel2[0],panel2[1]);
+					Hot.changep2(ht);		
+					HotPlayers hp = new HotPlayers(panel1[0],panel1[1]);
+					Hot.changep1(hp);
 				}else{
 					System.out.println("未知错误");	
 				}
 				
 		
-			}
+			}*/
 		}
+	
 }

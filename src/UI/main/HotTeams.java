@@ -50,6 +50,14 @@ public class HotTeams extends JPanel {
 		setOpaque(false);
 		setSize(746,170);
 		
+		String str=init.currentpanel;//="hot&"+"每日,得分总;球队赛季,得分"
+		String s1[]=str.split("&");
+		String s2[]=s1[1].split(";");
+		s2[1]=tmpsaccording+","+tmptype;
+		init.currentpanel=s1[0]+"&"+s2[0]+";"+s2[1];
+		System.out.println(init.currentpanel);
+		
+		
 		tsdv = tbs.getHotTeam(saiji,map1.getItem(tmptype));
 		
 		int i = 0;
@@ -107,6 +115,7 @@ public class HotTeams extends JPanel {
 					System.out.println(name);
 					SingleTeam spi;
 					try {
+						init.currentdio="7(1)&"+name+";"+saiji;
 						spi = new SingleTeam(name, saiji);
 						spi.setVisible(true);
 						spi.setLocation(375, 58);
@@ -134,7 +143,7 @@ public class HotTeams extends JPanel {
 				if (e.getClickCount() == 2) {
 					String season = "13-14";
 					String name = (String) data[0][3];
-					init.currentpanel+="&"+name+";"+season;
+					init.currentdio="7(1)&"+name+";"+season;
 					 SingleTeam spi;
 					// System.out.println(name);
 					try {

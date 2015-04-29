@@ -101,9 +101,10 @@ public class SingleTeam extends JDialog {
             }            
             @Override
             public void mouseClicked(MouseEvent e) {
-            	String news=UI.main.init.currentpanel;
-            	UI.main.init.currentpanel=news.substring(0,news.lastIndexOf('&'));
-            	System.out.println(UI.main.init.currentpanel);
+            	//String news=UI.main.init.currentpanel;
+            	//UI.main.init.currentpanel=news.substring(0,news.lastIndexOf('&'));
+            	//System.out.println(UI.main.init.currentpanel);
+            	UI.main.init.currentdio="";
             	dispose();// 销毁窗体
             }
         });
@@ -144,6 +145,7 @@ public class SingleTeam extends JDialog {
 				try {
 					BasicT b;
 					b = new BasicT(t, s);
+					UI.main.init.currentdio="7(1)&"+t+";"+s;
 					change(b);
 				} catch (TransformerFactoryConfigurationError e1) {
 					// TODO Auto-generated catch block
@@ -194,6 +196,7 @@ public class SingleTeam extends JDialog {
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
             	JinT j=new JinT();
+            	UI.main.init.currentdio="7(2)&"+t+";"+s;
             	change(j);
             }
         });
@@ -231,6 +234,7 @@ public class SingleTeam extends JDialog {
             	otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	MatT m=new MatT(t, s);
+            	UI.main.init.currentdio="7(3)&"+t+";"+s;
             	change(m);
             }
         });
@@ -268,6 +272,7 @@ public class SingleTeam extends JDialog {
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
             	OtherT o=new OtherT();
             	change(o);
+            	UI.main.init.currentdio="7(4)&"+t+";"+s;
             }
         });
 	

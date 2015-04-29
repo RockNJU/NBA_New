@@ -45,7 +45,7 @@ public class BasicInfo extends JPanel {
 	PlayerVO pvo;
 	PlayerSeasonDataVO pdvo;
 	//RMIObject rmi=new RMIObject();
-	PlayerBLService pbl;
+	//PlayerBLService pbl;
 	
 	public BasicInfo(String name,String season)   {
 		
@@ -56,9 +56,9 @@ public class BasicInfo extends JPanel {
 		
 		
 		
-		pbl=init.rmi.getPlayerObject();
-		pivo=pbl.getPlayerInfo(name);
-		pdvo=pbl.getAPlayerSeasonMatch(season, name);
+		//pbl=init.rmi.getPlayerObject();
+		pivo=init.pbl.getPlayerInfo(name);
+		pdvo=init.pbl.getAPlayerSeasonMatch(season, name);
 		
 		//System.out.println(pivo==null);
 		//System.out.println(pdvo==null);

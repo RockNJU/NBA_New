@@ -93,9 +93,7 @@ public class SingleMatch extends JDialog {
             }            
             @Override
             public void mouseClicked(MouseEvent e) {
-            	String news=UI.main.init.currentpanel;
-            	UI.main.init.currentpanel=news.substring(0,news.lastIndexOf('&'));
-            	System.out.println(UI.main.init.currentpanel);
+            	UI.main.init.currentdio="";
             	dispose();// 销毁窗体
             }
         });
@@ -133,6 +131,7 @@ public class SingleMatch extends JDialog {
             	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/队员数据前.png"));
             	BasicM b=new BasicM(t,d);
+            	UI.main.init.currentdio="10(1)&"+t+";"+d;
             	change(b);
             }
         });
@@ -169,6 +168,7 @@ public class SingleMatch extends JDialog {
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	matchbutton.setIcon(new ImageIcon("pic/but/队员数据前.png"));
             	JinM j=new JinM();
+            	UI.main.init.currentdio="10(2)&"+t+";"+d;
             	change(j);
             }
         });
@@ -206,6 +206,7 @@ public class SingleMatch extends JDialog {
             	//otherbutton.setIcon(new ImageIcon("pic/but/其他信息前.png"));
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	MatM m=new MatM(t,d);
+            	UI.main.init.currentdio="10(3)&"+t+";"+d;
             	change(m);
             }
         });

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class BasicM extends JPanel {
 
 	MatchVO mvo;
-	MatchBLService mbl;
+	//MatchBLService mbl;
 	//RMIObject rmi=new RMIObject();
 	Color win=Color.BLUE;
 	Color lose=Color.BLACK;
@@ -26,8 +26,8 @@ public class BasicM extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		
-		mbl=init.rmi.getMatchObject();
-		mvo=mbl.getMatchByTeam(date, team);
+		//mbl=init.rmi.getMatchObject();
+		mvo=init.mbl.getMatchByTeam(date, team);
 		//System.out.println(mvo==null);
 		ImageIcon imageA=new ImageIcon("pic\\TEAMPNG\\"+mvo.getHostTeam().getTeamName()+".png");	
 		//œ‘ æÕº∆¨

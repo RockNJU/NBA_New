@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 public class MatP extends JPanel {
 
 	//RMIObject rmi=new RMIObject();
-	PlayerBLService pbl;
+	//PlayerBLService pbl;
 	PlayerSeasonDataVO pdvo;
 	CreateTable list1,list2;
 	ArrayList<SingleMatchPersonalDataVO> array=new ArrayList<SingleMatchPersonalDataVO>();
@@ -38,9 +38,9 @@ public class MatP extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		
-		pbl=init.rmi.getPlayerObject();
+		//pbl=init.rmi.getPlayerObject();
 		
-		pdvo=pbl.getAPlayerSeasonMatch(season, name);
+		pdvo=init.pbl.getAPlayerSeasonMatch(season, name);
 		
 		if(pdvo==null){
 			array=null;

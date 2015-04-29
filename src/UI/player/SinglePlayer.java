@@ -93,9 +93,7 @@ public class SinglePlayer extends JDialog {
             }            
             @Override
             public void mouseClicked(MouseEvent e) {
-            	String news=UI.main.init.currentpanel;
-            	UI.main.init.currentpanel=news.substring(0,news.lastIndexOf('&'));
-            	System.out.println(UI.main.init.currentpanel);
+            	UI.main.init.currentdio="";
             	dispose();// 销毁窗体
             }
         });
@@ -134,6 +132,7 @@ public class SinglePlayer extends JDialog {
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
             	BasicP b=new BasicP(playername,season);
             	change(b);
+            	UI.main.init.currentdio="4(1)&"+playername+";"+season;
             }
         });
 		
@@ -170,6 +169,7 @@ public class SinglePlayer extends JDialog {
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
             	JinP j=new JinP();
             	change(j);
+            	UI.main.init.currentdio="4(2)&"+playername+";"+season;
             }
         });
 
@@ -207,6 +207,7 @@ public class SinglePlayer extends JDialog {
             	basicbutton.setIcon(new ImageIcon("pic/but/基础信息前.png"));
             	MatP m=new MatP(playername,season);
             	change(m);
+            	UI.main.init.currentdio="4(3)&"+playername+";"+season;
             }
         });
 
@@ -243,6 +244,7 @@ public class SinglePlayer extends JDialog {
             	matchbutton.setIcon(new ImageIcon("pic/but/近期比赛前.png"));
             	OtherP o=new OtherP();
             	change(o);
+            	UI.main.init.currentdio="4(4)&"+playername+";"+season;
             }
         });
 	

@@ -70,8 +70,8 @@ public class Player extends JPanel {
 	String[] title;
 	Object[][] data;
 
-	PlayerBLService pbl;
-	MatchBLService mbl;
+	//PlayerBLService pbl;
+	//MatchBLService mbl;
 	//RMIObject rmi = new RMIObject();
 	ArrayList<PlayerSeasonDataVO> psvo;
 	ArrayList<PlayerInfoVO> pivo;
@@ -81,8 +81,8 @@ public class Player extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	public Player() {
-		pbl = init.rmi.getPlayerObject();
-		mbl = init.rmi.getMatchObject();
+		
+	
 		setLayout(null);
 		setSize(764, 635);
 		setOpaque(false);
@@ -189,7 +189,7 @@ public class Player extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
-				System.out.println(init.currentpanel);
+				//System.out.println(init.currentpanel);
 			}
 
 			@Override
@@ -265,7 +265,7 @@ public class Player extends JPanel {
 		playerseason.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		playerseason.setToolTipText("赛季");
 
-		ArrayList<String> seasons = mbl.getAllSeason();
+		ArrayList<String> seasons = init.mbl.getAllSeason();
 		if (seasons.size() == 0 || seasons == null) {
 			seasons.add("13-14赛季");
 		}
@@ -293,7 +293,7 @@ public class Player extends JPanel {
 		 * 30); add(playerseason1); playerseason1.setVisible(true);
 		 */
 		String Title[] = playerinfo;
-		pivo = pbl.getAllPlayerInfo();
+		pivo = init.pbl.getAllPlayerInfo();
 		Object Data[][] = getinfodata(pivo);
 		this.title = Title;
 		this.data = Data;
@@ -314,7 +314,7 @@ public class Player extends JPanel {
 					String name = playerlist.getValueAt(
 							playerlist.getSelectedRow(), 1);
 					// System.out.println(name);
-					init.currentpanel+="&"+name+";"+season;
+					init.currentdio="4(1)&"+name+";"+season;
 					System.out.println(init.currentpanel);
 					SinglePlayer spi = new SinglePlayer(name, season);
 					spi.setVisible(true);
@@ -395,10 +395,10 @@ public class Player extends JPanel {
 				Position = map1.getItem(Position);
 				Partition = map2.getItem(Partition);
 				According = map3.getItem(According);
-				psvo = pbl.sort(Season, Position, Partition, According);
+				psvo = init.pbl.sort(Season, Position, Partition, According);
 				//System.out.println(Season + Position + Partition + According);
 				data = getTotaldata(psvo);
-				init.currentpanel="player&"+Season+";" + Position+";" + Partition+";" + According;
+				init.currentpanel="3&"+Season+";" + Position+";" + Partition+";" + According;
 				System.out.println(init.currentpanel);
 				playerlist.updateTable(playerTotaltitle, data);
 			}
@@ -446,9 +446,9 @@ public class Player extends JPanel {
 				// String
 				// Season=playerseason.getSelectedItem().toString().substring(0,
 				// 5);
-				psvo = pbl.keyfind(findkey.getText());
+				psvo = init.pbl.keyfind(findkey.getText());
 				data = getTotaldata(psvo);
-				init.currentpanel="player&"+findkey.getText();
+				init.currentpanel="3&"+findkey.getText();
 				System.out.println(init.currentpanel);
 				playerlist.updateTable(playerTotaltitle, data);
 			}
@@ -514,7 +514,7 @@ public class Player extends JPanel {
 			Position = map1.getItem(Position);
 			Partition = map2.getItem(Partition);
 			According = map3.getItem(According);
-			psvo = pbl.sort(Season, Position, Partition, According);
+			psvo = init.pbl.sort(Season, Position, Partition, According);
 			//System.out.println(Season + Position + Partition + According);
 			data = getAveragedata(psvo);
 			playerlist.updateTable(playerAvgtitle, data);
@@ -531,7 +531,7 @@ public class Player extends JPanel {
 			Position = map1.getItem(Position);
 			Partition = map2.getItem(Partition);
 			According = map3.getItem(According);
-			psvo = pbl.sort(Season, Position, Partition, According);
+			psvo = init.pbl.sort(Season, Position, Partition, According);
 			//System.out.println(Season + Position + Partition + According);
 			data = getTotaldata(psvo);
 			playerlist.updateTable(playerTotaltitle, data);
@@ -722,7 +722,7 @@ public class Player extends JPanel {
 
 	}
 
-	public Object[][] getinfodata(ArrayList<PlayerInfoVO> da) {
+	public static Object[][] getinfodata(ArrayList<PlayerInfoVO> da) {
 		//System.out.println(da == null);
 		if (da == null) {
 			Object[][] re = new Object[1][10];
@@ -756,5 +756,8 @@ public class Player extends JPanel {
 			return re;
 
 		}
+	}
+	public static void changetabledata(String[]t,Object[][] d){
+		playerlist.updateTable(t, d);
 	}
 }

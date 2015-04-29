@@ -43,8 +43,8 @@ public class BasicInfo_1 extends JPanel {
 	String teamnameAbb;
 	String season;
 	//RMIObject rmi=new RMIObject();
-	TeamBLService tbl;
-	PlayerBLService pbl;
+	///TeamBLService tbl;
+	//PlayerBLService pbl;
 	/**
 	 * Create the panel.
 	 * @throws TransformerFactoryConfigurationError 
@@ -59,10 +59,10 @@ public class BasicInfo_1 extends JPanel {
 		this.setBackground(new Color(253,212,146));
 		this.season=s;
 		this.teamnameAbb=name;
-		tbl=init.rmi.getTeamObject();
-		pbl=init.rmi.getPlayerObject();
-		tivo=tbl.get_A_TeamInfo(s,name);
-		tdvo=tbl.get_A_TeamSeasonData(s, teamnameAbb);
+		//tbl=init.rmi.getTeamObject();
+		//pbl=init.rmi.getPlayerObject();
+		tivo=init.tbl.get_A_TeamInfo(s,name);
+		tdvo=init.tbl.get_A_TeamSeasonData(s, teamnameAbb);
 		
 	//	System.out.println(s+teamnameAbb);
 		
@@ -249,7 +249,7 @@ public class BasicInfo_1 extends JPanel {
 		
 		
 		//TODO
-				Object[][] data=getTeamPlayers(pbl.getTeamAllPlayer(season,teamnameAbb));
+				Object[][] data=getTeamPlayers(init.pbl.getTeamAllPlayer(season,teamnameAbb));
 				String[] t=new String[] {"                          姓名                       ","              位置                ","             球龄            "};
 		CreateTable list=new CreateTable(t,data, 12,265,558,198, 20,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(list);

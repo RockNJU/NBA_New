@@ -21,7 +21,7 @@ import businessService.blservice.MatchBLService;
 public class MatM extends JPanel {
 
 	MatchVO mvo;
-	MatchBLService mbl;
+	//MatchBLService mbl;
 	//RMIObject rmi=new RMIObject();
 	CreateTable lista;
 	CreateTable listb;
@@ -45,8 +45,8 @@ public class MatM extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		
-		mbl=init.rmi.getMatchObject();
-		mvo=mbl.getMatchByTeam(date, team);
+		//mbl=init.rmi.getMatchObject();
+		mvo=init.mbl.getMatchByTeam(date, team);
 		TeamName_Map mm=new TeamName_Map();
 		
 		JLabel lb1 = new JLabel("主队队员信息："+mm.getFullName(mvo.getHostTeam().getTeamName()));
