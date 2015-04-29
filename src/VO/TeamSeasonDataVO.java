@@ -66,9 +66,9 @@ public class TeamSeasonDataVO {
 	double assistEfficiency = 0;
 	double assistEfficiency_avg;
 	private double o_ReboundEfficiency =0; 
-	double o_ReboundEfficiency_avg;
+	double offensiveReboundEff_avg;
 	private double d_ReboundEfficiency =0;
-	double d_ReboundEfficiency_avg;
+	double defenseReboundEff_avg;
 	
 	private ArrayList<TeamMatchVO> last_five_match;
 
@@ -145,8 +145,8 @@ public class TeamSeasonDataVO {
          defenseEfficiency_avg=defenseEfficiency;
         stealEfficiency_avg=stealEfficiency;
          assistEfficiency_avg=assistEfficiency;
-		  o_ReboundEfficiency_avg=O_ReboundEfficiency;
-		 d_ReboundEfficiency_avg=D_ReboundEfficiency;
+		  offensiveReboundEff_avg=O_ReboundEfficiency;
+		 defenseReboundEff_avg=D_ReboundEfficiency;
 		
 	}
 	
@@ -224,8 +224,8 @@ public class TeamSeasonDataVO {
               defenseEfficiency_avg=defenseEfficiency/matchNum;
              stealEfficiency_avg=stealEfficiency/matchNum;
              assistEfficiency_avg=assistEfficiency/matchNum;
-			  o_ReboundEfficiency_avg=o_ReboundEfficiency/matchNum;
-			 d_ReboundEfficiency_avg=d_ReboundEfficiency/matchNum;
+			  offensiveReboundEff_avg=o_ReboundEfficiency/matchNum;
+			 defenseReboundEff_avg=d_ReboundEfficiency/matchNum;
 		 
 	 }
 	
@@ -457,7 +457,7 @@ public class TeamSeasonDataVO {
 
 
 		public double getO_ReboundEfficiency() {
-			return o_ReboundEfficiency_avg;
+			return offensiveReboundEff_avg;
 		}
 
 
@@ -465,7 +465,7 @@ public class TeamSeasonDataVO {
 
 
 		public double getD_ReboundEfficiency() {
-			return d_ReboundEfficiency_avg;
+			return defenseReboundEff_avg;
 		}
 
 
@@ -531,11 +531,11 @@ public class TeamSeasonDataVO {
 
 
 		public double getO_ReboundEfficiency_avg() {
-			return o_ReboundEfficiency_avg;
+			return offensiveReboundEff_avg;
 		}
 
 
 		public double getD_ReboundEfficiency_avg() {
-			return d_ReboundEfficiency_avg;
+			return defenseReboundEff_avg;
 		}
 }
