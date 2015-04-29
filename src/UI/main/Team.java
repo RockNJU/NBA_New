@@ -251,6 +251,27 @@ public class Team extends JPanel {
 		 * 
 		 */
 		findkey = new JTextField("«Î ‰»Îπÿº¸¥ ");
+		findkey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			      Calendar ca = Calendar.getInstance();
+					 String time = ca.getTime().toString();
+					History his = new History(time,"teamHistory","≤È’“:"+"findkey.getText()");
+					sh.add_team_History(his);
+
+	            	//System.out.println("a");
+	            	tdvo =init.tbl.find(findkey.getText());
+	            	data=getTotaldata(tdvo);
+	            	teamlist.updateTable(teamtitle, data);
+	            	init.currentpanel="6"+"&"+findkey.getText();
+	            	System.out.println(init.currentpanel);
+	            	teamlist.setVisible(true);
+	            	dd.setVisible(false);
+	            	east.setVisible(false);
+	            	west.setVisible(false);
+			}
+		});
+
+		
 		findkey.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

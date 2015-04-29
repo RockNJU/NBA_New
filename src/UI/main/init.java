@@ -91,7 +91,7 @@ public class init extends JFrame {
 	static class PanelUpdateThread implements Runnable{
 		@Override
 		public void run() {	  
-			
+
 			while(true){
 			//System.out.println("bbb");
             try {

@@ -327,6 +327,23 @@ public class Player extends JPanel {
 		 * 
 		 */
 		findkey = new JTextField("«Î ‰»Îπÿº¸¥ ");
+		findkey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			      Calendar ca = Calendar.getInstance();
+				 String time = ca.getTime().toString();
+				History his = new History(time,"playerHistory","≤È’“:"+"findkey.getText()");
+				sh.add_player_History(his);
+
+				// String
+				// Season=playerseason.getSelectedItem().toString().substring(0,
+				// 5);
+				psvo = init.pbl.keyfind(findkey.getText());
+				data = getTotaldata(psvo);
+				init.currentpanel="3&"+findkey.getText();
+				System.out.println(init.currentpanel);
+				playerlist.updateTable(playerTotaltitle, data);
+			}
+		});
 		findkey.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
