@@ -74,6 +74,10 @@ public class SortItem_Map {
 	   map.put("罚球命中数", "freeThrowGoalNum_avg");
 	   ////////
 	   
+	   
+	   map.put("防守", "d_ReboundNum_avg");
+	   map.put("进攻", "o_ReboundNum_avg");
+	   
 	   map.put("防守篮板数", "d_ReboundNum_avg");
 	   map.put("进攻篮板数", "o_ReboundNum_avg");
 	   //---------------------
@@ -91,8 +95,12 @@ public class SortItem_Map {
    }
    
    public String getItem(String item){
-	   if(map==null)
-		   return null;
+	   
+	   System.out.println("传进来的item："+item);
+	   
+	   if(map.get(item)==null){
+		   return "pointNum_avg";
+	   }
 	   return map.get(item).toString();
    }
    

@@ -100,7 +100,7 @@ public class init extends JFrame {
             try {
               	 updatepanel(currentpanel);
               	 System.out.println("刷新"+currentpanel+"  "+currentdio);
-                  Thread.sleep(10000);// 线程休眠3秒
+                  Thread.sleep(60000);// 线程休眠3秒
               } catch (InterruptedException e1) {
                   e1.printStackTrace();
               } catch (TransformerFactoryConfigurationError e) {
