@@ -23,6 +23,10 @@ public interface TeamBLService {
 	
 	public ArrayList<TeamSeasonDataVO> sort(String season,String sortItem);  //根据赛季和排序的 属性对球队进行排序后返回
 	
+	
+	
+	public ArrayList<TeamSeasonDataVO> sort(String season,String[] condition,boolean[] reverse);  //根据赛季和多重排序的实现 属性对球队进行排序后返回
+	
 	public ArrayList<TeamSeasonDataVO> getHotTeam(String season,String item);
 	//根据赛季和筛选的条件 获取赛季热点球队，即排名前五的球队
 
