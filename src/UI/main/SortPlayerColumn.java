@@ -45,9 +45,9 @@ public class SortPlayerColumn extends JFrame {
 	SortItem_Map map = new SortItem_Map();
 	ArrayList<JCheckBox> jbs = new ArrayList<JCheckBox>();
 	JRadioButton secondinfo = new JRadioButton(
-			"\u9009\u4E2D\u4E3A\u964D\u5E8F");
+			"\u9009\u4E2D\u4E3A\u5347\u5E8F");
 	JRadioButton thirdinfo = new JRadioButton(
-			"\u9009\u4E2D\u4E3A\u964D\u5E8F");
+			"\u9009\u4E2D\u4E3A\u5347\u5E8F");
 	JRadioButton averageornot = new JRadioButton("\u9009\u4E2D\u8F93\u51FA\u5E73\u5747\u503C");
 	/*
 	 * String[] playerTotaltitle = { "1 序号  ", " 2球员名称  ", " 3所属球队  ", "参赛场数",
@@ -395,7 +395,7 @@ public class SortPlayerColumn extends JFrame {
 
 		});
 
-		firstinfo = new JRadioButton("\u9009\u4E2D\u4E3A\u964D\u5E8F");
+		firstinfo = new JRadioButton("\u9009\u4E2D\u4E3A\u5347\u5E8F");
 		firstinfo.setFont(new Font("华康雅宋体W9", Font.PLAIN, 16));
 		firstinfo.setBounds(20, 53, 151, 23);
 		contentPane.add(firstinfo);
