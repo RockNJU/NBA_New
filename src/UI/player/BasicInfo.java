@@ -268,7 +268,7 @@ public class BasicInfo extends JPanel {
 		ontime.setBounds(411, 168, 90, 25);
 		add(ontime);
 		
-		JLabel ontimeinfo = new JLabel(changedouble(pvo.getData().getTime()));
+		JLabel ontimeinfo = new JLabel(changedouble(pvo.getData().getTime_avg()));
 		ontimeinfo.setForeground(Color.DARK_GRAY);
 		ontimeinfo.setFont(new Font("ºÚÌå", Font.PLAIN, 17));
 		ontimeinfo.setBounds(491, 168, 91, 25);
