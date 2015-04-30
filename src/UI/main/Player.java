@@ -551,6 +551,7 @@ public class Player extends JPanel {
 
 	}
 	public static void supersort(String[] text,boolean[] unordown,boolean isaverage){
+		System.out.println("gengxin");
 		if(isaverage == true){
 			String Position = position.getSelectedItem().toString();
 			String Partition = partition.getSelectedItem().toString();

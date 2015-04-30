@@ -68,15 +68,16 @@ public class HotSort {
         for(int i=0;i<condition.length;i++){
         	if(condition[i]!=null){
         		cc.addComparator(new BeanComparator(condition[i]), reverse[i]);
+        		//System.out.println("conditions333"+ condition[i]);
         	}
         	
         }
         Collections.sort(playerSeasondata,cc );
-       /* for(int i=0;i<playerSeasondata.size();i++){
-        	PlayerSeasonDataVO pvo = playerSeasondata.get(i);
-            System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getPointNum_avg()+"]"+"  ["+pvo.getAssistNum_avg()+"]"+"  ["+pvo.getFoulNum_avg()+"]");
+      // for(int i=0;i<playerSeasondata.size();i++){
+       // 	PlayerSeasonDataVO pvo = playerSeasondata.get(i);
+           // System.out.println(pvo.getName()+"  "+pvo.getTeamName()+"  ["+pvo.getReboundNum_avg()+"]"+"  ["+pvo.getStartingNum()+"]"+"  ["+pvo.getMatchNum()+"]");
         	
-        }*/
+     //   }
 		return playerSeasondata;
 	}
 

@@ -69,7 +69,9 @@ public class SortItem_Map {
 	   map.put("·ÀÊØÀº°å", "d_ReboundNum_avg");
 	   map.put("½ø¹¥Àº°å", "o_ReboundNum_avg");
 	   map.put("·£ÀºÊı", "freeThrowNum_avg");
+	   map.put("·£ÇòÊı", "freeThrowNum_avg");
 	   map.put("·£ÀºÃüÖĞÊı", "freeThrowGoalNum_avg");
+	   map.put("·£ÇòÃüÖĞÊı", "freeThrowGoalNum_avg");
 	   ////////
 	   
 	   map.put("·ÀÊØÀº°åÊı", "d_ReboundNum_avg");

@@ -746,7 +746,8 @@ public class init extends JFrame {
 				
 				if(currenttext!=null){
 					init.p.supersort(currenttext, currentunordown, currentisaverage);
-					System.out.println("diaoyongle supersort");
+					//System.out.println("xianzaichuanru"+currenttext[0]+currenttext[1]+currenttext[2]+currentunordown[0]+currentunordown[1]+currentunordown[2]);
+					//System.out.println("diaoyongle supersort");
 				}
 			//}
 			
