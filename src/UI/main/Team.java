@@ -52,14 +52,14 @@ public class Team extends JPanel {
 	int tempchossen = 0;
 	JButton filterb;
 	
-	String[] teamtitle={" 序号  "," 球队名称  "," 比赛场数  "," 投篮命中数  "," 投篮出手次数  "," 三分命中数  ",
-			" 三分出手数  "," 罚球命中数  "," 罚球出手数  "," 进攻篮板数  "," 防守篮板数  "," 篮板数  "," 助攻数  ",
-			" 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 比赛得分  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
+	String[] teamtitle={" 序号  "," 球队名称  "," 比赛得分  "," 篮板数  "," 助攻数  "," 三分命中数  ",
+			" 三分出手数  "," 罚球命中数  "," 罚球出手数  "," 进攻篮板数  "," 防守篮板数  "," 投篮命中数  "," 投篮出手次数  ",
+			" 抢断数  "," 盖帽数  "," 失误数  "," 犯规数  "," 比赛场数  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
 			" 胜率  "," 进攻回合  ","防守回合"," 防守效率  "," 进攻效率  "," 进攻篮板率  "," 防守篮板率  "," 抢断效率  "," 助攻率  "};
 	
-	String[] teamtitleaverage={" 序号  "," 球队名称  "," 比赛场数  "," 平均投篮命中数  "," 平均投篮出手次数  "," 平均三分命中数  ",
-			" 平均三分出手数  "," 平均罚球命中数  "," 平均罚球出手数  "," 进平均攻篮板数  "," 平均防守篮板数  "," 平均篮板数  "," 平均助攻数  ",
-			" 平均抢断数  "," 平均盖帽数  "," 平均失误数  "," 平均犯规数  "," 平均比赛得分  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
+	String[] teamtitleaverage={" 序号  "," 球队名称  "," 平均比赛得分  "," 平均篮板数  "," 平均助攻数  "," 平均三分命中数  ",
+			" 平均三分出手数  "," 平均罚球命中数  "," 平均罚球出手数  "," 进平均攻篮板数  "," 平均防守篮板数  "," 平均投篮命中数  "," 平均投篮出手次数  ",
+			" 平均抢断数  "," 平均盖帽数  "," 平均失误数  "," 平均犯规数  "," 比赛场数  "," 投篮命中率  "," 三分命中率  "," 罚球命中率  ",
 			" 胜率  "," 进攻回合  ","防守回合"," 防守效率  "," 进攻效率  "," 进攻篮板率  "," 防守篮板率  "," 抢断效率  "," 助攻率  "};
 	
     String [] teamswest	={"ATL","CHI","BOS","CHA","CLE","BKN","MIA","DET",				
@@ -224,7 +224,7 @@ public class Team extends JPanel {
 		
 		according = new JComboBox();
 		according.setToolTipText("\u7B5B\u9009\u4F9D\u636E");
-		according.setModel(new DefaultComboBoxModel(new String[] {"\u6295\u7BEE\u51FA\u624B\u6570", "\u6295\u7BEE\u547D\u4E2D\u6570", "\u4E09\u5206\u547D\u4E2D\u6570", "\u4E09\u5206\u51FA\u624B\u6570", "\u7F5A\u7BEE\u547D\u4E2D\u6570", "\u7F5A\u7BEE\u6570", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u7BEE\u677F\u6570", "\u52A9\u653B\u6570", "\u62A2\u65AD\u6570", "\u76D6\u5E3D\u6570", "\u5931\u8BEF\u6570", "\u72AF\u89C4\u6570", "\u5F97\u5206", "\u6295\u7BEE\u547D\u4E2D\u7387", "\u4E09\u5206\u547D\u4E2D\u7387", "\u7F5A\u7403\u547D\u4E2D\u7387", "\u80DC\u7387", "\u8FDB\u653B\u56DE\u5408", "\u8FDB\u653B\u6548\u7387", "\u9632\u5B88\u6548\u7387", "\u8FDB\u653B\u7BEE\u677F\u7387", "\u9632\u5B88\u7BEE\u677F\u7387", "\u62A2\u65AD\u7387", "\u52A9\u653B\u7387"}));
+		according.setModel(new DefaultComboBoxModel(new String[] {"\u5F97\u5206", "\u7BEE\u677F\u6570", "\u52A9\u653B\u6570", "\u6295\u7BEE\u51FA\u624B\u6570", "\u6295\u7BEE\u547D\u4E2D\u6570", "\u4E09\u5206\u547D\u4E2D\u6570", "\u4E09\u5206\u51FA\u624B\u6570", "\u7F5A\u7BEE\u547D\u4E2D\u6570", "\u7F5A\u7BEE\u6570", "\u8FDB\u653B\u7BEE\u677F", "\u9632\u5B88\u7BEE\u677F", "\u62A2\u65AD\u6570", "\u76D6\u5E3D\u6570", "\u5931\u8BEF\u6570", "\u72AF\u89C4\u6570", "\u6295\u7BEE\u547D\u4E2D\u7387", "\u4E09\u5206\u547D\u4E2D\u7387", "\u7F5A\u7403\u547D\u4E2D\u7387", "\u80DC\u7387", "\u8FDB\u653B\u56DE\u5408", "\u8FDB\u653B\u6548\u7387", "\u9632\u5B88\u6548\u7387", "\u8FDB\u653B\u7BEE\u677F\u7387", "\u9632\u5B88\u7BEE\u677F\u7387", "\u62A2\u65AD\u7387", "\u52A9\u653B\u7387"}));
 		according.setBounds(135, 10, 127, 30);		
 		add(according);
 		according.setVisible(true);
@@ -651,21 +651,21 @@ public class Team extends JPanel {
 				re[i][0]=changenumber(i+1);
 				re[i][1]=da.get(i).getTeamName();
 				re[i][2]=da.get(i).getMatchNum();
-				re[i][3]=da.get(i).getFieldGoal();
-				re[i][4]=da.get(i).getShootNum();
-				re[i][5]=da.get(i).getT_fieldGoal();
+				re[i][3]=da.get(i).getPointNum();		
+				re[i][4]=da.get(i).getReboundNum();	
+				re[i][5]=da.get(i).getAssistNum();
 				re[i][6]=da.get(i).getT_shootNum();				
 				re[i][7]=da.get(i).getFreeThrowGoalNum();
 				re[i][8]=da.get(i).getFreeThrowNum();
 				re[i][9]=da.get(i).getO_ReboundNum();
 				re[i][10]=da.get(i).getD_ReboundNum();
-				re[i][11]=da.get(i).getReboundNum();				
-				re[i][12]=da.get(i).getAssistNum();
+				re[i][11]=		da.get(i).getT_fieldGoal();	
+				re[i][12]=da.get(i).getShootNum();
 				re[i][13]=da.get(i).getStealNum();
 				re[i][14]=da.get(i).getBlockNum();
 				re[i][15]=da.get(i).getTurnoverNum();
 				re[i][16]=da.get(i).getFoulNum();				
-				re[i][17]=da.get(i).getPointNum();				
+				re[i][17]=		da.get(i).getFieldGoal();
 				re[i][18]=OftenUseMethod.changedouble(da.get(i).getShootPercentage());
 				re[i][19]=OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
 				re[i][20]=OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());				
@@ -730,21 +730,21 @@ public class Team extends JPanel {
 				re[i][0]=changenumber(i+1);
 				re[i][1]=da.get(i).getTeamName();
 				re[i][2]=da.get(i).getMatchNum();
-				re[i][3]=OftenUseMethod.changedouble(da.get(i).getFieldGoal_avg());
-				re[i][4]=OftenUseMethod.changedouble(da.get(i).getShootNum_avg());
-				re[i][5]=OftenUseMethod.changedouble(da.get(i).getT_fieldGoal_avg());
+				re[i][3]=OftenUseMethod.changedouble(da.get(i).getPointNum_avg());		
+				re[i][4]=OftenUseMethod.changedouble(da.get(i).getReboundNum_avg());	
+				re[i][5]=OftenUseMethod.changedouble(da.get(i).getAssistNum_avg());
 				re[i][6]=OftenUseMethod.changedouble(da.get(i).getT_shootNum_avg());				
 				re[i][7]=OftenUseMethod.changedouble(da.get(i).getFreeThrowGoalNum_avg());
 				re[i][8]=OftenUseMethod.changedouble(da.get(i).getFreeThrowNum_avg());
 				re[i][9]=OftenUseMethod.changedouble(da.get(i).getO_ReboundNum_avg());
 				re[i][10]=OftenUseMethod.changedouble(da.get(i).getD_ReboundNum_avg());
-				re[i][11]=OftenUseMethod.changedouble(da.get(i).getReboundNum_avg());				
-				re[i][12]=OftenUseMethod.changedouble(da.get(i).getAssistNum_avg());
+				re[i][11]=OftenUseMethod.changedouble(da.get(i).getShootNum_avg());		
+				re[i][12]=OftenUseMethod.changedouble(da.get(i).getT_fieldGoal_avg());
 				re[i][13]=OftenUseMethod.changedouble(da.get(i).getStealNum_avg());
 				re[i][14]=OftenUseMethod.changedouble(da.get(i).getBlockNum_avg());
 				re[i][15]=OftenUseMethod.changedouble(da.get(i).getTurnoverNum_avg());
 				re[i][16]=OftenUseMethod.changedouble(da.get(i).getFoulNum_avg());				
-				re[i][17]=OftenUseMethod.changedouble(da.get(i).getPointNum_avg());				
+				re[i][17]=OftenUseMethod.changedouble(da.get(i).getFieldGoal_avg());
 				re[i][18]=OftenUseMethod.changedouble(da.get(i).getShootPercentage());
 				re[i][19]=OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
 				re[i][20]=OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());				

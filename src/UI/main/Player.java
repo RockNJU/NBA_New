@@ -55,15 +55,15 @@ public class Player extends JPanel {
 	JButton filterb;
 	
 	static String[] playerTotaltitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 				 "参赛场数",
-			"先发场数", "篮板", "助攻", "上场时间", "投篮命中率", "三分命中率",
+			"先发场数", "篮板", "助攻", "得分", "投篮命中率", "三分命中率",
 			"罚球命中率", "进攻", "防守", "抢断", "盖帽", "失误",
-			"犯规", "得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
+			"犯规", "上场时间", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 			"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 			"失误率", "使用率" ,"近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	static String[] playerAvgtitle = { " 序号  ", " 球员名称  ", " 所属球队  ", 			 "参赛场数",
-				"先发场数", "场均篮板", "场均助攻", "场均上场时间", "投篮命中率", "三分命中率",
+				"先发场数", "场均篮板", "场均助攻", "场均得分", "投篮命中率", "三分命中率",
 				"罚球命中s率", "场均进攻", "场均防守", "场均抢断", "场均盖帽", "场均失误",
-				"场均犯规", "场均得分", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
+				"场均犯规", "场均上场时间", "效率 ", "GmSc效率值", "真实命中率", "投篮效率",
 				"篮板率", "进攻篮板率", "防守篮板率", "助攻率", "抢断率", "盖帽率",
 				"失误率", "使用率","近五场得分提升率","近五场助攻提升率","近五场篮板提升率"};
 	String[] playerinfo = { " 序号  ", " 姓名  ", " 球号  ", " 位置  ", " 身高  ",
@@ -688,7 +688,7 @@ public class Player extends JPanel {
 				re[i][4] = da.get(i).getStartingNum();
 				re[i][5] = da.get(i).getReboundNum();
 				re[i][6] = da.get(i).getAssistNum();
-				re[i][7] = OftenUseMethod.changedouble(da.get(i).getTime());
+				re[i][7] = da.get(i).getPointNum();
 				re[i][8] = OftenUseMethod.changedouble(da.get(i).getShootPercentage());
 				re[i][9] = OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
 				re[i][10] = OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());
@@ -698,7 +698,7 @@ public class Player extends JPanel {
 				re[i][14] = da.get(i).getBlockNum();
 				re[i][15] = da.get(i).getTurnoverNum();
 				re[i][16] = da.get(i).getFoulNum();
-				re[i][17] = da.get(i).getPointNum();
+				re[i][17] = OftenUseMethod.changedouble(da.get(i).getTime());
 				re[i][18] = OftenUseMethod.changedouble(da.get(i).getEfficiency());
 				re[i][19] = OftenUseMethod.changedouble(da.get(i).getGmSc());
 				re[i][20] = OftenUseMethod.changedouble(da.get(i).getRealShootPercentage());
@@ -781,7 +781,7 @@ public class Player extends JPanel {
 				re[i][4] = da.get(i).getStartingNum();
 				re[i][5] = OftenUseMethod.changedouble(da.get(i).getReboundNum_avg());
 				re[i][6] = OftenUseMethod.changedouble(da.get(i).getAssistNum_avg());
-				re[i][7] = OftenUseMethod.changedouble(da.get(i).getTime_avg());
+				re[i][7] = OftenUseMethod.changedouble(da.get(i).getPointNum_avg());
 				re[i][8] = OftenUseMethod.changedouble(da.get(i).getShootPercentage());
 				re[i][9] = OftenUseMethod.changedouble(da.get(i).getT_shootPercentage());
 				re[i][10] = OftenUseMethod.changedouble(da.get(i).getFreeThrowPercentage());
@@ -791,7 +791,7 @@ public class Player extends JPanel {
 				re[i][14] = OftenUseMethod.changedouble(da.get(i).getBlockNum_avg());
 				re[i][15] = OftenUseMethod.changedouble(da.get(i).getTurnoverNum_avg());
 				re[i][16] = OftenUseMethod.changedouble(da.get(i).getFoulNum_avg());
-				re[i][17] = OftenUseMethod.changedouble(da.get(i).getPointNum_avg());
+				re[i][17] = OftenUseMethod.changedouble(da.get(i).getTime_avg());
 				re[i][18] = OftenUseMethod.changedouble(da.get(i).getEfficiency());
 				re[i][19] = OftenUseMethod.changedouble(da.get(i).getGmSc());
 				re[i][20] = OftenUseMethod.changedouble(da.get(i).getRealShootPercentage());
