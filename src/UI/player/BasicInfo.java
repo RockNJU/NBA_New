@@ -14,19 +14,27 @@ import javax.swing.JLabel;
 
 import java.awt.SystemColor;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 
 import javax.swing.SwingConstants;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.apache.batik.apps.rasterizer.SVGConverterException;
 
 import businessService.blservice.PlayerBLService;
 import UI.blObject.RMIObject;
 import UI.common.TeamName_Map;
 import UI.main.init;
+import UI.team.SingleTeam;
 import VO.PlayerInfoVO;
 import VO.PlayerSeasonDataVO;
 import VO.PlayerVO;
@@ -46,13 +54,13 @@ public class BasicInfo extends JPanel {
 	PlayerSeasonDataVO pdvo;
 	//RMIObject rmi=new RMIObject();
 	//PlayerBLService pbl;
-	
+	String se;
 	public BasicInfo(String name,String season)   {
 		
 		this.setSize(582, 474);
 		setLayout(null);
 		
-		
+		this.se=season;
 		
 		
 		
@@ -110,6 +118,52 @@ public class BasicInfo extends JPanel {
 		num_3.setFont(new Font("свт╡", Font.BOLD, 15));
 		num_3.setBounds(283, 50, 220, 20);
 		add(num_3);
+		
+		num_3.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SingleTeam spi;
+				try {
+					spi = new SingleTeam(pvo.getData().getTeamName(),se);
+				
+				init.currentdio="7(1)&"+pvo.getData().getTeamName()+";"+se;
+				System.out.println(init.currentpanel);
+			    spi.setVisible(true);
+				 spi.setLocation(375,80);
+				} catch (TransformerFactoryConfigurationError
+						| TransformerException | IOException
+						| SVGConverterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 		JLabel weight = new JLabel("\u4F53\u91CD\uFF1A");
 		weight.setForeground(Color.DARK_GRAY);

@@ -453,7 +453,7 @@ public class Team extends JPanel {
 							init.currentdio="7(1)&"+name+";"+s;
 							System.out.println(init.currentpanel);
 							 spi.setVisible(true);
-							 spi.setLocation(375, 58);
+							 spi.setLocation(375, 80);
 							} catch (TransformerFactoryConfigurationError
 									| TransformerException | IOException
 									| SVGConverterException e1) {
@@ -499,9 +499,10 @@ public class Team extends JPanel {
 						init.currentdio="7(1)&"+tempa+";"+s;
 						System.out.println(init.currentpanel);
 						//System.out.println("qiudui:"+tempa);
-						sti = new SingleTeam(tempa, "13-14");
+						String se=init.mbl.getAllSeason().get(0);
+						sti = new SingleTeam(tempa, se);
 						sti.setVisible(true);
-						sti.setLocation(375, 58);	
+						sti.setLocation(375, 80);	
 					} catch (TransformerFactoryConfigurationError e1) {
 						e1.printStackTrace();
 					} catch (TransformerException e1) {
@@ -536,7 +537,7 @@ public class Team extends JPanel {
 						//System.out.println("qiudui:"+tempa);
 						sti = new SingleTeam(tempa, "13-14");
 						sti.setVisible(true);
-						sti.setLocation(375, 58);	
+						sti.setLocation(375, 80);	
 					} catch (TransformerFactoryConfigurationError e1) {
 						e1.printStackTrace();
 					} catch (TransformerException e1) {

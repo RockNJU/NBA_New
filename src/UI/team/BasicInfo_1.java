@@ -1,6 +1,8 @@
 package UI.team;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -23,6 +25,7 @@ import UI.common.DOMRasterizer;
 import UI.common.PartitionMap;
 import UI.common.PlayerPosition_Map;
 import UI.main.init;
+import UI.player.SinglePlayer;
 import VO.PlayerInfoVO;
 import VO.TeamInfoVO;
 import VO.TeamSeasonDataVO;
@@ -251,8 +254,29 @@ public class BasicInfo_1 extends JPanel {
 		//TODO
 				Object[][] data=getTeamPlayers(init.pbl.getTeamAllPlayer(season,teamnameAbb));
 				String[] t=new String[] {"                          姓名                       ","              位置                ","             球龄            "};
-		CreateTable list=new CreateTable(t,data, 12,265,558,198, 20,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
+		final CreateTable list=new CreateTable(t,data, 12,265,558,198, 20,new Font("华文新魏", 0, 15),new Font("Dialog", 0, 12));
 		add(list);
+		
+		list.getTable().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// System.out.println(playerlist.getSelectedRow()!=-1);
+				// System.out.println(e.getClickCount() == 2);
+				// TODO Auto-generated method stub
+				if (e.getClickCount() == 2 && list.getSelectedRow() != -1) {
+					
+					String name = list.getValueAt(
+							list.getSelectedRow(),0);
+					// System.out.println(name);
+					init.currentdio="4(1)&"+name+";"+season;
+					System.out.println(init.currentpanel);
+					SinglePlayer spi = new SinglePlayer(name, season);
+					spi.setVisible(true);
+					spi.setLocation(375, 80);
+				}
+				
+			}
+		});
 		/*
 		table = new JTable(){    //设置jtable的单元格为透明的
 			public Component prepareRenderer(TableCellRenderer renderer,int row,int column){

@@ -392,7 +392,7 @@ public class Match extends JPanel {
 							//System.out.println(init.currentpanel);
 							SingleMatch spi = new SingleMatch(team,date );
 							spi.setVisible(true);
-							spi.setLocation(375, 58);
+							spi.setLocation(375, 80);
 						}
 						else{
 							tempchossen = matchlist.getSelectedColumn();

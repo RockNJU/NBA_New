@@ -69,6 +69,7 @@ public class CenterController {
 		MatchVO vo;
 		for(int i=0;i<polist.size();i++){
 			vo=matchpo_TO_po(polist.get(i));
+			//System.out.println("打印比赛日期："+vo.getDate());
 			match.add_A_match(vo);
 			 player.updatePlayerData(vo.getHostTeam().getIndividualData());
 			 player.updatePlayerData(vo.getGuestTeam().getIndividualData());
@@ -82,7 +83,7 @@ public class CenterController {
 	}
 	
 	public void addMatch(MatchPO po){
-		System.out.println("添加的po是否为空："+po==null);
+		//System.out.println("添加的po是否为空："+po==null);
 		MatchVO vo=matchpo_TO_po(po);
 		match.add_A_match(vo);
 		 player.updatePlayerData(vo.getHostTeam().getIndividualData());

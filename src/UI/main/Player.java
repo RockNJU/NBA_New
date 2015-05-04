@@ -313,7 +313,7 @@ public class Player extends JPanel {
 					System.out.println(init.currentpanel);
 					SinglePlayer spi = new SinglePlayer(name, season);
 					spi.setVisible(true);
-					spi.setLocation(375, 58);
+					spi.setLocation(375, 80);
 				}
 				else{
 					tempchossen = playerlist.getSelectedColumn();

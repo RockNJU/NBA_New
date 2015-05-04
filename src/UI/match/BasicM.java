@@ -1,13 +1,21 @@
 package UI.match;
 
 import javax.swing.*;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.apache.batik.apps.rasterizer.SVGConverterException;
 
 import businessService.blservice.MatchBLService;
 import UI.blObject.RMIObject;
 import UI.main.init;
+import UI.team.SingleTeam;
 import VO.MatchVO;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -18,14 +26,32 @@ public class BasicM extends JPanel {
 	//RMIObject rmi=new RMIObject();
 	Color win=Color.BLUE;
 	Color lose=Color.BLACK;
+	String season;
 	/**
 	 * Create the panel.
 	 */
+	public static String getSeason(String date){
+		String str[]=date.split("-");    //date的格式xxxx-xx-xx
+		
+		int f_year,l_year;
+		int year=Integer.parseInt(str[0].substring(2));
+		int month=Integer.parseInt(str[1]);
+		
+		if(month>=10){
+			f_year=year;
+			l_year=year+1;
+		}else{
+			f_year=year-1;
+			l_year=year;
+		}
+		String result=f_year+"-"+l_year;
+		return result;
+	}
 	public BasicM(String team, String date) {
 		setSize(760, 500);
 		setLayout(null);
 		setOpaque(false);
-		
+		season=getSeason(date);
 		//mbl=init.rmi.getMatchObject();
 		mvo=init.mbl.getMatchByTeam(date, team);
 		//System.out.println(mvo==null);
@@ -36,7 +62,52 @@ public class BasicM extends JPanel {
 		photoA.setBounds(15, 10, 226,226);
 		photoA.setOpaque(false);
 		add(photoA);
-		
+		photoA.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SingleTeam spi;
+				
+				try {
+					spi = new SingleTeam(mvo.getHostTeam().getTeamName(),season);
+				
+				init.currentdio="7(1)&"+mvo.getHostTeam().getTeamName()+";"+season;
+				//System.out.println(init.currentpanel);
+			    spi.setVisible(true);
+				 spi.setLocation(375, 80);
+				} catch (TransformerFactoryConfigurationError
+						| TransformerException | IOException
+						| SVGConverterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		ImageIcon imageB=new ImageIcon("pic\\TEAMPNG\\"+mvo.getGuestTeam().getTeamName()+".png");	
 		//显示图片
 		imageB.setImage(imageB.getImage().getScaledInstance(226,226,Image.SCALE_DEFAULT)); 
@@ -44,7 +115,52 @@ public class BasicM extends JPanel {
 		photoB.setBounds(520, 10, 226,226);
 		photoB.setOpaque(false);
 		add(photoB);
-		
+		photoB.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SingleTeam spi;
+				String season="13-14";
+				try {
+					spi = new SingleTeam(mvo.getGuestTeam().getTeamName(),season);
+				
+				init.currentdio="7(1)&"+mvo.getGuestTeam().getTeamName()+";"+season;
+				//System.out.println(init.currentpanel);
+			    spi.setVisible(true);
+				 spi.setLocation(375, 80);
+				} catch (TransformerFactoryConfigurationError
+						| TransformerException | IOException
+						| SVGConverterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
 		String totalscore[]=mvo.getMatchScore().split("-");
 		
 		
