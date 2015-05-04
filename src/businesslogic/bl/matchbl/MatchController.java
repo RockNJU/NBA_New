@@ -60,6 +60,13 @@ public class MatchController implements MatchBLService{
 		return matchFactory.get_A_Season_team_match(season, teamAbb);
 	}
 
+	@Override
+	public ArrayList<SingleMatchPersonalDataVO> getTodayHotPlayer(String item,
+			int n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

@@ -240,5 +240,11 @@ public class PlayerController implements PlayerBLService {
 				return sort.hotPlayer_Sort(list, condition,
 						  reverse);
 		}
+		@Override
+		public ArrayList<PlayerSeasonDataVO> getMost_Progress_Player(
+				String item, int n) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	
 }
