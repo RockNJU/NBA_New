@@ -199,13 +199,58 @@ public class Player  {
     
 	@CmdOption(names = { "-filter" }, description = "show filtered player information ", maxCount = 1, minCount = 0,
 			args = {"field"},conflictsWith = {"-sort"})
-	public void setFilterValue(){
+	public void setFilterValue(String field){
+		hasFilter = true;
+		String[] fieldList = field.split(",|£¬");
+		for(int i=0;i<fieldList.length;i++){
+			String f = fieldList[i].split(".|.")[0];
+			String v = fieldList[i].split(".|.")[1];
+			switch(f){
+			case("position"):
+				switch(v){
+				case("F"):
+					break;
+				case("G"):
+					break;
+				case("C"):
+					break;
+				case("All"):
+					break;
+				}
+				break;
+			case("league"):
+				switch(v){
+				case("West"):
+					break;
+				case("East"):
+					break;
+				case("All"):
+					break;
+				}
+				break;
+			case("age"):
+				switch(v){
+				case("<=22"):
+					break;
+				case("22< X <=25"):
+					break;
+				case("25< X <=30"):
+					break;
+				case(">30"):
+					break;
+				case("All"):
+					break;
+				}
+				break;
+			}
+		}
+		
 		
 	}
 	
 	@CmdOption(names = { "-sort" }, description = "show sorted player information ", maxCount = 1, minCount = 0,
 			args = {"field"},conflictsWith = {"-filter"})
-	public void setSortValue(){
+	public void setSortValue(String field){
 		
 	}
 
