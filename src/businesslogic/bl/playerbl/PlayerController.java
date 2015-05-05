@@ -111,7 +111,7 @@ public class PlayerController implements PlayerBLService {
 		}
 		private  ArrayList<PlayerSeasonDataVO> sort_division(ArrayList<PlayerSeasonDataVO>list,
 				String division) {
-			 
+			 /*按联盟筛选*/
 			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
 			for(int i=0;i<list.size();i++){
 				if(list.get(i).getDivision().equals(division)){
@@ -240,11 +240,71 @@ public class PlayerController implements PlayerBLService {
 				return sort.hotPlayer_Sort(list, condition,
 						  reverse);
 		}
+		
+		@Override
+		public ArrayList<PlayerInfoVO> getSortInfo(String position,
+				String league, String age) {
+			// TODO Auto-generated method stub
+			
+			ArrayList<PlayerInfoVO> result=new ArrayList<>();
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(playerFactory.getLastDay().getSeason()) ;
+			 
+			if(league.equals("West")){
+				/*西部*/
+				list=sort_division(list,"W");
+			}
+			if(league.equals("East")){
+				list=sort_division(list,"E");
+			}
+			if(position.equals("All")){
+			list=sort_position(list,position);
+			}
+			
+			
+			for(int i=0;i<list.size();i++){
+				result.add(list.get(i).getInfo());
+			}
+		
+			if(age.equals("<=22")){
+				result=sort_age(result,0,22);
+			}else if(age.equals("22< X <=25")){
+				result=sort_age(result,22,25);
+			}else if(age.equals("25< X <=30")){
+				result=sort_age(result,25,30);
+			}else if(age.equals(">30")){
+				result=sort_age(result,30,100);
+			}
+			else{
+				return result;
+			}
+			
+			return result;
+		}
+		
+		private ArrayList<PlayerInfoVO> sort_age(ArrayList<PlayerInfoVO> list,int low,int high){
+			ArrayList<PlayerInfoVO> result=new ArrayList<>();
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getAge()<=high && list.get(i).getAge()>low){
+					result.add(list.get(i));
+				}
+			}
+			
+			return result;
+		}
+		
 		@Override
 		public ArrayList<PlayerSeasonDataVO> getMost_Progress_Player(
 				String item, int n) {
 			// TODO Auto-generated method stub
-			return null;
+			
+			ArrayList<PlayerSeasonDataVO> result=new ArrayList<>();
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(playerFactory.getLastDay().getSeason()) ;
+			HotSort sort=new HotSort();
+			list= sort.hotPlayer_Sort(list,item);
+			for(int i=0;i<n;i++){
+				result.add(list.get(i));
+			}
+			return result; 
 		}
 	
 }
