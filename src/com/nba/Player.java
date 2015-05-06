@@ -2,8 +2,10 @@ package com.nba;
 
 import java.util.ArrayList;
 
+import test.data.PlayerHighInfo;
 import test.data.PlayerHotInfo;
 import test.data.PlayerKingInfo;
+import test.data.PlayerNormalInfo;
 import UI.blObject.RMIObject;
 import VO.PlayerSeasonDataVO;
 import VO.SingleMatchPersonalDataVO;
@@ -29,6 +31,10 @@ public class Player  {
 	private String kingField;
 	private boolean hasFilter = false;
 	private boolean hasSort = false;
+	private String default_p = "All";
+	private String default_l = "All";
+	private String default_a = "All";
+	private String default_s = "score.desc";
 	
 	private int num = 50;
 
@@ -202,9 +208,6 @@ public class Player  {
 	public void setFilterValue(String field){
 		hasFilter = true;
 		String[] fieldList = field.split(",|£¬");
-		String default_p = "All";
-		String default_l = "All";
-		String default_a = "All";
 		for(int i=0;i<fieldList.length;i++){
 			String f = fieldList[i].split(".|.")[0];
 			String v = fieldList[i].split(".|.")[1];
@@ -226,8 +229,30 @@ public class Player  {
 	}
 	
 	@CmdOption(names = { "-sort" }, description = "show sorted player information ", maxCount = 1, minCount = 0,
-			args = {"field"},conflictsWith = {"-filter"})
+			args = {"field"})
 	public void setSortValue(String field){
+		
+		RMIObject object = new RMIObject();
+		SortItem_Map_Test sortItem = new SortItem_Map_Test();
+		PlayerBLService pbls = object.getPlayerObject();
+		ArrayList<PlayerNormalInfo> resultN = new ArrayList<PlayerNormalInfo>();
+		ArrayList<PlayerHighInfo> resultH = new ArrayList<PlayerHighInfo>();
+		ArrayList<PlayerSeasonDataVO> initialResult = new ArrayList<PlayerSeasonDataVO>();
+		String[] fieldList = field.split(",|£¬");
+		boolean[] reverse = new boolean[fieldList.length];
+		String[] condition = new String[fieldList.length];
+		for(int i=0;i<fieldList.length;i++){
+			condition[i] = sortItem.getItem(fieldList[i].split(".|¡£")[0]);
+			if(fieldList[i].split(".|¡£")[1].equals("desc")){  //½µÐò
+				reverse[i] = false;
+			}else{
+				reverse[i] = true;
+			}
+			
+		}// end for
+		
+		initialResult = pbls.getSortInfo(default_p, default_l, default_a, fieldList, reverse);
+		
 		
 	}
 
