@@ -29,8 +29,7 @@ public class Player  {
 	private boolean isHighInfo = false;
 	private boolean hasAll = false;
 	private String kingField;
-	private boolean hasFilter = false;
-	private boolean hasSort = false;
+	private boolean hasSort = true;
 	private String default_p = "All";
 	private String default_l = "All";
 	private String default_a = "All";
@@ -100,6 +99,7 @@ public class Player  {
 			}// end switch
 			result.add(hotPlayer);
 		}
+		hasSort = false;
 		new AnalyseCmdOption().setResult(result);
 	}
 	
@@ -147,6 +147,7 @@ public class Player  {
 			}// end switch
 			result.add(kingPlayer);
 		}
+		hasSort = false;
 		new AnalyseCmdOption().setResult(result);
 	}
 	
@@ -189,6 +190,7 @@ public class Player  {
 			}// end switch
 			result.add(kingPlayer);
 		}
+		hasSort = false;
 		new AnalyseCmdOption().setResult(result);
 	}
 	
@@ -206,7 +208,6 @@ public class Player  {
 	@CmdOption(names = { "-filter" }, description = "show filtered player information ", maxCount = 1, minCount = 0,
 			args = {"field"},conflictsWith = {"-sort"})
 	public void setFilterValue(String field){
-		hasFilter = true;
 		String[] fieldList = field.split(",|£¬");
 		for(int i=0;i<fieldList.length;i++){
 			String f = fieldList[i].split(".|.")[0];
@@ -252,8 +253,93 @@ public class Player  {
 		}// end for
 		
 		initialResult = pbls.getSortInfo(default_p, default_l, default_a, fieldList, reverse);
+		if(initialResult.size()>num){
+			initialResult = (ArrayList<PlayerSeasonDataVO>) initialResult.subList(0, num);
+		}
+		if(isHighInfo){
+			for(int i=0;i<initialResult.size();i++){
+				PlayerHighInfo high = new PlayerHighInfo();
+				PlayerSeasonDataVO ps = initialResult.get(i);
+				high.setAssistEfficient(ps.getAssistEfficiency_avg());
+				high.setBlockShotEfficient(ps.getBlockEfficiency_avg());
+				high.setDefendReboundEfficient(ps.getDefenseReboundEff_avg());
+				high.setFaultEfficient(ps.getTurnoverPercentage());
+				high.setFrequency(ps.getUsingPercentage_avg());
+				high.setGmSc(ps.getGmSc());
+				high.setLeague(ps.get);
+				high.setName(ps.getName());
+				high.setOffendReboundEfficient(ps.getOffensiveReboundEff_avg());
+				high.setPosition(ps.getPosition());
+				high.setRealShot(ps.getRealShootPercentage());
+				high.setReboundEfficient(ps.getReboundEfficiency_avg());
+				high.setShotEfficient(ps.getShootEfficiency());
+				high.setStealEfficient(ps.getStealEfficiency_avg());
+				high.setTeamName(ps.getTeamName());
+				
+				resultH.add(high);
+			}
+		}else{
+			PlayerNormalInfo normal = new PlayerNormalInfo();
+			if(isShowTotal){
+				for(int i=0;i<initialResult.size();i++){
+					PlayerSeasonDataVO ps = initialResult.get(i);
+					normal.setAge(ps.getAge());
+					normal.setAssist(ps.getAssistNum());
+					normal.setBlockShot(ps.getBlockNum());
+					normal.setDefend(ps.getDefend());
+					normal.setEfficiency(ps.getEfficiency());
+					normal.setFault(ps.getTurnoverNum());
+					normal.setFoul(ps.getFoulNum());
+					normal.setMinute(ps.getTime());
+					normal.setName(ps.getName());
+					normal.setNumOfGame(ps.getMatchNum());
+					normal.setOffend(ps.getOffend());
+					normal.setPenalty(ps.getFreeThrowPercentage());
+					normal.setPoint(ps.getPointNum());
+					normal.setRebound(ps.getReboundNum());
+					normal.setShot(ps.getShootPercentage());
+					normal.setStart(ps.getStartingNum());
+					normal.setSteal(ps.getStealNum());
+					normal.setTeamName(ps.getTeamName());
+					normal.setThree(ps.getT_shootPercentage());
+					
+					resultN.add(normal);
+				}
+				
+			}else{
+				for(int i=0;i<initialResult.size();i++){
+					PlayerSeasonDataVO ps = initialResult.get(i);
+					normal.setAge(ps.getAge());
+					normal.setAssist(ps.getAssistNum_avg());
+					normal.setBlockShot(ps.getBlockNum_avg());
+					normal.setDefend(ps.getDefend_avg());
+					normal.setEfficiency(ps.getEfficiency());
+					normal.setFault(ps.getTurnoverNum_avg());
+					normal.setFoul(ps.getFoulNum_avg());
+					normal.setMinute(ps.getTime_avg());
+					normal.setName(ps.getName());
+					normal.setNumOfGame(ps.getMatchNum());
+					normal.setOffend(ps.getOffend_avg());
+					normal.setPenalty(ps.getFreeThrowPercentage());
+					normal.setPoint(ps.getPointNum_avg());
+					normal.setRebound(ps.getReboundNum_avg());
+					normal.setShot(ps.getShootPercentage());
+					normal.setStart(ps.getStartingNum());
+					normal.setSteal(ps.getStealNum_avg());
+					normal.setTeamName(ps.getTeamName());
+					normal.setThree(ps.getT_shootPercentage());
+					
+					resultN.add(normal);
+			}
+		}
 		
 		
 	}
 
+		if(isHighInfo){
+			new AnalyseCmdOption().setResult(resultH);
+		}else{
+			new AnalyseCmdOption().setResult(resultN);
+		}
+}
 }
