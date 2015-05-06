@@ -202,48 +202,25 @@ public class Player  {
 	public void setFilterValue(String field){
 		hasFilter = true;
 		String[] fieldList = field.split(",|£¬");
+		String default_p = "All";
+		String default_l = "All";
+		String default_a = "All";
 		for(int i=0;i<fieldList.length;i++){
 			String f = fieldList[i].split(".|.")[0];
 			String v = fieldList[i].split(".|.")[1];
 			switch(f){
 			case("position"):
-				switch(v){
-				case("F"):
-					break;
-				case("G"):
-					break;
-				case("C"):
-					break;
-				case("All"):
-					break;
-				}
+			    default_p = v;
 				break;
 			case("league"):
-				switch(v){
-				case("West"):
-					break;
-				case("East"):
-					break;
-				case("All"):
-					break;
-				}
+				default_l = v;
 				break;
 			case("age"):
-				switch(v){
-				case("<=22"):
-					break;
-				case("22< X <=25"):
-					break;
-				case("25< X <=30"):
-					break;
-				case(">30"):
-					break;
-				case("All"):
-					break;
-				}
+				default_a = v;
 				break;
 			}
-		}
+		}//end for
+		
 		
 		
 	}

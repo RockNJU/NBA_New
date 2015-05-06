@@ -35,7 +35,7 @@ public class Console {
 		AnalyseCmdOption cmdAnalyse = new AnalyseCmdOption();
 		cmdAnalyse.setArgs(args);
 		cmdAnalyse.start();
-		ArrayList<Object> result = cmdAnalyse.getResult();
+		ArrayList<?> result = cmdAnalyse.getResult();
 		for(int i=0;i<result.size();i++){
 			out.print(result.get(i));
 		}

@@ -37,6 +37,6 @@ public interface PlayerBLService{
 		public ArrayList<PlayerSeasonDataVO> getSeasonHotPlayer(String sortItem,int n);//获取最新赛季的热点球员,传入筛选项目和返回数据个数
 		public  ArrayList<PlayerSeasonDataVO> getMost_Progress_Player(String item,int n);//获取进步最快球员 ，传入筛选项目和返回数据个数
 		
-		public ArrayList<PlayerInfoVO> getSortInfo(String position,String league,String age);
+		public ArrayList<PlayerInfoVO> getSortInfo(String position,String league,String age,String[] condition,boolean[] reverse);
 		 
 }
