@@ -17,14 +17,14 @@ public class MatchDataFactory {
 	private LastMatchDay lastDay;
 	
 	public static void main(String args[]){
-		MatchDataFactory l=new MatchDataFactory();
+		MatchDataFactory l=new MatchDataFactory("");
 		ArrayList<MatchVO> list=l.get_A_Day_match("2013-12-03");
 		for(int i=0;i<list.size();i++){
 			System.out.println(list.get(i).getDate());;
 		}
 	}
-	public MatchDataFactory(){
-		TeamDataService teamdata=new TeamData();
+	public MatchDataFactory(String path){
+		TeamDataService teamdata=new TeamData(path);
 		infoList=teamdata.getTeamInfoList();
 		lastDay=new LastMatchDay("","");
 		matchList=new ArrayList<>();

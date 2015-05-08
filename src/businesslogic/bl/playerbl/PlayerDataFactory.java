@@ -17,8 +17,8 @@ public class PlayerDataFactory {
 	private LastMatchDay lastDay;
 	
 	
-	public PlayerDataFactory(){
-		PlayerDataController plc=new PlayerDataController();
+	public PlayerDataFactory(String player_path){
+		PlayerDataController plc=new PlayerDataController(player_path);
 		infoList=plc.getAllPlayer();
 		lastDay=new LastMatchDay("--","--");
 		dataList=new ArrayList<>();

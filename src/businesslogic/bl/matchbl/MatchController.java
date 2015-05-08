@@ -1,19 +1,16 @@
 package businesslogic.bl.matchbl;
 
 import java.util.ArrayList;
-
 import businessService.blservice.MatchBLService;
 import businesslogic.bl.center.HotSort;
-import VO.A_player_match_data;
-import VO.MatchInfo;
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
 
 public class MatchController implements MatchBLService{
 	MatchDataFactory matchFactory;
 	
-	public MatchController(){
-		matchFactory=new MatchDataFactory();
+	public MatchController(String match_path){
+		matchFactory=new MatchDataFactory(match_path);
 	}
 	
 	public void add_A_match(MatchVO vo){

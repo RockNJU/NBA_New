@@ -11,8 +11,8 @@ import VO.TeamVO;
 public class TeamController implements TeamBLService,TeamInfo_player{
        private TeamDataFactory teamFactory;
        
-       public TeamController(){
-    	   teamFactory=new TeamDataFactory();
+       public TeamController(String path){
+    	   teamFactory=new TeamDataFactory(path);
        }
 
        

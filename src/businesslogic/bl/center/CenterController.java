@@ -24,21 +24,31 @@ public class CenterController {
 	TeamController team;
 	PackageListener listener;
 	
+	String match_path;
+	String player_path;
+	String team_path;
+	
 	public CenterController(){
-		 match=new MatchController();
-		 player=new PlayerController();
-		 team=new TeamController();
+		 match=new MatchController("NBAdata\\matches");
+		 player=new PlayerController("NBAdata\\players");
+		 team=new TeamController("NBAdata/teams/teams");
 
 		init();
 		listener=new PackageListener("NBAdata\\matches");
 	}
-	public CenterController(String path){
-		match=new MatchController();
-		 player=new PlayerController();
-		 team=new TeamController();
+	
+	public CenterController(String player_path,String team_path,String match_path){
+		
+		this.match_path=match_path;
+		this.player_path=player_path;
+		this.team_path=team_path;
+		match=new MatchController(match_path);
+	    player=new PlayerController(player_path);
+		team=new TeamController(team_path);
 
 		init();
-		listener=new PackageListener(path);
+		
+		listener=new PackageListener(match_path);
 	}
 	
 	public static String time()
@@ -72,7 +82,7 @@ public class CenterController {
 	}
 	
 	private void init(){
-		MatchDataService mc=new MatchDataController();
+		MatchDataService mc=new MatchDataController(match_path);
 		ArrayList<MatchPO> polist=mc.getAllMatch();
 		MatchVO vo;
 		for(int i=0;i<polist.size();i++){
@@ -319,7 +329,7 @@ public class CenterController {
 		        			if(!isOld){
 		        				addNewFile(newFileList[i]);
 		        				char c=92;
-		        				MatchDataService mc=new MatchDataController();
+		        				MatchDataService mc=new MatchDataController(match_path);
 		        				MatchPO po=mc.getMatch(path+"\\\\"+newFileList[i]);
 		        			//	System.out.println("----***--检测到的文件***："+newFileList[i]);
 		        				 // System.out.println("----***--检测到的文件："+newFileList[i]+"------"

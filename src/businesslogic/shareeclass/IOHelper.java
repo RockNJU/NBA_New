@@ -40,7 +40,7 @@ public class IOHelper {
 		
 		public static void main(String args[]){
 			ArrayList<MatchVO>list=new ArrayList<MatchVO>();
-			MatchController mc=new MatchController();
+			MatchController mc=new MatchController("NBAdata//matches");
 			//list=mc.getAllMatchVO();
 			IOHelper io=new IOHelper();
 			ArrayList<MatchVO> dp=new ArrayList<MatchVO>();

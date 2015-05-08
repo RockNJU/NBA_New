@@ -17,14 +17,17 @@ public class TeamData implements TeamDataService{
 	 * 
 	 * */
       private  ArrayList<TeamInfoVO> teamInfoList;
-      public TeamData(){
+      public TeamData(String path){
+    	  teamInfoList=new ArrayList<TeamInfoVO>();
+    	  readObject(path);
+      }
+    /*  public TeamData(){
     	  teamInfoList=new ArrayList<TeamInfoVO>();
     	  readObject("NBAdata/teams/teams");
-      }
-      
+      }*/
       public static void main(String args[]){
     	  System.out.println("进入球队数据层main函数");
-    	  TeamData t=new TeamData();
+    	  TeamData t=new TeamData("");
     	  
     	  ArrayList<TeamInfoVO> list=t.getTeamInfoList(); 
     	  TeamInfoVO po;

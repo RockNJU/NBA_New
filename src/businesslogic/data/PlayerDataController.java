@@ -16,13 +16,15 @@ import businesslogic.shareeclass.FileList;
 public class PlayerDataController implements PlayerDataService {
 	
 	private ArrayList<PlayerInfoVO> playerList;
-	public PlayerDataController(){
+	String player_path;
+	public PlayerDataController(String path){
+		this.player_path=path;
 		playerList=new ArrayList<PlayerInfoVO>();
 		readObject();
 	}
 	
 	public static void main(String args[]) throws NumberFormatException, IOException{
-		PlayerDataController da=new PlayerDataController();
+		PlayerDataController da=new PlayerDataController("NBAdata//players");
 		ArrayList<PlayerInfoVO> pl=da.getAllPlayer();
 		System.out.println("进入main函数进行测试� "+pl.size());
 		for(int i=0;i<pl.size();i++){
@@ -44,7 +46,7 @@ public class PlayerDataController implements PlayerDataService {
 		  * */
 		       
 		    	ArrayList<String> strList=new ArrayList<>();
-		    	String FILE_IN = "NBAdata/players/info";  
+		    	String FILE_IN = player_path;  
 		        File f = new File(FILE_IN);  
 		        List<String> list = new ArrayList<String>();  
 		        list = FileList.getFileList(f);  

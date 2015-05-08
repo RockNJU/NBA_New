@@ -21,15 +21,17 @@ public class MatchDataController implements MatchDataService{
 	private ArrayList<MatchPO> matchList;
 	
 	Date day;
+	String match_path;
 	int info[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-	public MatchDataController(){
+	public MatchDataController(String path){
+		this.match_path=path;
 		matchList=new ArrayList<>();
 		day=new Date();
 		//readObject();
 	}
 	
 	public static void main(String args[]){
-		MatchDataController c=new MatchDataController();
+		MatchDataController c=new MatchDataController("");
 		 //MatchPO  po=c.getMatch("NBAdata\\matches\\12-13_11-11_ATL-LAC");
 		ArrayList<MatchPO> m=c.getAllMatch();
 		int i=0;
@@ -266,7 +268,7 @@ public class MatchDataController implements MatchDataService{
 		       
 		        //readTxtFile(filePath);
 		    
-		    	String FILE_IN = "NBAdata\\matches";  
+		    	String FILE_IN = match_path;  
 		        File f = new File(FILE_IN);  
 		        String encoding="UTF-8";
 		        List<String> list = new ArrayList<String>();  

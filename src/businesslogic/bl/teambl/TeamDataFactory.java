@@ -13,8 +13,8 @@ public class TeamDataFactory {
 	  ArrayList<TeamSeasonData> dataList;
 	  private LastMatchDay lastDay;
 	  
-	  public TeamDataFactory(){
-		  TeamDataService td=new TeamData();
+	  public TeamDataFactory(String path){
+		  TeamDataService td=new TeamData(path);
 		  infoList=td.getTeamInfoList();
 		  dataList=new ArrayList<>();
 		  lastDay=new LastMatchDay("--","--");
