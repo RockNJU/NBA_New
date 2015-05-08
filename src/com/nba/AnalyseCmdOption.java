@@ -13,13 +13,6 @@ import de.tototec.cmdoption.*;
 
 public class AnalyseCmdOption{
 	
-	/*static ArrayList<PlayerHighInfo> result_PHigh = new ArrayList<PlayerHighInfo>();
-	static ArrayList<PlayerHotInfo> result_PHot = new ArrayList<PlayerHotInfo>();
-	static ArrayList<PlayerKingInfo> result_PKing = new ArrayList<PlayerKingInfo>();
-	static ArrayList<PlayerNormalInfo> result_PNomal = new ArrayList<PlayerNormalInfo>();
-	static ArrayList<TeamHighInfo> result_THigh = new ArrayList<TeamHighInfo>();
-	static ArrayList<TeamHotInfo> result_Thot = new ArrayList<TeamHotInfo>();
-	static ArrayList<TeamNormalInfo> result_TNormal = new ArrayList<TeamNormalInfo>();*/
 	static ArrayList<?> result;
 	String[] args;
 
@@ -43,6 +36,17 @@ public class AnalyseCmdOption{
 	
 	public void setResult(ArrayList<?> list){
 		this.result = list;
+	}
+	
+	public static void main(String[] args){
+		AnalyseCmdOption cmdAnalyse = new AnalyseCmdOption();
+		String[] arg = {"-player","-hot","score","-n","10","-print"};
+		cmdAnalyse.setArgs(arg);
+		cmdAnalyse.start();
+		ArrayList<?> result = cmdAnalyse.getResult();
+		for(int i=0;i<result.size();i++){
+			System.out.println((i+1)+"\n"+result.get(i).toString());
+		}
 	}
 
 }  // end class AnalyseCmdOption

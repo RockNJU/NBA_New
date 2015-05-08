@@ -26,9 +26,14 @@ public interface TeamBLService {
 	
 	
 	public ArrayList<TeamSeasonDataVO> sort(String season,String[] condition,boolean[] reverse);  //根据赛季和多重排序的实现 属性对球队进行排序后返回
-	
+	//====================测试所需方法============================
+	//排序条件移除赛季  
+	public ArrayList<TeamSeasonDataVO> sort(String[] condition,boolean[] reverse);  //根据多重排序的实现 属性对球队进行排序后返回
 	public ArrayList<TeamSeasonDataVO> getHotTeam(String season,String item);
 	//根据赛季和筛选的条件 获取赛季热点球队，即排名前五的球队
+	//===========================测试所需方法===========
+	public ArrayList<TeamSeasonDataVO> getHotTeam(String item);   
+	//根据筛选的条件 获取赛季热点球队，所有的  ，不仅仅是前5
 
 	//TODO 不知道你们的根据关键词查找到底理解的什么意思，我觉得是输入关键词，返回符合要求的队伍arraylist，另外觉得不用考虑赛季
 	public ArrayList<TeamSeasonDataVO> find(String text);

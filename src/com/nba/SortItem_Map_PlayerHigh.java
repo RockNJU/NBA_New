@@ -2,11 +2,11 @@ package com.nba;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SortItem_Map_Test {
+public class SortItem_Map_PlayerHigh {
      Map<String, String> map=new HashMap<String, String>();
  
 	
-   public SortItem_Map_Test(){
+   public SortItem_Map_PlayerHigh(){
 	   
 	   //»ù´¡Êý¾Ý
 	   map.put("point", "pointNum_avg");
