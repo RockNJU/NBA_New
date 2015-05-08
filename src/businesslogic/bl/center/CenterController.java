@@ -32,6 +32,14 @@ public class CenterController {
 		init();
 		listener=new PackageListener("NBAdata\\matches");
 	}
+	public CenterController(String path){
+		match=new MatchController();
+		 player=new PlayerController();
+		 team=new TeamController();
+
+		init();
+		listener=new PackageListener(path);
+	}
 	
 	public static String time()
 	 {

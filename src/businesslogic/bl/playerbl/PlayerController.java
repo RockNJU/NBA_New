@@ -138,7 +138,7 @@ public class PlayerController implements PlayerBLService {
 			/*这个地方有待思考*/
 			ArrayList<PlayerSeasonDataVO> vo=new ArrayList<>();
 			for(int i=0;i<list.size();i++){
-				if(list.get(i).getPosition().contains(position)){
+				if(list.get(i).getInfo().getPosition().contains(position)){
 				vo.add(list.get(i));
 				}
 			}
@@ -240,7 +240,7 @@ public class PlayerController implements PlayerBLService {
 				return sort.hotPlayer_Sort(list, condition,
 						  reverse);
 		}
-		
+		/*
 		@Override
 		public ArrayList<PlayerInfoVO> getSortInfo(String position,
 				String league, String age) {
@@ -250,7 +250,7 @@ public class PlayerController implements PlayerBLService {
 			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(playerFactory.getLastDay().getSeason()) ;
 			 
 			if(league.equals("West")){
-				/*西部*/
+				//西部
 				list=sort_division(list,"W");
 			}
 			if(league.equals("East")){
@@ -281,7 +281,21 @@ public class PlayerController implements PlayerBLService {
 			return result;
 		}
 		
-		private ArrayList<PlayerInfoVO> sort_age(ArrayList<PlayerInfoVO> list,int low,int high){
+		*/
+		
+		
+		private ArrayList<PlayerSeasonDataVO> sort_age(ArrayList<PlayerSeasonDataVO>list,int low,int high){
+			ArrayList<PlayerSeasonDataVO> result=new ArrayList<>();
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getAge()<=high && list.get(i).getAge()>low){
+					result.add(list.get(i));
+				}
+			}
+			
+			return result;
+		}
+		
+		private ArrayList<PlayerInfoVO> sort_age1(ArrayList<PlayerInfoVO>list,int low,int high){
 			ArrayList<PlayerInfoVO> result=new ArrayList<>();
 			for(int i=0;i<list.size();i++){
 				if(list.get(i).getAge()<=high && list.get(i).getAge()>low){
@@ -305,6 +319,46 @@ public class PlayerController implements PlayerBLService {
 				result.add(list.get(i));
 			}
 			return result; 
+		}
+		@Override
+		public ArrayList<PlayerSeasonDataVO> getSortInfo(String position,
+				String league, String age, String[] condition, boolean[] reverse) {
+			
+			ArrayList<PlayerSeasonDataVO> result=new ArrayList<>();
+			ArrayList<PlayerSeasonDataVO> list= playerFactory.getSeasonDataList(playerFactory.getLastDay().getSeason()) ;
+			 
+			if(league.equals("West")){
+				/*西部*/
+				list=sort_division(list,"W");
+			}
+			if(league.equals("East")){
+				list=sort_division(list,"E");
+			}
+			if(!position.equals("All")){
+			list=sort_position(list,position);
+			}
+			
+			
+			for(int i=0;i<list.size();i++){
+				result.add(list.get(i));
+			}
+		
+			if(age.equals("<=22")){
+				result=sort_age(result,0,22);
+			}else if(age.equals("22< X <=25")){
+				result=sort_age(result,22,25);
+			}else if(age.equals("25< X <=30")){
+				result=sort_age(result,25,30);
+			}else if(age.equals(">30")){
+				result=sort_age(result,30,100);
+			}
+			else{
+				;
+			}
+			
+			HotSort sort=new HotSort();
+			return sort.hotPlayer_Sort(result, condition,
+					  reverse);
 		}
 	
 }

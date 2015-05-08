@@ -87,4 +87,8 @@ public class TeamDataFactory {
 		}
 		return null;
 	}
+
+	public LastMatchDay getLastDay() {
+		return lastDay;
+	}
 }

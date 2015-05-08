@@ -89,4 +89,23 @@ public class TeamController implements TeamBLService,TeamInfo_player{
 		return sort.hotTeam_Sort(list, condition, reverse);
 	}
 
+
+	@Override
+	public ArrayList<TeamSeasonDataVO> sort(String[] condition,
+			boolean[] reverse) {
+		ArrayList<TeamSeasonDataVO> list=teamFactory.getALLTeamSeasonData(
+				teamFactory.getLastDay().getSeason());
+		HotSort sort=new HotSort();
+		return sort.hotTeam_Sort(list,condition,reverse);
+	}
+
+
+	@Override
+	public ArrayList<TeamSeasonDataVO> getHotTeam(String item) {
+		ArrayList<TeamSeasonDataVO> list=teamFactory.getALLTeamSeasonData(
+				teamFactory.getLastDay().getSeason());
+		HotSort sort=new HotSort();
+		return sort.hotTeam_Sort(list, item);
+	}
+
 }

@@ -1,23 +1,22 @@
 package VO;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-public class PlayerSeasonDataVO implements Serializable{
+public class PlayerSeasonDataVO {
 
 	/**
 	 * 
 	 */
 	
-	private static final long serialVersionUID = 1L;
 	String season;					 //赛季
 	private String name;					 //球员姓名
 	private String reverseName;            //球员姓名反置
 	
+	private int age;					//年龄，为测试新添加的属性
 	
 	PlayerInfoVO info;
 	
 	private String teamName;		 //所在球队名,为球队的缩写
-	private String division;		 //球员目前所效力球队所在的分区
+	private String league;		 //球员目前所效力球队所在的分区
 	private String partition;		 //球员所效力球队所在的赛区
 	private String position;	     //场上位置
 	private int matchNum;		 	 //出场次数
@@ -112,7 +111,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.season=season;
 				this.name=name;
 				
-				
+				this.age=info.getAge();
 					
 				String str[]=name.trim().split(" ");
 				if(str.length>1){
@@ -125,7 +124,7 @@ public class PlayerSeasonDataVO implements Serializable{
 				this.info=info;
 				this.teamName=teamName;
 			
-				this.division=division;
+				this.league=division;
 				 this.partition=partition;
 				this.position=position;
 				this.matchNum=matchNum;
@@ -470,12 +469,12 @@ public class PlayerSeasonDataVO implements Serializable{
 
 
 	public String getDivision() {
-		return division;
+		return league;
 	}
 
 
 	public void setDivision(String division) {
-		this.division = division;
+		this.league = division;
 	}
 
 	public String getPartition() {
@@ -787,6 +786,18 @@ public class PlayerSeasonDataVO implements Serializable{
 
 	public double getBlockEfficiency_avg() {
 		return blockEfficiency_avg;
+	}
+
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+
+	public String getLeague() {
+		return league;
 	}
 
 	

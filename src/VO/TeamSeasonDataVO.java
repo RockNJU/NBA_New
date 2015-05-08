@@ -11,8 +11,12 @@ public class TeamSeasonDataVO {
 	 */
  
 	String season;					 //赛季
-	String teamName; 				 //球队缩写
+	String teamAbb; 				 //球队缩写
+	private String fullName; 				 //球队全名
 	private TeamInfoVO info;
+	
+	private String league;          //球队联盟，即表示是处于东部还是西部
+	private String partition;       //球队所处的赛区，如，大西洋赛区
 	
 	int matchNum; 				     //已比赛场数
 	int winNum;						 //胜利场数
@@ -85,8 +89,12 @@ public class TeamSeasonDataVO {
 		last_five_match=new ArrayList<>();
 		 last_five_match.add(first_match);
 		this.season=season;
-		this.teamName = teamName; 
+		this.teamAbb = teamName; 
 		this.info=info;
+		this.league=info.getDivision();
+		this.partition=info.getPartition();
+		this.fullName=info.getFullName();
+		
 		this.matchNum = matchNum ; 
 		this.winNum = winNum;
 		this.fieldGoal = fieldGoal ;  
@@ -234,7 +242,7 @@ public class TeamSeasonDataVO {
 	}
 	
 	public String getTeamName() {
-		return teamName;
+		return teamAbb;
 	}
 
 	 
@@ -470,7 +478,7 @@ public class TeamSeasonDataVO {
 
 
 		public void setTeamName(String teamName) {
-			this.teamName = teamName;
+			this.teamAbb = teamName;
 		}
 
 
@@ -537,5 +545,25 @@ public class TeamSeasonDataVO {
 
 		public double getD_ReboundEfficiency_avg() {
 			return defenseReboundEff_avg;
+		}
+
+
+		public String getTeamAbb() {
+			return teamAbb;
+		}
+
+
+		public String getFullName() {
+			return fullName;
+		}
+
+
+		public String getLeague() {
+			return league;
+		}
+
+
+		public String getPartition() {
+			return partition;
 		}
 }
