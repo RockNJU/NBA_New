@@ -38,12 +38,15 @@ public class Team {
 	private String default_n = "score.desc";
 	private String default_h = "winRate.desc";
 	public ArrayList<?> finalResult;
-
+	RMIObject object;
 	private int num = 30;
 
+	
+	public Team(RMIObject o){
+		object = o;
+	}
 	@CmdOption(names = { "-print" }, description = "return the result", maxCount = 1, minCount = 0)
 	public void setPrintResult() {
-		
 		
 		if(isHot&&num==30){
 			num=5;
@@ -102,7 +105,6 @@ public class Team {
 	public void setHotTeam(String field) {
     
 		isHot = true;
-		RMIObject object = new RMIObject();
 		TeamBLService tbls = object.getTeamObject();
 		SortItem_Map_Team sortItem = new SortItem_Map_Team();
 		ArrayList<TeamHotInfo> result = new ArrayList<TeamHotInfo>();
@@ -177,7 +179,7 @@ public class Team {
 			}
 			
 		}
-		RMIObject object = new RMIObject();
+		
 		SortItem_Map_Team sortItem = new SortItem_Map_Team();
 		TeamBLService tbls = object.getTeamObject();
 		ArrayList<TeamNormalInfo> resultN = new ArrayList<TeamNormalInfo>();

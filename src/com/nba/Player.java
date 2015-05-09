@@ -25,6 +25,7 @@ import de.tototec.cmdoption.CmdOption;
 
 @CmdCommand(names = { "-player", "-p" }, description = "show player information")
 public class Player {
+	
 	private boolean isShowTotal = false;
 	private boolean isHighInfo = false;
 	private boolean hasAll = false;
@@ -36,8 +37,12 @@ public class Player {
 	private String default_a = "All";
 	private String default_s = "score.desc";
 	public ArrayList<?> finalResult;
-
+	RMIObject object;
 	private int num = 50;
+	
+	public Player(RMIObject o){
+		object = o;
+	}
 
 	@CmdOption(names = { "-print" }, description = "return the result", maxCount = 1, minCount = 0)
 	public void setPrintResult() {
@@ -85,7 +90,6 @@ public class Player {
 	public void setHotPlayer(String field) {
     
 		isKingOrHot = true;
-		RMIObject object = new RMIObject();
 		PlayerBLService pbls = object.getPlayerObject();
 		ArrayList<PlayerHotInfo> result = new ArrayList<PlayerHotInfo>();
 		ArrayList<PlayerSeasonDataVO> initialResult = new ArrayList<PlayerSeasonDataVO>();
@@ -145,7 +149,6 @@ public class Player {
 	@CmdOption(names = { "-season" }, description = "show season player king", maxCount = 1, minCount = 0, requires = { "-king" }, conflictsWith = { "-daily" })
 	public void setSeasonPlayerKing() {
 		isKingOrHot = true;
-		RMIObject object = new RMIObject();
 		PlayerBLService pbls = object.getPlayerObject();
 		ArrayList<PlayerKingInfo> result = new ArrayList<PlayerKingInfo>();
 		ArrayList<PlayerSeasonDataVO> initialResult = new ArrayList<PlayerSeasonDataVO>();
@@ -190,7 +193,6 @@ public class Player {
 	public void setDailyPlayerKing() {
 
 		isKingOrHot = true;
-		RMIObject object = new RMIObject();
 		MatchBLService mbls = object.getMatchObject();
 		ArrayList<PlayerKingInfo> result = new ArrayList<PlayerKingInfo>();
 		ArrayList<SingleMatchPersonalDataVO> initialResult = new ArrayList<SingleMatchPersonalDataVO>();
@@ -266,7 +268,7 @@ public class Player {
 		if(field==null){
 			field = default_s;
 		}
-		RMIObject object = new RMIObject();
+		
 		SortItem_Map_PlayerHigh sortItem = new SortItem_Map_PlayerHigh();
 		PlayerBLService pbls = object.getPlayerObject();
 		ArrayList<PlayerNormalInfo> resultN = new ArrayList<PlayerNormalInfo>();
@@ -301,7 +303,7 @@ public class Player {
 				high.setFaultEfficient(ps.getTurnoverPercentage());
 				high.setFrequency(ps.getUsingPercentage_avg());
 				high.setGmSc(ps.getGmSc());
-				high.setLeague(ps.get);
+				high.setLeague(ps.getLeague());
 				high.setName(ps.getName());
 				high.setOffendReboundEfficient(ps.getOffensiveReboundEff_avg());
 				high.setPosition(ps.getPosition());
@@ -321,14 +323,14 @@ public class Player {
 					normal.setAge(ps.getAge());
 					normal.setAssist(ps.getAssistNum());
 					normal.setBlockShot(ps.getBlockNum());
-					normal.setDefend(ps.getDefend());
+					normal.setDefend(ps.getD_ReboundNum());
 					normal.setEfficiency(ps.getEfficiency());
 					normal.setFault(ps.getTurnoverNum());
 					normal.setFoul(ps.getFoulNum());
 					normal.setMinute(ps.getTime());
 					normal.setName(ps.getName());
 					normal.setNumOfGame(ps.getMatchNum());
-					normal.setOffend(ps.getOffend());
+					normal.setOffend(ps.getO_ReboundNum());
 					normal.setPenalty(ps.getFreeThrowPercentage());
 					normal.setPoint(ps.getPointNum());
 					normal.setRebound(ps.getReboundNum());
@@ -347,14 +349,14 @@ public class Player {
 					normal.setAge(ps.getAge());
 					normal.setAssist(ps.getAssistNum_avg());
 					normal.setBlockShot(ps.getBlockNum_avg());
-					normal.setDefend(ps.getDefend_avg());
+					normal.setDefend(ps.getD_ReboundNum_avg());
 					normal.setEfficiency(ps.getEfficiency());
 					normal.setFault(ps.getTurnoverNum_avg());
 					normal.setFoul(ps.getFoulNum_avg());
 					normal.setMinute(ps.getTime_avg());
 					normal.setName(ps.getName());
 					normal.setNumOfGame(ps.getMatchNum());
-					normal.setOffend(ps.getOffend_avg());
+					normal.setOffend(ps.getO_ReboundNum_avg());
 					normal.setPenalty(ps.getFreeThrowPercentage());
 					normal.setPoint(ps.getPointNum_avg());
 					normal.setRebound(ps.getReboundNum_avg());
