@@ -1,12 +1,9 @@
 package businesslogic.bl.test.matchtest;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
 import VO.TeamMatchVO;
@@ -300,7 +297,10 @@ public class MatchControllerTest {
 	
 	@Test
 	public void testGetAllSeason() {
-		fail("Not yet implemented");
+		ArrayList<String> season=new ArrayList<>();
+		season.add("12-13");
+		season.add("13-14");
+		
 	}
 
 	@Test

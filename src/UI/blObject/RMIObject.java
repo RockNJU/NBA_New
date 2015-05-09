@@ -1,6 +1,7 @@
 package UI.blObject;
 
 import java.util.ArrayList;
+
 import VO.PlayerSeasonDataVO;
 import VO.TeamSeasonDataVO;
 import businessService.blservice.*;
@@ -13,7 +14,9 @@ public class RMIObject {
 	public RMIObject(){
 		contr=new CenterController();
 	}
-	
+	public RMIObject(String player_path,String team_path,String match_path){
+		contr=new CenterController(player_path,team_path,match_path);
+	}
 	public MatchBLService  getMatchObject(){
 		MatchBLService match=contr.getMatch();
 		return match;
