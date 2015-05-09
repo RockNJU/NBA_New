@@ -29,7 +29,7 @@ public class CenterController {
 	String team_path;
 	
 	public CenterController(){
-		 match=new MatchController("NBAdata\\matches");
+		 match=new MatchController();
 		 player=new PlayerController("NBAdata\\players");
 		 team=new TeamController("NBAdata/teams/teams");
 
@@ -37,12 +37,19 @@ public class CenterController {
 		listener=new PackageListener("NBAdata\\matches");
 	}
 	
+	
+	public void setPath(String player_path,String team_path,String match_path){
+		this.match_path=match_path;
+		this.player_path=player_path;
+		this.team_path=team_path;
+	}
+	
 	public CenterController(String player_path,String team_path,String match_path){
 		
 		this.match_path=match_path;
 		this.player_path=player_path;
 		this.team_path=team_path;
-		match=new MatchController(match_path);
+		match=new MatchController();
 	    player=new PlayerController(player_path);
 		team=new TeamController(team_path);
 

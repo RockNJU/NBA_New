@@ -9,8 +9,8 @@ import VO.SingleMatchPersonalDataVO;
 public class MatchController implements MatchBLService{
 	MatchDataFactory matchFactory;
 	
-	public MatchController(String match_path){
-		matchFactory=new MatchDataFactory(match_path);
+	public MatchController(){
+		matchFactory=new MatchDataFactory();
 	}
 	
 	public void add_A_match(MatchVO vo){

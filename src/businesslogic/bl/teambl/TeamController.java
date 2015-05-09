@@ -18,6 +18,9 @@ public class TeamController implements TeamBLService,TeamInfo_player{
        
        public void updateTeamData(TeamMatchVO vo){
     	   teamFactory.update_A_matchData(vo);
+    	   TeamMatchVO mvo1=new TeamMatchVO(null, null, 0, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+    	   
+    	   
        }
        
 	@Override

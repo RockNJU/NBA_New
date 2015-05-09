@@ -4,28 +4,23 @@ import java.util.ArrayList;
 
 import businesslogic.bl.center.LastMatchDay;
 import businesslogic.bl.center.SeasonInfo;
-import businesslogic.data.TeamData;
-import businesslogic.dataservice.TeamDataService;
 import VO.MatchVO;
 import VO.SingleMatchPersonalDataVO;
-import VO.TeamInfoVO;
 
 public class MatchDataFactory {
 	ArrayList<MatchData> matchList;
-	ArrayList<TeamInfoVO> infoList;
 	
 	private LastMatchDay lastDay;
 	
 	public static void main(String args[]){
-		MatchDataFactory l=new MatchDataFactory("");
+		MatchDataFactory l=new MatchDataFactory();
 		ArrayList<MatchVO> list=l.get_A_Day_match("2013-12-03");
 		for(int i=0;i<list.size();i++){
 			System.out.println(list.get(i).getDate());;
 		}
 	}
-	public MatchDataFactory(String path){
-		TeamDataService teamdata=new TeamData(path);
-		infoList=teamdata.getTeamInfoList();
+	public MatchDataFactory(){
+ 
 		lastDay=new LastMatchDay("","");
 		matchList=new ArrayList<>();
 	}
@@ -94,9 +89,6 @@ public class MatchDataFactory {
 		return null;  					//当对应的日期没有比赛信息时，返回null
 	}
 	
-	public ArrayList<TeamInfoVO> getInfoList() {
-		return infoList;
-	}
 	
 	public ArrayList<SingleMatchPersonalDataVO> get_A_Aay_playMatchData(){
 		for(int i=0;i<matchList.size();i++){
