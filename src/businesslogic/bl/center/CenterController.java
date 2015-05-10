@@ -31,8 +31,8 @@ public class CenterController {
 	public CenterController(){
 		 match=new MatchController();
 		 player=new PlayerController("NBAdata\\players");
-		 team=new TeamController("NBAdata/teams/teams");
-
+		 team=new TeamController("NBAdata\\teams\\teams");
+		 	match_path="NBAdata\\matches";
 		init();
 		listener=new PackageListener("NBAdata\\matches");
 	}

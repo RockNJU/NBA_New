@@ -13,6 +13,7 @@ public class MatchControllerTest {
 	MatchController match;
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("进行准备工作。");
 		match=new MatchController();
 		ArrayList<SingleMatchPersonalDataVO> listA=new ArrayList<>();
 		/*
@@ -167,78 +168,148 @@ public class MatchControllerTest {
 									
 		//---------------------------------------------------------------------------------------------第三场比赛
 			ArrayList<SingleMatchPersonalDataVO> aaaa_list=new ArrayList<>();
-			SingleMatchPersonalDataVO vv1=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "A_1", "teamA", "E", 
+			SingleMatchPersonalDataVO vv1=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "A_1", "teamA", "E", 
 					"Center", "C", 45, 9, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 24,
 					0.63, 0.65, 0.3, 0.21, 0.12, 0.9, 0.3);
 										aaaa_list.add(vv1);
-			SingleMatchPersonalDataVO vv2=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "A_2", "teamA", "E", 
+			SingleMatchPersonalDataVO vv2=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "A_2", "teamA", "E", 
 					"Center", "F", 47, 8, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3,19,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										aaaa_list.add(vv2);
-			SingleMatchPersonalDataVO vv3=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "A_3", "teamA", "E", 
+			SingleMatchPersonalDataVO vv3=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "A_3", "teamA", "E", 
 					"Center", "F", 40, 3, 10, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 9,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										aaaa_list.add(vv3);
-			SingleMatchPersonalDataVO vv4=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "A_4", "teamA", "E", 
+			SingleMatchPersonalDataVO vv4=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "A_4", "teamA", "E", 
 					"Center", "G", 44, 4, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 11,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										aaaa_list.add(vv4);
-			SingleMatchPersonalDataVO vv5=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "A_5", "teamA", "E", 
+			SingleMatchPersonalDataVO vv5=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "A_5", "teamA", "E", 
 					"Center", "G", 44, 8, 16, 0, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 16,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										aaaa_list.add(vv5);
-			SingleMatchPersonalDataVO vv6=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "A_6", "teamA", "E", 
+			SingleMatchPersonalDataVO vv6=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "A_6", "teamA", "E", 
 					"Center", "G", 20, 3, 16, 0, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 7,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										aaaa_list.add(vv6);
 				//总分=6+16+11+9+22+24=88
-					TeamMatchVO teamA2=getTeamMatchVO( aaaa_list,
+					TeamMatchVO teamA3=getTeamMatchVO( aaaa_list,
 							"13-14","teamA", 0,
 							vv1.getDate(),"teamB");
 		/**------------------------------------------------------------------------------------------------------*/
 			ArrayList<SingleMatchPersonalDataVO> bbbb_list=new ArrayList<>();
-			SingleMatchPersonalDataVO ve1=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "B_1", "teamB", "E", 
+			SingleMatchPersonalDataVO ve1=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "B_1", "teamB", "E", 
 					"Center", "C", 45, 9, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 29,
 					0.63, 0.65, 0.3, 0.21, 0.12, 0.9, 0.3);
 											bbbb_list.add(ve1);
-					SingleMatchPersonalDataVO ve2=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "B_2", "teamB", "E", 
+					SingleMatchPersonalDataVO ve2=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "B_2", "teamB", "E", 
 					"Center", "F", 47, 8, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 22,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										  bbbb_list.add(ve2);
-					SingleMatchPersonalDataVO ve3=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "B_3", "teamB", "E", 
+					SingleMatchPersonalDataVO ve3=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "B_3", "teamB", "E", 
 					"Center", "F", 40, 3, 10, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 9,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										bbbb_list.add(ve3);
-					SingleMatchPersonalDataVO ve4=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "B_4", "teamB", "E", 
+					SingleMatchPersonalDataVO ve4=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "B_4", "teamB", "E", 
 					"Center", "G", 44, 8, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 12,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										bbbb_list.add(v4);
-					SingleMatchPersonalDataVO ve5=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "B_5", "teamB", "E", 
+					SingleMatchPersonalDataVO ve5=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "B_5", "teamB", "E", 
 					"Center", "G", 44, 8, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 12,
 					0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										bbbb_list.add(ve5);
-				   SingleMatchPersonalDataVO ve6=new SingleMatchPersonalDataVO("13-14", "2014-4-03", "B_6", "teamB", "E", 
+				   SingleMatchPersonalDataVO ve6=new SingleMatchPersonalDataVO("13-14", "2014-04-03", "B_6", "teamB", "E", 
 						"Center", "G", 20, 8, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 12,
 						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
 										bbbb_list.add(ve6);
 					//该队的总分=12*3+9+22+25=92
-										TeamMatchVO teamB2=getTeamMatchVO( bbbb_list,
-												"13-14","teamA",1,
+										TeamMatchVO teamB3=getTeamMatchVO( bbbb_list,
+												"13-14","teamB",1,
 												vv1.getDate(),"teamA");
-										ArrayList<String> so=new ArrayList<>();
-										sco.add("22-23");
-										sco.add("22-24");
-										sco.add("22-22");
-										sco.add("22-28");
+										ArrayList<String> sso=new ArrayList<>();
+										sso.add("22-23");
+										sso.add("22-24");
+										sso.add("22-22");
+										sso.add("22-28");
 				/* MatchVO(String season,String date,String matchScore,
 				ArrayList<String>scores,TeamMatchVO ht,TeamMatchVO gt)*/
-				MatchVO match3=new MatchVO("13-14",vv1.getDate(),"89-97",so,teamA2,teamB2);	
+				MatchVO match3=new MatchVO("13-14",vv1.getDate(),"89-97",sso,teamA3,teamB3);	
 			///////////////////////-----------------------------------------------------
+				/***********************************----------------添加的第四场比赛*********--------------------------*/
+				ArrayList<SingleMatchPersonalDataVO> sss_list=new ArrayList<>();
+				SingleMatchPersonalDataVO vvvvvv1=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "A_1", "teamA", "E", 
+						"Center", "C", 45, 9, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 24,
+						0.63, 0.65, 0.3, 0.21, 0.12, 0.9, 0.3);
+											sss_list.add(vvvvvv1);
+				SingleMatchPersonalDataVO vvvvvv2=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "A_2", "teamA", "E", 
+						"Center", "F", 47, 8, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3,19,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											sss_list.add(vvvvvv2);
+				SingleMatchPersonalDataVO vvvvvv3=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "A_3", "teamA", "E", 
+						"Center", "F", 40, 3, 10, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 9,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											sss_list.add(vvvvvv3);
+				SingleMatchPersonalDataVO vvvvvv4=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "A_4", "teamA", "E", 
+						"Center", "G", 44, 4, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 11,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											sss_list.add(vvvvvv4);
+				SingleMatchPersonalDataVO vvvvvv5=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "A_5", "teamA", "E", 
+						"Center", "G", 44, 8, 16, 0, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 16,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											sss_list.add(vvvvvv5);
+				SingleMatchPersonalDataVO vvvvvv6=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "A_6", "teamA", "E", 
+						"Center", "G", 20, 3, 16, 0, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 7,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											sss_list.add(vvvvvv6);
+					//总分=6+16+11+9+22+24=88
+						TeamMatchVO teamA4=getTeamMatchVO( sss_list,
+								"13-14","teamA", 0,
+								vvvvvv1.getDate(),"teamB");
+			/**------------------------------------------------------------------------------------------------------*/
+				ArrayList<SingleMatchPersonalDataVO> bbbbbbbbbbbbb_list=new ArrayList<>();
+				SingleMatchPersonalDataVO vveeeee1=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "B_1", "teamB", "E", 
+						"Center", "C", 45, 9, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 29,
+						0.63, 0.65, 0.3, 0.21, 0.12, 0.9, 0.3);
+												bbbbbbbbbbbbb_list.add(vveeeee1);
+						SingleMatchPersonalDataVO vveeeee2=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "B_2", "teamB", "E", 
+						"Center", "F", 47, 8, 20, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 22,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											  bbbbbbbbbbbbb_list.add(vveeeee2);
+						SingleMatchPersonalDataVO vveeeee3=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "B_3", "teamB", "E", 
+						"Center", "F", 40, 3, 10, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 9,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											bbbbbbbbbbbbb_list.add(vveeeee3);
+						SingleMatchPersonalDataVO vveeeee4=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "B_4", "teamB", "E", 
+						"Center", "G", 44, 8, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 12,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											bbbbbbbbbbbbb_list.add(v4);
+						SingleMatchPersonalDataVO vveeeee5=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "B_5", "teamB", "E", 
+						"Center", "G", 44, 8, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 12,
+						0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											bbbbbbbbbbbbb_list.add(vveeeee5);
+					   SingleMatchPersonalDataVO vveeeee6=new SingleMatchPersonalDataVO("13-14", "2014-04-04", "B_6", "teamB", "E", 
+							"Center", "G", 20, 8, 16, 3, 6, 3, 6, 6, 3, 9, 5, 1, 1, 6, 3, 12,
+							0.63, 0.63, 0.3, 0.21, 0.12, 0.9, 0.3);
+											bbbbbbbbbbbbb_list.add(vveeeee6);
+						//该队的总分=12*3+9+22+25=92
+											TeamMatchVO teamB4=getTeamMatchVO( bbbbbbbbbbbbb_list,
+													"13-14","teamB",1,
+													vvvvvv1.getDate(),"teamA");
+											ArrayList<String> sssso=new ArrayList<>();
+											sssso.add("29-22");
+											sssso.add("23-24");
+											sssso.add("22-22");
+											sssso.add("22-28");
+					/* MatchVO(String season,String date,String matchScore,
+					ArrayList<String>scores,TeamMatchVO ht,TeamMatchVO gt)*/
+					MatchVO match4=new MatchVO("13-14",vvvvvv1.getDate(),"100-96",sssso,teamA4,teamB4);	
+				///////////////////////----------------------------------------------
 				
-				
+				/*---------------------------------------------------------------------------*/
 				match.add_A_match(match1);
 				match.add_A_match(match2);
 				match.add_A_match(match3);
+				match.add_A_match(match4);
 	}
 	public TeamMatchVO getTeamMatchVO(ArrayList<SingleMatchPersonalDataVO> list,
 			String season,String teamName, int winNum,
@@ -297,35 +368,94 @@ public class MatchControllerTest {
 	
 	@Test
 	public void testGetAllSeason() {
+		System.out.println("进行赛季获取的测试：");
 		ArrayList<String> season=new ArrayList<>();
-		season.add("12-13");
-		season.add("13-14");
+		season.add("12-13赛季");
+		season.add("13-14赛季");
+		ArrayList<String> result=match.getAllSeason();
+		System.out.println("获取大小："+result.size()+";"+result.get(0));
+		for(int i=0;i<result.size();i++){
+			System.out.println("获得的赛季"+result.get(i)+";"+season.get(i));
+			assertEquals(season.get(i),result.get(i));
+			
+		}
 		
 	}
 
 	@Test
 	public void testGetMatchByTeamTime() {
-		fail("Not yet implemented");
+		ArrayList<MatchVO> list=match.getMatchByTeamTime("2014-04-03");
+		ArrayList<String> so=new ArrayList<>();
+		so.add("22-23");
+		so.add("22-24");
+		so.add("22-22");
+		so.add("22-28");
+		assertEquals("13-14",list.get(0).getSeason());
+		assertEquals("89-97",list.get(0).getMatchScore());
+		assertEquals("teamA",list.get(0).getHostTeam().getTeamName());
+		assertEquals("teamB",list.get(0).getGuestTeam().getTeamName());
+		assertEquals(so,list.get(0).getScores());
 	}
 
 	@Test
 	public void testGetMatchByTeam() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTodayHotPlayerString() {
-		fail("Not yet implemented");
+		 MatchVO vo=match.getMatchByTeam("2014-04-03", "teamA");
+		 ArrayList<String> so=new ArrayList<>();
+			so.add("22-23");
+			so.add("22-24");
+			so.add("22-22");
+			so.add("22-28");
+			System.out.println("----**Vo.getseasom:  "+vo.getSeason());
+			assertEquals("13-14",vo.getSeason());
+			assertEquals("89-97",vo.getMatchScore());
+			assertEquals("teamA",vo.getHostTeam().getTeamName());
+			assertEquals("teamB",vo.getGuestTeam().getTeamName());
 	}
 
 	@Test
 	public void testGetMatchBySeason() {
-		fail("Not yet implemented");
+		ArrayList<MatchVO> list=match.getMatchBySeason("13-14", "teamA");
+		ArrayList<String> so1=new ArrayList<>();
+		so1.add("22-23");
+		so1.add("22-24");
+		so1.add("22-22");
+		so1.add("22-28");
+		 
+		assertEquals("13-14",list.get(1).getSeason());
+		assertEquals("89-97",list.get(1).getMatchScore());
+		assertEquals("teamA",list.get(1).getHostTeam().getTeamName());
+		assertEquals("teamB",list.get(1).getGuestTeam().getTeamName());
+		
+		assertEquals(so1,list.get(1).getScores());
+		//------------------------------------------------
+		
+		ArrayList<String> sssso=new ArrayList<>();
+		sssso.add("29-22");
+		sssso.add("23-24");
+		sssso.add("22-22");
+		sssso.add("22-28");
+		 
+		assertEquals("13-14",list.get(2).getSeason());
+		assertEquals("100-96",list.get(2).getMatchScore());
+		assertEquals("teamA",list.get(2).getHostTeam().getTeamName());
+		assertEquals("teamB",list.get(2).getGuestTeam().getTeamName());
+		
+		assertEquals(sssso,list.get(2).getScores());
 	}
 
 	@Test
 	public void testGetTodayHotPlayerStringInt() {
-		fail("Not yet implemented");
+		ArrayList<SingleMatchPersonalDataVO> list=match.getTodayHotPlayer("pointNum");
+		 
+			assertEquals("B_1",list.get(0).getPlayerName());
+			assertEquals(29,list.get(0).getPointNum());
+			//-------------------------
+			assertEquals("A_1",list.get(1).getPlayerName());
+			assertEquals(24,list.get(1).getPointNum());
+			
+			assertEquals("B_2",list.get(2).getPlayerName());
+			assertEquals(22,list.get(2).getPointNum());
+		 
 	}
 
 }
