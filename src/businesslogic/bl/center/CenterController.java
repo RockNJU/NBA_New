@@ -30,7 +30,7 @@ public class CenterController {
 	
 	public CenterController(){
 		 match=new MatchController();
-		 player=new PlayerController("NBAdata\\players");
+		 player=new PlayerController("NBAdata\\players\\info");
 		 team=new TeamController("NBAdata\\teams\\teams");
 		 	match_path="NBAdata\\matches";
 		init();
@@ -52,9 +52,7 @@ public class CenterController {
 		match=new MatchController();
 	    player=new PlayerController(player_path);
 		team=new TeamController(team_path);
-
 		init();
-		
 		listener=new PackageListener(match_path);
 	}
 	
@@ -91,6 +89,7 @@ public class CenterController {
 	private void init(){
 		MatchDataService mc=new MatchDataController(match_path);
 		ArrayList<MatchPO> polist=mc.getAllMatch();
+		System.out.println("≥ı ºªØ÷–£¨---"+polist.size());
 		MatchVO vo;
 		for(int i=0;i<polist.size();i++){
 			vo=matchpo_TO_po(polist.get(i));
