@@ -89,7 +89,7 @@ public class CenterController {
 	private void init(){
 		MatchDataService mc=new MatchDataController(match_path);
 		ArrayList<MatchPO> polist=mc.getAllMatch();
-		System.out.println("初始化中，---"+polist.size());
+		//System.out.println("初始化中，---"+polist.size());
 		MatchVO vo;
 		for(int i=0;i<polist.size();i++){
 			vo=matchpo_TO_po(polist.get(i));
@@ -103,7 +103,7 @@ public class CenterController {
 			//System.out.println("po->vo的转化："+i);
 		}
 		
-		System.out.println("初始化结束！");
+	//	System.out.println("初始化结束！");
 	}
 	
 	public void addMatch(MatchPO po){
@@ -136,7 +136,7 @@ public class CenterController {
 	        
 	        TeamBase tb=new TeamBase();
 	        
-	        int Alltime=48*5+(po.getScores().size()-4)*5;
+	        int Alltime=48*5+(po.getScores().size()-4)*5*5;
 	        
 	        String sco[]=po.getMatchScore().split("-");
 	        int H_points=Integer.parseInt(sco[0]);
@@ -146,14 +146,14 @@ public class CenterController {
 	        		tb.getDivision(H_po.getTeamName()),tb.getpartition(H_po.getTeamName()),po.getSeason(),po.getDate(),
 	        		H_po.getIndividualData(),
 					H_po.getReboundNum(),G_po.getReboundNum(),H_po.getFieldGoal(),G_offense_round,
-					G_po.getShootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum()
+					G_po.getShootNum()-G_po.getT_shootNum(),H_po.getShootNum(),H_po.getFreeThrowNum(),H_po.getTurnoverNum()
 					,H_po.getAllTime(),H_points,H_po.getPoints());
 	        
 	        ArrayList<SingleMatchPersonalDataVO> G_player_list=playerMatchPO_To_VO(G_po.getTeamName(),Alltime,
 	        		tb.getDivision(G_po.getTeamName()),tb.getpartition(G_po.getTeamName()),po.getSeason(),po.getDate(),
 	        		G_po.getIndividualData(),
 					G_po.getReboundNum(),H_po.getReboundNum(),G_po.getFieldGoal(),H_offense_round,
-					H_po.getShootNum(),G_po.getShootNum(),G_po.getFreeThrowNum(),G_po.getTurnoverNum(),
+					H_po.getShootNum()-H_po.getT_shootNum(),G_po.getShootNum(),G_po.getFreeThrowNum(),G_po.getTurnoverNum(),
 					G_po.getAllTime(),G_points,G_po.getPoints());
 	        /*String season,String teamName, 
 				int winNum,int pointNum,int lost_point,
@@ -244,12 +244,12 @@ public class CenterController {
 				 /*抢断率： 球员抢断数×(球队所有球员上场时间÷5)÷球员上场时间÷对手进攻次数)*/
 				 stealEff=(double)po.getStealNum()*(allTime/5)/po.getTime()/E_offenseRound;
 				 /*盖帽率：球员盖帽数×(球队所有球员上场时间÷5)÷球员上场时间÷对手两分球出手次数*/
-				 blockEff=po.getBlockNum()*(allTime/5)/po.getTime()/E_two_shootNum;
+				 blockEff=(double)po.getBlockNum()*(allTime/5)/po.getTime()/E_two_shootNum;
 				 /*使用率： (球员出手次数+0.44×球员罚球次数+球员失误次数)×(球队所有球员
 				上场时间÷5)÷球员上场时间÷(球队所有总球员出手次数+0.44×球队所有球员罚球
 				次数+球队所有球员失误次数) */
-				 usingPer=(po.getShootNum()+0.44*po.getFreeThrowNum()+po.getTurnoverNum())*
-				 (allTime/5)/po.getTime()/(T_shootNum+0.44*T_freeThrowNum+T_turnoverNum);
+				 usingPer=((po.getShootNum()+0.44*po.getFreeThrowNum()+po.getTurnoverNum())*
+				 (allTime/5)/po.getTime())/(T_shootNum+0.44*T_freeThrowNum+T_turnoverNum);
 				 }
 				 /*String season,String date,String name,String p,String time,int fieldGoal,
 				 int shootNum,int T_fieldGoal,int T_shootNum,int freeThrowGoalNum,int freeThrowNum,
