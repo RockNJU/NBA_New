@@ -67,6 +67,7 @@ public class DateChooser extends JPanel{
      */
     public DateChooser(int x,int y) {
         this(new Date());
+      
         this.setSize(x,y);
     }
     public DateChooser(Date date){

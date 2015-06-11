@@ -22,7 +22,7 @@ public class SinglePlayer extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*
+	
 	public static void main(String[] args) {
 		 try {
 	            UIManager
@@ -31,14 +31,14 @@ public class SinglePlayer extends JDialog {
 	            e.printStackTrace();
 	        }
 		try {
-			SinglePlayer dialog = new SinglePlayer(playername);
+			SinglePlayer dialog = new SinglePlayer("a", "13-14");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-*/
+
 	/**
 	 * Create the dialog.
 	 */

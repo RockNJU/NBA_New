@@ -65,7 +65,7 @@ public class BasicInfo extends JPanel {
 		
 		
 		//pbl=init.rmi.getPlayerObject();
-		pivo=init.pbl.getPlayerInfo(name);
+		//pivo=init.pbl.getPlayerInfo(name);
 		pdvo=init.pbl.getAPlayerSeasonMatch(season, name);
 		
 		//System.out.println(pivo==null);

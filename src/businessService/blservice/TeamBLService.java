@@ -11,7 +11,7 @@ public interface TeamBLService {
 	public ArrayList<TeamSeasonDataVO> getAllTeamSeasonData(String season);	
 	//返回某个赛季的所有球队的现有赛季信息，传入的参数为赛季
 	
-	//TODO 跪求还有teaminfovo
+
 	public TeamSeasonDataVO get_A_TeamSeasonData(String season,String teamAbb);	
 	public TeamInfoVO get_A_TeamInfo(String season,String teamAbb);	
 	//根据赛季和球队缩写获取一支球队在某个赛季的比赛信息

@@ -260,7 +260,7 @@ public class Player extends JPanel {
 		playerseason.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		playerseason.setToolTipText("Èü¼¾");
 
-		ArrayList<String> seasons = init.mbl.getAllSeason();
+		ArrayList<String> seasons = init.pbl.getAllSeason();
 		if (seasons.size() == 0 || seasons == null) {
 			seasons.add("13-14Èü¼¾");
 		}
